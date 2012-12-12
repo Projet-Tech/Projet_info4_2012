@@ -119,9 +119,9 @@ public class MonochromeButton extends JButton {
 		
 		// TODO Auto-generated method stub
 		//super.paintBorder(g);
+		
 	}
 
-//Test jean-Michel
 
 
 }
