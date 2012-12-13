@@ -1,7 +1,7 @@
 // 
 //
 //  @ Projet : Project Gammon
-//  @ Fichier : ControleurAide.java
+//  @ Fichier : De.java
 //  @ Date : 12/12/2012
 //  @ Auteurs : DONG Chuan, BONNETTO Benjamin, FRANCON Adrien, POTHELUNE Jean-Michel
 //
@@ -10,10 +10,14 @@
 
 
 
-package fr.ujm.tse.info4.pgammon.controleur;
+package fr.ujm.tse.info4.pgammon.models;
 
 
-public class ControleurAide
+public class De
 {
-	//public VueAide vueAide;
+	public int Lancer()
+	{
+		//TODO
+		throw new UnsupportedOperationException();
+	}
 }
