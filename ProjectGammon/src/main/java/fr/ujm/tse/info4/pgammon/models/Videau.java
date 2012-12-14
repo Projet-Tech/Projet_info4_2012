@@ -19,8 +19,13 @@ public class Videau extends De
 	private int valeur;
 	public int doubler()
 	{
-		//TODO
-		throw new UnsupportedOperationException();
+		valeur = valeur*2;
+		return valeur;
+	}
+	
+	public int getvideau()
+	{
+		return valeur;
 	}
 	
 

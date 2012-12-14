@@ -11,6 +11,6 @@ public class App
     public static void main( String[] args )
     {
         System.out.println( "Hello World!" );
-        Case c = new Case(CouleurCase.BLANC);
+        //Case c = new Case(CouleurCase.BLANC);
     }
 }
