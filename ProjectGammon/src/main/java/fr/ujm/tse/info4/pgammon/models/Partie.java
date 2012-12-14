@@ -29,10 +29,17 @@ public class Partie
 	private List<Tour> HistoriqueToursJoueur;
 	private int idPartie;
 	private Timer timerTour;
+	
+	
 	public Partie(ParametreJeu p)
 	{
 		//TODO
 		throw new UnsupportedOperationException();
+	}
+	
+	public void LancerPartie(ParametreJeu p)
+	{
+		
 	}
 	
 	private void changerTour()
@@ -143,6 +150,12 @@ public class Partie
 		throw new UnsupportedOperationException();
 	}
 	
+	
+	
+	
+	
+	/* SERIALISATION*/
+	
 	public void sauvegarder(Element sessionElement)
 	{
 		//TODO
@@ -154,4 +167,84 @@ public class Partie
 		//TODO
 		throw new UnsupportedOperationException();
 	}
+
+	
+	
+	
+	
+	/* GETTERS ET SETTERS*/
+	
+	public ParametreJeu getParametreJeu() {
+		return parametreJeu;
+	}
+
+	public void setParametreJeu(ParametreJeu parametreJeu) {
+		this.parametreJeu = parametreJeu;
+	}
+
+	public Videau getVideau() {
+		return videau;
+	}
+
+	public void setVideau(Videau videau) {
+		this.videau = videau;
+	}
+
+	public List<DeSixFaces> getDeSixFaces() {
+		return deSixFaces;
+	}
+
+	public void setDeSixFaces(List<DeSixFaces> deSixFaces) {
+		this.deSixFaces = deSixFaces;
+	}
+
+	public Tablier getTablier() {
+		return tablier;
+	}
+
+	public void setTablier(Tablier tablier) {
+		this.tablier = tablier;
+	}
+
+	public StatistiquePartie getStatistique() {
+		return statistique;
+	}
+
+	public void setStatistique(StatistiquePartie statistique) {
+		this.statistique = statistique;
+	}
+
+	public CouleurCase getJoueurEnCour() {
+		return joueurEnCour;
+	}
+
+	public void setJoueurEnCour(CouleurCase joueurEnCour) {
+		this.joueurEnCour = joueurEnCour;
+	}
+
+	public List<Tour> getHistoriqueToursJoueur() {
+		return HistoriqueToursJoueur;
+	}
+
+	public void setHistoriqueToursJoueur(List<Tour> historiqueToursJoueur) {
+		HistoriqueToursJoueur = historiqueToursJoueur;
+	}
+
+	public int getIdPartie() {
+		return idPartie;
+	}
+
+	public void setIdPartie(int idPartie) {
+		this.idPartie = idPartie;
+	}
+
+	public Timer getTimerTour() {
+		return timerTour;
+	}
+
+	public void setTimerTour(Timer timerTour) {
+		this.timerTour = timerTour;
+	}
+	
+	
 }

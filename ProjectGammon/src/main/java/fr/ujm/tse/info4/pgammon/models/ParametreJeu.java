@@ -22,12 +22,18 @@ public class ParametreJeu
 	private boolean utiliseVideau;
 	public Joueur joueurBlanc;
 	public Joueur joueurNoir;
-	public ParametreJeu(Object secondesParTour, Object nbrPartieGagnante, Object utiliseVideau)
-	{
-		//TODO
-		throw new UnsupportedOperationException();
-	}
 	
+		
+	public ParametreJeu(int secondesParTour, int nbrPartieGagnante, boolean utiliseVideau,Joueur joueurBlanc,Joueur joueurNoir )
+	{
+		this.secondesParTour = secondesParTour;
+		this.nbrPartieGagnante = nbrPartieGagnante;
+		this.utiliseVideau = utiliseVideau;
+		this.joueurBlanc = joueurBlanc;
+		this.joueurNoir = joueurNoir;
+	}
+
+
 	public void sauvegarder(Element sessionElement)
 	{
 		//TODO
@@ -39,4 +45,33 @@ public class ParametreJeu
 		//TODO
 		throw new UnsupportedOperationException();
 	}
+
+	
+	
+	
+	public int getSecondesParTour() {
+		return secondesParTour;
+	}
+
+	public int getNbrPartieGagnante() {
+		return nbrPartieGagnante;
+	}
+
+	public boolean isUtiliseVideau() {
+		return utiliseVideau;
+	}
+
+	public Joueur getJoueurBlanc() {
+		return joueurBlanc;
+	}
+
+	public Joueur getJoueurNoir() {
+		return joueurNoir;
+	}
+
+
+
+
+
+
 }

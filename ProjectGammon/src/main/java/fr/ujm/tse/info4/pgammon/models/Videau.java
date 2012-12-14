@@ -17,6 +17,13 @@ package fr.ujm.tse.info4.pgammon.models;
 public class Videau extends De
 {
 	private int valeur;
+	
+	public Videau()
+	{
+		valeur = 1;
+	}
+	
+	
 	public int doubler()
 	{
 		valeur = valeur*2;

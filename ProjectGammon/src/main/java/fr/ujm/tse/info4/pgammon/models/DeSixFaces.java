@@ -8,8 +8,6 @@
 //
 
 
-
-
 package fr.ujm.tse.info4.pgammon.models;
 
 import org.jdom2.Element;
@@ -17,26 +15,33 @@ import org.jdom2.Element;
 
 public class DeSixFaces extends De
 {
+	/* VARIABLES */
+	
 	private int valeur;
 	private boolean isUtilise;
 	private CouleurCase couleurDe;
-	public DeSixFaces(Object CouleurCase)
+	
+	/* FUNCTION */
+
+	public DeSixFaces(CouleurCase couleurCase)
 	{
-		//TODO
-		throw new UnsupportedOperationException();
+		isUtilise = false;
+		valeur = (int)(Math.random()*6);
+		couleurDe = couleurCase;
 	}
 	
-	public DeSixFaces(Object CouleurCase, Object valeur)
+	public DeSixFaces(CouleurCase couleurCase, int valeur)
 	{
-		//TODO
-		throw new UnsupportedOperationException();
+		isUtilise = false;
+		this.valeur = valeur;
+		this.couleurDe = couleurCase;
 	}
 	
 	public void utiliser()
 	{
-		//TODO
-		throw new UnsupportedOperationException();
+		isUtilise= true;
 	}
+	
 	
 	public void sauvegarder(Element partieElement)
 	{
@@ -49,4 +54,22 @@ public class DeSixFaces extends De
 		//TODO
 		throw new UnsupportedOperationException();
 	}
+	
+	
+	
+	/* GETTERS ET SETTERS */
+	
+	public int getValeur() {
+		return valeur;
+	}
+
+	public boolean isUtilise() {
+		return isUtilise;
+	}
+
+	public CouleurCase getCouleurDe() {
+		return couleurDe;
+	}
+	
+	
 }

@@ -23,6 +23,7 @@ public class Tablier
 	private Object caseVictoire;
 	private Object caseBarre;
 	private Partie partie;
+	
 	public Tablier(Partie p)
 	{
 		//TODO
