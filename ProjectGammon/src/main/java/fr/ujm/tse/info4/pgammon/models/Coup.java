@@ -15,6 +15,30 @@ package fr.ujm.tse.info4.pgammon.models;
 
 public class Coup
 {
-	public Case caseDepart;
-	public Case caseArriver;
+	private Case caseDepart;
+	private Case caseArriver;
+	
+	public Coup(Case caseDepart, Case caseArriver)
+	{
+		this.caseDepart = caseDepart;
+		this.caseArriver = caseArriver;
+	}
+
+	public Case getCaseDepart() {
+		return caseDepart;
+	}
+
+	public void setCaseDepart(Case caseDepart) {
+		this.caseDepart = caseDepart;
+	}
+
+	public Case getCaseArriver() {
+		return caseArriver;
+	}
+
+	public void setCaseArriver(Case caseArriver) {
+		this.caseArriver = caseArriver;
+	}
+	
+	
 }

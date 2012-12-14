@@ -13,7 +13,7 @@ package fr.ujm.tse.info4.pgammon.models;
 import org.jdom2.Element;
 
 
-public class DeSixFaces extends De
+public class DeSixFaces
 {
 	/* VARIABLES */
 	

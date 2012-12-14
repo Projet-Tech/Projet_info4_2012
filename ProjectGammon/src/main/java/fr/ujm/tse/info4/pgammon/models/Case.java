@@ -17,16 +17,59 @@ public class Case
 {
 	private CouleurCase couleurDame;
 	private int nbDame;
+	// si position = 0 case de demarrage
+	//1 à 24 = case normal
+	//25 =  caseVictoire
 	private int position;
-	public Case(CouleurCase couleur)
+	
+	public Case(CouleurCase couleur,int nbDame,int position)
 	{
-		//TODO
-		throw new UnsupportedOperationException();
+		this.couleurDame = couleur;
+		this.nbDame = nbDame;
+		this.position =position;
 	}
 	
 	public boolean isCaseVictoire()
 	{
-		//TODO
-		throw new UnsupportedOperationException();
+		if(position==25)
+			return true;
+		else
+			return false;
 	}
+	
+	public void ajoutDame()
+	{
+		nbDame+=1;
+	}
+	
+	public boolean moinDame()
+	{
+		if(position >= 1){
+			nbDame-=1;
+			return true;
+		}
+		else
+			return false;
+	}
+
+	/**
+	 * 
+	 * 
+	 * 
+	 */
+	
+	public CouleurCase getCouleurDame() {
+		return couleurDame;
+	}
+
+	public int getNbDame() {
+		return nbDame;
+	}
+
+	public int getPosition() {
+		return position;
+	}
+	
+	
+	
 }

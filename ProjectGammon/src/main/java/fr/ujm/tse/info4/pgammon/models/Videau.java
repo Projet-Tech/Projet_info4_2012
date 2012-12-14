@@ -14,7 +14,7 @@ package fr.ujm.tse.info4.pgammon.models;
 
 
 
-public class Videau extends De
+public class Videau
 {
 	private int valeur;
 	
