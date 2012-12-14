@@ -32,6 +32,7 @@ public class MonochromeButton extends JButton {
 		text = str;
 
 		build();
+	
 	}
 
 	public MonochromeButton(String text, Icon icon) {
@@ -117,7 +118,6 @@ public class MonochromeButton extends JButton {
 	@Override
 	protected void paintBorder(Graphics g) {
 		
-		// TODO Auto-generated method stub
 		//super.paintBorder(g);
 		
 	}

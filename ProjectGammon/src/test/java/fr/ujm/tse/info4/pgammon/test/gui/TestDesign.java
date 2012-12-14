@@ -6,7 +6,9 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import javax.swing.JFrame;
 
+import fr.ujm.tse.info4.pgammon.gui.IconMonochromeType;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
+import fr.ujm.tse.info4.pgammon.gui.MonochromeIconButton;
 import fr.ujm.tse.info4.pgammon.gui.MonochromePanel;
 
 public class TestDesign {
@@ -33,6 +35,16 @@ public class TestDesign {
 		{
 			MonochromeButton mbtn = new MonochromeButton("MonochromeButton2");
 			mbtn.setPreferredSize(new Dimension(300, 60));
+			panel.add(mbtn);
+		}
+		{
+			MonochromeIconButton mbtn = new MonochromeIconButton(IconMonochromeType.X_BLANC,"MonochromeIconButton","NOIR");
+			mbtn.setPreferredSize(new Dimension(60, 60));
+			panel.add(mbtn);
+		}
+		{
+			MonochromeIconButton mbtn = new MonochromeIconButton(IconMonochromeType.X_NOIR,"MonochromeIconButton");
+			mbtn.setPreferredSize(new Dimension(60, 60));
 			panel.add(mbtn);
 		}
 		frame.setVisible(true);
