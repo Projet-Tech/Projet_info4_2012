@@ -25,12 +25,49 @@ public class TestDesignPlateau {
 		panel.setBackground(new Color(0x00000));
 		
 		{
-			TriangleCaseButton t1 = new TriangleCaseButton(null, CouleurCase.BLANC);
-			panel.add(t1);
+			TriangleCaseButton t = new TriangleCaseButton(new Case(12,CouleurCase.NOIR,3), CouleurCase.BLANC);
+			panel.add(t);
 		}
 		{
-			TriangleCaseButton t2 = new TriangleCaseButton(null, CouleurCase.NOIR);
-			panel.add(t2);
+			TriangleCaseButton t = new TriangleCaseButton(new Case(12,CouleurCase.BLANC,4), CouleurCase.NOIR);
+			panel.add(t);
+		}
+
+		{
+			TriangleCaseButton t = new TriangleCaseButton(new Case(12,CouleurCase.BLANC,5), CouleurCase.BLANC);
+			panel.add(t);
+		}
+		{
+			TriangleCaseButton t = new TriangleCaseButton(new Case(12,CouleurCase.BLANC,6), CouleurCase.NOIR);
+			panel.add(t);
+		}
+		{
+			TriangleCaseButton t = new TriangleCaseButton(new Case(12,CouleurCase.BLANC,7), CouleurCase.BLANC);
+			panel.add(t);
+		}
+		{
+			TriangleCaseButton t = new TriangleCaseButton(new Case(12,CouleurCase.BLANC,8), CouleurCase.NOIR);
+			panel.add(t);
+		}
+		{
+			TriangleCaseButton t = new TriangleCaseButton(new Case(12,CouleurCase.BLANC,9), CouleurCase.BLANC);
+			panel.add(t);
+		}
+		{
+			TriangleCaseButton t = new TriangleCaseButton(new Case(12,CouleurCase.BLANC,10), CouleurCase.NOIR);
+			panel.add(t);
+		}
+		{
+			TriangleCaseButton t = new TriangleCaseButton(new Case(12,CouleurCase.NOIR,11), CouleurCase.BLANC);
+			panel.add(t);
+		}
+		{
+			TriangleCaseButton t = new TriangleCaseButton(new Case(12,CouleurCase.NOIR,12), CouleurCase.NOIR);
+			panel.add(t);
+		}
+		{
+			TriangleCaseButton t = new TriangleCaseButton(new Case(12), CouleurCase.NOIR);
+			panel.add(t);
 		}
 		frame.setVisible(true);
 	}
