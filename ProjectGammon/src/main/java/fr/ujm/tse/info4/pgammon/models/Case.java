@@ -7,57 +7,71 @@
 //
 //
 
-
-
-
 package fr.ujm.tse.info4.pgammon.models;
 
-
-public class Case
-{
+public class Case {
 	private CouleurCase couleurDame;
 	private int nbDame;
-	// si position = 0 case de demarrage
-	//1 à 24 = case normal
-	//25 =  caseVictoire
-	private int position;
 	
-	public Case(CouleurCase couleur,int nbDame,int position)
-	{
+	private int position;
+
+	public Case(CouleurCase couleur, int nbDame, int position) {
 		this.couleurDame = couleur;
 		this.nbDame = nbDame;
-		this.position =position;
+		this.position = position;
 	}
-	
-	public boolean isCaseVictoire()
-	{
-		if(position==25)
+
+	public boolean isCaseVictoire() {
+		if (position == 25 && couleurDame == CouleurCase.BLANC
+				|| position == 0 && couleurDame == CouleurCase.NOIR)
 			return true;
 		else
 			return false;
 	}
-	
-	public void ajoutDame()
-	{
-		nbDame+=1;
-	}
-	
-	public boolean moinDame()
-	{
-		if(position >= 1){
-			nbDame-=1;
+
+	public boolean ajoutDame(CouleurCase couleur) {
+		
+		//Si la case et de la même couleur on ajout une dame
+		if (this.couleurDame == couleur) {
+			nbDame += 1;
+			return true;
+		} 
+		//sinon si la case est vide on change de couleur et on increment
+		else if(this.couleurDame == CouleurCase.VIDE)
+		{
+			nbDame += 1;
+			this.couleurDame = couleur;
 			return true;
 		}
+		//sinon si la case et de la couleur inverse et que il y a moins d'un jeton
+		//on change juste de couleur
+		else if (nbDame <= 1) {
+			this.couleurDame = couleur;
+			return true;
+		} 
+		//sinon probléme
 		else
 			return false;
+
+	}
+
+	public boolean moinDame() {
+		if (nbDame >= 1) {
+			nbDame -= 1;
+			if (nbDame == 0)
+				couleurDame = CouleurCase.VIDE;
+			return true;
+		} else
+			return false;
+
 	}
 
 	/**
 	 * 
-	 * 
+	 * Getters
 	 * 
 	 */
-	
+
 	public CouleurCase getCouleurDame() {
 		return couleurDame;
 	}
@@ -69,7 +83,5 @@ public class Case
 	public int getPosition() {
 		return position;
 	}
-	
-	
-	
+
 }

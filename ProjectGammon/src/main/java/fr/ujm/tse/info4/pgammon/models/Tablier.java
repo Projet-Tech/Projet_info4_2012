@@ -46,10 +46,10 @@ public class Tablier
 		caseBarre = new ArrayList<Case>();
 		
 		caseVictoire.add(new Case(CouleurCase.BLANC, 0, 25));
-		caseVictoire.add(new Case(CouleurCase.NOIR, 0, 25));
+		caseVictoire.add(new Case(CouleurCase.NOIR, 0, 0));
 		
 		caseBarre.add(new Case(CouleurCase.BLANC, 0, 0));
-		caseBarre.add(new Case(CouleurCase.NOIR, 0, 0));
+		caseBarre.add(new Case(CouleurCase.NOIR, 0, 25));
 		
 		for (int i=1;i<=24;i++)
 		{
@@ -76,20 +76,50 @@ public class Tablier
 	
 	public int distanceDeuxCase(Case cDepart, Case cArrivee)
 	{
-		//TODO
-		throw new UnsupportedOperationException();
+		return cArrivee.getPosition()-cDepart.getPosition();
 	}
 	
 	public boolean isCoupPossible(Case cDepart, Case cArrivee)
 	{
-		//TODO
-		throw new UnsupportedOperationException();
+		if (cArrivee.isCaseVictoire()){
+			if (peutMarquerDame(cDepart.getCouleurDame()) 
+					&& cArrivee.getCouleurDame() == cDepart.getCouleurDame())
+				return true;
+			else
+				return false;
+		}
+
+		if (distanceDeuxCase(cDepart,cArrivee)<0 && cDepart.getCouleurDame() == CouleurCase.BLANC 
+				|| distanceDeuxCase(cDepart,cArrivee)>0 && cDepart.getCouleurDame() == CouleurCase.NOIR )
+			return false;
+		if(cDepart.getCouleurDame() == cArrivee.getCouleurDame())
+			return true;
+		else
+		{
+			if (cArrivee.getNbDame()<=1)
+				return true;
+			else
+				return false;
+		}
 	}
 	
-	public void deplacerDame(Case cDepart, Case cArrivee)
+	public boolean deplacerDame(Case cDepart, Case cArrivee)
 	{
-		//TODO
-		throw new UnsupportedOperationException();
+		if(isCoupPossible(cDepart,cArrivee))
+		{
+			//enregistrement de la couleur de la case de départ
+			CouleurCase couleurCaseDepart =  cDepart.getCouleurDame();
+			//suppresion du jeton si possible
+			if (!cDepart.moinDame())
+				return false;
+			//ajout de la dame
+			cArrivee.ajoutDame(couleurCaseDepart);
+			
+			return true;
+		}
+		else
+			return false;
+		
 	}
 	
 	public int getCaseCouleur(CouleurCase couleur)
@@ -98,16 +128,47 @@ public class Tablier
 		throw new UnsupportedOperationException();
 	}
 	
-	public boolean peutMarquerDame(Object Couleur)
+	
+	public boolean peutMarquerDame(CouleurCase Couleur)
 	{
-		//TODO
-		throw new UnsupportedOperationException();
+		int nbDame = 0;
+		int a;
+		int b;
+		
+		if(Couleur == CouleurCase.BLANC)
+		{
+			nbDame += getCaseBarre().get(0).getNbDame();
+			for (int i=0;i<18;i++)
+			{
+				if (getListeCase().get(i).getCouleurDame() == CouleurCase.BLANC)
+					nbDame += getListeCase().get(i).getNbDame();
+			}
+		}
+		else
+		{
+			nbDame += getCaseBarre().get(1).getNbDame();
+			for (int i=6;i<24;i++)
+			{
+				if (getListeCase().get(i).getCouleurDame() == CouleurCase.NOIR)
+					nbDame += getListeCase().get(i).getNbDame();
+			}
+		}
+		
+		
+		if (nbDame==0)
+			return true;
+		else
+			return false;
 	}
 	
-	public boolean isTouteDameMarquee(Object Couleur)
+	public boolean isTouteDameMarquee(CouleurCase couleur)
 	{
-		//TODO
-		throw new UnsupportedOperationException();
+		if (couleur == CouleurCase.BLANC && getCaseVictoire().get(0).getNbDame() == 10
+				|| couleur == CouleurCase.NOIR && getCaseVictoire().get(1).getNbDame() == 10 )
+			return true;
+		else 
+			return false;
+			
 	}
 	
 	public Case getCaseADistance(Case c, DeSixFaces de)
