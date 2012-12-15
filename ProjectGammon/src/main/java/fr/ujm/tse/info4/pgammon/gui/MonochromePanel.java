@@ -52,7 +52,6 @@ public class MonochromePanel extends JPanel {
 		
 
 		pane = new JPanel();
-
 		pane.setBounds(0, TITLE_HEIGHT, getWidth(), getHeight()-TITLE_HEIGHT);
 		pane.repaint();
 
@@ -61,17 +60,14 @@ public class MonochromePanel extends JPanel {
 	}
 	@Override
 	protected void paintComponent(Graphics g) {
-		
 		Graphics2D g2 = (Graphics2D) g.create(); 
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); 
 		
+		Paint p;
 		int h = getHeight(); 
 		int w = getWidth(); 
 		
-		
-
-		Paint p;
-		
+		// Arriere plan
 		p = new RadialGradientPaint(new Point2D.Double(getWidth() / 2.0,
                 getHeight() / 2.0), 
                 getHeight(),
@@ -80,23 +76,15 @@ public class MonochromePanel extends JPanel {
                 RadialGradientPaint.CycleMethod.NO_CYCLE);
 		
 		g2.setPaint(p); 
-		
-		
-		Rectangle2D.Float r2d = new Rectangle2D.Float(0, TITLE_HEIGHT, w - 1, h - 1-TITLE_HEIGHT); 
-		
-		Shape clip = g2.getClip(); 
-		g2.clip(r2d); 
 		g2.fillRect(0, TITLE_HEIGHT, w, h-TITLE_HEIGHT); 
 		
 		// Bordure
-		g2.setClip(clip); 
 		p = new Color(0x808080);
 		g2.setStroke(new BasicStroke(5.0f) );
 		g2.setPaint(p); 
 		g2.drawRect(2, TITLE_HEIGHT, w - 5 , h - 5 - TITLE_HEIGHT);
 		
-
-		//super.paintComponent(g2); 
+		
 		g2.dispose(); 
 		
 	}
