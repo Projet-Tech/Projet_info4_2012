@@ -71,7 +71,7 @@ public class MonochromeIconButton extends JButton{
 				if(couleur.equals(BLANC))
 					p = new Color(0xAAAAAA);
 				else
-					p = new Color(0xAAAAAA);
+					p = new Color(0x666666);
 
 			} else { 
 				if(couleur.equals(BLANC))
@@ -95,9 +95,9 @@ public class MonochromeIconButton extends JButton{
 
 		if (model.isPressed()) { 
 			if(couleur.equals(BLANC))
-				p = new Color(0xCCCCCC);
-			else
 				p = new Color(0x777777);
+			else
+				p = new Color(0x333333);
 		} else { 
 			if(couleur.equals(BLANC))
 				p = new Color(0x888888);
