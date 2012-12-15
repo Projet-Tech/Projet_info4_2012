@@ -48,6 +48,8 @@ public class MonochromeIconButton extends JButton{
 		}
 		label = new JLabel(text);
 	}
+	
+	
 	@Override
 	protected void paintComponent(Graphics g) {
 		

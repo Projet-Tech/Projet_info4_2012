@@ -95,9 +95,7 @@ public class MonochromeButton extends JButton {
 			p2 = new Color(0x888888);
 		} 
 		Rectangle2D.Float r2d = new Rectangle2D.Float(0, 0, w - 1, h - 1); 
-		
 		Shape clip = g2.getClip(); 
-		
 		g2.clip(r2d); 
 		g2.fillRect(0, 0, w, h); 
 		
