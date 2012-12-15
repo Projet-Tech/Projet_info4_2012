@@ -61,20 +61,6 @@ public class TriangleCaseButton extends CaseButton{
 				//TODO : Creer une icone par défaut
 				System.err.println(err);
 			}
-			/*
-			if(getCase().getNbDame()>MAX_DAMES_DRAWED){
-
-				String nb = new Integer(getCase().getNbDame()).toString();
-				label = new Label(nb);
-				label.setFont(new Font("Arial", Font.BOLD, 15));
-				label.setForeground(new Color(0x000000));
-				label.setAlignment(CENTER);
-				label.setBounds(0,32,40,40);
-				label.repaint();
-				add(label);
-				System.out.println(label.getLocation());
-			}
-			*/
 		}
 		
 
@@ -120,7 +106,6 @@ public class TriangleCaseButton extends CaseButton{
 				g2.setColor(new Color(0xCCCCCC));
 			
 			g2.drawChars(nb.toCharArray(), 0, nb.length(),11-(nb.length()-1)*5,  MAX_DAMES_DRAWED*(DAME_SEPARATION+off)-6);
-			System.out.println();
 		}
 
 		g2.dispose(); 
