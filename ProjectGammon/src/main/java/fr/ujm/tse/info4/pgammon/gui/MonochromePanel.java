@@ -22,9 +22,11 @@ public class MonochromePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private String _title = "";
 	private JLabel title_lbl;
+	private JPanel pane;
 	
 	public MonochromePanel(String title) {
 		super();
+		setLayout(null);
 		_title = title;
 		build();
 		//Test
@@ -39,11 +41,23 @@ public class MonochromePanel extends JPanel {
 	}
 	
 	private void build() {
+
+		
 		title_lbl = new JLabel(_title);
 		title_lbl.setFont(new Font("Arial", Font.BOLD, 22));
 		title_lbl.setForeground(new Color(0xB3B3B3));
 		title_lbl.setAlignmentX(0);
+		title_lbl.setBounds(0, 0, 200, TITLE_HEIGHT);
+		title_lbl.repaint();
+		
+
+		pane = new JPanel();
+
+		pane.setBounds(0, TITLE_HEIGHT, getWidth(), getHeight()-TITLE_HEIGHT);
+		pane.repaint();
+
 		add(title_lbl);
+		add(pane);
 	}
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -85,6 +99,21 @@ public class MonochromePanel extends JPanel {
 		//super.paintComponent(g2); 
 		g2.dispose(); 
 		
+	}
+
+
+
+	public JPanel getPane() {
+		return pane;
+	}
+
+
+
+	public void setPane(JPanel pane) {
+		remove(pane);
+		this.pane = pane;
+		pane.setBounds(0, TITLE_HEIGHT, getWidth(), getHeight()-TITLE_HEIGHT);
+		pane.repaint();
 	}
 	
 	
