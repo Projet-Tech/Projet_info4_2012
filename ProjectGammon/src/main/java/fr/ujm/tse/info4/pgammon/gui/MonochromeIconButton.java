@@ -15,7 +15,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+import fr.ujm.tse.info4.pgammon.models.CouleurCase;
+
 public class MonochromeIconButton extends JButton{
+	private static final long serialVersionUID = -8152217751563954978L;
 	public static final String BLANC = "BALNC";
 	public static final String NOIR  = "NOIR";
 	
@@ -59,67 +62,40 @@ public class MonochromeIconButton extends JButton{
 		int h = getHeight(); 
 		int w = getWidth(); 
 		
-		
-
 		Paint p;
 		
 		//Fond
-
 		if (!model.isEnabled()) { 
 			setForeground(Color.GRAY);
 			p = new Color(0x444444);
 		}else{ 
-			if (model.isRollover()) { 
-				if(couleur.equals(BLANC))
-					p = new Color(0xAAAAAA);
-				else
-					p = new Color(0x666666);
-
-			} else { 
-				if(couleur.equals(BLANC))
-					p = new Color(0xCCCCCC);
-				else
-					p = new Color(0x888888);
-				
-			} 
+			if (model.isRollover()) 
+				p = (couleur.equals(BLANC))?new Color(0xAAAAAA):new Color(0x666666);
+			else 
+				p = (couleur.equals(BLANC))?new Color(0xCCCCCC):new Color(0x888888);
 		} 
 		g2.setPaint(p); 
-		
-		
-		Rectangle2D.Float r2d = new Rectangle2D.Float(0, 0, w - 1, h - 1); 
-		
-		Shape clip = g2.getClip(); 
-		g2.clip(r2d); 
 		g2.fillRect(0, 0, w, h); 
 		
-		g2.setClip(clip); 
+		
 		// Bordure
-
-		if (model.isPressed()) { 
-			if(couleur.equals(BLANC))
-				p = new Color(0x777777);
-			else
-				p = new Color(0x333333);
-		} else { 
-			if(couleur.equals(BLANC))
-				p = new Color(0x888888);
-			else
-				p = new Color(0x444444);
-		}
+		if (model.isPressed())
+			p = (couleur.equals(BLANC))?new Color(0x777777):new Color(0x333333);
+		else 
+			p = (couleur.equals(BLANC))?new Color(0x888888):new Color(0x444444);
 		g2.setStroke(new BasicStroke(5.0f) );
 		g2.setPaint(p); 
 		g2.drawRect(0, 0, w-1 , h-1);
 		
-
+		// Icone
 		g2.drawImage(icon.getImage(),3,3,this);
+		
 		g2.dispose(); 
 	}
 	
 	@Override
 	protected void paintBorder(Graphics g) {
-		
 		//super.paintBorder(g);
-		
 	}
 
 	public ImageIcon getIcon() {
