@@ -29,19 +29,34 @@ public class ControleurTablier {
 	private void build() {
 		List<CaseButton> lCase = vueTablier.getCasesButtons();
 		
+		
 		for (CaseButton caseButton : lCase) {
 			caseButton.addMouseListener(new MouseListener() {
 
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					CaseButton caseButton = (CaseButton) e.getSource();
-					if(vueTablier.getCandidat() == null)
+					
+					if(vueTablier.getCandidat() == null 
+							&& partie.getJoueurEnCour() == caseButton.getCase().getCouleurDame())
 					{
-						vueTablier.setCandidat(caseButton);
+						if (caseButton.getCase().getNbDame() != 0 )
+							vueTablier.setCandidat(caseButton);
 					}
-					else
+					else if (vueTablier.getCandidat() != null)
 					{
-						
+
+						if (partie.jouerCoup(vueTablier.getCandidat().getCase(), caseButton.getCase()))
+						{
+							vueTablier.updateUI();
+							if (partie.siDesUtilises())
+								partie.changerTour();	
+						}
+						else
+						{
+							vueTablier.uncandidateAll();
+							vueTablier.updateUI();
+						}
 					}
 				}
 

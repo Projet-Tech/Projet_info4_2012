@@ -43,6 +43,7 @@ public class Partie {
 	public void LancerPartie() {
 		choixPremierJoueurLancementPartie();
 		lancerDes();
+		
 	}
 
 	public void changerTour() {
@@ -58,6 +59,7 @@ public class Partie {
 		
 		deSixFaces = new ArrayList<DeSixFaces>();
 		lancerDes();
+		
 		
 	}
 
@@ -154,6 +156,12 @@ public class Partie {
 			deSixFaces.add(new DeSixFaces(joueurEnCour, deSixFaces.get(0)
 					.getValeur()));
 		}
+		
+		//TODO il faudra enlever cette fonction.
+		System.out.println("DeSixFace : ");
+			for (int i = 0; i < deSixFaces.size(); i++)
+				System.out.println(i + " : " + deSixFaces.get(i).getValeur() + " "+ deSixFaces.get(i).isUtilise());
+				
 	}
 
 	public void doublerVideau() {
