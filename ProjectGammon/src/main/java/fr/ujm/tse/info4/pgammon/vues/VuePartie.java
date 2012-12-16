@@ -16,6 +16,9 @@ public class VuePartie extends JPanel{
 	private void build() {
 		add(vt);
 	}
+	public VueTablier getVt() {
+		return vt;
+	}
 	
 	
 	
