@@ -80,7 +80,13 @@ public class TriangleCaseButton extends CaseButton{
 			return;
 
 		CouleurCase couleurDames = c.getCouleurDame();
-		int count = Math.min(c.getNbDame(), MAX_DAMES_DRAWED);
+		
+		int nb_dames =  c.getNbDame();
+		if(isCandidate())
+			nb_dames--;
+		
+		int count = Math.min(nb_dames, MAX_DAMES_DRAWED);
+
 		
 		if(couleurDames == CouleurCase.VIDE || count == 0)
 			return;
@@ -103,9 +109,18 @@ public class TriangleCaseButton extends CaseButton{
 			
 			g2.drawImage(icon.getImage(),0,y,this);
 		}
-		if(getCase().getNbDame()>MAX_DAMES_DRAWED){
+		if(isCandidate()){
+			int i = getCase().getNbDame();
+			int y;
+			if(isDirectionUp)
+				y = (int) (getHeight()-(i+0.5)*(DAME_SEPARATION)+(i+1)*(-off));
+			else
+				y = (int) ((i-0.5)*(DAME_SEPARATION)+(i+1)*off);
+			g2.drawImage(icon.getImage(),0,y,this);
+		}
+		if(nb_dames>MAX_DAMES_DRAWED){
 
-			String nb = new Integer(getCase().getNbDame()).toString();
+			String nb = new Integer(nb_dames).toString();
 			g2.setFont(new Font("Arial",Font.BOLD,18));
 			
 			if(c.getCouleurDame()==CouleurCase.BLANC)
