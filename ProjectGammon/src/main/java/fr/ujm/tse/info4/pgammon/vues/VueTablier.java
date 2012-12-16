@@ -42,7 +42,8 @@ public class VueTablier extends JPanel{
 		}
 	}
 
-	private void createTriangle(int num, Case c) {
+	private void createTriangle(final int position,final  Case c) {
+		int num = 25-position;
 		Point p = new Point(0,0);
 		if(num<=6)
 		{
