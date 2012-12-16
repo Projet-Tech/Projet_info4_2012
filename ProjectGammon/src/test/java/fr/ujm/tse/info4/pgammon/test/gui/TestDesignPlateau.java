@@ -75,7 +75,6 @@ public class TestDesignPlateau {
 			DeSixFaces dsf = new DeSixFaces(CouleurCase.BLANC,1);
 			dsf.utiliser();
 			DeButton d = new DeButton(dsf);
-			d.utiliser();
 			panel.add(d);
 		}
 		frame.setVisible(true);
