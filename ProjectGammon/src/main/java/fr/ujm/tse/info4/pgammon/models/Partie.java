@@ -74,15 +74,15 @@ public class Partie {
 	}
 
 	public void choixPremierJoueurLancementPartie() {
-		deSixFaces = new ArrayList<DeSixFaces>();
-		deSixFaces.add(new DeSixFaces(joueurEnCour));
-		deSixFaces.add(new DeSixFaces(joueurEnCour));
+		ArrayList<DeSixFaces> deChoix = new ArrayList<DeSixFaces>();
+		deChoix.add(new DeSixFaces(joueurEnCour));
+		deChoix.add(new DeSixFaces(joueurEnCour));
 		
-		if(deSixFaces.get(0).getValeur() == deSixFaces.get(1).getValeur())
+		if(deChoix.get(0).getValeur() == deChoix.get(1).getValeur())
 		{
 			choixPremierJoueurLancementPartie();
 		}
-		else if(deSixFaces.get(0).getValeur() > deSixFaces.get(1).getValeur())
+		else if(deChoix.get(0).getValeur() > deChoix.get(1).getValeur())
 			joueurEnCour = CouleurCase.BLANC;
 		else
 			joueurEnCour = CouleurCase.NOIR;	
@@ -158,6 +158,7 @@ public class Partie {
 		}
 		
 		//TODO il faudra enlever cette fonction.
+		System.out.println(joueurEnCour + " : ");
 		System.out.println("DeSixFace : ");
 			for (int i = 0; i < deSixFaces.size(); i++)
 				System.out.println(i + " : " + deSixFaces.get(i).getValeur() + " "+ deSixFaces.get(i).isUtilise());
