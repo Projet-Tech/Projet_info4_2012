@@ -7,20 +7,27 @@
 //
 //
 
-
-
-
 package fr.ujm.tse.info4.pgammon.controleur;
-
 import fr.ujm.tse.info4.pgammon.models.Partie;
+import fr.ujm.tse.info4.pgammon.vues.VuePartie;
 
 
 public class ControleurPartie
 {
 	private Partie partie;
-	private Object vuePartie;
+	private VuePartie vuePartie;
+	
 	public void ControleurPartie(Partie partie)
 	{
-		throw new UnsupportedOperationException();
+		this.partie = partie;
+		vuePartie = new VuePartie(partie);
+		
+		build();
 	}
+
+	private void build() {
+		//TODO
+	}
+	
+	
 }

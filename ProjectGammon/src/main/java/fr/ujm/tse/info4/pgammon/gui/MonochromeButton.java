@@ -107,8 +107,6 @@ public class MonochromeButton extends JButton {
 		
 	}
 
-//Test jean-Michel
-//Test 2 création class en même temps
 
 
 }

@@ -33,7 +33,7 @@ public class TestPartie {
 		Partie p = new Partie(param);
 		p.LancerPartie();
 		// partie lancer
-
+		
 		boolean deplacementValide = false;
 		int caseDepart;
 		int caseArriver;
