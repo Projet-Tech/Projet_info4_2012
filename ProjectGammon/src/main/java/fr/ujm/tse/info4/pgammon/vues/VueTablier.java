@@ -50,7 +50,7 @@ public class VueTablier extends JPanel{
 		if(this.candidat != null)
 			this.candidat.setCandidated(false);
 		
-		new_candidat.setCandidated(false);
+		new_candidat.setCandidated(true);
 		this.candidat = new_candidat;
 	}
 
