@@ -113,7 +113,7 @@ public class TriangleCaseButton extends CaseButton{
 			
 			g2.drawImage(icon.getImage(),0,y,this);
 		}
-		if(isCandidate()){
+		if(isCandidate() && getCase().getNbDame() > 0){
 			int i = getCase().getNbDame();
 			int y;
 			if(isDirectionUp)
