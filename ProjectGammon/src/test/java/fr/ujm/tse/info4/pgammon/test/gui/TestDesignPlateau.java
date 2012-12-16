@@ -25,48 +25,48 @@ public class TestDesignPlateau {
 		panel.setBackground(new Color(0x00000));
 		
 		{
-			TriangleCaseButton t = new TriangleCaseButton(new Case(12,CouleurCase.NOIR,3), CouleurCase.BLANC);
+			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.NOIR,3,3), CouleurCase.BLANC);
 			panel.add(t);
 		}
 		{
-			TriangleCaseButton t = new TriangleCaseButton(new Case(12,CouleurCase.BLANC,4), CouleurCase.NOIR);
+			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.BLANC,4,4), CouleurCase.NOIR);
 			panel.add(t);
 		}
 
 		{
-			TriangleCaseButton t = new TriangleCaseButton(new Case(12,CouleurCase.BLANC,5), CouleurCase.BLANC);
+			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.BLANC,5,5), CouleurCase.BLANC);
 			panel.add(t);
 		}
 		{
-			TriangleCaseButton t = new TriangleCaseButton(new Case(12,CouleurCase.BLANC,6), CouleurCase.NOIR);
+			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.BLANC,6,6), CouleurCase.NOIR);
 			panel.add(t);
 		}
 		{
-			TriangleCaseButton t = new TriangleCaseButton(new Case(12,CouleurCase.BLANC,7), CouleurCase.BLANC);
+			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.BLANC,7,7), CouleurCase.BLANC);
 			panel.add(t);
 		}
 		{
-			TriangleCaseButton t = new TriangleCaseButton(new Case(12,CouleurCase.BLANC,8), CouleurCase.NOIR);
+			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.BLANC,8,8), CouleurCase.NOIR);
 			panel.add(t);
 		}
 		{
-			TriangleCaseButton t = new TriangleCaseButton(new Case(12,CouleurCase.BLANC,9), CouleurCase.BLANC);
+			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.BLANC,9,9), CouleurCase.BLANC);
 			panel.add(t);
 		}
 		{
-			TriangleCaseButton t = new TriangleCaseButton(new Case(12,CouleurCase.BLANC,10), CouleurCase.NOIR);
+			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.BLANC,10,10), CouleurCase.NOIR);
 			panel.add(t);
 		}
 		{
-			TriangleCaseButton t = new TriangleCaseButton(new Case(12,CouleurCase.NOIR,11), CouleurCase.BLANC);
+			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.NOIR,11,1), CouleurCase.BLANC);
 			panel.add(t);
 		}
 		{
-			TriangleCaseButton t = new TriangleCaseButton(new Case(12,CouleurCase.NOIR,12), CouleurCase.NOIR);
+			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.NOIR,12,12), CouleurCase.NOIR);
 			panel.add(t);
 		}
 		{
-			TriangleCaseButton t = new TriangleCaseButton(new Case(12), CouleurCase.NOIR);
+			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.NOIR,0,13), CouleurCase.NOIR);
 			panel.add(t);
 		}
 		frame.setVisible(true);
