@@ -78,21 +78,20 @@ public class TriangleCaseButton extends CaseButton{
 	}
 	
 	private void drawDames(Graphics g) {
-		updateDatas();
 		Case c = getCase();
 		if(c == null)
 			return;
 
 		CouleurCase couleurDames = c.getCouleurDame();
 		
-		int nb_dames =  c.getNbDame();
+		int nb_dames = c.getNbDame();
 		if(isCandidate())
 			nb_dames--;
-		
+
 		int count = Math.min(nb_dames, MAX_DAMES_DRAWED);
 
 		
-		if(couleurDames == CouleurCase.VIDE || count == 0)
+		if(couleurDames == CouleurCase.VIDE || c.getNbDame() == 0)
 			return;
 		
 		Graphics2D g2 = (Graphics2D) g.create(); 
@@ -113,13 +112,14 @@ public class TriangleCaseButton extends CaseButton{
 			
 			g2.drawImage(icon.getImage(),0,y,this);
 		}
-		if(isCandidate() && getCase().getNbDame() > 0){
-			int i = getCase().getNbDame();
+		if(isCandidate() &&  c.getNbDame() > 0){
+			int i = c.getNbDame();
 			int y;
 			if(isDirectionUp)
 				y = (int) (getHeight()-(i+0.5)*(DAME_SEPARATION)+(i+1)*(-off));
 			else
 				y = (int) ((i-0.5)*(DAME_SEPARATION)+(i+1)*off);
+			
 			g2.drawImage(icon.getImage(),0,y,this);
 		}
 		if(nb_dames>MAX_DAMES_DRAWED){
@@ -145,7 +145,7 @@ public class TriangleCaseButton extends CaseButton{
 
 
 	private void drawTriangle(Graphics g) {
-		
+		updateDatas();
 		Graphics2D g2 = (Graphics2D) g.create(); 
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		Paint p;
