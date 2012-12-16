@@ -6,9 +6,11 @@ import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 
+import fr.ujm.tse.info4.pgammon.gui.DeButton;
 import fr.ujm.tse.info4.pgammon.gui.TriangleCaseButton;
 import fr.ujm.tse.info4.pgammon.models.Case;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
+import fr.ujm.tse.info4.pgammon.models.DeSixFaces;
 
 public class TestDesignPlateau {
 	
@@ -68,6 +70,13 @@ public class TestDesignPlateau {
 		{
 			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.NOIR,0,13), CouleurCase.NOIR);
 			panel.add(t);
+		}
+		{
+			DeSixFaces dsf = new DeSixFaces(CouleurCase.BLANC,1);
+			dsf.utiliser();
+			DeButton d = new DeButton(dsf);
+			d.utiliser();
+			panel.add(d);
 		}
 		frame.setVisible(true);
 	}
