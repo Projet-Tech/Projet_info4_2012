@@ -5,6 +5,7 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import fr.ujm.tse.info4.pgammon.models.Case;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
+import fr.ujm.tse.info4.pgammon.models.DeSixFaces;
 import fr.ujm.tse.info4.pgammon.models.Tablier;
 
 
@@ -77,6 +78,16 @@ public class TestUnitTablier extends TestCase {
 		assertTrue(t1.peutMarquerDame(CouleurCase.NOIR));
 		assertFalse(t1.peutMarquerDame(CouleurCase.BLANC));
 
+	}
+	
+	public void testgetCaseADistance(){
+		Tablier t1 = new Tablier();
+		DeSixFaces deBlanc = new DeSixFaces(CouleurCase.BLANC,6);
+		DeSixFaces deNoir = new DeSixFaces(CouleurCase.NOIR,6);
+		assertEquals(t1.getCaseADistance(t1.getListeCase().get(18), deBlanc),t1.getCaseVictoire().get(0));
+		assertEquals(t1.getCaseADistance(t1.getListeCase().get(16), deBlanc),t1.getListeCase().get(22));
+		assertEquals(t1.getCaseADistance(t1.getListeCase().get(5), deNoir),t1.getCaseVictoire().get(1));
+		assertEquals(t1.getCaseADistance(t1.getListeCase().get(7), deNoir),t1.getListeCase().get(1));
 	}
 
 }

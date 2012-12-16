@@ -179,13 +179,6 @@ public class Tablier
 			return false;
 	}
 	
-	public int getCaseCouleur(CouleurCase couleur)
-	{
-		//TODO
-		throw new UnsupportedOperationException();
-	}
-	
-	
 	public boolean peutMarquerDame(CouleurCase Couleur)
 	{
 		int nbDame = 0;
@@ -230,8 +223,25 @@ public class Tablier
 	
 	public Case getCaseADistance(Case c, DeSixFaces de)
 	{
-		//TODO
-		throw new UnsupportedOperationException();
+		if(c.getCouleurDame() == CouleurCase.BLANC){
+			int blacnADistance = c.getPosition()+de.getValeur();
+			if(blacnADistance <= 24){
+				return listeCase.get(blacnADistance-1);
+			}
+			else{
+				return caseVictoire.get(0);
+			}
+		}
+		else
+		{
+			int noirADistance =c.getPosition()-de.getValeur();
+			if(noirADistance >= 1){
+				return listeCase.get(noirADistance-1);
+			}
+			else{
+				return caseVictoire.get(1);
+			}
+		}	
 	}
 	
 	public List<Coup> getCoupsPossibles(DeSixFaces de)
