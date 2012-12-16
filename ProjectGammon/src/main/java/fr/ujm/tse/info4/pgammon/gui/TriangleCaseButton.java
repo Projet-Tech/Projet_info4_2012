@@ -26,7 +26,6 @@ public class TriangleCaseButton extends CaseButton{
 	private final int MAX_DAMES_DRAWED = 6;
 	private final int DAME_SEPARATION = 27;
 	private ImageIcon icon;
-	private Label label;
 	
 	public TriangleCaseButton(Case _case, CouleurCase _couleur) {
 		super(_case);
@@ -38,7 +37,6 @@ public class TriangleCaseButton extends CaseButton{
 		setLayout(null);
 		setPreferredSize(new Dimension(30,200));
 		icon = new ImageIcon();
-		label = new Label();
 		
 		updateDatas();
 
@@ -48,10 +46,8 @@ public class TriangleCaseButton extends CaseButton{
 	//TODO Ecouteur de changement!
 	
 	private void updateDatas() {
-		remove(label);
 		if(getCase() == null || getCase().getCouleurDame() == CouleurCase.VIDE){
 			icon = new ImageIcon();
-			label = new Label();
 		}
 		else{
 			String iconRef = (getCase().getCouleurDame()==CouleurCase.BLANC)?PION_BLANC_PATH:PION_NOIR_PATH;
