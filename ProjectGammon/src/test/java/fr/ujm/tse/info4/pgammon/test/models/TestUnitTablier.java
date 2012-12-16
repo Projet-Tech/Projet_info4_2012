@@ -49,6 +49,18 @@ public class TestUnitTablier extends TestCase {
 		for (int i=0;i<3;i++)
 			t1.deplacerDame(t1.getListeCase().get(16), t1.getListeCase().get(20));
 		
+		System.out.println("TABLIER : ");
+		for(int i=0;i<t1.getListeCase().size();i++)
+			System.out.println(t1.getListeCase().get(i).getPosition()
+					+" : "+t1.getListeCase().get(i).getCouleurDame()
+					+" _ "+t1.getListeCase().get(i).getNbDame());
+		
+		System.out.println("CASE BARRE : ");
+		for(int i=0;i<t1.getCaseBarre().size();i++)
+			System.out.println(t1.getCaseBarre().get(i).getPosition()
+					+" : "+t1.getCaseBarre().get(i).getCouleurDame()
+					+" _ "+t1.getCaseBarre().get(i).getNbDame());
+		
 		assertTrue(t1.peutMarquerDame(CouleurCase.BLANC));
 		assertFalse(t1.peutMarquerDame(CouleurCase.NOIR));
 		
@@ -61,11 +73,6 @@ public class TestUnitTablier extends TestCase {
 		for (int i=0;i<3;i++)
 			t1.deplacerDame(t1.getListeCase().get(7), t1.getListeCase().get(2));
 		
-		System.out.println("TABLIER : ");
-		for(int i=0;i<t1.getListeCase().size();i++)
-			System.out.println(t1.getListeCase().get(i).getPosition()
-					+" : "+t1.getListeCase().get(i).getCouleurDame()
-					+" _ "+t1.getListeCase().get(i).getNbDame());
 		
 		assertTrue(t1.peutMarquerDame(CouleurCase.NOIR));
 		assertFalse(t1.peutMarquerDame(CouleurCase.BLANC));

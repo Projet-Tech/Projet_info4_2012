@@ -18,6 +18,12 @@ public class Coup
 	private Case caseDepart;
 	private Case caseArriver;
 	
+	public Coup()
+	{
+		this.caseDepart = null;
+		this.caseArriver = null;
+	}
+	
 	public Coup(Case caseDepart, Case caseArriver)
 	{
 		this.caseDepart = caseDepart;

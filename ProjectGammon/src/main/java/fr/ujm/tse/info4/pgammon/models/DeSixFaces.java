@@ -26,7 +26,7 @@ public class DeSixFaces
 	public DeSixFaces(CouleurCase couleurCase)
 	{
 		isUtilise = false;
-		valeur = (int)(Math.random()*6);
+		valeur = (int)(Math.random()*6+1);
 		couleurDe = couleurCase;
 	}
 	

@@ -49,7 +49,11 @@ public class TestTablier {
 					+" : "+tab1.getListeCase().get(i).getCouleurDame()
 					+" _ "+tab1.getListeCase().get(i).getNbDame());
 		
-		
+		System.out.println("CASE BARRE : ");
+		for(int i=0;i<tab1.getCaseBarre().size();i++)
+			System.out.println(tab1.getCaseBarre().get(i).getPosition()
+					+" : "+tab1.getCaseBarre().get(i).getCouleurDame()
+					+" _ "+tab1.getCaseBarre().get(i).getNbDame());
 		
 		
 		

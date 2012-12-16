@@ -7,173 +7,209 @@
 //
 //
 
-
-
-
 package fr.ujm.tse.info4.pgammon.models;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 
 import org.jdom2.Element;
+import org.omg.CORBA.SystemException;
 
-
-public class Partie
-{
+public class Partie {
 	private ParametreJeu parametreJeu;
 	private Videau videau;
-	private List<DeSixFaces> deSixFaces;
+	private ArrayList<DeSixFaces> deSixFaces;
 	private Tablier tablier;
 	private StatistiquePartie statistique;
 	private CouleurCase joueurEnCour;
-	private List<Tour> HistoriqueToursJoueur;
+	private ArrayList<Tour> HistoriqueToursJoueur;
 	private int idPartie;
 	private Timer timerTour;
-	
-	
-	public Partie(ParametreJeu p)
-	{
-		//TODO
-		throw new UnsupportedOperationException();
-	}
-	
-	public void LancerPartie(ParametreJeu p)
-	{
-		
-	}
-	
-	private void changerTour()
-	{
-		//TODO
-		throw new UnsupportedOperationException();
-	}
-	
-	private void finPartie()
-	{
-		//TODO
-		throw new UnsupportedOperationException();
-	}
-	
-	private void onFinTimer()
-	{
-		//TODO
-		throw new UnsupportedOperationException();
-	}
-	
-	public void choixPremierJoueurLancementPartie()
-	{
-		//TODO
-		throw new UnsupportedOperationException();
-	}
-	
-	public boolean jouerCoup(Case caseDepart, Case caseArrivee)
-	{
-		//TODO
-		throw new UnsupportedOperationException();
-	}
-	
-	public boolean jouerCoup(Coup coup)
-	{
-		//TODO
-		throw new UnsupportedOperationException();
-	}
-	
-	public void annulerDernierCoup()
-	{
-		//TODO
-		throw new UnsupportedOperationException();
-	}
-	
-	public void lancerDes()
-	{
-		//TODO
-		throw new UnsupportedOperationException();
-	}
-	
-	public void doublerVideau()
-	{
-		//TODO
-		throw new UnsupportedOperationException();
-	}
-	
-	public void refusVideau()
-	{
-		//TODO
-		throw new UnsupportedOperationException();
-	}
-	
-	public void deplacementAleatoire()
-	{
-		//TODO
-		throw new UnsupportedOperationException();
-	}
-	
-	public List<Coup> getCoupsPossibles(DeSixFaces de)
-	{
-		//TODO
-		throw new UnsupportedOperationException();
-	}
-	
-	public List<Coup> getCoupsPossibles(Case c)
-	{
-		//TODO
-		throw new UnsupportedOperationException();
-	}
-	
-	public List<Coup> getCoupsPossibles()
-	{
-		//TODO
-		throw new UnsupportedOperationException();
-	}
-	
-	public boolean isCoupPossible(Case caseDepart, Case caseArrivee)
-	{
-		//TODO
-		throw new UnsupportedOperationException();
-	}
-	
-	public void historisationDeplacement(Case depart, Case arrivee, Object isBattue, Object isRentre)
-	{
-		//TODO
-		throw new UnsupportedOperationException();
-	}
-	
-	public void lectureProchainCoup()
-	{
-		//TODO
-		throw new UnsupportedOperationException();
-	}
-	
-	public void lecturePrecedentCoup()
-	{
-		//TODO
-		throw new UnsupportedOperationException();
-	}
-	
-	
-	
-	
-	
-	/* SERIALISATION*/
-	
-	public void sauvegarder(Element sessionElement)
-	{
-		//TODO
-		throw new UnsupportedOperationException();
-	}
-	
-	public void charger(Element partieElement)
-	{
-		//TODO
-		throw new UnsupportedOperationException();
+	private boolean partieFini;
+
+	public Partie(ParametreJeu p) {
+		parametreJeu = p;
+		tablier = new Tablier();
+		videau = new Videau();
+		statistique = new StatistiquePartie();
+		HistoriqueToursJoueur = new ArrayList<Tour>();
+		timerTour = new Timer();
+		deSixFaces = new ArrayList<DeSixFaces>();
+		partieFini = false;
 	}
 
 	
+
+	public void LancerPartie() {
+		choixPremierJoueurLancementPartie();
+		lancerDes();
+	}
+
+	public void changerTour() {
+
+		if (tablier.isTouteDameMarquee(joueurEnCour))
+			finPartie();
+		else {
+			if (joueurEnCour == CouleurCase.BLANC)
+				joueurEnCour = CouleurCase.NOIR;
+			else
+				joueurEnCour = CouleurCase.BLANC;
+		}
+		
+		deSixFaces = new ArrayList<DeSixFaces>();
+		lancerDes();
+		
+	}
+
+	private void finPartie() {
+		System.out.println("le joueur "+joueurEnCour + " a gagnée");
+		partieFini=true;
+	}
+
+	private void onFinTimer() {
+		// TODO
+		throw new UnsupportedOperationException();
+	}
+
+	public void choixPremierJoueurLancementPartie() {
+		// TODO algorithme provisoire
+		joueurEnCour = CouleurCase.BLANC;
+	}
+
+	public boolean jouerCoup(int caseDepartInt, int caseArriveeInt) {
+		Coup coup = tablier.intToCoup(caseDepartInt, caseArriveeInt, joueurEnCour);
+			return jouerCoup(coup.getCaseDepart(), coup.getCaseArriver());
+	}
 	
-	
-	
-	/* GETTERS ET SETTERS*/
-	
+	public boolean jouerCoup(Case caseDepart, Case caseArrivee) {
+		
+		// verification de l'existance du de;
+		boolean siDeExiste = false;
+		int deUtiliser =0;
+		for (int i=0;i<deSixFaces.size();i++){
+			if (((tablier.distanceDeuxCase(caseDepart, caseArrivee) == deSixFaces.get(i).getValeur() 
+					&& joueurEnCour == CouleurCase.BLANC)
+					|| (tablier.distanceDeuxCase(caseDepart, caseArrivee) == -deSixFaces.get(i).getValeur() 
+							&& joueurEnCour == CouleurCase.NOIR))
+					&& !deSixFaces.get(i).isUtilise())
+				{siDeExiste = true;
+				deUtiliser = i;}
+		}
+		if (!siDeExiste)
+			return false;
+		
+		if (tablier.sensDeplacementCorrect(caseDepart, caseArrivee))
+		{
+			if (tablier.deplacerDame(caseDepart, caseArrivee))
+			{
+				deSixFaces.get(deUtiliser).utiliser();
+				
+				return true;
+			}
+			else
+				return false;
+		}
+		else
+			return false;
+	}
+
+	public boolean jouerCoup(Coup coup) {
+		if (tablier.sensDeplacementCorrect(coup.getCaseDepart(),
+				coup.getCaseArriver()))
+			return tablier.deplacerDame(coup.getCaseDepart(),
+					coup.getCaseArriver());
+		else
+			return false;
+	}
+
+	public void annulerDernierCoup() {
+		// TODO
+		throw new UnsupportedOperationException();
+	}
+
+	public boolean siDesUtilises()
+	{
+		for (int i=0;i<deSixFaces.size();i++){
+			if (!deSixFaces.get(i).isUtilise())
+				return false;
+		}
+		return true;
+	}
+	public void lancerDes() {
+		deSixFaces.add(new DeSixFaces(joueurEnCour));
+		deSixFaces.add(new DeSixFaces(joueurEnCour));
+		if (deSixFaces.get(0).getValeur() == deSixFaces.get(1).getValeur()) {
+			deSixFaces.add(new DeSixFaces(joueurEnCour, deSixFaces.get(0)
+					.getValeur()));
+			deSixFaces.add(new DeSixFaces(joueurEnCour, deSixFaces.get(0)
+					.getValeur()));
+		}
+	}
+
+	public void doublerVideau() {
+		videau.doubler();
+	}
+
+	public void refusVideau() {
+		finPartie();
+	}
+
+	public void deplacementAleatoire() {
+		// TODO
+		throw new UnsupportedOperationException();
+	}
+
+	public List<Coup> getCoupsPossibles(DeSixFaces de) {
+		// TODO
+		throw new UnsupportedOperationException();
+	}
+
+	public List<Coup> getCoupsPossibles(Case c) {
+		// TODO
+		throw new UnsupportedOperationException();
+	}
+
+	public List<Coup> getCoupsPossibles() {
+		// TODO
+		throw new UnsupportedOperationException();
+	}
+
+	public boolean isCoupPossible(Case caseDepart, Case caseArrivee) {
+		// TODO
+		throw new UnsupportedOperationException();
+	}
+
+	public void historisationDeplacement(Case depart, Case arrivee,
+			Object isBattue, Object isRentre) {
+		// TODO
+		throw new UnsupportedOperationException();
+	}
+
+	public void lectureProchainCoup() {
+		// TODO
+		throw new UnsupportedOperationException();
+	}
+
+	public void lecturePrecedentCoup() {
+		// TODO
+		throw new UnsupportedOperationException();
+	}
+
+	/* SERIALISATION */
+
+	public void sauvegarder(Element sessionElement) {
+		// TODO
+		throw new UnsupportedOperationException();
+	}
+
+	public void charger(Element partieElement) {
+		// TODO
+		throw new UnsupportedOperationException();
+	}
+
+	/* GETTERS ET SETTERS */
+
 	public ParametreJeu getParametreJeu() {
 		return parametreJeu;
 	}
@@ -190,11 +226,11 @@ public class Partie
 		this.videau = videau;
 	}
 
-	public List<DeSixFaces> getDeSixFaces() {
+	public ArrayList<DeSixFaces> getDeSixFaces() {
 		return deSixFaces;
 	}
 
-	public void setDeSixFaces(List<DeSixFaces> deSixFaces) {
+	public void setDeSixFaces(ArrayList<DeSixFaces> deSixFaces) {
 		this.deSixFaces = deSixFaces;
 	}
 
@@ -226,7 +262,7 @@ public class Partie
 		return HistoriqueToursJoueur;
 	}
 
-	public void setHistoriqueToursJoueur(List<Tour> historiqueToursJoueur) {
+	public void setHistoriqueToursJoueur(ArrayList<Tour> historiqueToursJoueur) {
 		HistoriqueToursJoueur = historiqueToursJoueur;
 	}
 
@@ -245,6 +281,8 @@ public class Partie
 	public void setTimerTour(Timer timerTour) {
 		this.timerTour = timerTour;
 	}
-	
-	
+
+	public boolean isPartieFini() {
+		return partieFini;
+	}
 }

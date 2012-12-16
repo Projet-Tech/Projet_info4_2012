@@ -79,8 +79,20 @@ public class Tablier
 		return cArrivee.getPosition()-cDepart.getPosition();
 	}
 	
+	public boolean sensDeplacementCorrect(Case cDepart, Case cArrivee)
+	{
+		if (distanceDeuxCase(cDepart,cArrivee)<0 && cDepart.getCouleurDame() == CouleurCase.BLANC 
+				|| distanceDeuxCase(cDepart,cArrivee)>0 && cDepart.getCouleurDame() == CouleurCase.NOIR )
+			return false;
+		else
+			return true;
+	}
+	
 	public boolean isCoupPossible(Case cDepart, Case cArrivee)
 	{
+		if (cDepart.getNbDame() == 0)
+			return false;
+		
 		if (cArrivee.isCaseVictoire()){
 			if (peutMarquerDame(cDepart.getCouleurDame()) 
 					&& cArrivee.getCouleurDame() == cDepart.getCouleurDame())
@@ -89,9 +101,8 @@ public class Tablier
 				return false;
 		}
 
-		if (distanceDeuxCase(cDepart,cArrivee)<0 && cDepart.getCouleurDame() == CouleurCase.BLANC 
-				|| distanceDeuxCase(cDepart,cArrivee)>0 && cDepart.getCouleurDame() == CouleurCase.NOIR )
-			return false;
+		/*if (sensDeplacementCorrect)
+			return false;*/
 		if(cDepart.getCouleurDame() == cArrivee.getCouleurDame())
 			return true;
 		else
@@ -102,24 +113,70 @@ public class Tablier
 				return false;
 		}
 	}
+	public boolean siDameManger(Case cDepart, Case cArrivee)
+	{
+		if(cDepart.getCouleurDame() != cArrivee.getCouleurDame() 
+				&& cArrivee.getCouleurDame() != CouleurCase.VIDE 
+				&& cArrivee.getNbDame()==1)
+			return true;
+		else
+			return false;
+	}
 	
+	public Coup intToCoup(int cDepartInt, int cArriveeInt,CouleurCase couleurCaseDepart)
+	{
+		Coup coup = new Coup();
+		
+		if (cDepartInt == 0 && couleurCaseDepart == CouleurCase.BLANC)
+			coup.setCaseDepart(caseBarre.get(0));
+		else if (cDepartInt == 25 && couleurCaseDepart == CouleurCase.NOIR)
+			coup.setCaseDepart(caseBarre.get(1));
+		else if (cDepartInt != 0 && cDepartInt != 25)
+			coup.setCaseDepart(listeCase.get(cDepartInt-1));
+			
+		if (cArriveeInt == 25 && couleurCaseDepart == CouleurCase.BLANC)
+			coup.setCaseArriver(caseVictoire.get(0));
+		else if (cArriveeInt == 0 && couleurCaseDepart == CouleurCase.NOIR)
+			coup.setCaseArriver(caseVictoire.get(1));
+		else if (cArriveeInt != 0 && cArriveeInt != 25)
+			coup.setCaseArriver(listeCase.get(cArriveeInt-1));
+		
+		
+		return coup;
+	}
+	
+	public boolean deplacerDame(int cDepartInt, int cArriveeInt,CouleurCase couleurCaseDepart)
+	{
+		Coup coup = intToCoup(cDepartInt,cArriveeInt,couleurCaseDepart);
+		return deplacerDame(coup.getCaseDepart(),coup.getCaseArriver());
+	}
 	public boolean deplacerDame(Case cDepart, Case cArrivee)
 	{
+		
 		if(isCoupPossible(cDepart,cArrivee))
 		{
-			//enregistrement de la couleur de la case de départ
-			CouleurCase couleurCaseDepart =  cDepart.getCouleurDame();
+			//enregistrement de la case de départ
+			Case CaseDepartSave =  new Case(cDepart.getCouleurDame(),cDepart.getNbDame(),cDepart.getPosition());
+			
 			//suppresion du jeton si possible
 			if (!cDepart.moinDame())
 				return false;
 			//ajout de la dame
-			cArrivee.ajoutDame(couleurCaseDepart);
+			
+			if (siDameManger(CaseDepartSave,cArrivee))
+			{
+				if ( cArrivee.getCouleurDame()==CouleurCase.BLANC)
+					caseBarre.get(0).ajoutDame(CouleurCase.BLANC);
+				else
+					caseBarre.get(1).ajoutDame(CouleurCase.NOIR);
+			}
+				
+			cArrivee.ajoutDame(CaseDepartSave.getCouleurDame());
 			
 			return true;
 		}
 		else
 			return false;
-		
 	}
 	
 	public int getCaseCouleur(CouleurCase couleur)
@@ -163,8 +220,8 @@ public class Tablier
 	
 	public boolean isTouteDameMarquee(CouleurCase couleur)
 	{
-		if (couleur == CouleurCase.BLANC && getCaseVictoire().get(0).getNbDame() == 10
-				|| couleur == CouleurCase.NOIR && getCaseVictoire().get(1).getNbDame() == 10 )
+		if (couleur == CouleurCase.BLANC && getCaseVictoire().get(0).getNbDame() == 15
+				|| couleur == CouleurCase.NOIR && getCaseVictoire().get(1).getNbDame() == 15 )
 			return true;
 		else 
 			return false;
