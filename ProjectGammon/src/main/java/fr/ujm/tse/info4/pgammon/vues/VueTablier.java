@@ -122,7 +122,6 @@ public class VueTablier extends JPanel{
 		TriangleCaseButton triangle = new TriangleCaseButton(c,couleur,(num >= 13)); 
 		triangle.setBounds(p.x, p.y,
 				triangle.getPreferredSize().width , triangle.getPreferredSize().height);
-		System.out.println(triangle.getPreferredSize());
 		add(triangle);
 		casesButtons.add(triangle);
 	}
