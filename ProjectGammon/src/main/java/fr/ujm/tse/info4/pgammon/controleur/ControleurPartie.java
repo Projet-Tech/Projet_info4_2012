@@ -22,7 +22,7 @@ public class ControleurPartie
 	{
 		this.partie = partie;
 		vuePartie = new VuePartie(partie);
-		controleurTablier = new ControleurTablier(partie.getTablier(),vuePartie.getVueTablier());
+		controleurTablier = new ControleurTablier(partie,vuePartie.getVueTablier());
 		build();
 	}
 
