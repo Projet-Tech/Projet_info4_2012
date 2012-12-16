@@ -47,11 +47,18 @@ public class VueTablier extends JPanel{
 	public void setCandidat(CaseButton new_candidat) {
 		if(new_candidat == this.candidat) return;
 		
-		this.candidat.setCandidated(false);
+		if(this.candidat != null)
+			this.candidat.setCandidated(false);
 		
 		this.candidat = new_candidat;
 	}
-	
+
+	public void uncandidateAll() {
+		if(this.candidat != null)
+			this.candidat.setCandidated(false);
+		
+		this.candidat = null;
+	}
 	private void build() {
 		setLayout(null);
 		this.setPreferredSize(new Dimension(550,450));
