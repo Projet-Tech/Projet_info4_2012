@@ -7,13 +7,13 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.Point;
-import java.awt.RadialGradientPaint;
 import java.awt.RenderingHints;
-import java.awt.geom.Point2D;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JPanel;
 
+import fr.ujm.tse.info4.pgammon.gui.CaseButton;
 import fr.ujm.tse.info4.pgammon.gui.TriangleCaseButton;
 import fr.ujm.tse.info4.pgammon.models.Case;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
@@ -25,24 +25,78 @@ public class VueTablier extends JPanel{
 	private static final long serialVersionUID = -7479996235423541957L;
 	private Partie partie;
 	private Tablier tablier;
+	private ArrayList<CaseButton> casesButtons;
+	private ArrayList<CaseButton> casesVictoireButtons;
+	private ArrayList<CaseButton> casesBarreButtons;
+	private CaseButton candidat;
 
 	public VueTablier(Partie partie) {
 		this.partie = partie;
 		this.tablier = partie.getTablier();
+		this.casesButtons = new ArrayList<>();
+		this.casesVictoireButtons = new ArrayList<>();
+		this.casesBarreButtons = new ArrayList<>();
+		this.setCandidat(null);  
 		build();
 	}
 
+	public CaseButton getCandidat() {
+		return candidat;
+	}
+
+	public void setCandidat(CaseButton new_candidat) {
+		if(new_candidat == this.candidat) return;
+		
+		this.candidat.setCandidated(false);
+		
+		this.candidat = new_candidat;
+	}
+	
 	private void build() {
 		setLayout(null);
 		this.setPreferredSize(new Dimension(550,450));
-		List<Case> cases = tablier.getListeCase();
 		
-		for(Case c : cases){
-			createTriangle(c.getPosition(),c);
+		for(Case c : tablier.getListeCase()){
+			creerTriangle(c.getPosition(),c);
+		}
+		for(Case c : tablier.getCaseBarre()){
+			creerCasesBarres(c);
+		}
+		for(Case c : tablier.getCaseVictoire()){
+			creerCasesVictoires(c);
 		}
 	}
-
-	private void createTriangle(final int position,final  Case c) {
+	
+	private void creerCasesVictoires(Case c){
+		CaseButton btn = new TriangleCaseButton(c,c.getCouleurDame());
+		int pos_x = 671-173;
+		int pos_y = 30;
+		
+		if(c.getCouleurDame() == CouleurCase.NOIR)
+			pos_y = 266;
+		
+		btn.setBounds(pos_x, pos_y,
+				btn.getPreferredSize().width , btn.getPreferredSize().height);
+		
+		add(btn);
+		casesVictoireButtons.add(btn);
+	}
+	
+	private void creerCasesBarres(Case c){
+		CaseButton btn = new TriangleCaseButton(c,c.getCouleurDame());
+		int pos_x = 425-173;
+		int pos_y = 30;
+		
+		if(c.getCouleurDame() == CouleurCase.BLANC)
+			pos_y = 266;
+		
+		btn.setBounds(pos_x, pos_y,
+				btn.getPreferredSize().width , btn.getPreferredSize().height);
+		
+		add(btn);
+		casesBarreButtons.add(btn);
+	}
+	private void creerTriangle(final int position,final Case c) {
 		int num = 25-position;
 		Point p = new Point(0,0);
 		if(num<=6)
@@ -65,6 +119,7 @@ public class VueTablier extends JPanel{
 				triangle.getPreferredSize().width , triangle.getPreferredSize().height);
 		System.out.println(triangle.getPreferredSize());
 		add(triangle);
+		casesButtons.add(triangle);
 	}
 	
 	
@@ -113,4 +168,17 @@ public class VueTablier extends JPanel{
 		g2.dispose(); 
 		
 	}
+	
+	public List<CaseButton> getCasesButtons() {
+		return casesButtons;
+	}
+	
+	public List<CaseButton> getCasesBarreButtons() {
+		return casesBarreButtons;
+	}
+	
+	public List<CaseButton> getCasesVictoireButtons() {
+		return casesVictoireButtons;
+	}
+
 }

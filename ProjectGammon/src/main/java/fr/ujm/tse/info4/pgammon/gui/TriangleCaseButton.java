@@ -50,7 +50,6 @@ public class TriangleCaseButton extends CaseButton{
 		
 	}
 	
-	//TODO Ecouteur de changement!
 	
 	private void updateDatas() {
 		if(getCase() == null || getCase().getCouleurDame() == CouleurCase.VIDE){
@@ -66,7 +65,7 @@ public class TriangleCaseButton extends CaseButton{
 			}
 		}
 		
-
+		
 	}
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -75,6 +74,7 @@ public class TriangleCaseButton extends CaseButton{
 	}
 	
 	private void drawDames(Graphics g) {
+		updateDatas();
 		Case c = getCase();
 		if(c == null)
 			return;

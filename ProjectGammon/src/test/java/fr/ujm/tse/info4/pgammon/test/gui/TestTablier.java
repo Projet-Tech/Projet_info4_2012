@@ -28,7 +28,6 @@ public class TestTablier {
 
 		
 		// comment récuperer ce que l'utilisateur saisie.
-
 		System.out.println("Lancement du test de la Partie");
 
 		// creation des parametre et joueur
