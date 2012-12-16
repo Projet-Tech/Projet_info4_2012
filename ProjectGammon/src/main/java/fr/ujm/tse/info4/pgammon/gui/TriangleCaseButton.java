@@ -23,19 +23,26 @@ public class TriangleCaseButton extends CaseButton{
 	private static final String PION_NOIR_PATH = "images/pion_noir.png";
 	private static final String PION_BLANC_PATH = "images/pion_blanc.png";
 	
-	private final int MAX_DAMES_DRAWED = 6;
+	private final int MAX_DAMES_DRAWED = 5;
 	private final int DAME_SEPARATION = 27;
 	private ImageIcon icon;
-	
+	private boolean isDirectionUp;
+	public TriangleCaseButton(Case _case, CouleurCase _couleur,  boolean _isDirectionUp) {
+		super(_case);
+		couleur = _couleur;
+		isDirectionUp = _isDirectionUp;
+		build();
+	}
 	public TriangleCaseButton(Case _case, CouleurCase _couleur) {
 		super(_case);
 		couleur = _couleur;
+		isDirectionUp = true;
 		build();
 	}
 	private void build() {
 		setOpaque(false);
 		setLayout(null);
-		setPreferredSize(new Dimension(30,200));
+		setPreferredSize(new Dimension(33,180));
 		icon = new ImageIcon();
 		
 		updateDatas();
@@ -88,7 +95,12 @@ public class TriangleCaseButton extends CaseButton{
 		
 		for(int i=0; i < count ;i++)
 		{
-			int y = i*(DAME_SEPARATION)+(i+1)*off;
+			int y;
+			if(isDirectionUp)
+				y = getHeight()-(i+1)*(DAME_SEPARATION)+(i+1)*(-off);
+			else
+				y = i*(DAME_SEPARATION)+(i+1)*off;
+			
 			g2.drawImage(icon.getImage(),0,y,this);
 		}
 		if(getCase().getNbDame()>MAX_DAMES_DRAWED){
@@ -100,8 +112,13 @@ public class TriangleCaseButton extends CaseButton{
 				g2.setColor(new Color(0x111111));
 			else
 				g2.setColor(new Color(0xCCCCCC));
+			int y;
+			if(isDirectionUp)
+				y = getHeight() - (MAX_DAMES_DRAWED)*(DAME_SEPARATION+off)-6+DAME_SEPARATION;
+			else
+				y = MAX_DAMES_DRAWED*(DAME_SEPARATION+off)-6;
 			
-			g2.drawChars(nb.toCharArray(), 0, nb.length(),11-(nb.length()-1)*5,  MAX_DAMES_DRAWED*(DAME_SEPARATION+off)-6);
+			g2.drawChars(nb.toCharArray(), 0, nb.length(),11-(nb.length()-1)*5, y);
 		}
 
 		g2.dispose(); 
@@ -115,15 +132,26 @@ public class TriangleCaseButton extends CaseButton{
 		Paint p;
 		
 		int w = getWidth();
-		
+		int h = getHeight();
 		//Définition du triangle
-		int largeurTriangle = 23;
-		int hauteurTriangle = (getCouleur() == CouleurCase.BLANC)?170:200;
+		int largeurTriangle = w;
+		int hauteurTriangle = (int) (h*0.96);
+		if(couleur == CouleurCase.BLANC)
+			hauteurTriangle *= 0.9;
 		
-		Point p1 = new Point((w-largeurTriangle)/2,0);
-		Point p2 = new Point((w+largeurTriangle)/2,0) ;
-		Point p3 = new Point(w/2,hauteurTriangle);
+		Point p1;
+		Point p2;
+		Point p3;
 
+		if(isDirectionUp){
+			p1 = new Point((w-largeurTriangle)/2,h);
+			 p2 = new Point((w+largeurTriangle)/2,h) ;
+			 p3 = new Point(w/2,h-hauteurTriangle);
+		}else{
+			p1 = new Point((w-largeurTriangle)/2,0);
+			 p2 = new Point((w+largeurTriangle)/2,0) ;
+			 p3 = new Point(w/2,hauteurTriangle);
+		}
 		int[] xs = { p1.x, p2.x, p3.x };
 		int[] ys = { p1.y, p2.y, p3.y };
 		Polygon triangle = new Polygon(xs, ys, xs.length);
