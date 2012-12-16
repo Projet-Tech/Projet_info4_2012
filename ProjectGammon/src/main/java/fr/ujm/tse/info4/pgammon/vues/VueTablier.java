@@ -50,6 +50,7 @@ public class VueTablier extends JPanel{
 		if(this.candidat != null)
 			this.candidat.setCandidated(false);
 		
+		new_candidat.setCandidated(false);
 		this.candidat = new_candidat;
 	}
 
@@ -103,6 +104,7 @@ public class VueTablier extends JPanel{
 		add(btn);
 		casesBarreButtons.add(btn);
 	}
+	
 	private void creerTriangle(final int position,final Case c) {
 		int num = 25-position;
 		Point p = new Point(0,0);
