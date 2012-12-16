@@ -16,17 +16,30 @@ public class ControleurPartie
 {
 	private Partie partie;
 	private VuePartie vuePartie;
+	private ControleurTablier controleurTablier;
 	
-	public void ControleurPartie(Partie partie)
+	public  ControleurPartie(Partie partie)
 	{
 		this.partie = partie;
 		vuePartie = new VuePartie(partie);
-		
+		controleurTablier = new ControleurTablier(partie.getTablier(),vuePartie.getVueTablier());
 		build();
 	}
 
 	private void build() {
 		//TODO
+	}
+	
+	public Partie getPartie() {
+		return partie;
+	}
+
+	public VuePartie getVuePartie() {
+		return vuePartie;
+	}
+
+	public ControleurTablier getControleurTablier() {
+		return controleurTablier;
 	}
 	
 	

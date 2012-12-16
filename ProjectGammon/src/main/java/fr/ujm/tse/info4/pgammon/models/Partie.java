@@ -39,7 +39,6 @@ public class Partie {
 		partieFini = false;
 	}
 
-	
 
 	public void LancerPartie() {
 		choixPremierJoueurLancementPartie();
@@ -73,8 +72,18 @@ public class Partie {
 	}
 
 	public void choixPremierJoueurLancementPartie() {
-		// TODO algorithme provisoire
-		joueurEnCour = CouleurCase.BLANC;
+		deSixFaces = new ArrayList<DeSixFaces>();
+		deSixFaces.add(new DeSixFaces(joueurEnCour));
+		deSixFaces.add(new DeSixFaces(joueurEnCour));
+		
+		if(deSixFaces.get(0).getValeur() == deSixFaces.get(1).getValeur())
+		{
+			choixPremierJoueurLancementPartie();
+		}
+		else if(deSixFaces.get(0).getValeur() > deSixFaces.get(1).getValeur())
+			joueurEnCour = CouleurCase.BLANC;
+		else
+			joueurEnCour = CouleurCase.NOIR;	
 	}
 
 	public boolean jouerCoup(int caseDepartInt, int caseArriveeInt) {
