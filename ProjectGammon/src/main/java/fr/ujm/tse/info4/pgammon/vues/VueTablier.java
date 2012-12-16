@@ -26,16 +26,12 @@ public class VueTablier extends JPanel{
 	private Partie partie;
 	private Tablier tablier;
 	private ArrayList<CaseButton> casesButtons;
-	private ArrayList<CaseButton> casesVictoireButtons;
-	private ArrayList<CaseButton> casesBarreButtons;
 	private CaseButton candidat;
 
 	public VueTablier(Partie partie) {
 		this.partie = partie;
 		this.tablier = partie.getTablier();
 		this.casesButtons = new ArrayList<>();
-		this.casesVictoireButtons = new ArrayList<>();
-		this.casesBarreButtons = new ArrayList<>();
 		this.setCandidat(null);  
 		build();
 	}
@@ -87,7 +83,7 @@ public class VueTablier extends JPanel{
 				btn.getPreferredSize().width , btn.getPreferredSize().height);
 		
 		add(btn);
-		casesVictoireButtons.add(btn);
+		casesButtons.add(btn);
 	}
 	
 	private void creerCasesBarres(Case c){
@@ -102,7 +98,7 @@ public class VueTablier extends JPanel{
 				btn.getPreferredSize().width , btn.getPreferredSize().height);
 		
 		add(btn);
-		casesBarreButtons.add(btn);
+		casesButtons.add(btn);
 	}
 	
 	private void creerTriangle(final int position,final Case c) {
@@ -180,14 +176,6 @@ public class VueTablier extends JPanel{
 	
 	public List<CaseButton> getCasesButtons() {
 		return casesButtons;
-	}
-	
-	public List<CaseButton> getCasesBarreButtons() {
-		return casesBarreButtons;
-	}
-	
-	public List<CaseButton> getCasesVictoireButtons() {
-		return casesVictoireButtons;
 	}
 
 }
