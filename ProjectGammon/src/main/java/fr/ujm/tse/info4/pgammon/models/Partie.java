@@ -14,7 +14,8 @@ import java.util.List;
 import java.util.Timer;
 
 import org.jdom2.Element;
-import org.omg.CORBA.SystemException;
+
+import fr.ujm.tse.info4.pgammon.exeption.TourNonJouableException;
 
 public class Partie {
 	private ParametreJeu parametreJeu;
@@ -46,7 +47,7 @@ public class Partie {
 		
 	}
 
-	public void changerTour() {
+	public void changerTour() throws TourNonJouableException {
 
 		if (tablier.isTouteDameMarquee(joueurEnCour))
 			finPartie();
@@ -60,10 +61,16 @@ public class Partie {
 		deSixFaces = new ArrayList<DeSixFaces>();
 		lancerDes();
 		
+		if(!isTourJouable())
+		{
+			changerTour();
+			throw new TourNonJouableException("Pas de possibilité de faire un déplacement");
+		}
+			
 		
 	}
 
-	private void finPartie() {
+	public void finPartie() {
 		System.out.println("le joueur "+joueurEnCour + " a gagnée");
 		partieFini=true;
 	}
@@ -106,6 +113,10 @@ public class Partie {
 					&& !deSixFaces.get(i).isUtilise())
 				{siDeExiste = true;
 				deUtiliser = i;}
+			else 
+			{
+				
+			}
 		}
 		if (!siDeExiste)
 			return false;
@@ -134,6 +145,42 @@ public class Partie {
 			return false;
 	}
 
+	public boolean peutMarquerCetteDame(Case caseDame)
+	{
+		boolean siDeExiste = false;
+		int deUtiliser =0;
+		Case caseVictoire;
+		if(joueurEnCour == CouleurCase.BLANC)
+			caseVictoire = tablier.getCaseVictoire().get(0);
+		else
+			caseVictoire = tablier.getCaseVictoire().get(1);
+		
+		
+		for (int i=0;i<deSixFaces.size();i++){
+			if (((tablier.distanceDeuxCase(caseDame, caseVictoire) == deSixFaces.get(i).getValeur() 
+					&& joueurEnCour == CouleurCase.BLANC)
+					|| (tablier.distanceDeuxCase(caseDame, caseVictoire) == -deSixFaces.get(i).getValeur() 
+							&& joueurEnCour == CouleurCase.NOIR))
+					&& !deSixFaces.get(i).isUtilise())
+				{siDeExiste = true;
+				deUtiliser = i;}
+			else if (((tablier.distanceDeuxCase(caseDame, caseVictoire) > deSixFaces.get(i).getValeur() 
+					&& joueurEnCour == CouleurCase.BLANC && !tablier.isCaseAvant(caseDame))
+					|| (tablier.distanceDeuxCase(caseDame, caseVictoire) > -deSixFaces.get(i).getValeur() 
+							&& joueurEnCour == CouleurCase.NOIR)&& !tablier.isCaseAvant(caseDame))
+					&& !deSixFaces.get(i).isUtilise())
+				{siDeExiste = true;
+				deUtiliser = i;}
+			{
+				
+			}
+		}
+		if (!siDeExiste)
+			return false;
+			
+		return true;
+	}
+	
 	public void annulerDernierCoup() {
 		// TODO
 		throw new UnsupportedOperationException();
@@ -197,11 +244,31 @@ public class Partie {
 		// TODO
 		throw new UnsupportedOperationException();
 	}
+	
+	public boolean isCoupPossible(Case caseDepart) {
+		boolean possible=false;
+		for (DeSixFaces de : deSixFaces) {
+			if(tablier.isCoupPossible(caseDepart,tablier.getCaseADistance(caseDepart, de)) && !de.isUtilise())
+				possible=true;
+		}
+		return possible;
+	}
 
 	public void historisationDeplacement(Case depart, Case arrivee,
 			Object isBattue, Object isRentre) {
 		// TODO
 		throw new UnsupportedOperationException();
+	}
+	
+	public boolean isTourJouable() {
+		boolean possible=false;
+		for (Case caseDame : tablier.getAllCase()) {
+			for (DeSixFaces de : deSixFaces) {
+				if(tablier.isCoupPossible(caseDame,tablier.getCaseADistance(caseDame, de)))
+					possible=true;
+			}
+		}
+		return possible;	
 	}
 
 	public void lectureProchainCoup() {

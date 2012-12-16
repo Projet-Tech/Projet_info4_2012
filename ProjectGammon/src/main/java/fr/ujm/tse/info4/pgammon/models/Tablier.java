@@ -93,6 +93,11 @@ public class Tablier
 		if (cDepart.getNbDame() == 0)
 			return false;
 		
+		if(getCaseBarre(cDepart.getCouleurDame()).getNbDame() !=0 
+				&& (cDepart.getPosition() != 0 && cDepart.getCouleurDame() ==CouleurCase.BLANC 
+				|| cDepart.getPosition() != 25 && cDepart.getCouleurDame()==CouleurCase.NOIR ))
+				return false;
+		
 		if (cArrivee.isCaseVictoire()){
 			if (peutMarquerDame(cDepart.getCouleurDame()) 
 					&& cArrivee.getCouleurDame() == cDepart.getCouleurDame())
@@ -158,6 +163,7 @@ public class Tablier
 			//enregistrement de la case de départ
 			Case CaseDepartSave =  new Case(cDepart.getCouleurDame(),cDepart.getNbDame(),cDepart.getPosition());
 			
+			
 			//suppresion du jeton si possible
 			if (!cDepart.moinDame())
 				return false;
@@ -179,6 +185,35 @@ public class Tablier
 			return false;
 	}
 	
+	public boolean isCaseAvant(Case caseDame)
+	{
+		int nbDame = 0;
+		int a;
+		int b;
+		
+		if(caseDame.getCouleurDame() == CouleurCase.BLANC)
+		{
+			for (int i=18;i<=caseDame.getPosition();i++)
+			{
+				if (getListeCase().get(i).getCouleurDame() == CouleurCase.BLANC)
+					nbDame += getListeCase().get(i).getNbDame();
+			}
+		}
+		else
+		{
+			for (int i=5;i<=caseDame.getPosition();i--)
+			{
+				if (getListeCase().get(i).getCouleurDame() == CouleurCase.NOIR)
+					nbDame += getListeCase().get(i).getNbDame();
+			}
+		}
+		
+		
+		if (nbDame==0)
+			return false;
+		else
+			return true;
+	}
 	public boolean peutMarquerDame(CouleurCase Couleur)
 	{
 		int nbDame = 0;
@@ -298,9 +333,36 @@ public class Tablier
 	public ArrayList<Case> getCaseVictoire() {
 		return caseVictoire;
 	}
+	public Case getCaseVictoire(CouleurCase couleur) {
+		if(couleur == CouleurCase.BLANC)
+			return caseVictoire.get(0);
+		else
+			return caseVictoire.get(1);
+	}
 
 	public ArrayList<Case> getCaseBarre() {
 		return caseBarre;
+	}
+	public Case getCaseBarre(CouleurCase couleur) {
+		if(couleur == CouleurCase.BLANC)
+			return caseBarre.get(0);
+		else
+			return caseBarre.get(1);
+	}
+	
+	
+	public ArrayList<Case> getAllCase() {
+		ArrayList<Case> listAllCase = new ArrayList<Case>();
+		for (Case case1 : listeCase) {
+			listAllCase.add(case1);
+		}
+		for (Case case1 : caseVictoire) {
+			listAllCase.add(case1);
+		}
+		for (Case case1 : caseBarre) {
+			listAllCase.add(case1);
+		}
+		return listAllCase;
 	}
 
 	public Partie getPartie() {

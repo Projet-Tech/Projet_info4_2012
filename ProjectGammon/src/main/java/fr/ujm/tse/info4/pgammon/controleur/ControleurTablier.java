@@ -4,6 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
 
+import fr.ujm.tse.info4.pgammon.exeption.TourNonJouableException;
 import fr.ujm.tse.info4.pgammon.gui.CaseButton;
 import fr.ujm.tse.info4.pgammon.models.Partie;
 import fr.ujm.tse.info4.pgammon.models.Tablier;
@@ -40,17 +41,30 @@ public class ControleurTablier {
 					if(vueTablier.getCandidat() == null 
 							&& partie.getJoueurEnCour() == caseButton.getCase().getCouleurDame())
 					{
-						if (caseButton.getCase().getNbDame() != 0 )
+						if (caseButton.getCase().getNbDame() != 0 && partie.isCoupPossible(caseButton.getCase()))
 							vueTablier.setCandidat(caseButton);
 					}
 					else if (vueTablier.getCandidat() != null)
 					{
-
 						if (partie.jouerCoup(vueTablier.getCandidat().getCase(), caseButton.getCase()))
 						{
 							vueTablier.updateUI();
 							if (partie.siDesUtilises())
-								partie.changerTour();	
+							{
+								try {
+									partie.changerTour();
+									vueTablier.uncandidateAll();
+									vueTablier.updateUI();
+								} catch (TourNonJouableException e2) {
+									//TODO prevenir la vue
+									try {
+										partie.changerTour();
+									} catch (TourNonJouableException e3) {
+										//TODO fin de partie
+										partie.finPartie();
+									}
+								}
+							}		
 						}
 						else
 						{
