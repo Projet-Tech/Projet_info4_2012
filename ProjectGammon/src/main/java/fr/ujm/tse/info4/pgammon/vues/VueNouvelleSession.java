@@ -16,6 +16,7 @@ import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
 import fr.ujm.tse.info4.pgammon.gui.MonochromePanel;
 import fr.ujm.tse.info4.pgammon.gui.PanelJoueur;
 import fr.ujm.tse.info4.pgammon.gui.PanelParametre;
+import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 import fr.ujm.tse.info4.pgammon.models.Joueur;
 
 public class VueNouvelleSession extends JPanel{
@@ -32,6 +33,8 @@ public class VueNouvelleSession extends JPanel{
 	
 	private Joueur j1;
 	private Joueur j2;
+
+	
 	
 	public VueNouvelleSession(){
 			
@@ -47,13 +50,13 @@ public class VueNouvelleSession extends JPanel{
 		j1 = new Joueur();
 		j2 = new Joueur();
 		
-		paneljoueur1 = new PanelJoueur(j1);
-		paneljoueur2 = new PanelJoueur(j2);
+		paneljoueur1 = new PanelJoueur(j1,CouleurCase.BLANC);
+		paneljoueur2 = new PanelJoueur(j2,CouleurCase.NOIR);
 		panelparamètre = new PanelParametre();
 		
 		
-		 boutonlistejoueur = new MonochromeButton();
-		 boutoncommencer = new MonochromeButton();
+		 boutonlistejoueur = new MonochromeButton("Liste des joueurs");
+		 boutoncommencer = new MonochromeButton("Commencer");
 		 boutonchangercouleur = new MonochromeButton();
 		 
 		 
