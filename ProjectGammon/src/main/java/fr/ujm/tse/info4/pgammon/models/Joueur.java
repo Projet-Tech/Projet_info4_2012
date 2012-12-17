@@ -49,13 +49,7 @@ public class Joueur
 	{
 		//TODO charger
 		throw new UnsupportedOperationException();
-	}
-	
-	
-	
-	
-	
-	
+	}	
 	
 	public int getId() {
 		return id;
