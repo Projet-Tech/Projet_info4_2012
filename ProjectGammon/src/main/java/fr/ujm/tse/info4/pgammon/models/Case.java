@@ -28,6 +28,13 @@ public class Case {
 		else
 			return false;
 	}
+	public boolean isCaseBarre() {
+		if (position == 0 && couleurDame == CouleurCase.BLANC
+				|| position == 25 && couleurDame == CouleurCase.NOIR)
+			return true;
+		else
+			return false;
+	}
 
 	public boolean ajoutDame(CouleurCase couleur) {
 		

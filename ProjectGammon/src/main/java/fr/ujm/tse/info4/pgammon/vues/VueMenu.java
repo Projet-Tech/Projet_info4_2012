@@ -23,8 +23,9 @@ public class VueMenu extends JPanel {
 	private static final long serialVersionUID = 3060121008717453091L;
 	public static final String img_menu = "images/menu_bg.png";
 	
-	private MonochromeButton boutonlancerpartie;
+	//déclaration des variables de boutons
 	private MonochromeButton boutonnouvellepartie;
+	private MonochromeButton boutonreprendrepartie;
 	private MonochromeButton boutonajouter;
 	private MonochromeButton boutonaide;
 	private MonochromeButton boutonquitter;
@@ -38,13 +39,14 @@ public class VueMenu extends JPanel {
 	
 	private void build() {
 		
+		//récupération de l'image
 		try{
 			icon = new ImageIcon(img_menu);
 		}catch(Exception err){
-			//TODO : Creer une icone par défaut
 			System.err.println(err);
 		}
 		
+		//ceci est fait pour pouvoir déplacer nos panels dans le panel
 		setLayout(null);
 		
 		//déclaration des 2 panels un contenant les boutons
@@ -56,7 +58,7 @@ public class VueMenu extends JPanel {
 		GridLayout gl = new GridLayout(6, 1);//permet de contenir les boutons en colonne
 		
 		//paramètre du conteneur de grid
-		conteneurgrid.setBounds(200, 150, 400, 400);
+		conteneurgrid.setBounds(200, 150, 400, 400);//positionnement relatif du conteneur avec ses dimensions
 		conteneurgrid.setOpaque(false);
 		
 		
@@ -69,11 +71,11 @@ public class VueMenu extends JPanel {
 
 		
 		
-		boutonlancerpartie = new MonochromeButton("Lancer partie");
-		conteneurbouton.add(boutonlancerpartie);
-		
 		boutonnouvellepartie = new MonochromeButton("Nouvelle partie");
 		conteneurbouton.add(boutonnouvellepartie);
+		
+		boutonreprendrepartie = new MonochromeButton("Reprendre partie");
+		conteneurbouton.add(boutonreprendrepartie);
 		
 		boutonajouter = new MonochromeButton("Liste des joueurs");
 		conteneurbouton.add(boutonajouter);
@@ -94,11 +96,11 @@ public class VueMenu extends JPanel {
 	}
 	
 	public MonochromeButton getBoutonlancerpartie() {
-		return boutonlancerpartie;
+		return boutonnouvellepartie;
 	}
 
 	public MonochromeButton getBoutonnouvellepartie() {
-		return boutonnouvellepartie;
+		return boutonreprendrepartie;
 	}
 
 	public MonochromeButton getBoutonajouter() {
@@ -114,17 +116,7 @@ public class VueMenu extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		
-
-		Graphics2D g2 = (Graphics2D) g.create(); 
-		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); 
-		
-		Paint p;
-		int h = getHeight(); 
-		int w = getWidth(); 
-		
-		g2.drawImage(icon.getImage(),0,0,this);
-		
-		g2.dispose(); 
+		g.drawImage(icon.getImage(),0,0,this);
 		
 	}
 }
