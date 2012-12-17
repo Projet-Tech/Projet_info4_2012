@@ -299,6 +299,8 @@ public class Tablier
 		}	
 	}
 	
+	
+	
 	public boolean isDameDansCaseBarre(CouleurCase couleur)
 	{
 		if(getCaseBarre(couleur).getNbDame() == 0)
@@ -307,6 +309,9 @@ public class Tablier
 			return true;
 				
 	}
+	
+
+	
 	public List<Coup> getCoupsPossibles(DeSixFaces de,CouleurCase couleur)
 	{
 		List<Coup> liste = new ArrayList<Coup>();
