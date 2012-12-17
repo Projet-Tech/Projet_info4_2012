@@ -5,14 +5,14 @@ import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 
+import fr.ujm.tse.info4.pgammon.controleur.ControleurPartie;
 import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 import fr.ujm.tse.info4.pgammon.models.ParametreJeu;
 import fr.ujm.tse.info4.pgammon.models.Partie;
-import fr.ujm.tse.info4.pgammon.vues.VueMenu;
 import fr.ujm.tse.info4.pgammon.vues.VuePartie;
 
-public class TestPartie {
+public class TestVuePartie {
 	
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Test Menu");
@@ -31,8 +31,9 @@ public class TestPartie {
 		Partie p = new Partie(param);
 		p.LancerPartie();
 		
-		VuePartie partie = new VuePartie(p);
-		frame.setContentPane(partie);
+		ControleurPartie controleurPartie = new ControleurPartie(p);
+		
+		frame.setContentPane(controleurPartie.getVuePartie());
 		
 		
 		frame.setVisible(true);
