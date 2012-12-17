@@ -100,11 +100,6 @@ public class TestUnitTablier extends TestCase {
 		List<DeSixFaces> listeDeuxDes = new ArrayList<DeSixFaces>();
 		listeDeuxDes.add(new DeSixFaces(CouleurCase.BLANC,1));
 		listeDeuxDes.add(new DeSixFaces(CouleurCase.BLANC,2));
-		
-		List<DeSixFaces> listeQutreDes = new ArrayList<DeSixFaces>();
-		for(int i=0;i<4;i++){
-			listeQutreDes.add(new DeSixFaces(CouleurCase.BLANC,2));
-		}
 
 		List<Coup> tmpListeDeuxDes = t1.getCoupsPossibles(listeDeuxDes,CouleurCase.BLANC);
 		//2+1=5 deplacer 5
@@ -127,23 +122,53 @@ public class TestUnitTablier extends TestCase {
 		ArrayList<Case> listeCase = new ArrayList<Case>();
 		for (int i=1;i<=24;i++)
 		{
-			if(i==1) listeCase.add(new Case(CouleurCase.BLANC, 2, i));
-			else if(i==6) listeCase.add(new Case(CouleurCase.NOIR, 5, i));
-			else if(i==8) listeCase.add(new Case(CouleurCase.NOIR, 3, i));
+			if(i==19) listeCase.add(new Case(CouleurCase.BLANC, 2, i));
+			else if(i==20) listeCase.add(new Case(CouleurCase.BLANC, 5, i));
+			else if(i==21) listeCase.add(new Case(CouleurCase.BLANC, 3, i));
+			else if(i==22) listeCase.add(new Case(CouleurCase.BLANC, 3, i));
+			else if(i==23) listeCase.add(new Case(CouleurCase.BLANC, 2, i));
 			
-			else if(i==12) listeCase.add(new Case(CouleurCase.BLANC, 5, i));
+			else if(i==1) listeCase.add(new Case(CouleurCase.NOIR, 5, i));
+			else if(i==2) listeCase.add(new Case(CouleurCase.NOIR, 3, i));
+		    else if(i==3) listeCase.add(new Case(CouleurCase.NOIR, 5, i));
+			else if(i==4) listeCase.add(new Case(CouleurCase.NOIR, 2, i));
 			
-			else if(i==13) listeCase.add(new Case(CouleurCase.NOIR, 5, i));
-			
-			else if(i==17) listeCase.add(new Case(CouleurCase.BLANC, 3, i));
-			else if(i==19) listeCase.add(new Case(CouleurCase.BLANC, 5, i));
-			
-			else if(i==24) listeCase.add(new Case(CouleurCase.NOIR, 2, i));
 			else listeCase.add(new Case(CouleurCase.VIDE, 0, i));	
 		}		
-		List<Coup> tmpListeQutreDes = t1.getCoupsPossibles(listeQutreDes,CouleurCase.BLANC);
+		
 		Tablier t2 = new Tablier();
+		t2.initialiserCase(listeCase);
+		
+		List<DeSixFaces> listeQutreDes = new ArrayList<DeSixFaces>();
+		for(int i=0;i<4;i++){
+			listeQutreDes.add(new DeSixFaces(CouleurCase.BLANC,2));
+		}
+		
+		List<Coup> tmpListeQutreDes = t2.getCoupsPossibles(listeQutreDes,CouleurCase.BLANC);
 		//deplace 8
+		assertEquals(tmpListeQutreDes.get(0).getCaseArriver(),t2.getAllCase().get(24));
+		assertEquals(tmpListeQutreDes.get(1).getCaseArriver(),t2.getAllCase().get(24));
+		assertEquals(tmpListeQutreDes.get(2).getCaseArriver(),t2.getAllCase().get(24));
+		assertEquals(tmpListeQutreDes.get(3).getCaseArriver(),t2.getAllCase().get(24));
+		assertEquals(tmpListeQutreDes.get(4).getCaseArriver(),t2.getAllCase().get(24));
+		//deplace 6
+		assertEquals(tmpListeQutreDes.get(5).getCaseArriver(),t2.getAllCase().get(24));
+		assertEquals(tmpListeQutreDes.get(6).getCaseArriver(),t2.getAllCase().get(24));
+		assertEquals(tmpListeQutreDes.get(7).getCaseArriver(),t2.getAllCase().get(24));
+		assertEquals(tmpListeQutreDes.get(8).getCaseArriver(),t2.getAllCase().get(24));
+		assertEquals(tmpListeQutreDes.get(9).getCaseArriver(),t2.getAllCase().get(24));
+		//deplace 4
+		assertEquals(tmpListeQutreDes.get(10).getCaseArriver(),t2.getAllCase().get(22));
+		assertEquals(tmpListeQutreDes.get(11).getCaseArriver(),t2.getAllCase().get(23));
+		assertEquals(tmpListeQutreDes.get(12).getCaseArriver(),t2.getAllCase().get(24));
+		assertEquals(tmpListeQutreDes.get(13).getCaseArriver(),t2.getAllCase().get(24));
+		assertEquals(tmpListeQutreDes.get(14).getCaseArriver(),t2.getAllCase().get(24));
+		//deplace 2
+		assertEquals(tmpListeQutreDes.get(15).getCaseArriver(),t2.getAllCase().get(20));
+		assertEquals(tmpListeQutreDes.get(16).getCaseArriver(),t2.getAllCase().get(21));
+		assertEquals(tmpListeQutreDes.get(17).getCaseArriver(),t2.getAllCase().get(22));
+		assertEquals(tmpListeQutreDes.get(18).getCaseArriver(),t2.getAllCase().get(23));
+		assertEquals(tmpListeQutreDes.get(19).getCaseArriver(),t2.getAllCase().get(24));
 		
 	}
 	
