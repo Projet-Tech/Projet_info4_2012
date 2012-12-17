@@ -209,7 +209,7 @@ public class Tablier
 		
 		if(caseDame.getCouleurDame() == CouleurCase.BLANC)
 		{
-			for (int i=18;i<=caseDame.getPosition();i++)
+			for (int i=18;i<caseDame.getPosition();i++)
 			{
 				if (getListeCase().get(i).getCouleurDame() == CouleurCase.BLANC)
 					nbDame += getListeCase().get(i).getNbDame();
@@ -217,7 +217,7 @@ public class Tablier
 		}
 		else
 		{
-			for (int i=5;i<=caseDame.getPosition();i--)
+			for (int i=5;i<caseDame.getPosition();i--)
 			{
 				if (getListeCase().get(i).getCouleurDame() == CouleurCase.NOIR)
 					nbDame += getListeCase().get(i).getNbDame();

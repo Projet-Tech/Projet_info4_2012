@@ -1,10 +1,14 @@
 package fr.ujm.tse.info4.pgammon.test.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import fr.ujm.tse.info4.pgammon.models.Case;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
+import fr.ujm.tse.info4.pgammon.models.Coup;
 import fr.ujm.tse.info4.pgammon.models.DeSixFaces;
 import fr.ujm.tse.info4.pgammon.models.Tablier;
 
@@ -21,8 +25,7 @@ public class TestUnitTablier extends TestCase {
 	}
 
 	
-	public void PremierTest() {
-		
+	public void PremierTest() {		
 		assertTrue( true );
 	}
 	
@@ -88,7 +91,62 @@ public class TestUnitTablier extends TestCase {
 		assertEquals(t1.getCaseADistance(t1.getListeCase().get(16), deBlanc),t1.getListeCase().get(22));
 		assertEquals(t1.getCaseADistance(t1.getListeCase().get(5), deNoir),t1.getCaseVictoire().get(1));
 		assertEquals(t1.getCaseADistance(t1.getListeCase().get(7), deNoir),t1.getListeCase().get(1));
+		assertEquals(t1.getCaseADistance(t1.getCaseBarre(CouleurCase.BLANC), deBlanc),t1.getListeCase().get(5));
 	}
+	
+	public void testgetCoupsPossiblesListe(){
+		Tablier t1 = new Tablier();
+		
+		List<DeSixFaces> listeDeuxDes = new ArrayList<DeSixFaces>();
+		listeDeuxDes.add(new DeSixFaces(CouleurCase.BLANC,1));
+		listeDeuxDes.add(new DeSixFaces(CouleurCase.BLANC,2));
+		
+		List<DeSixFaces> listeQutreDes = new ArrayList<DeSixFaces>();
+		for(int i=0;i<4;i++){
+			listeQutreDes.add(new DeSixFaces(CouleurCase.BLANC,2));
+		}
+
+		List<Coup> tmpListeDeuxDes = t1.getCoupsPossibles(listeDeuxDes,CouleurCase.BLANC);
+		//2+1=5 deplacer 5
+		assertEquals(tmpListeDeuxDes.get(0).getCaseArriver(),t1.getListeCase().get(3));
+		assertEquals(tmpListeDeuxDes.get(1).getCaseArriver(),t1.getListeCase().get(14));
+		assertEquals(tmpListeDeuxDes.get(2).getCaseArriver(),t1.getListeCase().get(19));
+		assertEquals(tmpListeDeuxDes.get(3).getCaseArriver(),t1.getListeCase().get(21));
+		//deplacer 1
+		assertEquals(tmpListeDeuxDes.get(4).getCaseArriver(),t1.getListeCase().get(1));
+		assertFalse(tmpListeDeuxDes.get(5).getCaseArriver().getPosition()==t1.getListeCase().get(21).getPosition());
+		assertEquals(tmpListeDeuxDes.get(5).getCaseArriver(),t1.getListeCase().get(17));
+		assertEquals(tmpListeDeuxDes.get(6).getCaseArriver(),t1.getListeCase().get(19));
+		//deplace 2
+		assertEquals(tmpListeDeuxDes.get(7).getCaseArriver(),t1.getListeCase().get(2));
+		assertEquals(tmpListeDeuxDes.get(8).getCaseArriver(),t1.getListeCase().get(13));
+		assertEquals(tmpListeDeuxDes.get(9).getCaseArriver(),t1.getListeCase().get(18));
+		assertEquals(tmpListeDeuxDes.get(10).getCaseArriver(),t1.getListeCase().get(20));
+		
+		//Pour tester les situations special,on refait tablier 
+		ArrayList<Case> listeCase = new ArrayList<Case>();
+		for (int i=1;i<=24;i++)
+		{
+			if(i==1) listeCase.add(new Case(CouleurCase.BLANC, 2, i));
+			else if(i==6) listeCase.add(new Case(CouleurCase.NOIR, 5, i));
+			else if(i==8) listeCase.add(new Case(CouleurCase.NOIR, 3, i));
+			
+			else if(i==12) listeCase.add(new Case(CouleurCase.BLANC, 5, i));
+			
+			else if(i==13) listeCase.add(new Case(CouleurCase.NOIR, 5, i));
+			
+			else if(i==17) listeCase.add(new Case(CouleurCase.BLANC, 3, i));
+			else if(i==19) listeCase.add(new Case(CouleurCase.BLANC, 5, i));
+			
+			else if(i==24) listeCase.add(new Case(CouleurCase.NOIR, 2, i));
+			else listeCase.add(new Case(CouleurCase.VIDE, 0, i));	
+		}		
+		List<Coup> tmpListeQutreDes = t1.getCoupsPossibles(listeQutreDes,CouleurCase.BLANC);
+		Tablier t2 = new Tablier();
+		//deplace 8
+		
+	}
+	
 
 }
 
