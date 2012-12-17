@@ -192,9 +192,8 @@ public class TriangleCaseButton extends CaseButton{
 		
 		
 		//Tracage du fond.
-		if (!model.isEnabled()) { 
-			setForeground(Color.GRAY);
-			p = new Color(0x444444);
+		if (isPossible()) { 
+			p = new Color(0x000099);
 		}else if(model.isPressed())
 		{
 			p = (getCouleur() == CouleurCase.BLANC)?new Color(0xFFFFFF):new Color(0x777777);
@@ -210,7 +209,9 @@ public class TriangleCaseButton extends CaseButton{
 		g2.fillPolygon(triangle);
 		
 		// Tracage de la Bordure
-		if (model.isPressed()) { 
+		if(isPossible())
+			p = new Color(0x0000FF);
+		else if (model.isPressed()) { 
 			p = (getCouleur() == CouleurCase.BLANC)?new Color(0xAAAAAA):new Color(0x666666);
 		} else { 
 			p = (getCouleur() == CouleurCase.BLANC)?new Color(0x888888):new Color(0x444444);				
