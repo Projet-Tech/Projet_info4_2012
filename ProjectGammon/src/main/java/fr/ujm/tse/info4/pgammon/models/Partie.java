@@ -132,12 +132,7 @@ public class Partie {
 	}
 
 	public boolean jouerCoup(Coup coup) {
-		if (tablier.sensDeplacementCorrect(coup.getCaseDepart(),
-				coup.getCaseArriver()))
-			return tablier.deplacerDame(coup.getCaseDepart(),
-					coup.getCaseArriver());
-		else
-			return false;
+		return jouerCoup(coup.getCaseDepart(),coup.getCaseArriver());
 	}
 	public boolean peutMarquerCetteDame(Case caseDame,DeSixFaces de)
 	{
@@ -241,8 +236,8 @@ public class Partie {
 	}
 
 	public void deplacementAleatoire() {
-		// TODO
-		throw new UnsupportedOperationException();
+		 List<Coup> casesPossible = getCoupsPossibles();
+		 jouerCoup(casesPossible.get((int)(Math.random()*casesPossible.size())));
 	}
 
 	public List<Coup> getCoupsPossibles(DeSixFaces de) {
@@ -270,7 +265,22 @@ public class Partie {
 	}
 
 	public List<Coup> getCoupsPossibles() {
-		return tablier.getCoupsPossibles(deSixFaces, joueurEnCour);
+		int somme = 0;
+
+		List<Coup> listeUnDe = new ArrayList<Coup>();
+		
+		for (Case caseDame : tablier.getAllCase()) {
+			if(caseDame.getCouleurDame() == joueurEnCour)
+			{
+				for (DeSixFaces tmpDe : deSixFaces){
+					for (Case caseDametmp : getCoupsPossibles(caseDame)) {
+						listeUnDe.add(new Coup(caseDame, caseDametmp));
+					}
+					
+				}
+			}
+		}	
+		return listeUnDe;
 	}
 
 	public boolean isCoupPossible(Case caseDepart, Case caseArrivee) {

@@ -1,10 +1,14 @@
 package fr.ujm.tse.info4.pgammon.controleur;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import javax.swing.Timer;
 
 import fr.ujm.tse.info4.pgammon.exeption.TourNonJouableException;
 import fr.ujm.tse.info4.pgammon.gui.CaseButton;
@@ -18,7 +22,7 @@ public class ControleurTablier {
 	private Tablier tablier;
 	private Partie partie;
 	private VueTablier vueTablier;
-	
+	private Timer timer;
 	
 	public ControleurTablier(Partie partie,VueTablier vueTablier)
 	{
@@ -36,6 +40,30 @@ public class ControleurTablier {
 	private void build() {
 		Collection<CaseButton> lCase = vueTablier.getCasesButtons();
 		
+		timer = new Timer(1000, new ActionListener() {
+			  public void actionPerformed(ActionEvent ae) {
+				  partie.deplacementAleatoire();
+				  vueTablier.uncandidateAll();
+				  vueTablier.setPossibles((List)(new ArrayList<Case>()));
+				  
+				  if (partie.siDesUtilises())
+					{	
+						//TODO affichage changement de Tour
+						changerTour();			
+					}
+					else if(!partie.hasCoupPossible())
+					{
+						//TODO affichage plus de coup possible
+						changerTour();
+					}	
+				  
+				  vueTablier.updateUI();
+				  vueTablier.updateDes();
+				  timer.restart();
+			  }
+			});
+			timer.setRepeats(false);
+			timer.start();
 				
 		for (CaseButton caseButton : lCase) {
 			caseButton.addMouseListener(new MouseListener() {
@@ -82,6 +110,7 @@ public class ControleurTablier {
 						}
 						
 					}
+					timer.restart();
 					vueTablier.updateUI();
 					vueTablier.updateDes();
 				}
