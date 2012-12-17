@@ -334,13 +334,12 @@ public class Partie {
 	}
 	
 	public boolean hasCoupPossible() {
-		
 		for (Case caseDame : tablier.getAllCase()) {
 			if((!tablier.isDameDansCaseBarre(joueurEnCour) && caseDame.getCouleurDame() == joueurEnCour)
 					|| caseDame.isCaseBarre())
 				for (DeSixFaces de : deSixFaces) {
 					if(!de.isUtilise())
-						if(tablier.isCoupPossible(caseDame,tablier.getCaseADistance(caseDame, de)))
+						if(isCoupPossible(caseDame,tablier.getCaseADistance(caseDame, de)))
 							return true;
 				}
 		}

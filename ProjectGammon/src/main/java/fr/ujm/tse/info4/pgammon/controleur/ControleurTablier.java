@@ -150,6 +150,8 @@ public class ControleurTablier {
 						else if(!partie.hasCoupPossible())
 						{
 							//TODO affichage plus de coup possible
+							if (timer!= null)
+								timer.stop();
 							changerTour();
 						}	
 					  
