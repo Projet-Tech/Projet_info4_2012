@@ -5,18 +5,22 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Paint;
 import java.awt.Point;
 import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JPanel;
 
 import fr.ujm.tse.info4.pgammon.gui.CaseButton;
+import fr.ujm.tse.info4.pgammon.gui.DeButton;
 import fr.ujm.tse.info4.pgammon.gui.TriangleCaseButton;
 import fr.ujm.tse.info4.pgammon.models.Case;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
+import fr.ujm.tse.info4.pgammon.models.DeSixFaces;
 import fr.ujm.tse.info4.pgammon.models.Partie;
 import fr.ujm.tse.info4.pgammon.models.Tablier;
 
@@ -27,7 +31,7 @@ public class VueTablier extends JPanel{
 	private Tablier tablier;
 	private ArrayList<CaseButton> casesButtons;
 	private CaseButton candidat;
-
+	private List<DeButton> desButton;
 	public VueTablier(Partie partie) {
 		this.partie = partie;
 		this.tablier = partie.getTablier();
@@ -69,6 +73,7 @@ public class VueTablier extends JPanel{
 		for(Case c : tablier.getCaseVictoire()){
 			creerCasesVictoires(c);
 		}
+		updateDes();
 	}
 	
 	private void creerCasesVictoires(Case c){
@@ -172,6 +177,32 @@ public class VueTablier extends JPanel{
 		
 		g2.dispose(); 
 		
+	}
+	
+
+	
+	public void updateDes(){
+
+		List<DeSixFaces> des = partie.getDeSixFaces();
+		
+		if(desButton != null){
+			for(DeButton de_btn : desButton){
+				remove(de_btn);
+			}
+		}
+		desButton = new ArrayList<>();
+		
+		int size = des.size();
+		int i = 0;
+		if(size>0)
+			for(DeSixFaces de : des){
+				DeButton btn = new DeButton(de);
+				int y = (int) (252 + 40*((float)i-size/2));
+				btn.setBounds(427-173, y,
+						btn.getPreferredSize().width , btn.getPreferredSize().height);
+				add(btn);
+				i++;
+			}
 	}
 	
 	public List<CaseButton> getCasesButtons() {

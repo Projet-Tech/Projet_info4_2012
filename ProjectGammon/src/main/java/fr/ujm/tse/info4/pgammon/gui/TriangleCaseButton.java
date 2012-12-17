@@ -31,6 +31,10 @@ public class TriangleCaseButton extends CaseButton{
 	private final int DAME_SEPARATION = 27;
 	private ImageIcon icon;
 	private boolean isDirectionUp;
+	
+	//TODO : Faire en sorte que les dames s'affichent correctement lorsqu'il y en a beaucoup
+	//
+	
 	public TriangleCaseButton(Case _case, CouleurCase _couleur,  boolean _isDirectionUp) {
 		super(_case);
 		couleur = _couleur;
