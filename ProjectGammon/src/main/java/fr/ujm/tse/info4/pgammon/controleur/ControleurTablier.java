@@ -4,14 +4,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 import fr.ujm.tse.info4.pgammon.exeption.TourNonJouableException;
 import fr.ujm.tse.info4.pgammon.gui.CaseButton;
 import fr.ujm.tse.info4.pgammon.models.Case;
-import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 import fr.ujm.tse.info4.pgammon.models.Partie;
 import fr.ujm.tse.info4.pgammon.models.Tablier;
 import fr.ujm.tse.info4.pgammon.vues.VueTablier;
@@ -54,13 +51,17 @@ public class ControleurTablier {
 								&& (!tablier.isDameDansCaseBarre(partie.getJoueurEnCour()) 
 										|| caseButton.getCase().isCaseBarre())
 										&& caseButton.getCase().getCouleurDame() == partie.getJoueurEnCour())
-							vueTablier.setCandidat(caseButton);
+							{
+								vueTablier.setCandidat(caseButton);
+								vueTablier.setPossibles(partie.getCoupsPossibles(caseButton.getCase()));
+							}
 					}
 					else if (vueTablier.getCandidat() != null)
 					{
 						if (partie.jouerCoup(vueTablier.getCandidat().getCase(), caseButton.getCase()))
 						{
 							vueTablier.uncandidateAll();
+							vueTablier.setPossibles((List)(new ArrayList<Case>()));
 							if (partie.siDesUtilises())
 							{	
 								//TODO affichage changement de Tour
@@ -75,6 +76,7 @@ public class ControleurTablier {
 						else
 						{
 							vueTablier.uncandidateAll();
+							vueTablier.setPossibles((List)(new ArrayList<Case>()));
 						}
 						
 					}

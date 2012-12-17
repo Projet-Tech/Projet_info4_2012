@@ -28,6 +28,7 @@ public class Partie {
 	private int idPartie;
 	private Timer timerTour;
 	private boolean partieFini;
+	private int deUtiliser;
 
 	public Partie(ParametreJeu p) {
 		parametreJeu = p;
@@ -100,34 +101,7 @@ public class Partie {
 	
 	public boolean jouerCoup(Case caseDepart, Case caseArrivee) {
 		
-		// verification de l'existance du de;
-		boolean siDeExiste = false;
-		int deUtiliser =0;
-		
-		
-		for (int i=0;i<deSixFaces.size();i++){
-			
-			if(peutMarquerCetteDame(caseDepart,deSixFaces.get(i)) && caseArrivee.isCaseVictoire() && caseArrivee.getCouleurDame() == caseDepart.getCouleurDame())
-			{
-				siDeExiste = true;
-				deUtiliser = i;
-			}
-			else if (((tablier.distanceDeuxCase(caseDepart, caseArrivee) == deSixFaces.get(i).getValeur() 
-					&& joueurEnCour == CouleurCase.BLANC)
-					|| (tablier.distanceDeuxCase(caseDepart, caseArrivee) == -deSixFaces.get(i).getValeur() 
-							&& joueurEnCour == CouleurCase.NOIR))
-						&& !deSixFaces.get(i).isUtilise())
-				{siDeExiste = true;
-				deUtiliser = i;}
-			else 
-			{
-				
-			}
-		}
-		if (!siDeExiste)
-			return false;
-		
-		if (tablier.sensDeplacementCorrect(caseDepart, caseArrivee))
+		if(isCoupPossible(caseDepart,caseArrivee))
 		{
 			if (tablier.deplacerDame(caseDepart, caseArrivee))
 			{
@@ -259,20 +233,63 @@ public class Partie {
 		throw new UnsupportedOperationException();
 	}
 
-	public List<Coup> getCoupsPossibles(Case c) {
-		// TODO
-		throw new UnsupportedOperationException();
+	public List<Case> getCoupsPossibles(Case c) {
+		ArrayList<Case> caseReturn = new ArrayList<Case>() ;
+		Case caseArriver;
+			for (DeSixFaces de : deSixFaces) {
+				if (!de.isUtilise())
+					{
+						caseArriver = tablier.getCaseADistance(c, de);
+						if(isCoupPossible(c,caseArriver))
+						{
+							caseReturn.add(caseArriver);
+						}
+					}
+			}
+		
+		return caseReturn;
+		
+		
 	}
 
 	public List<Coup> getCoupsPossibles() {
-		// TODO
-		throw new UnsupportedOperationException();
+		return tablier.getCoupsPossibles(deSixFaces, joueurEnCour);
 	}
 
 	public boolean isCoupPossible(Case caseDepart, Case caseArrivee) {
-		// TODO
-		throw new UnsupportedOperationException();
-	}
+		// verification de l'existance du de;
+				boolean siDeExiste = false;
+				deUtiliser =0;
+				
+				for (int i=0;i<deSixFaces.size();i++){
+					
+					if(peutMarquerCetteDame(caseDepart,deSixFaces.get(i)) && caseArrivee.isCaseVictoire() && caseArrivee.getCouleurDame() == caseDepart.getCouleurDame())
+					{
+						siDeExiste = true;
+						deUtiliser = i;
+					}
+					else if (((tablier.distanceDeuxCase(caseDepart, caseArrivee) == deSixFaces.get(i).getValeur() 
+							&& joueurEnCour == CouleurCase.BLANC)
+							|| (tablier.distanceDeuxCase(caseDepart, caseArrivee) == -deSixFaces.get(i).getValeur() 
+									&& joueurEnCour == CouleurCase.NOIR))
+								&& !deSixFaces.get(i).isUtilise())
+					{
+						siDeExiste = true;
+						deUtiliser = i;
+					}
+
+				}
+				if (!siDeExiste)
+					return false;
+				
+				if (tablier.sensDeplacementCorrect(caseDepart, caseArrivee))
+				{
+					return tablier.isCoupPossible(caseDepart, caseArrivee);
+				}
+				else
+					return false;
+			}
+
 	
 	public boolean isCoupPossible(Case caseDepart) {
 		boolean possible=false;

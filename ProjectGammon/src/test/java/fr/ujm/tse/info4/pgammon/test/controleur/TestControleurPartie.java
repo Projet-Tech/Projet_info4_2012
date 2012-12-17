@@ -10,7 +10,6 @@ import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 import fr.ujm.tse.info4.pgammon.models.ParametreJeu;
 import fr.ujm.tse.info4.pgammon.models.Partie;
-import fr.ujm.tse.info4.pgammon.vues.VuePartie;
 
 public class TestControleurPartie {
 
