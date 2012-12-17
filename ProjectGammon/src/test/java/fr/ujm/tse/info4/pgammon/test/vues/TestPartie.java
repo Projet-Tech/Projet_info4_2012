@@ -1,36 +1,28 @@
-package fr.ujm.tse.info4.pgammon.test.gui;
+package fr.ujm.tse.info4.pgammon.test.vues;
 
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 
-import fr.ujm.tse.info4.pgammon.gui.TriangleCaseButton;
-import fr.ujm.tse.info4.pgammon.models.Case;
-import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 import fr.ujm.tse.info4.pgammon.models.ParametreJeu;
 import fr.ujm.tse.info4.pgammon.models.Partie;
+import fr.ujm.tse.info4.pgammon.vues.VueMenu;
 import fr.ujm.tse.info4.pgammon.vues.VuePartie;
 
-public class TestTablier {
+public class TestPartie {
 	
 	public static void main(String[] args) {
-		JFrame frame = new JFrame("Test Design");
+		JFrame frame = new JFrame("Test Menu");
 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(816,638);
-		
+	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(816,638);
 		Container panel = frame.getContentPane();
 		panel.setLayout(new FlowLayout());
-
 		
-		// comment récuperer ce que l'utilisateur saisie.
-		System.out.println("Lancement du test de la Partie");
-
-		// creation des parametre et joueur
+		
 		Joueur jBlanc = new Joueur(1, "ben", "beauGoss",
 				NiveauAssistant.NON_UTILISE);
 		Joueur jNoir = new Joueur(2, "JM", "null", NiveauAssistant.COMPLET);
@@ -38,11 +30,12 @@ public class TestTablier {
 		ParametreJeu param = new ParametreJeu(0, 3, true, jBlanc, jNoir);
 		Partie p = new Partie(param);
 		p.LancerPartie();
-		// partie lancée
 		
-		VuePartie vp = new VuePartie(p);
-		panel.add(vp);
+		VuePartie partie = new VuePartie(p);
+		frame.setContentPane(partie);
+		
 		
 		frame.setVisible(true);
 	}
+
 }

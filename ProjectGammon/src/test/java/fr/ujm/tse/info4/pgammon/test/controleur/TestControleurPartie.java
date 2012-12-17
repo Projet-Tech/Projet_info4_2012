@@ -18,7 +18,7 @@ public class TestControleurPartie {
 				JFrame frame = new JFrame("Test Controleur");
 
 		        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				frame.setSize(800,600);
+		        frame.setSize(816,638);
 				
 				Container panel = frame.getContentPane();
 				panel.setLayout(new FlowLayout());
