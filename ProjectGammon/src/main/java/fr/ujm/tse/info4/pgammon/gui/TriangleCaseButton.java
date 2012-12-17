@@ -27,9 +27,13 @@ public class TriangleCaseButton extends CaseButton{
 	private static final String PION_BLANC_TRANSP_PATH = "images/pion_blanc_transp.png";
 	private static final String PION_AIDE_PATH = "images/pion_assist.png";
 
+	private static final ImageIcon iconeNoire = new ImageIcon(PION_NOIR_PATH);
+	private static final ImageIcon iconeBlanche = new ImageIcon(PION_BLANC_PATH);
+	private static final ImageIcon iconeAide = new ImageIcon(PION_AIDE_PATH);
+
 	private final int MAX_DAMES_DRAWED = 5;
 	private final int DAME_SEPARATION = 27;
-	private ImageIcon icon;
+	
 	private boolean isDirectionUp;
 	
 	//TODO : Faire en sorte que les dames s'affichent correctement lorsqu'il y en a beaucoup
@@ -51,7 +55,6 @@ public class TriangleCaseButton extends CaseButton{
 		setOpaque(false);
 		setLayout(null);
 		setPreferredSize(new Dimension(33,180));
-		icon = new ImageIcon();
 		
 		updateDatas();
 
@@ -60,18 +63,7 @@ public class TriangleCaseButton extends CaseButton{
 	
 	
 	private void updateDatas() {
-		if(getCase() == null || getCase().getCouleurDame() == CouleurCase.VIDE){
-			icon = new ImageIcon();
-		}
-		else{
-			String iconRef = (getCase().getCouleurDame()==CouleurCase.BLANC)?PION_BLANC_PATH:PION_NOIR_PATH;
-			try{
-				icon = new ImageIcon(iconRef);
-			}catch(Exception err){
-				//TODO : Creer une icone par défaut
-				System.err.println(err);
-			}
-		}
+
 		
 		
 	}
@@ -87,6 +79,9 @@ public class TriangleCaseButton extends CaseButton{
 			return;
 
 		CouleurCase couleurDames = c.getCouleurDame();
+
+		if(couleurDames == CouleurCase.VIDE || c.getNbDame() == 0)
+			return;
 		
 		int nb_dames = c.getNbDame();
 		if(isCandidate())
@@ -95,8 +90,6 @@ public class TriangleCaseButton extends CaseButton{
 		int count = Math.min(nb_dames, MAX_DAMES_DRAWED);
 
 		
-		if(couleurDames == CouleurCase.VIDE || c.getNbDame() == 0)
-			return;
 		
 		Graphics2D g2 = (Graphics2D) g.create(); 
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -106,23 +99,30 @@ public class TriangleCaseButton extends CaseButton{
 		if(model.isRollover()) off ++;
 		if(model.isPressed()) off ++;
 		
+		float ratio = 1;
+		if(nb_dames>=MAX_DAMES_DRAWED){
+			ratio = (float)(MAX_DAMES_DRAWED)/(float)(nb_dames); 
+		}
+		
+		ImageIcon icon;
+		if(getCase().getCouleurDame() == CouleurCase.VIDE){
+			icon = new ImageIcon();
+		}
+		else if(isPossible()){
+			icon = iconeAide;
+		}else{
+			icon = (getCase().getCouleurDame()==CouleurCase.BLANC)?iconeBlanche:iconeNoire;
+		}
+		
 		for(int i=0; i < count ;i++)
 		{
 			int y;
 			if(isDirectionUp)
-				y = getHeight()-(i+1)*(DAME_SEPARATION)+(i+1)*(-off);
+				y = (int) (getHeight()-((i+1)*(DAME_SEPARATION)+(i+1)*(off)));
 			else
-				y = i*(DAME_SEPARATION)+(i+1)*off;
+				y = (int) (i*(DAME_SEPARATION)+(i+1)*off);
 			
-			g2.drawImage(icon.getImage(),0,y,this);
-		}
-		if(isCandidate() &&  c.getNbDame() > 0){
-			int i = c.getNbDame();
-			int y;
-			if(isDirectionUp)
-				y = (int) (getHeight()-(i+0.5)*(DAME_SEPARATION)+(i+1)*(-off));
-			else
-				y = (int) ((i-0.5)*(DAME_SEPARATION)+(i+1)*off);
+
 			
 			g2.drawImage(icon.getImage(),0,y,this);
 		}
@@ -144,6 +144,15 @@ public class TriangleCaseButton extends CaseButton{
 			g2.drawChars(nb.toCharArray(), 0, nb.length(),11-(nb.length()-1)*5, y);
 		}
 
+		if(isCandidate() &&  c.getNbDame() > 0){
+			int i = count+1;
+			int y;
+			if(isDirectionUp)
+				y = (int) (getHeight()-(i+0.5)*(DAME_SEPARATION)+(i+1)*(-off));
+			else
+				y = (int) ((i-0.5)*(DAME_SEPARATION)+(i+1)*off);
+			g2.drawImage(icon.getImage(),0,y,this);
+		}
 		g2.dispose(); 
 	}
 
@@ -188,7 +197,6 @@ public class TriangleCaseButton extends CaseButton{
 			p = new Color(0x444444);
 		}else if(model.isPressed())
 		{
-
 			p = (getCouleur() == CouleurCase.BLANC)?new Color(0xFFFFFF):new Color(0x777777);
 		}
 		else{ 
@@ -210,7 +218,6 @@ public class TriangleCaseButton extends CaseButton{
 		g2.setStroke(new BasicStroke(2.0f) );
 		g2.setPaint(p); 
 		g2.drawPolygon(triangle);
-		
 		
 		g2.dispose(); 
 	}

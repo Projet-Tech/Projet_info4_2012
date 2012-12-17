@@ -40,19 +40,22 @@ public class TestDesignPlateau {
 			panel.add(t);
 		}
 		{
-			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.BLANC,6,6), CouleurCase.NOIR);
+			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.BLANC,6,6), CouleurCase.NOIR,false);
 			panel.add(t);
 		}
 		{
 			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.BLANC,7,7), CouleurCase.BLANC);
 			panel.add(t);
+			t.setPossible(true);
 		}
 		{
 			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.BLANC,8,8), CouleurCase.NOIR);
 			panel.add(t);
 		}
 		{
-			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.BLANC,9,9), CouleurCase.BLANC);
+			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.BLANC,9,9), CouleurCase.BLANC,false);
+
+			t.setCandidated(true);
 			panel.add(t);
 		}
 		{
@@ -64,7 +67,8 @@ public class TestDesignPlateau {
 			panel.add(t);
 		}
 		{
-			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.NOIR,12,12), CouleurCase.NOIR);
+			Case c = new Case(CouleurCase.NOIR,12,12);
+			TriangleCaseButton t = new TriangleCaseButton(c, CouleurCase.NOIR);
 			panel.add(t);
 		}
 		{
