@@ -33,7 +33,6 @@ public class ControleurPartie
 	}
 
 	private void build() {
-		//TODO
 	}
 	
 	public Partie getPartie() {

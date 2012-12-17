@@ -23,7 +23,6 @@ public class MonochromeCheckbox extends JCheckBox {
 	private String text;
 	
 	public MonochromeCheckbox(String label) {
-		// TODO Auto-generated constructor stub
 		couleur = NOIR;
 		text = label;
 		
@@ -35,12 +34,7 @@ public class MonochromeCheckbox extends JCheckBox {
 		setLayout(null);
 		setOpaque(false);
 		setPreferredSize(new Dimension(200,50));
-		try{
-			icon = new ImageIcon("images/check.png");
-		}catch(Exception err){
-			//TODO : Creer une icone par défaut
-			System.err.println(err);
-		}
+		icon = new ImageIcon("images/check.png");
 		label = new JLabel(text);
 		label.setForeground(new Color(0xCCCCCC));
 		label.setBounds(40,0,getPreferredSize().width-40,getPreferredSize().height);

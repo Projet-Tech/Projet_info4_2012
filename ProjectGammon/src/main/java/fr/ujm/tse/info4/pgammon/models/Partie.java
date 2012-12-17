@@ -218,7 +218,7 @@ public class Partie {
 					.getValeur()));
 		}
 		
-		//TODO il faudra enlever cette fonction.
+		//XXX il faudra enlever cette fonction.
 		System.out.println(joueurEnCour + " : ");
 		System.out.println("DeSixFace : ");
 			for (int i = 0; i < deSixFaces.size(); i++)

@@ -42,7 +42,6 @@ public class MonochromeButton extends JButton {
 	}
 
 	private void build() {
-		// TODO Auto-generated method stub
 		label = new JLabel(text);
 		label.setFont(new Font("Arial",Font.PLAIN,20));
 		label.setPreferredSize(getPreferredSize());
@@ -53,7 +52,6 @@ public class MonochromeButton extends JButton {
 	
 	@Override
 	public void setPreferredSize(Dimension preferredSize) {
-		// TODO Auto-generated method stub
 		super.setPreferredSize(preferredSize);
 		label.setPreferredSize(preferredSize);
 	}

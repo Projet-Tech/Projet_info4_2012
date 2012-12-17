@@ -50,12 +50,7 @@ public class MonochromeIconButton extends JButton{
 	}
 
 	private void build(String iconRef, String text) {
-		try{
-			icon = new ImageIcon(iconRef);
-		}catch(Exception err){
-			//TODO : Creer une icone par défaut
-			System.err.println(err);
-		}
+		icon = new ImageIcon(iconRef);
 		label = new JLabel(text);
 	}
 	

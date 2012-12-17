@@ -18,7 +18,6 @@ public class TestVueNouvelleSession {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 			JFrame frame = new JFrame("Test Menu");
 
 		    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -41,9 +41,7 @@ public class VueNouvelleSession extends JPanel{
 			build();
 		}
 	
-	private void build() {
-		// TODO Auto-generated method stub
-		
+	private void build() {		
 		//ceci est fait pour pouvoir déplacer nos panels dans le panel
 		setLayout(null);
 		
