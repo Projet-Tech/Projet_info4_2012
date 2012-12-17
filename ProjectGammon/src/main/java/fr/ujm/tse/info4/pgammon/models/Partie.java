@@ -24,7 +24,7 @@ public class Partie {
 	private Tablier tablier;
 	private StatistiquePartie statistique;
 	private CouleurCase joueurEnCour;
-	private ArrayList<Tour> HistoriqueToursJoueur;
+	private ArrayList<Tour> historiqueToursJoueur;
 	private int idPartie;
 	private Timer timerTour;
 	private boolean partieFini;
@@ -35,7 +35,7 @@ public class Partie {
 		tablier = new Tablier();
 		videau = new Videau();
 		statistique = new StatistiquePartie();
-		HistoriqueToursJoueur = new ArrayList<Tour>();
+		historiqueToursJoueur = new ArrayList<Tour>();
 		timerTour = new Timer();
 		deSixFaces = new ArrayList<DeSixFaces>();
 		partieFini = false;
@@ -45,6 +45,9 @@ public class Partie {
 	public void LancerPartie() {
 		choixPremierJoueurLancementPartie();
 		lancerDes();
+		
+		//on ajout un tour dans l'historique
+		historiqueToursJoueur.add(new Tour(joueurEnCour, deSixFaces));
 		
 	}
 
@@ -66,12 +69,22 @@ public class Partie {
 		{
 			throw new TourNonJouableException("Pas de possibilité de faire un déplacement");
 		}
+		else
+		{
+			//on ajout un tour dans l'historique
+			historiqueToursJoueur.add(new Tour(joueurEnCour, deSixFaces));
+		}
 
 	}
 
 	public void finPartie() {
 		System.out.println("le joueur "+joueurEnCour + " a gagnée");
 		partieFini=true;
+		
+			parametreJeu.getJoueur(joueurEnCour).getStat().ajouterVictoire();
+			parametreJeu.getAdversaireJoueur(joueurEnCour).getStat().ajouterDefaite();
+		
+		
 	}
 
 	private void onFinTimer() {
@@ -101,11 +114,13 @@ public class Partie {
 	
 	public boolean jouerCoup(Case caseDepart, Case caseArrivee) {
 		
+		int nbDameBarre = tablier.getCaseBarre(joueurEnCour).getNbDame();
 		if(isCoupPossible(caseDepart,caseArrivee))
 		{
 			if (tablier.deplacerDame(caseDepart, caseArrivee))
 			{
 				deSixFaces.get(deUtiliser).utiliser();
+				getDernierTour().addDeplacement(new Deplacement(caseDepart, caseArrivee,(nbDameBarre < tablier.getCaseBarre(joueurEnCour).getNbDame())));
 				
 				return true;
 			}
@@ -185,8 +200,10 @@ public class Partie {
 	}
 	
 	public void annulerDernierCoup() {
-		// TODO
-		throw new UnsupportedOperationException();
+		tablier.deplacerDame(getDernierTour().getDernierDeplacement().getCaseArriver(),getDernierTour().getDernierDeplacement().getCaseDepart());
+		if(getDernierTour().getDernierDeplacement().isSiCaseBattue())
+			tablier.getCaseBarre(getDernierTour().getDernierDeplacement().getCaseDepart().getCouleurDame()).moinDame();
+		getDernierTour().supprimerDernierDeplacement();
 	}
 
 	public boolean siDesUtilises()
@@ -321,6 +338,13 @@ public class Partie {
 		return false;	
 	}
 
+	public Tour getDernierTour()
+	{
+		return historiqueToursJoueur.get(historiqueToursJoueur.size()-1);
+	}
+	
+	
+	
 	public void lectureProchainCoup() {
 		// TODO
 		throw new UnsupportedOperationException();
@@ -394,11 +418,11 @@ public class Partie {
 	}
 
 	public List<Tour> getHistoriqueToursJoueur() {
-		return HistoriqueToursJoueur;
+		return historiqueToursJoueur;
 	}
 
 	public void setHistoriqueToursJoueur(ArrayList<Tour> historiqueToursJoueur) {
-		HistoriqueToursJoueur = historiqueToursJoueur;
+		this.historiqueToursJoueur = historiqueToursJoueur;
 	}
 
 	public int getIdPartie() {
