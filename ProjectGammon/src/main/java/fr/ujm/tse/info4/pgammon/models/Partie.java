@@ -103,12 +103,20 @@ public class Partie {
 		// verification de l'existance du de;
 		boolean siDeExiste = false;
 		int deUtiliser =0;
+		
+		
 		for (int i=0;i<deSixFaces.size();i++){
-			if (((tablier.distanceDeuxCase(caseDepart, caseArrivee) == deSixFaces.get(i).getValeur() 
+			
+			if(peutMarquerCetteDame(caseDepart,deSixFaces.get(i)) && caseArrivee.isCaseVictoire() && caseArrivee.getCouleurDame() == caseDepart.getCouleurDame())
+			{
+				siDeExiste = true;
+				deUtiliser = i;
+			}
+			else if (((tablier.distanceDeuxCase(caseDepart, caseArrivee) == deSixFaces.get(i).getValeur() 
 					&& joueurEnCour == CouleurCase.BLANC)
 					|| (tablier.distanceDeuxCase(caseDepart, caseArrivee) == -deSixFaces.get(i).getValeur() 
 							&& joueurEnCour == CouleurCase.NOIR))
-					&& !deSixFaces.get(i).isUtilise())
+						&& !deSixFaces.get(i).isUtilise())
 				{siDeExiste = true;
 				deUtiliser = i;}
 			else 
@@ -142,16 +150,39 @@ public class Partie {
 		else
 			return false;
 	}
+	public boolean peutMarquerCetteDame(Case caseDame,DeSixFaces de)
+	{
+		Case caseVictoire;
+		
+		caseVictoire = tablier.getCaseVictoire(joueurEnCour);
+		
+			if (((tablier.distanceDeuxCase(caseDame, caseVictoire) == de.getValeur() 
+					&& joueurEnCour == CouleurCase.BLANC)
+					|| (tablier.distanceDeuxCase(caseDame, caseVictoire) == -de.getValeur() 
+							&& joueurEnCour == CouleurCase.NOIR))
+					&& !de.isUtilise())
+				{return true;
+				}
+			else if (((tablier.distanceDeuxCase(caseDame, caseVictoire) < de.getValeur() 
+					&& joueurEnCour == CouleurCase.BLANC && !tablier.isCaseAvant(caseDame))
+					|| (tablier.distanceDeuxCase(caseDame, caseVictoire) > -de.getValeur() 
+							&& joueurEnCour == CouleurCase.NOIR)&& !tablier.isCaseAvant(caseDame))
+					&& !de.isUtilise())
+				{return true;
+				}
+
+			return false;
+
+	}
+	
 
 	public boolean peutMarquerCetteDame(Case caseDame)
 	{
 		boolean siDeExiste = false;
 		int deUtiliser =0;
 		Case caseVictoire;
-		if(joueurEnCour == CouleurCase.BLANC)
-			caseVictoire = tablier.getCaseVictoire().get(0);
-		else
-			caseVictoire = tablier.getCaseVictoire().get(1);
+		
+		caseVictoire = tablier.getCaseVictoire(joueurEnCour);
 		
 		
 		for (int i=0;i<deSixFaces.size();i++){
@@ -246,7 +277,8 @@ public class Partie {
 	public boolean isCoupPossible(Case caseDepart) {
 		boolean possible=false;
 		for (DeSixFaces de : deSixFaces) {
-			if(tablier.isCoupPossible(caseDepart,tablier.getCaseADistance(caseDepart, de)) && !de.isUtilise())
+			if(tablier.isCoupPossible(caseDepart,tablier.getCaseADistance(caseDepart, de)) 
+					&& !de.isUtilise())
 				possible=true;
 		}
 		return possible;
