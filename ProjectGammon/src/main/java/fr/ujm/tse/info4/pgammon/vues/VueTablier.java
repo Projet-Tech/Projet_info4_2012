@@ -17,6 +17,7 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
+import fr.ujm.tse.info4.pgammon.gui.BarreCaseButton;
 import fr.ujm.tse.info4.pgammon.gui.CaseButton;
 import fr.ujm.tse.info4.pgammon.gui.DeButton;
 import fr.ujm.tse.info4.pgammon.gui.TriangleCaseButton;
@@ -87,7 +88,8 @@ public class VueTablier extends JPanel{
 	}
 	
 	private void creerCasesVictoires(Case c){
-		CaseButton btn = new TriangleCaseButton(c,c.getCouleurDame());
+		//TODO: Creer les cases victoires
+		CaseButton btn = new BarreCaseButton(c);
 		int pos_x = 671-173;
 		int pos_y = 30;
 		
@@ -102,8 +104,8 @@ public class VueTablier extends JPanel{
 	}
 	
 	private void creerCasesBarres(Case c){
-		CaseButton btn = new TriangleCaseButton(c,c.getCouleurDame());
-		int pos_x = 425-173;
+		CaseButton btn = new BarreCaseButton(c);
+		int pos_x = 426-173;
 		int pos_y = 30;
 		
 		if(c.getCouleurDame() == CouleurCase.BLANC)
@@ -206,6 +208,7 @@ public class VueTablier extends JPanel{
 		if(size>0)
 			for(DeSixFaces de : des){
 				DeButton btn = new DeButton(de);
+				//TODO: Corriger la position des dés.
 				int y = (int) (252 + 40*((float)i-size/2));
 				btn.setBounds(427-173, y,
 						btn.getPreferredSize().width , btn.getPreferredSize().height);

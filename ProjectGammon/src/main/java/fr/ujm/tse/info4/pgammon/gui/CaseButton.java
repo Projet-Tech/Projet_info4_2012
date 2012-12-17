@@ -1,11 +1,17 @@
 package fr.ujm.tse.info4.pgammon.gui;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import fr.ujm.tse.info4.pgammon.models.Case;
 
 public class CaseButton extends JButton{
 	private static final long serialVersionUID = 6276324191590405443L;
+
+	public static final ImageIcon iconeNoire = new ImageIcon("images/pion_noir.png");
+	public static final ImageIcon iconeBlanche = new ImageIcon("images/pion_blanc.png");
+	public static final ImageIcon iconeAide = new ImageIcon("images/pion_assist.png");
+	
 	private boolean isCandidate;
 	private boolean isPossible;
 

@@ -6,6 +6,8 @@ import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 
+import fr.ujm.tse.info4.pgammon.gui.BarreCaseButton;
+import fr.ujm.tse.info4.pgammon.gui.CaseButton;
 import fr.ujm.tse.info4.pgammon.gui.DeButton;
 import fr.ujm.tse.info4.pgammon.gui.TriangleCaseButton;
 import fr.ujm.tse.info4.pgammon.models.Case;
@@ -80,6 +82,38 @@ public class TestDesignPlateau {
 			dsf.utiliser();
 			DeButton d = new DeButton(dsf);
 			panel.add(d);
+		}
+		{
+			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,0,13));
+			panel.add(t);
+		}
+		{
+			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,1,13));
+			panel.add(t);
+		}
+		{
+			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,2,13));
+			panel.add(t);
+		}
+		{
+			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,3,13));
+			panel.add(t);
+		}
+		{
+			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,4,13));
+			panel.add(t);
+		}
+		{
+			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,5,13));
+			panel.add(t);
+		}
+		{
+			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,6,13));
+			panel.add(t);
+		}
+		{
+			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,7,13));
+			panel.add(t);
 		}
 		frame.setVisible(true);
 	}

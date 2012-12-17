@@ -24,9 +24,6 @@ public class TriangleCaseButton extends CaseButton{
 	private static final String PION_NOIR_TRANSP_PATH = "images/pion_noir_transp.png";
 	private static final String PION_BLANC_TRANSP_PATH = "images/pion_blanc_transp.png";
 
-	private static final ImageIcon iconeNoire = new ImageIcon("images/pion_noir.png");
-	private static final ImageIcon iconeBlanche = new ImageIcon("images/pion_blanc.png");
-	private static final ImageIcon iconeAide = new ImageIcon("images/pion_assist.png");
 
 	private final int MAX_DAMES_DRAWED = 5;
 	private final int DAME_SEPARATION = 27;
