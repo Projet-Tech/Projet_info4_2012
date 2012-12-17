@@ -201,6 +201,7 @@ public class VueTablier extends JPanel{
 				btn.setBounds(427-173, y,
 						btn.getPreferredSize().width , btn.getPreferredSize().height);
 				add(btn);
+				desButton.add(btn);
 				i++;
 			}
 	}
