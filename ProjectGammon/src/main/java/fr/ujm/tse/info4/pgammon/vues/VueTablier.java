@@ -11,6 +11,8 @@ import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JPanel;
@@ -29,13 +31,12 @@ public class VueTablier extends JPanel{
 	private static final long serialVersionUID = -7479996235423541957L;
 	private Partie partie;
 	private Tablier tablier;
-	private ArrayList<CaseButton> casesButtons;
-	private CaseButton candidat;
+	private HashMap<Case,CaseButton> casesButtons;	private CaseButton candidat;
 	private List<DeButton> desButton;
 	public VueTablier(Partie partie) {
 		this.partie = partie;
 		this.tablier = partie.getTablier();
-		this.casesButtons = new ArrayList<>();
+		this.casesButtons = new HashMap<>();
 		this.setCandidat(null);  
 		build();
 	}
@@ -43,7 +44,16 @@ public class VueTablier extends JPanel{
 	public CaseButton getCandidat() {
 		return candidat;
 	}
-
+	public void setPossibles(List<Case> cases){
+			//Reinitialiastion
+			for(CaseButton btn :  casesButtons.values()){
+				btn.setPossible(false);
+			}
+			for (Case c : cases) {
+				CaseButton btn = casesButtons.get(c);
+			btn.setPossible(true);
+			}
+	}
 	public void setCandidat(CaseButton new_candidat) {
 		if(new_candidat == this.candidat) return;
 		
@@ -88,7 +98,7 @@ public class VueTablier extends JPanel{
 				btn.getPreferredSize().width , btn.getPreferredSize().height);
 		
 		add(btn);
-		casesButtons.add(btn);
+		casesButtons.put(c,btn);
 	}
 	
 	private void creerCasesBarres(Case c){
@@ -103,7 +113,7 @@ public class VueTablier extends JPanel{
 				btn.getPreferredSize().width , btn.getPreferredSize().height);
 		
 		add(btn);
-		casesButtons.add(btn);
+		casesButtons.put(c,btn);
 	}
 	
 	private void creerTriangle(final int position,final Case c) {
@@ -128,7 +138,7 @@ public class VueTablier extends JPanel{
 		triangle.setBounds(p.x, p.y,
 				triangle.getPreferredSize().width , triangle.getPreferredSize().height);
 		add(triangle);
-		casesButtons.add(triangle);
+		casesButtons.put(c,triangle);
 	}
 	
 	
@@ -205,8 +215,8 @@ public class VueTablier extends JPanel{
 			}
 	}
 	
-	public List<CaseButton> getCasesButtons() {
-		return casesButtons;
+	public Collection<CaseButton> getCasesButtons() {
+		return casesButtons.values();
 	}
 
 }
