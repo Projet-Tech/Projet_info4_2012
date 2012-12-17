@@ -30,7 +30,7 @@ public class ControleurTablier {
 	private void build() {
 		List<CaseButton> lCase = vueTablier.getCasesButtons();
 		
-		
+				
 		for (CaseButton caseButton : lCase) {
 			caseButton.addMouseListener(new MouseListener() {
 
@@ -48,17 +48,20 @@ public class ControleurTablier {
 					{
 						if (partie.jouerCoup(vueTablier.getCandidat().getCase(), caseButton.getCase()))
 						{
-							vueTablier.updateUI();
+							vueTablier.uncandidateAll();
+							
 							if (partie.siDesUtilises())
 							{
 								try {
 									partie.changerTour();
 									vueTablier.uncandidateAll();
-									vueTablier.updateUI();
+									
 								} catch (TourNonJouableException e2) {
 									//TODO prevenir la vue
 									try {
 										partie.changerTour();
+										vueTablier.uncandidateAll();
+										
 									} catch (TourNonJouableException e3) {
 										//TODO fin de partie
 										partie.finPartie();
@@ -69,9 +72,11 @@ public class ControleurTablier {
 						else
 						{
 							vueTablier.uncandidateAll();
-							vueTablier.updateUI();
 						}
+						
 					}
+					vueTablier.updateUI();
+					vueTablier.updateDes();
 				}
 
 				@Override

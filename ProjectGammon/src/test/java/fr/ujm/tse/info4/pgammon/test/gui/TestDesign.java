@@ -24,7 +24,7 @@ public class TestDesign {
 
 		MonochromePanel mp = new MonochromePanel("MonochromePanel");
 		mp.setPreferredSize(new Dimension(400, 500));
-		
+		mp.setTitle("Mono Panel Mod");
 		panel.add(mp);
 		panel.setBackground(new Color(0x00000));
 		{
@@ -39,12 +39,17 @@ public class TestDesign {
 		}
 		{
 			MonochromeIconButton mbtn = new MonochromeIconButton(IconMonochromeType.X_BLANC,"MonochromeIconButton","NOIR");
-			mbtn.setPreferredSize(new Dimension(60, 60));
+			mbtn.setSizeBig();
 			panel.add(mbtn);
 		}
 		{
 			MonochromeIconButton mbtn = new MonochromeIconButton(IconMonochromeType.X_NOIR,"MonochromeIconButton");
-			mbtn.setPreferredSize(new Dimension(60, 60));
+			mbtn.setSizeBig();
+			panel.add(mbtn);
+		}
+		{
+			MonochromeIconButton mbtn = new MonochromeIconButton(IconMonochromeType.SMALL_INFINITE,"MonochromeIconButton");
+			mbtn.setSizeSmall();
 			panel.add(mbtn);
 		}
 		frame.setVisible(true);

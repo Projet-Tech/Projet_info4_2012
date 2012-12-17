@@ -2,6 +2,7 @@ package fr.ujm.tse.info4.pgammon.gui;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Paint;
@@ -22,13 +23,18 @@ public class MonochromeIconButton extends JButton{
 	public static final String BLANC = "BALNC";
 	public static final String NOIR  = "NOIR";
 	
+	public enum Size
+	{
+		SMALL,
+		BIG
+	};
 	private String couleur;
 	private ImageIcon icon;
 	private JLabel label; 
-	
+	private Size size;
 	
 	public MonochromeIconButton(String iconRef, String text, String couleur){
-		
+		size = Size.SMALL;
 		this.couleur = couleur;
 		
 		build(iconRef, text);
@@ -36,7 +42,7 @@ public class MonochromeIconButton extends JButton{
 	}
 	
 	public MonochromeIconButton(String iconRef, String text){
-		
+		size = Size.SMALL;
 		couleur = BLANC;
 		build(iconRef, text);
 		
@@ -88,7 +94,9 @@ public class MonochromeIconButton extends JButton{
 		g2.drawRect(0, 0, w-1 , h-1);
 		
 		// Icone
-		g2.drawImage(icon.getImage(),3,3,this);
+		int off_x = (size==Size.BIG)?3:-1;
+		int off_y = (size==Size.BIG)?3:-1;
+		g2.drawImage(icon.getImage(),off_x,off_y,this);
 		
 		g2.dispose(); 
 	}
@@ -104,5 +112,16 @@ public class MonochromeIconButton extends JButton{
 
 	public String getLabel() {
 		return label.toString();
+	}
+	
+	public void setSizeSmall(){
+		setPreferredSize(new Dimension(40, 40));
+		size = Size.SMALL;
+	}
+	
+	public void setSizeBig(){
+
+		setPreferredSize(new Dimension(60, 60));
+		size = Size.BIG;
 	}
 }
