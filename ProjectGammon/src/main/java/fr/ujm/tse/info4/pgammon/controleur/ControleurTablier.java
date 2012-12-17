@@ -2,7 +2,9 @@ package fr.ujm.tse.info4.pgammon.controleur;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import fr.ujm.tse.info4.pgammon.exeption.TourNonJouableException;
 import fr.ujm.tse.info4.pgammon.gui.CaseButton;
@@ -28,7 +30,7 @@ public class ControleurTablier {
 
 
 	private void build() {
-		List<CaseButton> lCase = vueTablier.getCasesButtons();
+		Collection<CaseButton> lCase = vueTablier.getCasesButtons();
 		
 				
 		for (CaseButton caseButton : lCase) {

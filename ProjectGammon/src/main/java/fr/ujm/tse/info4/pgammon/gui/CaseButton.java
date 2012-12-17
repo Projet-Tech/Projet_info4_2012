@@ -7,6 +7,7 @@ import fr.ujm.tse.info4.pgammon.models.Case;
 public class CaseButton extends JButton{
 	private static final long serialVersionUID = 6276324191590405443L;
 	private boolean isCandidate;
+	private boolean isPossible;
 
 	private Case c;
 	/**
@@ -39,6 +40,18 @@ public class CaseButton extends JButton{
 
 	public void setCandidated(boolean isCandidate) {
 		this.isCandidate = isCandidate;
+	}
+
+
+
+	public boolean isPossible() {
+		return isPossible;
+	}
+
+
+
+	public void setPossible(boolean isPossible) {
+		this.isPossible = isPossible;
 	}
 
 }
