@@ -14,6 +14,9 @@ import javax.swing.JPanel;
 
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
 import fr.ujm.tse.info4.pgammon.gui.MonochromePanel;
+import fr.ujm.tse.info4.pgammon.gui.PanelJoueur;
+import fr.ujm.tse.info4.pgammon.gui.PanelParametre;
+import fr.ujm.tse.info4.pgammon.models.Joueur;
 
 public class VueNouvelleSession extends JPanel{
 	
@@ -23,7 +26,13 @@ public class VueNouvelleSession extends JPanel{
 	private MonochromeButton listejoueur;
 	private MonochromeButton commencer; 
 	private MonochromeButton changercouleur; 
-
+	private PanelJoueur paneljoueur1;
+	private PanelJoueur paneljoueur2;
+	private PanelParametre panelparamètre;
+	
+	private Joueur j1;
+	private Joueur j2;
+	
 	public VueNouvelleSession(){
 			
 			build();
@@ -35,20 +44,31 @@ public class VueNouvelleSession extends JPanel{
 		//ceci est fait pour pouvoir déplacer nos panels dans le panel
 		setLayout(null);
 		
-		MonochromePanel paneljoueur1 = new MonochromePanel();
-		MonochromePanel paneljoueur2 = new MonochromePanel();
-		MonochromePanel panelparamètre = new MonochromePanel();
+		j1 = new Joueur();
+		j2 = new Joueur();
+		
+		paneljoueur1 = new PanelJoueur(j1);
+		paneljoueur2 = new PanelJoueur(j2);
+		panelparamètre = new PanelParametre();
 		
 		
 		 listejoueur = new MonochromeButton();
 		 commencer = new MonochromeButton();
 		 changercouleur = new MonochromeButton();
 		 
-		 paneljoueur1.setLayout(new FlowLayout());
+		 
 		 paneljoueur1.setBounds(50, 50, 200, 100);
+		 
+		 
+		 paneljoueur2.setBounds(50, 350, 200, 100);
+		 
+		 
+		 panelparamètre.setBounds(400, 50, 200, 400);
 
 		 
 		 add(paneljoueur1);
+		 add(paneljoueur2);
+		 add(panelparamètre);
 		
 		
 	}
@@ -82,6 +102,18 @@ public class VueNouvelleSession extends JPanel{
 		
 		
 		g2.dispose(); 
+		
+	}
+	
+	public void setJoueur1(Joueur jBlanc){
+		paneljoueur1.setJoueur(jBlanc);
+		j1=jBlanc;
+		
+	}
+
+	public void setJoueur2(Joueur jNoir) {
+		paneljoueur2.setJoueur(jNoir);
+		j2=jNoir;
 		
 	}
 
