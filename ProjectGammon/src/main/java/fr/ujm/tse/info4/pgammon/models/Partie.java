@@ -83,8 +83,7 @@ public class Partie {
 		
 			parametreJeu.getJoueur(joueurEnCour).getStat().ajouterVictoire();
 			parametreJeu.getAdversaireJoueur(joueurEnCour).getStat().ajouterDefaite();
-		
-		
+
 	}
 
 	private void onFinTimer() {

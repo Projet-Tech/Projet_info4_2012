@@ -38,33 +38,10 @@ public class ControleurTablier {
 
 
 	private void build() {
-		Collection<CaseButton> lCase = vueTablier.getCasesButtons();
+			
+		buildTimer();
 		
-		timer = new Timer(1000, new ActionListener() {
-			  public void actionPerformed(ActionEvent ae) {
-				  partie.deplacementAleatoire();
-				  vueTablier.uncandidateAll();
-				  vueTablier.setPossibles((List)(new ArrayList<Case>()));
-				  
-				  if (partie.siDesUtilises())
-					{	
-						//TODO affichage changement de Tour
-						changerTour();			
-					}
-					else if(!partie.hasCoupPossible())
-					{
-						//TODO affichage plus de coup possible
-						changerTour();
-					}	
-				  
-				  vueTablier.updateUI();
-				  vueTablier.updateDes();
-				  timer.restart();
-			  }
-			});
-			timer.setRepeats(false);
-			timer.start();
-				
+		Collection<CaseButton> lCase = vueTablier.getCasesButtons();
 		for (CaseButton caseButton : lCase) {
 			caseButton.addMouseListener(new MouseListener() {
 
@@ -110,7 +87,9 @@ public class ControleurTablier {
 						}
 						
 					}
-					timer.restart();
+					if (timer!= null)
+						timer.restart();
+					
 					vueTablier.updateUI();
 					vueTablier.updateDes();
 				}
@@ -153,5 +132,39 @@ public class ControleurTablier {
 		vueTablier.uncandidateAll();
 	}
 	
+	private void buildTimer(){
+		
+		if (partie.getParametreJeu().getSecondesParTour() != 0)
+		{
+			timer = new Timer(1000, new ActionListener() {
+				  public void actionPerformed(ActionEvent ae) {
+					  partie.deplacementAleatoire();
+					  vueTablier.uncandidateAll();
+					  vueTablier.setPossibles((List)(new ArrayList<Case>()));
+					  
+					  if (partie.siDesUtilises())
+						{	
+							//TODO affichage changement de Tour
+							changerTour();			
+						}
+						else if(!partie.hasCoupPossible())
+						{
+							//TODO affichage plus de coup possible
+							changerTour();
+						}	
+					  
+					  vueTablier.updateUI();
+					  vueTablier.updateDes();
+					  timer.restart();
+				  }
+				});
+			timer.setRepeats(false);
+			timer.start();
+		}
+		else
+		{
+			timer =null;
+		}
+	}
 	
 }
