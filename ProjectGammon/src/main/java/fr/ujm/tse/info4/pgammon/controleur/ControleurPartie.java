@@ -26,7 +26,7 @@ public class ControleurPartie
 	{
 		
 		this.partie = partie;
-		//testInitialisation();
+		testInitialisation();
 		vuePartie = new VuePartie(partie);
 		controleurTablier = new ControleurTablier(partie,vuePartie.getVueTablier());
 		build();
@@ -53,8 +53,8 @@ public class ControleurPartie
 		
 		lCase.add(new Case(CouleurCase.NOIR, 5, 1));
 		lCase.add(new Case(CouleurCase.NOIR, 5, 2));
-		lCase.add(new Case(CouleurCase.NOIR, 5, 3));
-		lCase.add(new Case(CouleurCase.VIDE, 0, 4));
+		lCase.add(new Case(CouleurCase.NOIR, 3, 3));
+		lCase.add(new Case(CouleurCase.NOIR, 2, 4));
 		lCase.add(new Case(CouleurCase.VIDE, 0, 5));
 		lCase.add(new Case(CouleurCase.VIDE, 0, 6));
 		lCase.add(new Case(CouleurCase.VIDE, 0, 7));
@@ -71,8 +71,8 @@ public class ControleurPartie
 		lCase.add(new Case(CouleurCase.VIDE, 0, 18));
 		lCase.add(new Case(CouleurCase.VIDE, 0, 19));
 		lCase.add(new Case(CouleurCase.VIDE, 0, 20));
-		lCase.add(new Case(CouleurCase.VIDE, 0, 21));
-		lCase.add(new Case(CouleurCase.BLANC, 5, 22));
+		lCase.add(new Case(CouleurCase.BLANC, 2, 21));
+		lCase.add(new Case(CouleurCase.BLANC, 3, 22));
 		lCase.add(new Case(CouleurCase.BLANC, 5, 23));
 		lCase.add(new Case(CouleurCase.BLANC, 5, 24));
 

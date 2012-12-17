@@ -273,12 +273,11 @@ public class Partie {
 							|| (tablier.distanceDeuxCase(caseDepart, caseArrivee) == -deSixFaces.get(i).getValeur() 
 									&& joueurEnCour == CouleurCase.NOIR))
 								&& !deSixFaces.get(i).isUtilise())
-						{siDeExiste = true;
-						deUtiliser = i;}
-					else 
 					{
-						
+						siDeExiste = true;
+						deUtiliser = i;
 					}
+
 				}
 				if (!siDeExiste)
 					return false;
