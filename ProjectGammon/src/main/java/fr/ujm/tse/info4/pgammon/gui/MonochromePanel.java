@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 
 public class MonochromePanel extends JPanel {
 	
-	private final int TITLE_HEIGHT = 30;
+	public static final int TITLE_HEIGHT = 30;
 	
 	private static final long serialVersionUID = 1L;
 	private String title = "";
