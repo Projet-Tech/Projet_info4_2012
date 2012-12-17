@@ -26,7 +26,7 @@ public class ControleurPartie
 	{
 		
 		this.partie = partie;
-		testInitialisation();
+		//testInitialisation();
 		vuePartie = new VuePartie(partie);
 		controleurTablier = new ControleurTablier(partie,vuePartie.getVueTablier());
 		build();
