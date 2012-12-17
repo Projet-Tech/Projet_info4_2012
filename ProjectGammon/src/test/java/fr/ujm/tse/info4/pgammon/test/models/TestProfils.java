@@ -29,8 +29,6 @@ public class TestProfils {
 		tmp.modifierPseudo("JOJO",tmp.getList().get(0));
 		tmp.afficher();
 		
-		tmp.getList().get(0).getStat().ajouterAdversaire(j)
-		
 		
 	}
 }

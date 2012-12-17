@@ -71,13 +71,13 @@ public class StatistiqueJoueur
 		partiesJouees=partiesJouees+1;
 	}
 	
-	public void ajouterAdversaire(Joueur j)
+	public void ajouterAdversaire(Joueur Adversaire)
 	{	
-		if(nbrDePartieContreJoueur.get(j)==null){
-			nbrDePartieContreJoueur.put(j, 1);
+		if(nbrDePartieContreJoueur.get(Adversaire)==null){
+			nbrDePartieContreJoueur.put(Adversaire, 1);
 		}
-		int i = nbrDePartieContreJoueur.get(j);
-		nbrDePartieContreJoueur.put(j,i+1);
+		int i = nbrDePartieContreJoueur.get(Adversaire);
+		nbrDePartieContreJoueur.put(Adversaire,i+1);
 	}
 	
 	public void sauvegarder(Element profilsElement)
