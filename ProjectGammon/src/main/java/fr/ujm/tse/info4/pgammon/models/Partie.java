@@ -294,7 +294,7 @@ public class Partie {
 	public boolean isCoupPossible(Case caseDepart) {
 		boolean possible=false;
 		for (DeSixFaces de : deSixFaces) {
-			if(tablier.isCoupPossible(caseDepart,tablier.getCaseADistance(caseDepart, de)) 
+			if(isCoupPossible(caseDepart,tablier.getCaseADistance(caseDepart, de)) 
 					&& !de.isUtilise())
 				possible=true;
 		}
