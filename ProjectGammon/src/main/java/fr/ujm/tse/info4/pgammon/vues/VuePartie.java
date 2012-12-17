@@ -6,16 +6,31 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import fr.ujm.tse.info4.pgammon.gui.IconMonochromeType;
+import fr.ujm.tse.info4.pgammon.gui.MonochromeIconButton;
 import fr.ujm.tse.info4.pgammon.models.Partie;
 
 public class VuePartie extends JPanel{
 	private static final long serialVersionUID = 2417367501490643145L;
 	
-	public static final String img_fond = "images/fond_partie.png";
-	private ImageIcon imgfond;
+	//recuperation de l'image de fond
+	public static final ImageIcon img_fond = new ImageIcon("images/fond_partie.png");
 	
 	private Partie partie;
 	private VueTablier vueTablier;
+	
+	//bouton des images de jouer partie
+	MonochromeIconButton back;
+	MonochromeIconButton dices;
+	MonochromeIconButton help;
+	MonochromeIconButton plus;
+	MonochromeIconButton x_black;
+	
+	//bouton des images de revoir partie
+	MonochromeIconButton next;
+	MonochromeIconButton undo;
+	MonochromeIconButton x_white;
+	
 	
 	
 	public VuePartie(Partie partie) {
@@ -27,16 +42,60 @@ public class VuePartie extends JPanel{
 	private void build() {
 		setPreferredSize(new Dimension(800,600));
 		setOpaque(false);
-		//récupération de l'image
-				try{
-					imgfond = new ImageIcon(img_fond);
-				}catch(Exception err){
-					System.err.println(err);
-				}
-				
+
 		setLayout(null);
 		vueTablier.setBounds(173, 30, 547, 446);
 		add(vueTablier);
+		
+		JPanel conteneurboutondroitjouerpartie = new JPanel();
+		conteneurboutondroitjouerpartie.setLayout(null);
+		conteneurboutondroitjouerpartie.setBounds(720,29,80,447);
+		conteneurboutondroitjouerpartie.setOpaque(false);
+		add(conteneurboutondroitjouerpartie);
+		
+		
+		//bouton pour jouer la partie
+		back = new MonochromeIconButton(IconMonochromeType.RETOUR,"MonochromeIconButton","NOIR");
+		back.setSizeBig();
+		back.setBounds(10, 5, back.getPreferredSize().width, back.getPreferredSize().height);
+		conteneurboutondroitjouerpartie.add(back);
+		
+		dices = new MonochromeIconButton(IconMonochromeType.DES,"MonochromeIconButton","NOIR");
+		dices.setSizeBig();
+		dices.setBounds(10, 230, dices.getPreferredSize().width, dices.getPreferredSize().height);
+		conteneurboutondroitjouerpartie.add(dices);
+		
+		help = new MonochromeIconButton(IconMonochromeType.AIDE,"MonochromeIconButton","NOIR");
+		help.setSizeBig();
+		help.setBounds(10, 10, help.getPreferredSize().width, help.getPreferredSize().height);
+		add(help);
+		
+		plus = new MonochromeIconButton(IconMonochromeType.PLUS,"MonochromeIconButton","NOIR");
+		plus.setSizeBig();
+		plus.setBounds(10, 10, plus.getPreferredSize().width, plus.getPreferredSize().height);
+		add(plus);
+		
+		x_black = new MonochromeIconButton(IconMonochromeType.X_NOIR,"MonochromeIconButton","NOIR");
+		x_black.setSizeBig();
+		x_black.setBounds(10, 10, x_black.getPreferredSize().width, x_black.getPreferredSize().height);
+		add(x_black);
+		
+		
+		//bouton pour revoir la partie
+		next = new MonochromeIconButton(IconMonochromeType.PLUS,"MonochromeIconButton");
+		next.setSizeBig();
+		next.setBounds(10, 10, next.getPreferredSize().width, next.getPreferredSize().height);
+		add(next);
+		
+		undo = new MonochromeIconButton(IconMonochromeType.ANNULER,"MonochromeIconButton");
+		undo.setSizeBig();
+		undo.setBounds(10, 10, undo.getPreferredSize().width, undo.getPreferredSize().height);
+		add(undo);
+		
+		x_white = new MonochromeIconButton(IconMonochromeType.X_BLANC,"MonochromeIconButton");
+		x_white.setSizeBig();
+		x_white.setBounds(10, 10, x_white.getPreferredSize().width, x_white.getPreferredSize().height);
+		add(x_white);
 	}
 	
 	public VueTablier getVueTablier() {
@@ -46,7 +105,7 @@ public class VuePartie extends JPanel{
 	@Override
 	protected void paintComponent(Graphics g) {
 		
-		g.drawImage(imgfond.getImage(),0,0,this);
+		g.drawImage(img_fond.getImage(),0,0,this);
 		super.paintComponent(g);
 	}
 	
