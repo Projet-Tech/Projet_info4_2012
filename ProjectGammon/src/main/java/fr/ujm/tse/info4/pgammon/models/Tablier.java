@@ -39,6 +39,20 @@ public class Tablier
 		initialiserCase();
 	}
 	
+	public void initialiserCase(ArrayList<Case> listCase)
+	{
+		listeCase = listCase; 
+		caseVictoire = new ArrayList<Case>();
+		caseBarre = new ArrayList<Case>();
+		
+		caseVictoire.add(new Case(CouleurCase.BLANC, 0, 25));
+		caseVictoire.add(new Case(CouleurCase.NOIR, 0, 0));
+		
+		caseBarre.add(new Case(CouleurCase.BLANC, 0, 0));
+		caseBarre.add(new Case(CouleurCase.NOIR, 0, 25));
+		
+	}
+	
 	public void initialiserCase()
 	{
 		listeCase = new ArrayList<Case>();
@@ -281,6 +295,7 @@ public class Tablier
 			}
 		}	
 	}
+	
 	public boolean isDameDansCaseBarre(CouleurCase couleur)
 	{
 		if(getCaseBarre(couleur).getNbDame() == 0)
@@ -292,10 +307,11 @@ public class Tablier
 	public List<Coup> getCoupsPossibles(DeSixFaces de,CouleurCase couleur)
 	{
 		List<Coup> liste = new ArrayList<Coup>();
+		
 		List<Case> listeCase = getAllCase();
 		
-		if(de.getCouleurDe() == couleur && !de.isUtilise()){	
-			for (Case case1 : listeCase) {
+		for (Case case1 : listeCase) {
+			if(case1.getCouleurDame()== couleur && !de.isUtilise()){
 				Case tmpDepart = case1;
 				Case tmpArrivee = getCaseADistance(tmpDepart,de);
 				if(isCoupPossible(tmpDepart,tmpArrivee)){
@@ -308,9 +324,40 @@ public class Tablier
 	}
 	
 	public List<Coup> getCoupsPossibles(List<DeSixFaces> des,CouleurCase couleur)
-	{
-		List<Coup> liste = new ArrayList<Coup>();
-		return liste;
+	{	
+		int somme = 0;
+		
+		if(des.size()==2){
+			
+			List<Coup> listeUnDe = new ArrayList<Coup>();
+			
+			for (DeSixFaces tmpDe : des){
+				listeUnDe.addAll(getCoupsPossibles(tmpDe,couleur));
+				somme = somme + tmpDe.getValeur();
+			}
+			
+			DeSixFaces sommeDe = new DeSixFaces(des.get(0).getCouleurDe(),somme);
+			List<Coup> listeDeuxDes = getCoupsPossibles(sommeDe,couleur);
+			
+			listeDeuxDes.addAll(listeUnDe);
+			
+			return listeDeuxDes;
+		}
+		
+		else{//Si 4 des
+			
+			DeSixFaces sommeQuatreDe = new DeSixFaces(des.get(0).getCouleurDe(),4*des.get(0).getValeur());
+			DeSixFaces sommeTroisDe = new DeSixFaces(des.get(0).getCouleurDe(),3*des.get(0).getValeur());
+			DeSixFaces sommedeuxDe = new DeSixFaces(des.get(0).getCouleurDe(),2*des.get(0).getValeur());
+			
+			List<Coup> listeQuatre = getCoupsPossibles(sommeQuatreDe,couleur);
+			
+			listeQuatre.addAll(getCoupsPossibles(sommeTroisDe,couleur));
+			listeQuatre.addAll(getCoupsPossibles(sommedeuxDe,couleur));
+			listeQuatre.addAll(getCoupsPossibles(des.get(0),couleur));
+			
+			return listeQuatre;
+		}
 	}
 	
 	/**
@@ -345,6 +392,7 @@ public class Tablier
 	public ArrayList<Case> getCaseVictoire() {
 		return caseVictoire;
 	}
+	
 	public Case getCaseVictoire(CouleurCase couleur) {
 		if(couleur == CouleurCase.BLANC)
 			return caseVictoire.get(0);
@@ -355,14 +403,14 @@ public class Tablier
 	public ArrayList<Case> getCaseBarre() {
 		return caseBarre;
 	}
+	
 	public Case getCaseBarre(CouleurCase couleur) {
 		if(couleur == CouleurCase.BLANC)
 			return caseBarre.get(0);
 		else
 			return caseBarre.get(1);
 	}
-	
-	
+		
 	public ArrayList<Case> getAllCase() {
 		ArrayList<Case> listAllCase = new ArrayList<Case>();
 		for (Case case1 : listeCase) {

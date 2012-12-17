@@ -1,5 +1,11 @@
 package fr.ujm.tse.info4.pgammon.test.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import fr.ujm.tse.info4.pgammon.models.CouleurCase;
+import fr.ujm.tse.info4.pgammon.models.Coup;
+import fr.ujm.tse.info4.pgammon.models.DeSixFaces;
 import fr.ujm.tse.info4.pgammon.models.Tablier;
 
 public class TestTablier {
@@ -54,7 +60,7 @@ public class TestTablier {
 			System.out.println(tab1.getCaseBarre().get(i).getPosition()
 					+" : "+tab1.getCaseBarre().get(i).getCouleurDame()
 					+" _ "+tab1.getCaseBarre().get(i).getNbDame());
-		
+
 		
 		
 	}
