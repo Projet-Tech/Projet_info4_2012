@@ -234,9 +234,12 @@ public class Partie {
 		finPartie();
 	}
 
-	public void deplacementAleatoire() {
+	public void deplacementAleatoire() throws TourNonJouableException {
 		 List<Coup> casesPossible = getCoupsPossibles();
-		 jouerCoup(casesPossible.get((int)(Math.random()*casesPossible.size())));
+		 if (casesPossible.size() != 0)
+			 jouerCoup(casesPossible.get((int)(Math.random()*casesPossible.size())));
+		 else
+			 throw new TourNonJouableException("Pas de possibilité de faire un déplacement");
 	}
 
 	public List<Coup> getCoupsPossibles(DeSixFaces de) {

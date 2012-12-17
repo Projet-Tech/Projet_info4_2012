@@ -48,12 +48,18 @@ public class Tablier
 		caseVictoire = new ArrayList<Case>();
 		caseBarre = new ArrayList<Case>();
 		
-		caseVictoire.add(new Case(CouleurCase.BLANC, 0, 25));
-		caseVictoire.add(new Case(CouleurCase.NOIR, 0, 0));
 		
-		caseBarre.add(new Case(CouleurCase.BLANC, 0, 0));
-		caseBarre.add(new Case(CouleurCase.NOIR, 0, 25));
-		
+	}
+	public void initialiserCaseBarre(ArrayList<Case> listCase)
+	{
+		caseBarre.add(listCase.get(0));
+		caseBarre.add(listCase.get(1));
+	}
+	
+	public void initialiserCaseVictoire(ArrayList<Case> listCase)
+	{
+		caseVictoire.add(listCase.get(0));
+		caseVictoire.add(listCase.get(1));
 	}
 	
 	public void initialiserCase()

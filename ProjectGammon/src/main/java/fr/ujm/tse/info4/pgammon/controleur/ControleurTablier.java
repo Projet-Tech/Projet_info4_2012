@@ -136,9 +136,15 @@ public class ControleurTablier {
 		
 		if (partie.getParametreJeu().getSecondesParTour() != 0)
 		{
-			timer = new Timer(1000, new ActionListener() {
+			timer = new Timer(partie.getParametreJeu().getSecondesParTour(), new ActionListener() {
 				  public void actionPerformed(ActionEvent ae) {
-					  partie.deplacementAleatoire();
+					  
+					  try {
+						partie.deplacementAleatoire();
+					} catch (TourNonJouableException e) {
+						// TODO affichage ecran
+						changerTour();
+					}
 					  vueTablier.uncandidateAll();
 					  vueTablier.setPossibles((List)(new ArrayList<Case>()));
 					  

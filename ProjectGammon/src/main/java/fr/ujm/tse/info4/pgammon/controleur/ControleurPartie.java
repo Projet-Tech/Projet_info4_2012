@@ -51,12 +51,12 @@ public class ControleurPartie
 	private void testInitialisation(){
 		ArrayList<Case> lCase = new ArrayList<Case>();
 		
-		lCase.add(new Case(CouleurCase.NOIR, 5, 1));
-		lCase.add(new Case(CouleurCase.NOIR, 5, 2));
+		lCase.add(new Case(CouleurCase.NOIR, 3, 1));
+		lCase.add(new Case(CouleurCase.NOIR, 3, 2));
 		lCase.add(new Case(CouleurCase.NOIR, 3, 3));
 		lCase.add(new Case(CouleurCase.NOIR, 2, 4));
-		lCase.add(new Case(CouleurCase.VIDE, 0, 5));
-		lCase.add(new Case(CouleurCase.VIDE, 0, 6));
+		lCase.add(new Case(CouleurCase.NOIR, 2, 5));
+		lCase.add(new Case(CouleurCase.NOIR, 2, 6));
 		lCase.add(new Case(CouleurCase.VIDE, 0, 7));
 		lCase.add(new Case(CouleurCase.VIDE, 0, 8));
 		lCase.add(new Case(CouleurCase.VIDE, 0, 9));
@@ -70,13 +70,24 @@ public class ControleurPartie
 		lCase.add(new Case(CouleurCase.VIDE, 0, 17));
 		lCase.add(new Case(CouleurCase.VIDE, 0, 18));
 		lCase.add(new Case(CouleurCase.VIDE, 0, 19));
-		lCase.add(new Case(CouleurCase.VIDE, 0, 20));
+		lCase.add(new Case(CouleurCase.BLANC, 2, 20));
 		lCase.add(new Case(CouleurCase.BLANC, 2, 21));
 		lCase.add(new Case(CouleurCase.BLANC, 3, 22));
-		lCase.add(new Case(CouleurCase.BLANC, 5, 23));
-		lCase.add(new Case(CouleurCase.BLANC, 5, 24));
+		lCase.add(new Case(CouleurCase.BLANC, 3, 23));
+		lCase.add(new Case(CouleurCase.BLANC, 3, 24));
 
 		partie.getTablier().initialiserCase(lCase);
+		
+		lCase = new ArrayList<Case>();
+		lCase.add(new Case(CouleurCase.BLANC, 0, 25));
+		lCase.add(new Case(CouleurCase.NOIR, 0, 0));
+		partie.getTablier().initialiserCaseVictoire(lCase);
+		
+		lCase = new ArrayList<Case>();
+		lCase.add(new Case(CouleurCase.BLANC, 2, 0));
+		lCase.add(new Case(CouleurCase.NOIR, 0, 25));
+		partie.getTablier().initialiserCaseBarre(lCase);
+		
 	}
 	
 }
