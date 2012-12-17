@@ -106,6 +106,11 @@ public class MonochromeButton extends JButton {
 		//super.paintBorder(g);
 		
 	}
+	
+	public void setText(String text){
+		this.text = text;
+		label.setText(text);
+	}
 
 
 

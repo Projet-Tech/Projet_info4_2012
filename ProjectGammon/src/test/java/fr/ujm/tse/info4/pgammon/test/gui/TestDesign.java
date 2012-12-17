@@ -8,7 +8,9 @@ import javax.swing.JFrame;
 
 import fr.ujm.tse.info4.pgammon.gui.IconMonochromeType;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
+import fr.ujm.tse.info4.pgammon.gui.MonochromeCheckbox;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeIconButton;
+import fr.ujm.tse.info4.pgammon.gui.MonochromeLabel;
 import fr.ujm.tse.info4.pgammon.gui.MonochromePanel;
 
 public class TestDesign {
@@ -48,8 +50,23 @@ public class TestDesign {
 			panel.add(mbtn);
 		}
 		{
-			MonochromeIconButton mbtn = new MonochromeIconButton(IconMonochromeType.SMALL_INFINITE,"MonochromeIconButton");
+			MonochromeIconButton mbtn = new MonochromeIconButton(IconMonochromeType.SMALL_INFINITE,"MonochromeIconButton","NOIR");
 			mbtn.setSizeSmall();
+			panel.add(mbtn);
+		}
+		{
+			MonochromeCheckbox mcb = new MonochromeCheckbox("<html>Les petits chats<br>sont-ils bleu?");
+			mcb.setSelected(true);
+			panel.add(mcb);
+		}
+		{
+			MonochromeLabel mbtn = new MonochromeLabel("Button1");
+			mbtn.setPreferredSize(new Dimension(200, 60));
+			panel.add(mbtn);
+		}
+		{
+			MonochromeLabel mbtn = new MonochromeLabel("MonochromeButton2");
+			mbtn.setPreferredSize(new Dimension(300, 60));
 			panel.add(mbtn);
 		}
 		frame.setVisible(true);

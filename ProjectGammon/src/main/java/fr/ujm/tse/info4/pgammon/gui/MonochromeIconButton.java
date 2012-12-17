@@ -20,14 +20,15 @@ import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 
 public class MonochromeIconButton extends JButton{
 	private static final long serialVersionUID = -8152217751563954978L;
-	public static final String BLANC = "BALNC";
-	public static final String NOIR  = "NOIR";
 	
 	public enum Size
 	{
 		SMALL,
 		BIG
 	};
+	public static final String BLANC = "BALNC";
+	public static final String NOIR  = "NOIR";
+
 	private String couleur;
 	private ImageIcon icon;
 	private JLabel label; 
