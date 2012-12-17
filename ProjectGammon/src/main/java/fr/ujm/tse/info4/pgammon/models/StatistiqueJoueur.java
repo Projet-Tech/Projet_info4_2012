@@ -36,7 +36,7 @@ public class StatistiqueJoueur
 	
 	public float getPourcentageVictoire()
 	{
-		float pourcentage = (float)(nbVictoires/partiesJouees);
+		float pourcentage = nbVictoires/(float)partiesJouees;
 		return pourcentage;
 	}
 	
@@ -53,7 +53,7 @@ public class StatistiqueJoueur
 				maxKey = key;
 			}
 		}
-		return maxKey.toString();
+		return maxKey.getPseudo();
 	}
 	
 	public void ajouterTempsJeu(float temps)
