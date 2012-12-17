@@ -10,6 +10,7 @@ import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 import fr.ujm.tse.info4.pgammon.models.ParametreJeu;
 import fr.ujm.tse.info4.pgammon.models.Partie;
+import fr.ujm.tse.info4.pgammon.vues.VuePartie;
 
 public class TestControleurPartie {
 
@@ -17,7 +18,7 @@ public class TestControleurPartie {
 				JFrame frame = new JFrame("Test Controleur");
 
 		        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		        frame.setSize(816,638);
+				frame.setSize(816,638);
 				
 				Container panel = frame.getContentPane();
 				panel.setLayout(new FlowLayout());
@@ -31,12 +32,12 @@ public class TestControleurPartie {
 
 				ParametreJeu param = new ParametreJeu(0, 3, true, jBlanc, jNoir);
 				Partie p = new Partie(param);
-				p.LancerPartie();
 				
 				ControleurPartie controleurPartie = new ControleurPartie(p);
 			
 				panel.add(controleurPartie.getVuePartie());
-				
+
+				p.LancerPartie();
 				frame.setVisible(true);
 			}
 	
