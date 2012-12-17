@@ -61,13 +61,11 @@ public class Partie {
 		deSixFaces = new ArrayList<DeSixFaces>();
 		lancerDes();
 		
-		if(!isTourJouable())
+		if(!hasCoupPossible())
 		{
-			changerTour();
 			throw new TourNonJouableException("Pas de possibilité de faire un déplacement");
 		}
-			
-		
+
 	}
 
 	public void finPartie() {
@@ -260,15 +258,18 @@ public class Partie {
 		throw new UnsupportedOperationException();
 	}
 	
-	public boolean isTourJouable() {
-		boolean possible=false;
+	public boolean hasCoupPossible() {
+		
 		for (Case caseDame : tablier.getAllCase()) {
-			for (DeSixFaces de : deSixFaces) {
-				if(tablier.isCoupPossible(caseDame,tablier.getCaseADistance(caseDame, de)))
-					possible=true;
-			}
+			if((!tablier.isDameDansCaseBarre(joueurEnCour) && caseDame.getCouleurDame() == joueurEnCour)
+					|| caseDame.isCaseBarre())
+				for (DeSixFaces de : deSixFaces) {
+					if(!de.isUtilise())
+						if(tablier.isCoupPossible(caseDame,tablier.getCaseADistance(caseDame, de)))
+							return true;
+				}
 		}
-		return possible;	
+		return false;	
 	}
 
 	public void lectureProchainCoup() {

@@ -12,7 +12,6 @@ package fr.ujm.tse.info4.pgammon.models;
 public class Case {
 	private CouleurCase couleurDame;
 	private int nbDame;
-	
 	private int position;
 
 	public Case(CouleurCase couleur, int nbDame, int position) {
