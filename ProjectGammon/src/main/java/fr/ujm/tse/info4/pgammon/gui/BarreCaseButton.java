@@ -17,9 +17,11 @@ public class BarreCaseButton extends CaseButton {
 	private static final long serialVersionUID = 1696544283522096083L;
 	private final int MAX_DAMES_DRAWED = 5;
 	private final int DAME_SEPARATION = 27;
+	private boolean isDirectionUp;
 	
-	public BarreCaseButton(Case _case) {
+	public BarreCaseButton(Case _case, boolean _isDirectionUp) {
 		super(_case);
+		isDirectionUp = _isDirectionUp;
 		build();
 	}
 	
@@ -46,8 +48,6 @@ public class BarreCaseButton extends CaseButton {
 			return;
 		
 		int nb_dames = c.getNbDame();
-		if(isCandidate())
-			nb_dames--;
 
 		int count = Math.min(nb_dames, MAX_DAMES_DRAWED);
 
@@ -72,11 +72,22 @@ public class BarreCaseButton extends CaseButton {
 		}else{
 			icon = (getCase().getCouleurDame()==CouleurCase.BLANC)?iconeBlanche:iconeNoire;
 		}
+		int count_selected = 0;
+		if(isCandidate())
+			count_selected = 1;
 		
-		for(int i=0; i < count ;i++)
+		for(int i=0; i < count-count_selected ;i++)
 		{
 			int y = (int) ((h-DAME_SEPARATION)/2+(i-(count-1)/2f)*(DAME_SEPARATION)+off);
 			g2.drawImage(icon.getImage(),0,y,this);
+		}
+
+		if(isCandidate() &&  c.getNbDame() > 0){
+			float i = count-0.8f;
+			int y = (int) ((h-DAME_SEPARATION)/2+(i-(count-1)/2f)*(DAME_SEPARATION)+off);
+			ImageIcon iconTransp = (getCase().getCouleurDame()==CouleurCase.BLANC)?iconeBlancheTransp:iconeNoireTransp;
+
+			g2.drawImage(iconTransp.getImage(),1,y,this);
 		}
 		
 		if(nb_dames>MAX_DAMES_DRAWED){
@@ -93,11 +104,6 @@ public class BarreCaseButton extends CaseButton {
 			g2.drawChars(nb.toCharArray(), 0, nb.length(),11-(nb.length()-1)*5, y);
 		}
 
-		if(isCandidate() &&  c.getNbDame() > 0){
-			int i = count+1;
-			int y = (int) ((i-0.5)*(DAME_SEPARATION)+(i+1)*off);
-			g2.drawImage(icon.getImage(),0,y,this);
-		}
 		g2.dispose(); 
 	}
 

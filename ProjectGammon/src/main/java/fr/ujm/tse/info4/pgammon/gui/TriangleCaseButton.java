@@ -21,8 +21,6 @@ public class TriangleCaseButton extends CaseButton{
 	private static final long serialVersionUID = -7438830652988320775L;
 	private CouleurCase couleur;
 
-	private static final String PION_NOIR_TRANSP_PATH = "images/pion_noir_transp.png";
-	private static final String PION_BLANC_TRANSP_PATH = "images/pion_blanc_transp.png";
 
 
 	private final int MAX_DAMES_DRAWED = 5;
@@ -142,10 +140,11 @@ public class TriangleCaseButton extends CaseButton{
 			int i = count+1;
 			int y;
 			if(isDirectionUp)
-				y = (int) (getHeight()-(i+0.5)*(DAME_SEPARATION)+(i+1)*(-off));
+				y = (int) (getHeight()-(i+0.2)*(DAME_SEPARATION)+(i+1)*(-off));
 			else
-				y = (int) ((i-0.5)*(DAME_SEPARATION)+(i+1)*off);
-			g2.drawImage(icon.getImage(),0,y,this);
+				y = (int) ((i-0.8)*(DAME_SEPARATION)+(i+1)*off);
+			ImageIcon iconTransp = (getCase().getCouleurDame()==CouleurCase.BLANC)?iconeBlancheTransp:iconeNoireTransp;
+			g2.drawImage(iconTransp.getImage(),0,y,this);
 		}
 		g2.dispose(); 
 	}

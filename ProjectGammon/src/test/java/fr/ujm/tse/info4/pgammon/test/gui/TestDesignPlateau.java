@@ -84,35 +84,36 @@ public class TestDesignPlateau {
 			panel.add(d);
 		}
 		{
-			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,0,13));
+			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,0,13),true);
 			panel.add(t);
 		}
 		{
-			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,1,13));
+			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,1,13),true);
 			panel.add(t);
 		}
 		{
-			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,2,13));
+			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,2,13),true);
 			panel.add(t);
 		}
 		{
-			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,3,13));
+			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,3,13),true);
 			panel.add(t);
 		}
 		{
-			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,4,13));
+			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,4,13),true);
 			panel.add(t);
 		}
 		{
-			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,5,13));
+			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,5,13),true);
 			panel.add(t);
 		}
 		{
-			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,6,13));
+			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,6,13),true);
+			t.setCandidated(true);
 			panel.add(t);
 		}
 		{
-			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,7,13));
+			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,7,13),true);
 			panel.add(t);
 		}
 		frame.setVisible(true);

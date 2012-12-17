@@ -88,8 +88,9 @@ public class VueTablier extends JPanel{
 	}
 	
 	private void creerCasesVictoires(Case c){
+		//TODO: Gestion du sens des cases victoires
 		//TODO: Creer les cases victoires
-		CaseButton btn = new BarreCaseButton(c);
+		CaseButton btn = new BarreCaseButton(c,true);
 		int pos_x = 671-173;
 		int pos_y = 30;
 		
@@ -104,7 +105,8 @@ public class VueTablier extends JPanel{
 	}
 	
 	private void creerCasesBarres(Case c){
-		CaseButton btn = new BarreCaseButton(c);
+		//TODO: Gestion du sens des CasesBarres
+		CaseButton btn = new BarreCaseButton(c,true);
 		int pos_x = 426-173;
 		int pos_y = 30;
 		

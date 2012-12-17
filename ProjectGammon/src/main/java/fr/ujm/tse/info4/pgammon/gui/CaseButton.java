@@ -11,7 +11,10 @@ public class CaseButton extends JButton{
 	public static final ImageIcon iconeNoire = new ImageIcon("images/pion_noir.png");
 	public static final ImageIcon iconeBlanche = new ImageIcon("images/pion_blanc.png");
 	public static final ImageIcon iconeAide = new ImageIcon("images/pion_assist.png");
-	
+	public static final ImageIcon iconeNoireTransp = new ImageIcon("images/pion_noir_transp.png");
+	public static final ImageIcon iconeBlancheTransp= new ImageIcon("images/pion_blanc_transp.png");
+
+
 	private boolean isCandidate;
 	private boolean isPossible;
 
