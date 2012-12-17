@@ -75,6 +75,12 @@ public class ParametreJeu
 		else
 			return joueurNoir;
 	}
+	public Joueur getAdversaireJoueur(CouleurCase couleurJoueur) {
+		if (couleurJoueur == CouleurCase.BLANC)
+			return joueurNoir;
+		else
+			return joueurBlanc;
+	}
 
 
 

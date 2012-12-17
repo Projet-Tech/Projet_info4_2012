@@ -9,6 +9,7 @@ import java.util.List;
 import fr.ujm.tse.info4.pgammon.exeption.TourNonJouableException;
 import fr.ujm.tse.info4.pgammon.gui.CaseButton;
 import fr.ujm.tse.info4.pgammon.models.Case;
+import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 import fr.ujm.tse.info4.pgammon.models.Partie;
 import fr.ujm.tse.info4.pgammon.models.Tablier;
 import fr.ujm.tse.info4.pgammon.vues.VueTablier;
@@ -52,7 +53,9 @@ public class ControleurTablier {
 										&& caseButton.getCase().getCouleurDame() == partie.getJoueurEnCour())
 							{
 								vueTablier.setCandidat(caseButton);
-								vueTablier.setPossibles(partie.getCoupsPossibles(caseButton.getCase()));
+								if(partie.getParametreJeu().getJoueur(partie.getJoueurEnCour()).getNiveauAssistant() == NiveauAssistant.SIMPLE
+										|| partie.getParametreJeu().getJoueur(partie.getJoueurEnCour()).getNiveauAssistant() == NiveauAssistant.COMPLET)
+									vueTablier.setPossibles(partie.getCoupsPossibles(caseButton.getCase()));
 							}
 					}
 					else if (vueTablier.getCandidat() != null)

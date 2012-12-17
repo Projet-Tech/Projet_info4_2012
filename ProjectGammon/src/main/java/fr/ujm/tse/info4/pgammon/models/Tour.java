@@ -12,6 +12,7 @@
 
 package fr.ujm.tse.info4.pgammon.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.jdom2.Element;
@@ -19,9 +20,35 @@ import org.jdom2.Element;
 
 public class Tour
 {
-	private List<DeSixFaces> deSixFaces;
-	private List<Deplacement> coup;
+	private ArrayList<DeSixFaces> deSixFaces;
+	private ArrayList<Deplacement> listDeplacement;
 	private CouleurCase couleurJoueur;
+	
+	public Tour(CouleurCase couleurJoueur,ArrayList<DeSixFaces> deSixFaces)
+	{
+		this.couleurJoueur = couleurJoueur;
+		this.deSixFaces = deSixFaces;
+		this.listDeplacement = new ArrayList<Deplacement>();
+	}
+	
+	public void addDeplacement(Deplacement deplacement)
+	{
+		listDeplacement.add(deplacement);
+	}
+	
+	public void supprimerDernierDeplacement()
+	{
+		listDeplacement.remove(listDeplacement.size()-1);
+	}
+	
+	public Deplacement getDernierDeplacement()
+	{
+		return listDeplacement.get(listDeplacement.size()-1);
+	}
+	
+	
+	
+	// SERIALISATION
 	public void sauvegarder(Element partieElement)
 	{
 		//TODO
