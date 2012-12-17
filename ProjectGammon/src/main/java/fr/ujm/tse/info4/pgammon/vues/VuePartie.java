@@ -1,5 +1,6 @@
 package fr.ujm.tse.info4.pgammon.vues;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 
 import javax.swing.ImageIcon;
@@ -24,7 +25,8 @@ public class VuePartie extends JPanel{
 	}
 	
 	private void build() {
-		
+		setPreferredSize(new Dimension(800,600));
+		setOpaque(false);
 		//récupération de l'image
 				try{
 					imgfond = new ImageIcon(img_fond);
@@ -45,7 +47,7 @@ public class VuePartie extends JPanel{
 	protected void paintComponent(Graphics g) {
 		
 		g.drawImage(imgfond.getImage(),0,0,this);
-		
+		super.paintComponent(g);
 	}
 	
 	

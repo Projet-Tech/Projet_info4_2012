@@ -20,16 +20,13 @@ import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 public class TriangleCaseButton extends CaseButton{
 	private static final long serialVersionUID = -7438830652988320775L;
 	private CouleurCase couleur;
-	private static final String PION_NOIR_PATH = "images/pion_noir.png";
-	private static final String PION_BLANC_PATH = "images/pion_blanc.png";
 
 	private static final String PION_NOIR_TRANSP_PATH = "images/pion_noir_transp.png";
 	private static final String PION_BLANC_TRANSP_PATH = "images/pion_blanc_transp.png";
-	private static final String PION_AIDE_PATH = "images/pion_assist.png";
 
-	private static final ImageIcon iconeNoire = new ImageIcon(PION_NOIR_PATH);
-	private static final ImageIcon iconeBlanche = new ImageIcon(PION_BLANC_PATH);
-	private static final ImageIcon iconeAide = new ImageIcon(PION_AIDE_PATH);
+	private static final ImageIcon iconeNoire = new ImageIcon("images/pion_noir.png");
+	private static final ImageIcon iconeBlanche = new ImageIcon("images/pion_blanc.png");
+	private static final ImageIcon iconeAide = new ImageIcon("images/pion_assist.png");
 
 	private final int MAX_DAMES_DRAWED = 5;
 	private final int DAME_SEPARATION = 27;

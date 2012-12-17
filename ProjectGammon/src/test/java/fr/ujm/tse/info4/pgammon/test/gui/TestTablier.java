@@ -42,7 +42,6 @@ public class TestTablier {
 		
 		VuePartie vp = new VuePartie(p);
 		panel.add(vp);
-		
 		frame.setVisible(true);
 	}
 }
