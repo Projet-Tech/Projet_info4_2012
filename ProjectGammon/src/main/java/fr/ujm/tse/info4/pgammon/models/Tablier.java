@@ -41,7 +41,10 @@ public class Tablier
 	
 	public void initialiserCase(ArrayList<Case> listCase)
 	{
-		listeCase = listCase; 
+		listeCase = new ArrayList<Case>();
+		for (Case case1 : listCase) {
+			listeCase.add(case1);
+		}
 		caseVictoire = new ArrayList<Case>();
 		caseBarre = new ArrayList<Case>();
 		

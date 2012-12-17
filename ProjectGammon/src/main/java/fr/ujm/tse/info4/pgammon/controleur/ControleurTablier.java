@@ -24,37 +24,13 @@ public class ControleurTablier {
 	
 	public ControleurTablier(Partie partie,VueTablier vueTablier)
 	{
+		
+		
 		this.partie = partie;
 		this.tablier = partie.getTablier();
 		this.vueTablier = vueTablier;
-		ArrayList<Case> lCase = new ArrayList<Case>();
 		
-		lCase.add(new Case(CouleurCase.NOIR, 5, 1));
-		lCase.add(new Case(CouleurCase.NOIR, 5, 2));
-		lCase.add(new Case(CouleurCase.NOIR, 5, 3));
-		lCase.add(new Case(CouleurCase.NOIR, 5, 4));
-		lCase.add(new Case(CouleurCase.NOIR, 5, 5));
-		lCase.add(new Case(CouleurCase.NOIR, 5, 6));
-		lCase.add(new Case(CouleurCase.NOIR, 5, 7));
-		lCase.add(new Case(CouleurCase.NOIR, 5, 8));
-		lCase.add(new Case(CouleurCase.NOIR, 5, 9));
-		lCase.add(new Case(CouleurCase.NOIR, 5, 10));
-		lCase.add(new Case(CouleurCase.NOIR, 5, 12));
-		lCase.add(new Case(CouleurCase.NOIR, 5, 13));
-		lCase.add(new Case(CouleurCase.NOIR, 5, 14));
-		lCase.add(new Case(CouleurCase.NOIR, 5, 15));
-		lCase.add(new Case(CouleurCase.NOIR, 5, 16));
-		lCase.add(new Case(CouleurCase.NOIR, 5, 17));
-		lCase.add(new Case(CouleurCase.NOIR, 5, 18));
-		lCase.add(new Case(CouleurCase.NOIR, 5, 19));
-		lCase.add(new Case(CouleurCase.NOIR, 5, 20));
-		lCase.add(new Case(CouleurCase.NOIR, 5, 21));
-		lCase.add(new Case(CouleurCase.NOIR, 5, 22));
-		lCase.add(new Case(CouleurCase.NOIR, 5, 23));
-		lCase.add(new Case(CouleurCase.NOIR, 5, 24));
-	
 		
-		tablier.initialiserCase(lCase);
 		
 		build();
 	}
@@ -143,4 +119,6 @@ public class ControleurTablier {
 		
 		vueTablier.uncandidateAll();
 	}
+	
+	
 }
