@@ -27,8 +27,7 @@ public class ControleurTablier {
 		this.tablier = partie.getTablier();
 		this.vueTablier = vueTablier;
 		
-		
-		
+	
 		build();
 	}
 
