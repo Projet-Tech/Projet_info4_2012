@@ -23,9 +23,9 @@ public class VueNouvelleSession extends JPanel{
 	//déclaration des variables
 	private static final long serialVersionUID = -5590865478480555417L;
 	
-	private MonochromeButton listejoueur;
-	private MonochromeButton commencer; 
-	private MonochromeButton changercouleur; 
+	private MonochromeButton boutonlistejoueur;
+	private MonochromeButton boutoncommencer; 
+	private MonochromeButton boutonchangercouleur; 
 	private PanelJoueur paneljoueur1;
 	private PanelJoueur paneljoueur2;
 	private PanelParametre panelparamètre;
@@ -52,23 +52,29 @@ public class VueNouvelleSession extends JPanel{
 		panelparamètre = new PanelParametre();
 		
 		
-		 listejoueur = new MonochromeButton();
-		 commencer = new MonochromeButton();
-		 changercouleur = new MonochromeButton();
+		 boutonlistejoueur = new MonochromeButton();
+		 boutoncommencer = new MonochromeButton();
+		 boutonchangercouleur = new MonochromeButton();
 		 
 		 
-		 paneljoueur1.setBounds(50, 50, 200, 100);
+		 paneljoueur1.setBounds(37, 35, 332, 141);
 		 
+		 paneljoueur2.setBounds(37, 245, 332, 141);
 		 
-		 paneljoueur2.setBounds(50, 350, 200, 100);
+		 panelparamètre.setBounds(420, 35, 344, 352);
 		 
+		 boutonlistejoueur.setBounds(37,440,332,58);
 		 
-		 panelparamètre.setBounds(400, 50, 200, 400);
-
+		 boutoncommencer.setBounds(420,440,344,58);
+		 
+		 boutonchangercouleur.setBounds(175,190,55,55);
 		 
 		 add(paneljoueur1);
 		 add(paneljoueur2);
 		 add(panelparamètre);
+		 add(boutonlistejoueur);
+		 add(boutoncommencer);
+		 add(boutonchangercouleur);
 		
 		
 	}

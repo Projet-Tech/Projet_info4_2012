@@ -12,6 +12,7 @@
 
 package fr.ujm.tse.info4.pgammon.models;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.jdom2.Element;
@@ -23,6 +24,15 @@ public class StatistiqueJoueur
 	private int nbVictoires;
 	private Map<Joueur,Integer> nbrDePartieContreJoueur;
 	private float tempsJeu;
+	
+	public StatistiqueJoueur(){
+		partiesJouees=0;
+		nbVictoires=0;
+		nbrDePartieContreJoueur = new HashMap<>();
+		tempsJeu=0;
+		
+	}
+	
 	public void getPourcentageVictoire()
 	{
 		//TODO
@@ -70,4 +80,43 @@ public class StatistiqueJoueur
 		//TODO
 		throw new UnsupportedOperationException();
 	}
+
+	public int getPartiesJouees() {
+		return partiesJouees;
+	}
+
+	public void setPartiesJouees(int partiesJouees) {
+		this.partiesJouees = partiesJouees;
+	}
+
+	public int getNbVictoires() {
+		return nbVictoires;
+	}
+	
+	public int getNbDefaites() {
+		return(partiesJouees-nbVictoires);
+	}
+
+	public void setNbVictoires(int nbVictoires) {
+		this.nbVictoires = nbVictoires;
+	}
+
+	public Map<Joueur, Integer> getNbrDePartieContreJoueur() {
+		return nbrDePartieContreJoueur;
+	}
+
+	public void setNbrDePartieContreJoueur(
+			Map<Joueur, Integer> nbrDePartieContreJoueur) {
+		this.nbrDePartieContreJoueur = nbrDePartieContreJoueur;
+	}
+
+	public float getTempsJeu() {
+		return tempsJeu;
+	}
+
+	public void setTempsJeu(float tempsJeu) {
+		this.tempsJeu = tempsJeu;
+	}
+	
+	
 }

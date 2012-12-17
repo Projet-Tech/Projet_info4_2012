@@ -19,6 +19,7 @@ public class Joueur
 	private String imageSource;
 	//private BitmapData image;
 	private NiveauAssistant niveauAssistant;
+	private StatistiqueJoueur stat;
 	
 	public Joueur()
 	{
@@ -26,6 +27,7 @@ public class Joueur
 		this.pseudo="";
 		this.imageSource = "";
 		this.niveauAssistant = NiveauAssistant.NON_UTILISE;
+		stat = new StatistiqueJoueur();
 	}
 
 	public Joueur(int id,String pseudo,String imageSource,NiveauAssistant niveauAssistant)
@@ -34,6 +36,7 @@ public class Joueur
 		this.pseudo=pseudo;
 		this.imageSource = imageSource;
 		this.niveauAssistant = niveauAssistant;
+		stat = new StatistiqueJoueur();
 	}
 	
 	public void sauvegarder(Element profilsElement)
@@ -85,4 +88,14 @@ public class Joueur
 	public void setNiveauAssistant(NiveauAssistant niveauAssistant) {
 		this.niveauAssistant = niveauAssistant;
 	}
+
+	public StatistiqueJoueur getStat() {
+		return stat;
+	}
+
+	public void setStat(StatistiqueJoueur stat) {
+		this.stat = stat;
+	}
+	
+	
 }
