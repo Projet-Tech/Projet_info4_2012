@@ -5,6 +5,9 @@ import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 
+import fr.ujm.tse.info4.pgammon.models.Joueur;
+import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
+import fr.ujm.tse.info4.pgammon.models.ParametreJeu;
 import fr.ujm.tse.info4.pgammon.vues.VueNouvelleSession;
 
 
@@ -23,7 +26,16 @@ public class TestVueNouvelleSession {
 			Container panel = frame.getContentPane();
 			panel.setLayout(new FlowLayout());
 			
+			Joueur jBlanc = new Joueur(1, "ben", "beauGoss",
+					NiveauAssistant.NON_UTILISE);
+			Joueur jNoir = new Joueur(2, "JM", "null", NiveauAssistant.COMPLET);
+
+			ParametreJeu param = new ParametreJeu(0, 3, true, jBlanc, jNoir);
+			
 			VueNouvelleSession nouvellesession = new VueNouvelleSession();
+			
+			nouvellesession.setJoueur1(jBlanc);
+			nouvellesession.setJoueur2(jNoir);
 			frame.setContentPane(nouvellesession);
 			
 			
