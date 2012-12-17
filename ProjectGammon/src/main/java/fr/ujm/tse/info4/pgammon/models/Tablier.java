@@ -118,6 +118,7 @@ public class Tablier
 				return false;
 		}
 	}
+	
 	public boolean siDameManger(Case cDepart, Case cArrivee)
 	{
 		if(cDepart.getCouleurDame() != cArrivee.getCouleurDame() 
@@ -155,6 +156,7 @@ public class Tablier
 		Coup coup = intToCoup(cDepartInt,cArriveeInt,couleurCaseDepart);
 		return deplacerDame(coup.getCaseDepart(),coup.getCaseArriver());
 	}
+	
 	public boolean deplacerDame(Case cDepart, Case cArrivee)
 	{
 		
@@ -214,6 +216,7 @@ public class Tablier
 		else
 			return true;
 	}
+	
 	public boolean peutMarquerDame(CouleurCase Couleur)
 	{
 		int nbDame = 0;
@@ -278,28 +281,37 @@ public class Tablier
 			}
 		}	
 	}
-	
-	public List<Coup> getCoupsPossibles(DeSixFaces de)
+	public boolean isDameDansCaseBarre(CouleurCase couleur)
 	{
-		//TODO
-		throw new UnsupportedOperationException();
+		if(getCaseBarre(couleur).getNbDame() == 0)
+			return false;
+		else
+			return true;
+				
+	}
+	public List<Coup> getCoupsPossibles(DeSixFaces de,CouleurCase couleur)
+	{
+		List<Coup> liste = new ArrayList<Coup>();
+		List<Case> listeCase = getAllCase();
+		
+		if(de.getCouleurDe() == couleur && !de.isUtilise()){	
+			for (Case case1 : listeCase) {
+				Case tmpDepart = case1;
+				Case tmpArrivee = getCaseADistance(tmpDepart,de);
+				if(isCoupPossible(tmpDepart,tmpArrivee)){
+					Coup tmpCoup = new Coup(tmpDepart,tmpArrivee);
+					liste.add(tmpCoup);
+				}
+			}
+		}
+		return liste;
 	}
 	
-	public List<Coup> getCoupsPossibles(Case c)
+	public List<Coup> getCoupsPossibles(List<DeSixFaces> des,CouleurCase couleur)
 	{
-		//TODO
-		throw new UnsupportedOperationException();
+		List<Coup> liste = new ArrayList<Coup>();
+		return liste;
 	}
-	
-	public List<Coup> getCoupsPossibles()
-	{
-		//TODO
-		throw new UnsupportedOperationException();
-	}
-	
-	
-	
-	
 	
 	/**
 	 * Serialisation
