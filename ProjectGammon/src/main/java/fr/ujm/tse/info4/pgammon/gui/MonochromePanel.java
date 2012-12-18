@@ -12,10 +12,11 @@ import java.awt.Shape;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class MonochromePanel extends JPanel {
+public class MonochromePanel extends JButton {
 	
 	public static final int TITLE_HEIGHT = 30;
 	
@@ -29,6 +30,7 @@ public class MonochromePanel extends JPanel {
 	
 	public MonochromePanel(String title) {
 		super();
+		setOpaque(false);
 		setLayout(null);
 		this.title = title;
 		build();
@@ -112,6 +114,10 @@ public class MonochromePanel extends JPanel {
 		return title;
 	}
 
+	@Override
+	protected void paintBorder(Graphics g) {
+		//super.paintBorder(g);
+	}
 
 
 	public void setTitle(String title) {

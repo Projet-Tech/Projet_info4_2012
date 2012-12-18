@@ -84,6 +84,7 @@ public class VueAjouterJoueur extends MonochromePanel{
 		
 		
 		
+		
 		g2.dispose(); 
 		super.paintComponent(g);
 		

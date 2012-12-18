@@ -1,8 +1,10 @@
 package fr.ujm.tse.info4.pgammon.vues;
 
+import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Event;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Paint;
@@ -13,6 +15,8 @@ import java.awt.event.MouseListener;
 import java.awt.geom.Point2D;
 import java.util.Vector;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -35,12 +39,18 @@ public class VueListeJoueur extends JPanel{
 	
 	private PanelVueListeJoueurDescription panelDescription;
 	private MonochromeListe<Joueur> listeJoueur;
+	
+	public VueAjouterJoueur getVueAjouterJoueur() {
+		return vueAjouterJoueur;
+	}
+
+
 	private VueAjouterJoueur vueAjouterJoueur;
 	
 	private MonochromeButton ajouter;
 	private MonochromeButton selectionner;
 	private MonochromeButton retour;
-	
+	private OpaqueBG bg;
 	
 	public VueListeJoueur(Profils mp){
 		profil = mp;
@@ -61,13 +71,14 @@ public class VueListeJoueur extends JPanel{
 	}
 	
 	public void afficheEditerProfil(){
-		
-		//création de la fenetre d'ajouter joueur
-		vueAjouterJoueur = new VueAjouterJoueur();
-		vueAjouterJoueur.setBounds(200, 150, 400, 300);
-		add(vueAjouterJoueur);
+		vueAjouterJoueur.setVisible(true);
+		bg.setVisible(true);
 	}
 	
+	public void masqueEditerProfil(){
+		vueAjouterJoueur.setVisible(false);
+		bg.setVisible(false);
+	}
 	public void updateData(){
 		panelDescription.setVisible(true);
 		panelDescription.setJoueur(j);
@@ -80,10 +91,15 @@ public class VueListeJoueur extends JPanel{
 		
 		j = new Joueur();
 		
-		
-		afficheEditerProfil();
-		
-		//vueAjouterJoueur.setVisible(false);
+		//création de la fenetre d'ajouter joueur
+
+		bg = new OpaqueBG();
+
+		vueAjouterJoueur = new VueAjouterJoueur();
+		vueAjouterJoueur.setBounds(200, 150, 400, 300);
+		add(vueAjouterJoueur);
+		add(bg);
+		masqueEditerProfil();
 		
 		panelDescription = new PanelVueListeJoueurDescription(j);
 		panelDescription.setBounds(420, 50, 330, 450);
@@ -124,7 +140,7 @@ public class VueListeJoueur extends JPanel{
 		return panelDescription;
 	}
 
-
+	
 	public MonochromeListe<Joueur> getListeJoueur() {
 		return listeJoueur;
 	}
@@ -148,6 +164,8 @@ public class VueListeJoueur extends JPanel{
 	@Override
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g.create(); 
+
+		bg.setBounds(getBounds());
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); 
 		
 		Paint p;
@@ -177,3 +195,46 @@ public class VueListeJoueur extends JPanel{
 	}
 
 }
+
+
+
+
+class OpaqueBG extends JButton {
+	private static final long serialVersionUID = 6429362621593431481L;
+	public OpaqueBG() {
+		super();
+		setOpaque(false);
+		setLayout(null);
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		Graphics2D g2 = (Graphics2D) g.create(); 
+		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); 
+		
+		Paint p;
+		int h = getHeight(); 
+		int w = getWidth(); 
+		
+    	g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+
+		// Arriere plan
+		p = new RadialGradientPaint(new Point2D.Double(getWidth() / 2.0,
+                getHeight() / 2.0), 
+                getHeight(),
+                new float[] { 0.0f, 0.8f },
+                new Color[] { new Color(0x333333), new Color(0x000000) },
+                RadialGradientPaint.CycleMethod.NO_CYCLE);
+		
+		g2.setPaint(p); 
+		g2.fillRect(0, 0, w, h); 
+		
+		
+		g2.dispose(); 
+		
+	}
+	@Override
+	protected void paintBorder(Graphics g) {}
+	
+}
+
