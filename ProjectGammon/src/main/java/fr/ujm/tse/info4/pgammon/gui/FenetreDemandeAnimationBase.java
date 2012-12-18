@@ -70,6 +70,7 @@ public class FenetreDemandeAnimationBase extends TranstionAnimeeBase{
 		}
 		int i = 0;
 		for (String reponse : reponses) {
+			System.out.println(reponse);
 			MonochromeButton btn = new MonochromeButton(reponse);
 			btn.addMouseListener(new MouseListener() {
 				@Override
@@ -148,6 +149,7 @@ public class FenetreDemandeAnimationBase extends TranstionAnimeeBase{
 		drawButton(g2);
 
 		g2.dispose(); 
+		paintComponents(g);
 	}
 
 
