@@ -33,6 +33,9 @@ public class PanelParametre extends MonochromePanel{
 	private JLabel text_temps;
 	
 	private MonochromeCheckbox videau;
+	
+	private int nbParties;
+	private int nbTemps;
 
 	public PanelParametre(){
 		super("Paramètres");
@@ -51,6 +54,8 @@ public class PanelParametre extends MonochromePanel{
 			System.err.println(err);
 		}
 		
+		nbParties = 10;
+		nbTemps = 0;
 		
 		text_parties = new JLabel();
 		text_parties.setText("nombre de partie pour la session");
@@ -64,11 +69,11 @@ public class PanelParametre extends MonochromePanel{
 		text_temps.setBounds(20, 150, 300, 50);
 		add(text_temps);
 		
-		lab_parties = new MonochromeLabel("10");
+		lab_parties = new MonochromeLabel(new Integer(nbParties).toString());
 		lab_parties.setBounds(80, 80, 80, 40);
 		add(lab_parties);
 		
-		lab_temps = new MonochromeLabel("10");
+		lab_temps = new MonochromeLabel(new Integer(nbTemps).toString());
 		lab_temps.setBounds(80, 200, 80, 40);
 		add(lab_temps);
 		
@@ -114,6 +119,14 @@ public class PanelParametre extends MonochromePanel{
 	
 	
 	
+	public int getNbParties() {
+		return nbParties;
+	}
+
+	public int getNbTemps() {
+		return nbTemps;
+	}
+
 	public MonochromeIconButton getPlus_partie() {
 		return plus_partie;
 	}
