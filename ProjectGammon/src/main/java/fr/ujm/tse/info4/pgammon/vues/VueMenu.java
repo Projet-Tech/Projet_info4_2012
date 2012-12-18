@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import fr.ujm.tse.info4.pgammon.gui.ChangementTourAnimation;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
 
 public class VueMenu extends JPanel {
@@ -111,8 +112,6 @@ public class VueMenu extends JPanel {
 		return boutonaide;
 	}
 
-
-	
 	@Override
 	protected void paintComponent(Graphics g) {
 		

@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import fr.ujm.tse.info4.pgammon.gui.ChangementTourAnimation;
 import fr.ujm.tse.info4.pgammon.gui.IconMonochromeType;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeIconButton;
@@ -29,6 +30,7 @@ public class VuePartie extends JPanel{
 	private Partie partie;
 	private VueTablier vueTablier;
 	private EtatSession etat;
+	private ChangementTourAnimation tourAnimation;
 	
 	
 	
@@ -47,6 +49,12 @@ public class VuePartie extends JPanel{
 	}
 	
 	private void build() {
+
+		tourAnimation = new ChangementTourAnimation("", "");
+
+		tourAnimation.setBounds(0,0,800,600);
+		add(tourAnimation);
+		
 		setPreferredSize(new Dimension(800,600));
 		setOpaque(false);
 
@@ -107,6 +115,7 @@ etat=EtatSession.EN_COURS;
 			paneldroitencours.setVisible(false);
 			paneldroitrevoir.setVisible(true);
 		}
+		
 	}
 	
 	
@@ -145,6 +154,14 @@ etat=EtatSession.EN_COURS;
 		this.paneldroitrevoir = paneldroitrevoir;
 	}
 
+
+	public void afficherTransition(String titre, String text){
+		tourAnimation.end();
+		tourAnimation.setText(text);
+		tourAnimation.setTitle(titre);
+		tourAnimation.restart();
+	}
+	
 	@Override
 	protected void paintComponent(Graphics g) {
 		

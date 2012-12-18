@@ -48,7 +48,11 @@ public abstract class TranstionAnimeeBase extends JPanel implements ActionListen
 	public void stop(){
 		timer.stop();
 	}
-	
+
+	public void end(){
+		setValue(duree);
+		stop();
+	}
 	public void restart(){
 		this.value = 0;
 		timer.start();

@@ -19,16 +19,23 @@ public class ChangementTourAnimation extends TranstionAnimeeBase {
 	
 	public ChangementTourAnimation(String titre, String text) {
 		super(10,2000);
-		c_titre = titre.toCharArray();
-		String texte = text + " - " + text + " - " + text + " - " + text + " - " + text + " - " + text + " - " + text + " - " + text + " - " + text + " - " + text + " - " + text + " - " + text + " - " + text;
-		c_text = texte.toCharArray();
+		setTitle(titre);
+		setText(text);
 		setOpaque(false);
 		start();
 	}
 	
-	
+	public void setText(String text){
+		String _texte = text + " - " + text + " - " + text + " - " + text + " - " + text + " - " + text + " - " + text + " - " + text + " - " + text + " - " + text + " - " + text + " - " + text + " - " + text;
+		c_text = _texte.toCharArray();
+		
+	}
+
+	public void setTitle(String title){
+		c_titre = title.toCharArray();
+	}
 	private Point getTitlePosition(){
-		return new Point((int) (300 * getRapport()),285 );
+		return new Point((int) (300 *getWidth()/800* getRapport()-5000*((0.5-getRapport())*(0.5-getRapport())*(0.5-getRapport()))),285 );
 	}
 	
 	
