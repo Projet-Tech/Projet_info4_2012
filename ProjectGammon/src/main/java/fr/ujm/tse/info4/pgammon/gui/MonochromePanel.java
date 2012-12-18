@@ -17,17 +17,20 @@ import javax.swing.JPanel;
 
 public class MonochromePanel extends JPanel {
 	
-	private final int TITLE_HEIGHT = 30;
+	public static final int TITLE_HEIGHT = 30;
 	
 	private static final long serialVersionUID = 1L;
-	private String _title = "";
+	private String title = "";
+
+
+
 	private JLabel title_lbl;
 	private JPanel pane;
 	
 	public MonochromePanel(String title) {
 		super();
 		setLayout(null);
-		_title = title;
+		this.title = title;
 		build();
 		//Test
 
@@ -43,11 +46,11 @@ public class MonochromePanel extends JPanel {
 	private void build() {
 
 		
-		title_lbl = new JLabel(_title);
+		title_lbl = new JLabel(title);
 		title_lbl.setFont(new Font("Arial", Font.BOLD, 22));
 		title_lbl.setForeground(new Color(0xB3B3B3));
 		title_lbl.setAlignmentX(0);
-		title_lbl.setBounds(0, 0, 200, TITLE_HEIGHT);
+		title_lbl.setBounds(0, 0, 400, TITLE_HEIGHT);
 		title_lbl.repaint();
 		
 
@@ -102,7 +105,19 @@ public class MonochromePanel extends JPanel {
 		this.pane = pane;
 		pane.setBounds(0, TITLE_HEIGHT, getWidth(), getHeight()-TITLE_HEIGHT);
 		pane.repaint();
+		
 	}
 	
+	public String getTitle() {
+		return title;
+	}
+
+
+
+	public void setTitle(String title) {
+		title_lbl.setText(title);
+		this.title = title;
+	}
+
 	
 }

@@ -12,7 +12,6 @@ package fr.ujm.tse.info4.pgammon.models;
 public class Case {
 	private CouleurCase couleurDame;
 	private int nbDame;
-	
 	private int position;
 
 	public Case(CouleurCase couleur, int nbDame, int position) {
@@ -24,6 +23,13 @@ public class Case {
 	public boolean isCaseVictoire() {
 		if (position == 25 && couleurDame == CouleurCase.BLANC
 				|| position == 0 && couleurDame == CouleurCase.NOIR)
+			return true;
+		else
+			return false;
+	}
+	public boolean isCaseBarre() {
+		if (position == 0 && couleurDame == CouleurCase.BLANC
+				|| position == 25 && couleurDame == CouleurCase.NOIR)
 			return true;
 		else
 			return false;

@@ -18,7 +18,7 @@ public class TestControleurPartie {
 				JFrame frame = new JFrame("Test Controleur");
 
 		        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				frame.setSize(800,600);
+				frame.setSize(816,638);
 				
 				Container panel = frame.getContentPane();
 				panel.setLayout(new FlowLayout());
@@ -30,14 +30,14 @@ public class TestControleurPartie {
 						NiveauAssistant.NON_UTILISE);
 				Joueur jNoir = new Joueur(2, "JM", "null", NiveauAssistant.COMPLET);
 
-				ParametreJeu param = new ParametreJeu(0, 3, true, jBlanc, jNoir);
+				ParametreJeu param = new ParametreJeu(1000, 3, true, jBlanc, jNoir);
 				Partie p = new Partie(param);
-				p.LancerPartie();
 				
 				ControleurPartie controleurPartie = new ControleurPartie(p);
 			
 				panel.add(controleurPartie.getVuePartie());
-				
+
+				p.LancerPartie();
 				frame.setVisible(true);
 			}
 	

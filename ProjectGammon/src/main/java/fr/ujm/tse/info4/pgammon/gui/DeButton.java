@@ -95,12 +95,7 @@ public class DeButton extends JButton {
 				iconRef = DE_NOIR_6;
 				break;
 		}
-		try{
-			icon = new ImageIcon(iconRef);
-		}catch(Exception err){
-			//TODO : Creer une icone par défaut
-			System.err.println(err);
-		}
+		icon = new ImageIcon(iconRef);
 		updateUI();
 	}
 	

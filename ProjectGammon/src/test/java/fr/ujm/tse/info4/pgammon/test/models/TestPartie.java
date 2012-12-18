@@ -3,6 +3,7 @@ package fr.ujm.tse.info4.pgammon.test.models;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import fr.ujm.tse.info4.pgammon.exeption.TourNonJouableException;
 import fr.ujm.tse.info4.pgammon.models.DeSixFaces;
 import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
@@ -56,7 +57,12 @@ public class TestPartie {
 						deplacementValide = true;
 				} while (!deplacementValide);
 			} while (!p.siDesUtilises());
-			p.changerTour();
+			try {
+				p.changerTour();
+			} catch (TourNonJouableException e) {
+				// TODO: handle exception
+			}
+			
 		} while (!p.isPartieFini());
 	}
 

@@ -5,18 +5,25 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Paint;
 import java.awt.Point;
 import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JPanel;
 
+import fr.ujm.tse.info4.pgammon.gui.BarreCaseButton;
 import fr.ujm.tse.info4.pgammon.gui.CaseButton;
+import fr.ujm.tse.info4.pgammon.gui.DeButton;
 import fr.ujm.tse.info4.pgammon.gui.TriangleCaseButton;
 import fr.ujm.tse.info4.pgammon.models.Case;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
+import fr.ujm.tse.info4.pgammon.models.DeSixFaces;
 import fr.ujm.tse.info4.pgammon.models.Partie;
 import fr.ujm.tse.info4.pgammon.models.Tablier;
 
@@ -25,13 +32,12 @@ public class VueTablier extends JPanel{
 	private static final long serialVersionUID = -7479996235423541957L;
 	private Partie partie;
 	private Tablier tablier;
-	private ArrayList<CaseButton> casesButtons;
-	private CaseButton candidat;
-
+	private HashMap<Case,CaseButton> casesButtons;	private CaseButton candidat;
+	private List<DeButton> desButton;
 	public VueTablier(Partie partie) {
 		this.partie = partie;
 		this.tablier = partie.getTablier();
-		this.casesButtons = new ArrayList<>();
+		this.casesButtons = new HashMap<>();
 		this.setCandidat(null);  
 		build();
 	}
@@ -39,7 +45,16 @@ public class VueTablier extends JPanel{
 	public CaseButton getCandidat() {
 		return candidat;
 	}
-
+	public void setPossibles(List<Case> cases){
+			//Reinitialiastion
+			for(CaseButton btn :  casesButtons.values()){
+				btn.setPossible(false);
+			}
+			for (Case c : cases) {
+				CaseButton btn = casesButtons.get(c);
+			btn.setPossible(true);
+			}
+	}
 	public void setCandidat(CaseButton new_candidat) {
 		if(new_candidat == this.candidat) return;
 		
@@ -69,10 +84,13 @@ public class VueTablier extends JPanel{
 		for(Case c : tablier.getCaseVictoire()){
 			creerCasesVictoires(c);
 		}
+		updateDes();
 	}
 	
 	private void creerCasesVictoires(Case c){
-		CaseButton btn = new TriangleCaseButton(c,c.getCouleurDame());
+		//TODO: Gestion du sens des cases victoires
+		//TODO: Creer les cases victoires
+		CaseButton btn = new BarreCaseButton(c,true);
 		int pos_x = 671-173;
 		int pos_y = 30;
 		
@@ -83,12 +101,13 @@ public class VueTablier extends JPanel{
 				btn.getPreferredSize().width , btn.getPreferredSize().height);
 		
 		add(btn);
-		casesButtons.add(btn);
+		casesButtons.put(c,btn);
 	}
 	
 	private void creerCasesBarres(Case c){
-		CaseButton btn = new TriangleCaseButton(c,c.getCouleurDame());
-		int pos_x = 425-173;
+		//TODO: Gestion du sens des CasesBarres
+		CaseButton btn = new BarreCaseButton(c,true);
+		int pos_x = 426-173;
 		int pos_y = 30;
 		
 		if(c.getCouleurDame() == CouleurCase.BLANC)
@@ -98,7 +117,7 @@ public class VueTablier extends JPanel{
 				btn.getPreferredSize().width , btn.getPreferredSize().height);
 		
 		add(btn);
-		casesButtons.add(btn);
+		casesButtons.put(c,btn);
 	}
 	
 	private void creerTriangle(final int position,final Case c) {
@@ -123,7 +142,7 @@ public class VueTablier extends JPanel{
 		triangle.setBounds(p.x, p.y,
 				triangle.getPreferredSize().width , triangle.getPreferredSize().height);
 		add(triangle);
-		casesButtons.add(triangle);
+		casesButtons.put(c,triangle);
 	}
 	
 	
@@ -173,8 +192,36 @@ public class VueTablier extends JPanel{
 		
 	}
 	
-	public List<CaseButton> getCasesButtons() {
-		return casesButtons;
+
+	
+	public void updateDes(){
+
+		List<DeSixFaces> des = partie.getDeSixFaces();
+		
+		if(desButton != null){
+			for(DeButton de_btn : desButton){
+				remove(de_btn);
+			}
+		}
+		desButton = new ArrayList<>();
+		
+		int size = des.size();
+		int i = 0;
+		if(size>0)
+			for(DeSixFaces de : des){
+				DeButton btn = new DeButton(de);
+				//TODO: Corriger la position des dés.
+				int y = (int) (252 + 40*((float)i-size/2));
+				btn.setBounds(427-173, y,
+						btn.getPreferredSize().width , btn.getPreferredSize().height);
+				add(btn);
+				desButton.add(btn);
+				i++;
+			}
+	}
+	
+	public Collection<CaseButton> getCasesButtons() {
+		return casesButtons.values();
 	}
 
 }

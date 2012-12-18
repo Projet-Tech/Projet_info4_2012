@@ -12,12 +12,13 @@
 
 package fr.ujm.tse.info4.pgammon.models;
 
+import java.util.ArrayList;
 import java.util.List;
-
 
 public class Profils
 {
-	public List<Joueur> joueurs;
+	public List<Joueur> joueurs = new ArrayList<Joueur>();
+	
 	public void sauvegarder()
 	{
 		throw new UnsupportedOperationException();
@@ -28,18 +29,46 @@ public class Profils
 		throw new UnsupportedOperationException();
 	}
 	
-	public void ajouter()
-	{
-		throw new UnsupportedOperationException();
+	public void ajouter(String _pseudo,String _imageSource,NiveauAssistant _niveau){
+		
+		joueurs.add(new Joueur(joueurs.size()+1,_pseudo,_imageSource,_niveau));
+		
 	}
 	
-	public void modifier()
-	{
-		throw new UnsupportedOperationException();
+	public void modifierPseudo(String _pseudo,Joueur j){
+		
+		for(int i=0;i<joueurs.size();i++){
+			if(joueurs.get(i).getId()==j.getId()){
+				joueurs.get(i).setPseudo(_pseudo);
+			}
+		}
 	}
 	
-	public void supprimer()
+	public void modifierImageSource(String _imageSource,Joueur j){
+		
+		for(int i=0;i<joueurs.size();i++){
+			if(joueurs.get(i).getId()==j.getId()){
+				joueurs.get(i).setImageSource(_imageSource);
+			}
+		}
+	}
+	
+	public void supprimer(Joueur j)
 	{
-		throw new UnsupportedOperationException();
+		for(int i=0;i<joueurs.size();i++){
+			if(joueurs.get(i).getId()==j.getId()){
+				joueurs.remove(i);
+			}
+		}
+	}
+	
+	public void afficher(){
+		for(int i=0;i<joueurs.size();i++){
+				System.out.println(joueurs.get(i).getId()+" "+joueurs.get(i).getPseudo()+" "+joueurs.get(i).getImageSource()+" "+joueurs.get(i).getNiveauAssistant());
+		}
+	}
+	
+	public List<Joueur> getList(){
+		return joueurs;
 	}
 }

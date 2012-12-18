@@ -34,7 +34,7 @@ public abstract class TranstionAnimeeBase extends JPanel implements ActionListen
 		value+=interval;
 		repaint();
 		if(value > duree)
-			restart();
+			stop();
 			
 	}
 

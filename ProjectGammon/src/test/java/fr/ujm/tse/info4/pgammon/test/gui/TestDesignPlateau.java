@@ -6,6 +6,8 @@ import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 
+import fr.ujm.tse.info4.pgammon.gui.BarreCaseButton;
+import fr.ujm.tse.info4.pgammon.gui.CaseButton;
 import fr.ujm.tse.info4.pgammon.gui.DeButton;
 import fr.ujm.tse.info4.pgammon.gui.TriangleCaseButton;
 import fr.ujm.tse.info4.pgammon.models.Case;
@@ -19,7 +21,7 @@ public class TestDesignPlateau {
 		JFrame frame = new JFrame("Test Design");
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(800,600);
+        frame.setSize(816,638);
 		
 		Container panel = frame.getContentPane();
 		panel.setLayout(new FlowLayout());
@@ -40,19 +42,22 @@ public class TestDesignPlateau {
 			panel.add(t);
 		}
 		{
-			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.BLANC,6,6), CouleurCase.NOIR);
+			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.BLANC,6,6), CouleurCase.NOIR,false);
 			panel.add(t);
 		}
 		{
 			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.BLANC,7,7), CouleurCase.BLANC);
 			panel.add(t);
+			t.setPossible(true);
 		}
 		{
 			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.BLANC,8,8), CouleurCase.NOIR);
 			panel.add(t);
 		}
 		{
-			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.BLANC,9,9), CouleurCase.BLANC);
+			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.BLANC,9,9), CouleurCase.BLANC,false);
+
+			t.setCandidated(true);
 			panel.add(t);
 		}
 		{
@@ -64,7 +69,8 @@ public class TestDesignPlateau {
 			panel.add(t);
 		}
 		{
-			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.NOIR,12,12), CouleurCase.NOIR);
+			Case c = new Case(CouleurCase.NOIR,12,12);
+			TriangleCaseButton t = new TriangleCaseButton(c, CouleurCase.NOIR);
 			panel.add(t);
 		}
 		{
@@ -76,6 +82,39 @@ public class TestDesignPlateau {
 			dsf.utiliser();
 			DeButton d = new DeButton(dsf);
 			panel.add(d);
+		}
+		{
+			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,0,13),true);
+			panel.add(t);
+		}
+		{
+			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,1,13),true);
+			panel.add(t);
+		}
+		{
+			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,2,13),true);
+			panel.add(t);
+		}
+		{
+			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,3,13),true);
+			panel.add(t);
+		}
+		{
+			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,4,13),true);
+			panel.add(t);
+		}
+		{
+			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,5,13),true);
+			panel.add(t);
+		}
+		{
+			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,6,13),true);
+			t.setCandidated(true);
+			panel.add(t);
+		}
+		{
+			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,7,13),true);
+			panel.add(t);
 		}
 
 		{
