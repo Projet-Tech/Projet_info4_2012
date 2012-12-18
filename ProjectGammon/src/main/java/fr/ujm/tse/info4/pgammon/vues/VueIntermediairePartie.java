@@ -14,6 +14,7 @@ public class VueIntermediairePartie extends JPanel{
 	
 	private MonochromeButton boutonReprendre;
 	private MonochromeButton boutonRetour;
+	
 	private MonochromeButton boutonNouvellePartie;
 	
 	
@@ -67,6 +68,10 @@ public class VueIntermediairePartie extends JPanel{
 
 	public VueChargerPartie getVueChargerPartie() {
 		return vueChargerPartie;
+	}
+
+	public MonochromeButton getBoutonRetour() {
+		return boutonRetour;
 	}
 
 	
