@@ -26,11 +26,9 @@ public class VueListeJoueur extends JPanel{
 	private static final long serialVersionUID = 9216988183357324981L;
 	
 	private Profils profil;
-	private Joueur joueur;
-	private Vector<Joueur> joueurs;
 	
 	private PanelVueListeJoueurDescription panelDescription;
-	private MonochromeListe<Joueur> listejoueur;
+	private MonochromeListe<Joueur> listeJoueur;
 	
 	private MonochromeButton ajouter;
 	private MonochromeButton selectionner;
@@ -45,11 +43,65 @@ public class VueListeJoueur extends JPanel{
 	
 	
 	private void build() {
+		setLayout(null);
+		setOpaque(false);
 		
-		joueurs = new Vector<>();
-		panelDescription = new PanelVueListeJoueurDescription(joueur);
-		listejoueur = new MonochromeListe<>("Joueurs",new Vector<Joueur>(profil.getList()),new JoueurCellRenderer());
 		
+		panelDescription = new PanelVueListeJoueurDescription(profil.getList().get(1));
+		panelDescription.setBounds(420, 50, 330, 450);
+		add(panelDescription);
+		
+		listeJoueur = new MonochromeListe<>("Joueurs enregistrés",new Vector<Joueur>(profil.getList()),new JoueurCellRenderer());
+		listeJoueur.setBounds(40, 50, 330, 450);
+		add(listeJoueur);
+		
+		ajouter = new MonochromeButton("Ajouter un nouveau joueur");
+		ajouter.setBounds(50, 530, 300, 50);
+		add(ajouter);
+		
+		selectionner = new MonochromeButton("Selectionner");
+		selectionner.setBounds(420, 530, 150, 50);
+		add(selectionner);
+		
+		retour = new MonochromeButton("Retour");
+		retour.setBounds(600, 530, 150, 50);
+		add(retour);
+		
+		
+		
+		
+	}
+	
+	
+
+
+	public Profils getProfil() {
+		return profil;
+	}
+
+
+	public PanelVueListeJoueurDescription getPanelDescription() {
+		return panelDescription;
+	}
+
+
+	public MonochromeListe<Joueur> getListeJoueur() {
+		return listeJoueur;
+	}
+
+
+	public MonochromeButton getAjouter() {
+		return ajouter;
+	}
+
+
+	public MonochromeButton getSelectionner() {
+		return selectionner;
+	}
+
+
+	public MonochromeButton getRetour() {
+		return retour;
 	}
 
 
