@@ -12,10 +12,14 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+import javax.security.auth.callback.LanguageCallback;
+
 import fr.ujm.tse.info4.pgammon.models.Case;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 import fr.ujm.tse.info4.pgammon.models.Partie;
+import fr.ujm.tse.info4.pgammon.models.Tablier;
 import fr.ujm.tse.info4.pgammon.vues.VuePartie;
+import fr.ujm.tse.info4.pgammon.vues.VueTablier;
 
 
 public class ControleurPartie
@@ -41,6 +45,50 @@ public class ControleurPartie
 			public void mouseClicked(MouseEvent arg0) {
 				partie.annulerDernierCoup();
 				vuePartie.updateUI();
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
+		vuePartie.getPaneldroitencours().getDices().addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if(partie.isTourFini())
+				{
+					partie.lancerDes();
+					if(!partie.hasCoupPossible())
+					{
+						//TODO affichage plus de coup possible
+						controleurTablier.changerTour();
+					}
+				}
+				vuePartie.updateUI();
+				vuePartie.getVueTablier().updateUI();
+				vuePartie.getVueTablier().updateDes();
 			}
 
 			@Override

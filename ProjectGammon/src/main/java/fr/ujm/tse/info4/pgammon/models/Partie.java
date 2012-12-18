@@ -28,6 +28,7 @@ public class Partie {
 	private int idPartie;
 	private Timer timerTour;
 	private boolean partieFini;
+	private boolean tourFini;
 	private int deUtiliser;
 
 	public Partie(ParametreJeu p) {
@@ -39,19 +40,20 @@ public class Partie {
 		timerTour = new Timer();
 		deSixFaces = new ArrayList<DeSixFaces>();
 		partieFini = false;
+		tourFini=true;
 	}
 
 
 	public void LancerPartie() {
 		choixPremierJoueurLancementPartie();
-		lancerDes();
+		//lancerDes();
 		
 		//on ajout un tour dans l'historique
 		historiqueToursJoueur.add(new Tour(joueurEnCour, deSixFaces));
 		
 	}
 
-	public void changerTour() throws TourNonJouableException {
+	public void changerTour(){
 
 		if (tablier.isTouteDameMarquee(joueurEnCour))
 			finPartie();
@@ -63,17 +65,8 @@ public class Partie {
 		}
 		
 		deSixFaces = new ArrayList<DeSixFaces>();
-		lancerDes();
-		
-		if(!hasCoupPossible())
-		{
-			throw new TourNonJouableException("Pas de possibilité de faire un déplacement");
-		}
-		else
-		{
-			//on ajout un tour dans l'historique
-			historiqueToursJoueur.add(new Tour(joueurEnCour, deSixFaces));
-		}
+		//lancerDes();
+		tourFini = true;
 
 	}
 
@@ -86,11 +79,7 @@ public class Partie {
 
 	}
 
-	private void onFinTimer() {
-		// TODO
-		throw new UnsupportedOperationException();
-	}
-
+	
 	public void choixPremierJoueurLancementPartie() {
 		ArrayList<DeSixFaces> deChoix = new ArrayList<DeSixFaces>();
 		deChoix.add(new DeSixFaces(joueurEnCour));
@@ -226,6 +215,7 @@ public class Partie {
 		return true;
 	}
 	public void lancerDes() {
+		deSixFaces = new ArrayList<DeSixFaces>();
 		deSixFaces.add(new DeSixFaces(joueurEnCour));
 		deSixFaces.add(new DeSixFaces(joueurEnCour));
 		if (deSixFaces.get(0).getValeur() == deSixFaces.get(1).getValeur()) {
@@ -233,14 +223,8 @@ public class Partie {
 					.getValeur()));
 			deSixFaces.add(new DeSixFaces(joueurEnCour, deSixFaces.get(0)
 					.getValeur()));
-		}
-		
-		//XXX il faudra enlever cette fonction.
-		System.out.println(joueurEnCour + " : ");
-		System.out.println("DeSixFace : ");
-			for (int i = 0; i < deSixFaces.size(); i++)
-				System.out.println(i + " : " + deSixFaces.get(i).getValeur() + " "+ deSixFaces.get(i).isUtilise());
-				
+		}	
+		tourFini=false;
 	}
 
 	public void doublerVideau() {
@@ -475,4 +459,10 @@ public class Partie {
 	public boolean isPartieFini() {
 		return partieFini;
 	}
+
+
+	public boolean isTourFini() {
+		return tourFini;
+	}
+	
 }

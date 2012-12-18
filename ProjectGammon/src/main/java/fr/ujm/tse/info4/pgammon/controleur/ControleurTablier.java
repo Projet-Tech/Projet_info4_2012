@@ -16,6 +16,7 @@ import fr.ujm.tse.info4.pgammon.models.Case;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 import fr.ujm.tse.info4.pgammon.models.Partie;
 import fr.ujm.tse.info4.pgammon.models.Tablier;
+import fr.ujm.tse.info4.pgammon.models.Tour;
 import fr.ujm.tse.info4.pgammon.vues.VueTablier;
 
 public class ControleurTablier {
@@ -34,6 +35,7 @@ public class ControleurTablier {
 		
 	
 		build();
+		vueTablier.updateDes();
 	}
 
 
@@ -48,47 +50,53 @@ public class ControleurTablier {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					CaseButton caseButton = (CaseButton) e.getSource();
+					if (!partie.isTourFini())
+						if(vueTablier.getCandidat() == null 
+								&& partie.getJoueurEnCour() == caseButton.getCase().getCouleurDame())
+						{
+							if (caseButton.getCase().getNbDame() != 0 
+									&& (!tablier.isDameDansCaseBarre(partie.getJoueurEnCour()) 
+											|| caseButton.getCase().isCaseBarre())
+											&& caseButton.getCase().getCouleurDame() == partie.getJoueurEnCour())
+								{
+									vueTablier.setCandidat(caseButton);
+									if(partie.getParametreJeu().getJoueur(partie.getJoueurEnCour()).getNiveauAssistant() == NiveauAssistant.SIMPLE
+											|| partie.getParametreJeu().getJoueur(partie.getJoueurEnCour()).getNiveauAssistant() == NiveauAssistant.COMPLET)
+										vueTablier.setPossibles(partie.getCoupsPossibles(caseButton.getCase()));
+								}
+						}
+						else if (vueTablier.getCandidat() != null)
+						{
+							if (partie.jouerCoup(vueTablier.getCandidat().getCase(), caseButton.getCase()))
+							{
+								vueTablier.uncandidateAll();
+								vueTablier.setPossibles((List)(new ArrayList<Case>()));
+								if (partie.siDesUtilises())
+								{	
+									//TODO affichage changement de Tour
+									changerTour();			
+								}
+								else if(!partie.hasCoupPossible())
+								{
+									changerTour();
+									partie.lancerDes();
+									if(!partie.hasCoupPossible())
+									{
+										//TODO affichage plus de coup possible
+										changerTour();
+									}
+								}
+										
+							}
+							else
+							{
+								vueTablier.uncandidateAll();
+								vueTablier.setPossibles((List)(new ArrayList<Case>()));
+							}
+							if (timer!= null)
+								timer.restart();
+						}
 					
-					if(vueTablier.getCandidat() == null 
-							&& partie.getJoueurEnCour() == caseButton.getCase().getCouleurDame())
-					{
-						if (caseButton.getCase().getNbDame() != 0 
-								&& (!tablier.isDameDansCaseBarre(partie.getJoueurEnCour()) 
-										|| caseButton.getCase().isCaseBarre())
-										&& caseButton.getCase().getCouleurDame() == partie.getJoueurEnCour())
-							{
-								vueTablier.setCandidat(caseButton);
-								if(partie.getParametreJeu().getJoueur(partie.getJoueurEnCour()).getNiveauAssistant() == NiveauAssistant.SIMPLE
-										|| partie.getParametreJeu().getJoueur(partie.getJoueurEnCour()).getNiveauAssistant() == NiveauAssistant.COMPLET)
-									vueTablier.setPossibles(partie.getCoupsPossibles(caseButton.getCase()));
-							}
-					}
-					else if (vueTablier.getCandidat() != null)
-					{
-						if (partie.jouerCoup(vueTablier.getCandidat().getCase(), caseButton.getCase()))
-						{
-							vueTablier.uncandidateAll();
-							vueTablier.setPossibles((List)(new ArrayList<Case>()));
-							if (partie.siDesUtilises())
-							{	
-								//TODO affichage changement de Tour
-								changerTour();			
-							}
-							else if(!partie.hasCoupPossible())
-							{
-								//TODO affichage plus de coup possible
-								changerTour();
-							}		
-						}
-						else
-						{
-							vueTablier.uncandidateAll();
-							vueTablier.setPossibles((List)(new ArrayList<Case>()));
-						}
-						
-					}
-					if (timer!= null)
-						timer.restart();
 					
 					vueTablier.updateUI();
 					vueTablier.updateDes();
@@ -117,16 +125,11 @@ public class ControleurTablier {
 		}
 	}
 	
-	private void changerTour() 
+	public void changerTour() 
 	{
-		try {
+	
 			partie.changerTour();
-		} catch (TourNonJouableException e1) {
-			// TODO Auto-generated catch block
-			changerTour();
-		}	
 		
-		vueTablier.uncandidateAll();
 	}
 	
 	private void buildTimer(){

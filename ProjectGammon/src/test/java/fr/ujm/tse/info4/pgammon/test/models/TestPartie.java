@@ -57,11 +57,9 @@ public class TestPartie {
 						deplacementValide = true;
 				} while (!deplacementValide);
 			} while (!p.siDesUtilises());
-			try {
+			
 				p.changerTour();
-			} catch (TourNonJouableException e) {
-				// TODO: handle exception
-			}
+			
 			
 		} while (!p.isPartieFini());
 	}
