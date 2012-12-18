@@ -89,5 +89,20 @@ public class VueAjouterJoueur extends MonochromePanel{
 		super.paintComponent(g);
 		
 	}
-
+	
+	public MonochromeButton getRetour() {
+		return annuler;
+	}
+	
+	public MonochromeButton getchangerAvatar() {
+		return changerAvatar;
+	}
+	
+	public MonochromeButton getsupprimerAvatar() {
+		return supprimerAvatar;
+	}
+	
+	public MonochromeButton getenregistrer() {
+		return enregistrer;
+	}
 }

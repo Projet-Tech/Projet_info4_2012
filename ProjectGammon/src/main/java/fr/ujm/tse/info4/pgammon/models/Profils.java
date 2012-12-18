@@ -28,7 +28,7 @@ public class Profils
 {
 	public List<Joueur> joueurs = new ArrayList<Joueur>();
 	private List<Element> listJoueurs;
-	private static  Profils Profil;
+	private static  Profils profil;
 	
 	private Profils()
 	{
@@ -37,11 +37,19 @@ public class Profils
 	
 	public static Profils getProfils()
 	{
-		if(Profil == null){
-			  Profil = new Profils();
+		if(profil == null){
+			  profil = new Profils();
+			  try {
+					profil.charger();
+				} catch (JDOMException e) {
+					
+					//todo message probleme
+				}catch (IOException e){
+					//todo message probleme
+				}
 		}
 	    
-		return Profil; 
+		return profil; 
 		
 	}
 	
