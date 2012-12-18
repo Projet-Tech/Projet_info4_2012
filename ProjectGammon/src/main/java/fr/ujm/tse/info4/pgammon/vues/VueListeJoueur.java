@@ -40,9 +40,7 @@ public class VueListeJoueur extends JPanel{
 	private PanelVueListeJoueurDescription panelDescription;
 	private MonochromeListe<Joueur> listeJoueur;
 	
-	public VueAjouterJoueur getVueAjouterJoueur() {
-		return vueAjouterJoueur;
-	}
+	
 
 
 	private VueAjouterJoueur vueAjouterJoueur;
@@ -51,6 +49,8 @@ public class VueListeJoueur extends JPanel{
 	private MonochromeButton selectionner;
 	private MonochromeButton retour;
 	private OpaqueBG bg;
+	
+	
 	
 	public VueListeJoueur(Profils mp){
 		profil = mp;
@@ -158,6 +158,10 @@ public class VueListeJoueur extends JPanel{
 
 	public MonochromeButton getRetour() {
 		return retour;
+	}
+	
+	public VueAjouterJoueur getVueAjouterJoueur() {
+		return vueAjouterJoueur;
 	}
 
 

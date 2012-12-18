@@ -4,16 +4,16 @@ import java.awt.Container;
 import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
-import fr.ujm.tse.info4.pgammon.vues.VueIntermediairePartie;
+import fr.ujm.tse.info4.pgammon.vues.VueChargerPartie;
 import fr.ujm.tse.info4.pgammon.vues.VueMenu;
 
-public class TestVueIntermediaire {
+public class TestVueChargerPartie {
 
-	public static void main(String[] args){
-		Boolean test=false;
-		
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
 		JFrame frame = new JFrame("Test Menu");
 
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -21,13 +21,13 @@ public class TestVueIntermediaire {
 		Container panel = frame.getContentPane();
 		panel.setLayout(new FlowLayout());
 		
-		VueIntermediairePartie creationPartie = new VueIntermediairePartie(test);
-		frame.setContentPane(creationPartie);
+		VueChargerPartie charger = new VueChargerPartie();
+		frame.setContentPane(charger);
 		
 		
 		frame.setVisible(true);
+		
+
 	}
-	
-	
 
 }
