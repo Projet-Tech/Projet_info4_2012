@@ -27,6 +27,7 @@ public class VueNouvelleSession extends JPanel{
 	private MonochromeButton boutonlistejoueur;
 	private MonochromeButton boutoncommencer; 
 	private MonochromeButton boutonchangercouleur; 
+	private MonochromeButton boutonRetour;
 	private PanelJoueur paneljoueur1;
 	private PanelJoueur paneljoueur2;
 	private PanelParametre panelparamètre;
@@ -53,6 +54,7 @@ public class VueNouvelleSession extends JPanel{
 		panelparamètre = new PanelParametre();
 		
 		
+		boutonRetour = new MonochromeButton("Retour");
 		 boutonlistejoueur = new MonochromeButton("Liste des joueurs");
 		 boutoncommencer = new MonochromeButton("Commencer");
 		 boutonchangercouleur = new MonochromeButton();
@@ -70,17 +72,50 @@ public class VueNouvelleSession extends JPanel{
 		 
 		 boutonchangercouleur.setBounds(175,190,55,55);
 		 
+		 boutonRetour.setBounds(210, 520, 344, 58);
+		 
 		 add(paneljoueur1);
 		 add(paneljoueur2);
 		 add(panelparamètre);
 		 add(boutonlistejoueur);
 		 add(boutoncommencer);
 		 add(boutonchangercouleur);
+		 add(boutonRetour);
 		
 		
 	}
 	
 	
+	
+	
+	public MonochromeButton getBoutonlistejoueur() {
+		return boutonlistejoueur;
+	}
+
+	public MonochromeButton getBoutoncommencer() {
+		return boutoncommencer;
+	}
+
+	public MonochromeButton getBoutonchangercouleur() {
+		return boutonchangercouleur;
+	}
+
+	public MonochromeButton getBoutonRetour() {
+		return boutonRetour;
+	}
+
+	public PanelJoueur getPaneljoueur1() {
+		return paneljoueur1;
+	}
+
+	public PanelJoueur getPaneljoueur2() {
+		return paneljoueur2;
+	}
+
+	public PanelParametre getPanelparamètre() {
+		return panelparamètre;
+	}
+
 	@Override
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g.create(); 

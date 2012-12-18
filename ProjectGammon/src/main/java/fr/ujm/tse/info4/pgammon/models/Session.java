@@ -20,12 +20,21 @@ public class Session
 	private int idSession;
 	private Partie partieEnCours;
 	private Map<Joueur, Integer> scores;
-	private EtatSession etat;
+	private EtatSession etatSession;
+	private ParametreJeu parametreSession;
+	
+	public Session(int idSession)
+	{
+		this.idSession = idSession;
+		etatSession = EtatSession.CONFIGURATION;
+	}
+	
 	private void modifierScore(Joueur j, Videau multiplicateur)
 	{
 		//TODO
 		throw new UnsupportedOperationException();
 	}
+	
 	
 	private EtatSession setEtat(EtatSession etat)
 	{
@@ -80,4 +89,12 @@ public class Session
 		//TODO
 		throw new UnsupportedOperationException();
 	}
+
+
+	public int getIdSession() {
+		return idSession;
+	}
+
+
 }
+

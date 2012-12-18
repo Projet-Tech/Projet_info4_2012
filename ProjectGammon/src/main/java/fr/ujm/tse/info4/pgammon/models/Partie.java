@@ -44,6 +44,22 @@ public class Partie {
 		tourFini=true;
 		partieFini = false;
 	}
+	
+	public Partie(int idPartie ,ParametreJeu p) {
+		parametreJeu = p;
+		this.idPartie = idPartie;
+		
+		tablier = new Tablier();
+		videau = new Videau();
+		statistique = new StatistiquePartie();
+		historiqueToursJoueur = new ArrayList<Tour>();
+		timerTour = new Timer();
+		deSixFaces = new ArrayList<DeSixFaces>();
+		
+		//ces variables permet de connaitre l'état de la partie
+		tourFini=true;
+		partieFini = false;
+	}
 
 
 	public void LancerPartie() {

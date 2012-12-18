@@ -12,25 +12,55 @@
 
 package fr.ujm.tse.info4.pgammon.models;
 
+import java.util.ArrayList;
+
+import fr.ujm.tse.info4.pgammon.controleur.ControleurPrincipal;
+
 
 public class Master
 {
-	private Object nbrSession = 0;
+	private int idMax;
+	private ArrayList<Session> listSession;
+	private ControleurPrincipal controleurPrincipal;
+	
+	public Master()
+	{
+		idMax= 0;
+		controleurPrincipal = new ControleurPrincipal(this);
+	}
 	public void lancerSession()
 	{
-		//TODO
-		throw new UnsupportedOperationException();
+		if (peutLancerSession())
+		{
+			listSession.add(new Session(idMax));
+		}
+			
+	}
+	public void arreterSession(int id)
+	{
+		if(listSession.size()!=0)
+		{
+			for (Session session : listSession) {
+				if(session.getIdSession() == id)
+					listSession.remove(session);
+			}
+		}	
 	}
 	
-	public void peutLancerSession()
+	public boolean peutLancerSession()
 	{
-		//TODO
-		throw new UnsupportedOperationException();
+		//TODO gere le multi THREAD
+		if (listSession.size() !=1 )
+			return true;
+		return false;
 	}
 	
-	public void main()
+	public static void main(String[] args) 
 	{
-		//TODO
-		throw new UnsupportedOperationException();
+		Master master = new Master();
+		
+		
+		
+		
 	}
 }

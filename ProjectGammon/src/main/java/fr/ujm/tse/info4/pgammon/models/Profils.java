@@ -12,23 +12,77 @@
 
 package fr.ujm.tse.info4.pgammon.models;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
 
 public class Profils
 {
 	public List<Joueur> joueurs = new ArrayList<Joueur>();
+	private List<Element> listJoueurs;
 	
 	public void sauvegarder()
 	{
-		throw new UnsupportedOperationException();
+		Element racine = new Element("profils");
+		Document document = new Document(racine);
+		
+		for(int i=0;i<joueurs.size();i++){
+			joueurs.get(i).sauvegarder(racine);
+		}
+	
+		try{
+			//TOTO SECURITY
+			XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
+			sortie.output(document, new FileOutputStream("sauvegarde/profils.xml"));
+	   
+		}catch(Exception e){
+			System.out.println("Erreur d'enregistrement");
+		}
 	}
 	
-	public void charger()
+	public void charger() throws JDOMException, IOException
 	{
-		throw new UnsupportedOperationException();
+		 SAXBuilder builder = new SAXBuilder();
+		 Document document = builder.build("sauvegarde/profils.xml");
+		 Element racine = document.getRootElement();
+		
+		 listJoueurs = racine.getChildren("joueurs");
+		 Iterator<Element> it = listJoueurs.iterator();
+		 
+		 while(it.hasNext()){
+			 Joueur j = new Joueur();
+			 j.charger(it.next());
+			 joueurs.add(j);
+		 }
+		 
+		 //Pour chager MAP<Joueur,Integer> dans Stat
+		 Iterator<Element> itStat = listJoueurs.iterator();
+		 while(itStat.hasNext()){
+			 Element e = itStat.next();//joueurs e
+			 Iterator<Element> itContre = e.getChild("statistiqueJoueur").getChild("nbrDePartieContreJoueur").getChildren("joueurs").iterator();
+			 while(itContre.hasNext()){
+				 Element c = itContre.next();
+				 for(int i=0;i<joueurs.size();i++){
+					 if(joueurs.get(i).getId()== Integer.valueOf(e.getAttributeValue("id")))
+						 for(int j=0;j<joueurs.size();j++){
+							 if(joueurs.get(j).getId()== Integer.valueOf(c.getAttributeValue("id"))){
+								 Joueur jcontre = joueurs.get(j);
+								 joueurs.get(i).getStat().getNbrDePartieContreJoueur().put(jcontre,Integer.valueOf(c.getChildText("nbrPartie")));
+							 }
+						 }
+				 }
+			 }
+		 }
 	}
-	
+		 
 	public void ajouter(String _pseudo,String _imageSource,NiveauAssistant _niveau){
 		
 		joueurs.add(new Joueur(joueurs.size()+1,_pseudo,_imageSource,_niveau));
