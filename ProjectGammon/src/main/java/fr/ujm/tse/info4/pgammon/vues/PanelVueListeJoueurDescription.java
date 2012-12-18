@@ -53,6 +53,7 @@ public class PanelVueListeJoueurDescription extends MonochromePanel{
 		
 		public void setJoueur(Joueur j){
 			joueur=j;
+			updateData();
 		}
 		
 		public void updateData(){

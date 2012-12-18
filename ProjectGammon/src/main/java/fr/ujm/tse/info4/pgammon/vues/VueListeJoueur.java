@@ -2,15 +2,20 @@ package fr.ujm.tse.info4.pgammon.vues;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Event;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.RadialGradientPaint;
 import java.awt.RenderingHints;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.geom.Point2D;
 import java.util.Vector;
 
 import javax.swing.JPanel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import fr.ujm.tse.info4.pgammon.gui.JoueurCellRenderer;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
@@ -26,6 +31,7 @@ public class VueListeJoueur extends JPanel{
 	private static final long serialVersionUID = 9216988183357324981L;
 	
 	private Profils profil;
+	private Joueur j;
 	
 	private PanelVueListeJoueurDescription panelDescription;
 	private MonochromeListe<Joueur> listeJoueur;
@@ -39,6 +45,21 @@ public class VueListeJoueur extends JPanel{
 		profil = mp;
 		build();
 		
+		listeJoueur.getList().addListSelectionListener(new ListSelectionListener() {
+			
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				System.out.println(listeJoueur.getList().getSelectedValue());
+				j=listeJoueur.getList().getSelectedValue();
+				updateData();
+			}
+		});
+		
+	}
+	
+	public void updateData(){
+		panelDescription.setVisible(true);
+		panelDescription.setJoueur(j);
 	}
 	
 	
@@ -46,10 +67,12 @@ public class VueListeJoueur extends JPanel{
 		setLayout(null);
 		setOpaque(false);
 		
+		j = new Joueur();
 		
-		panelDescription = new PanelVueListeJoueurDescription(profil.getList().get(1));
+		panelDescription = new PanelVueListeJoueurDescription(j);
 		panelDescription.setBounds(420, 50, 330, 450);
 		add(panelDescription);
+		panelDescription.setVisible(false);
 		
 		listeJoueur = new MonochromeListe<>("Joueurs enregistrés",new Vector<Joueur>(profil.getList()),new JoueurCellRenderer());
 		listeJoueur.setBounds(40, 50, 330, 450);
@@ -69,8 +92,9 @@ public class VueListeJoueur extends JPanel{
 		
 		
 		
-		
 	}
+	
+	
 	
 	
 
