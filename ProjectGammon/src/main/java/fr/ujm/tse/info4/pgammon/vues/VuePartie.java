@@ -151,7 +151,6 @@ etat=EtatSession.EN_COURS;
 
 	public void setPartie(Partie partie) {
 		this.partie = partie;
-		
 	}
 
 	public EtatSession getEtat() {

@@ -206,8 +206,8 @@ public class ControleurPartie
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				session.nouvellePartie();
-				//control
 				controleurTablier.nouvellePartie(session.getPartieEnCours());
+				vuePartie.setPartie(session.getPartieEnCours());
 				vuePartie.setEtat(EtatSession.EN_COURS);
 				session.LancerPartie();
 				
