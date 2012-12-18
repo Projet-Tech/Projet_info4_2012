@@ -17,21 +17,23 @@ import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 import fr.ujm.tse.info4.pgammon.models.Partie;
 import fr.ujm.tse.info4.pgammon.models.Tablier;
 import fr.ujm.tse.info4.pgammon.models.Tour;
+import fr.ujm.tse.info4.pgammon.vues.VuePartie;
 import fr.ujm.tse.info4.pgammon.vues.VueTablier;
 
 public class ControleurTablier {
 	private Tablier tablier;
 	private Partie partie;
 	private VueTablier vueTablier;
+	private VuePartie vuePartie;
 	private Timer timer;
 	
-	public ControleurTablier(Partie partie,VueTablier vueTablier)
+	public ControleurTablier(Partie partie,VuePartie vuePartie)
 	{
-		
-		
+
 		this.partie = partie;
 		this.tablier = partie.getTablier();
-		this.vueTablier = vueTablier;
+		this.vuePartie = vuePartie;
+		this.vueTablier = vuePartie.getVueTablier();
 		
 	
 		build();
@@ -127,9 +129,8 @@ public class ControleurTablier {
 	
 	public void changerTour() 
 	{
-	
-			partie.changerTour();
-		
+		vuePartie.afficherTransition(partie.getParametreJeu().getJoueur(partie.getJoueurEnCour()).getPseudo(), partie.getJoueurEnCour().toString());
+		partie.changerTour();
 	}
 	
 	private void buildTimer(){

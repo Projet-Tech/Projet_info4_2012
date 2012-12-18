@@ -34,7 +34,7 @@ public class ControleurPartie
 		this.partie = partie;
 		//testInitialisation();
 		vuePartie = new VuePartie(partie);
-		controleurTablier = new ControleurTablier(partie,vuePartie.getVueTablier());
+		controleurTablier = new ControleurTablier(partie,vuePartie);
 		build();
 	}
 
@@ -75,7 +75,6 @@ public class ControleurPartie
 		});
 		
 		vuePartie.getPaneldroitencours().getDices().addMouseListener(new MouseListener(){
-
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				if(partie.isTourFini())
@@ -91,32 +90,18 @@ public class ControleurPartie
 				vuePartie.getVueTablier().updateUI();
 				vuePartie.getVueTablier().updateDes();
 			}
-
 			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
+			public void mouseEntered(MouseEvent arg0) {}
 			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
+			public void mouseExited(MouseEvent arg0) {}
 			@Override
-			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
+			public void mousePressed(MouseEvent arg0) {}
 			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
+			public void mouseReleased(MouseEvent arg0) {}			
 		});
+		
+		
+		
 		
 		
 	}
