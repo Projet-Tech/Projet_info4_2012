@@ -152,6 +152,18 @@ etat=EtatSession.EN_COURS;
 		return etat;
 	}
 
+	public  void setEtat(EtatSession etat ) {
+		this.etat = etat;
+		if(etat.equals(EtatSession.EN_COURS)){
+			paneldroitencours.setVisible(true);
+			paneldroitrevoir.setVisible(false);
+		}
+		else if(etat.equals(EtatSession.TERMINEE)){
+			paneldroitencours.setVisible(false);
+			paneldroitrevoir.setVisible(true);
+		}
+	}
+	
 
 	public VueTablier getVueTablier() {
 		return vueTablier;
