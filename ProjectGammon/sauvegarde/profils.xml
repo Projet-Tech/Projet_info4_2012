@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<profils>
+  <joueurs id="2">
+    <pseudo>JOJO</pseudo>
+    <imageSource>XXXXXX</imageSource>
+    <niveauAssistant>COMPLET</niveauAssistant>
+    <statistiqueJoueur>
+      <partiejoue>5</partiejoue>
+      <nbVictoires>2</nbVictoires>
+      <nbDefaites>3</nbDefaites>
+      <nbrDePartieContreJoueur>
+        <joueurs id="4">
+          <nbrPartie>2</nbrPartie>
+        </joueurs>
+        <joueurs id="3">
+          <nbrPartie>3</nbrPartie>
+        </joueurs>
+      </nbrDePartieContreJoueur>
+      <tempsJeu>0.0</tempsJeu>
+    </statistiqueJoueur>
+  </joueurs>
+  <joueurs id="3">
+    <pseudo>FRANCON Adrien</pseudo>
+    <imageSource>Image Adrien</imageSource>
+    <niveauAssistant>COMPLET</niveauAssistant>
+    <statistiqueJoueur>
+      <partiejoue>0</partiejoue>
+      <nbVictoires>0</nbVictoires>
+      <nbDefaites>0</nbDefaites>
+      <nbrDePartieContreJoueur />
+      <tempsJeu>0.0</tempsJeu>
+    </statistiqueJoueur>
+  </joueurs>
+  <joueurs id="4">
+    <pseudo>POTHELUNE Jean-Michel</pseudo>
+    <imageSource>Image JM</imageSource>
+    <niveauAssistant>SIMPLE</niveauAssistant>
+    <statistiqueJoueur>
+      <partiejoue>0</partiejoue>
+      <nbVictoires>0</nbVictoires>
+      <nbDefaites>0</nbDefaites>
+      <nbrDePartieContreJoueur />
+      <tempsJeu>0.0</tempsJeu>
+    </statistiqueJoueur>
+  </joueurs>
+</profils>

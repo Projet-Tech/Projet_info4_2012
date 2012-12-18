@@ -9,12 +9,16 @@
 
 package fr.ujm.tse.info4.pgammon.models;
 
+import java.util.Collection;
+import java.util.Iterator;
+
+import org.jdom2.Attribute;
 import org.jdom2.Element;
 
 
 public class Joueur
 {
-	private int id;
+	private Integer id;
 	private String pseudo;
 	private String imageSource;
 	//private BitmapData image;
@@ -30,7 +34,7 @@ public class Joueur
 		stat = new StatistiqueJoueur();
 	}
 
-	public Joueur(int id,String pseudo,String imageSource,NiveauAssistant niveauAssistant)
+	public Joueur(Integer id,String pseudo,String imageSource,NiveauAssistant niveauAssistant)
 	{
 		this.id = id;
 		this.pseudo=pseudo;
@@ -39,10 +43,28 @@ public class Joueur
 		stat = new StatistiqueJoueur();
 	}
 	
-	public void sauvegarder(Element profilsElement)
+	public void sauvegarder(Element racine)
 	{
-		//TODO sauvegarder
-		throw new UnsupportedOperationException();
+		Element joueur = new Element("joueurs");
+	    racine.addContent(joueur);
+	    
+	    Attribute idJoueur = new Attribute("id",id.toString());
+	    joueur.setAttribute(idJoueur);
+	    
+		    Element pseudoJoueur = new Element("pseudo");
+		    pseudoJoueur.setText(pseudo);
+		    joueur.addContent(pseudoJoueur);
+		    
+		    Element imageSourceJoueur = new Element("imageSource");
+		    imageSourceJoueur.setText(imageSource);
+		    joueur.addContent(imageSourceJoueur);
+		    
+		    Element niveauAssistantJoueur = new Element("niveauAssistant");
+		    niveauAssistantJoueur.setText(niveauAssistant.toString());
+		    joueur.addContent(niveauAssistantJoueur);
+		    
+		    stat.sauvegarder(joueur);
+		    
 	}
 	
 	public void charger(Element joueurElement)
@@ -51,11 +73,11 @@ public class Joueur
 		throw new UnsupportedOperationException();
 	}	
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

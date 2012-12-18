@@ -12,18 +12,20 @@
 
 package fr.ujm.tse.info4.pgammon.models;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.jdom2.Attribute;
 import org.jdom2.Element;
 
 
 public class StatistiqueJoueur
 {
-	private int partiesJouees;
-	private int nbVictoires;
+	private Integer partiesJouees;
+	private Integer nbVictoires;
 	private Map<Joueur,Integer> nbrDePartieContreJoueur;
 	private float tempsJeu;
 	
@@ -76,14 +78,51 @@ public class StatistiqueJoueur
 		if(nbrDePartieContreJoueur.get(Adversaire)==null){
 			nbrDePartieContreJoueur.put(Adversaire, 1);
 		}
-		int i = nbrDePartieContreJoueur.get(Adversaire);
-		nbrDePartieContreJoueur.put(Adversaire,i+1);
+		else{
+			int i = nbrDePartieContreJoueur.get(Adversaire);
+			nbrDePartieContreJoueur.put(Adversaire,i+1);
+		}
 	}
 	
-	public void sauvegarder(Element profilsElement)
+	public void sauvegarder(Element joueur)
 	{
-		//TODO
-		throw new UnsupportedOperationException();
+		 Element statistiqueJoueur = new Element("statistiqueJoueur");
+		    joueur.addContent(statistiqueJoueur);
+		    
+			    Element partiejoueXML = new Element("partiejoue");
+			    partiejoueXML.setText(partiesJouees.toString());
+			    statistiqueJoueur.addContent(partiejoueXML);
+			    
+			    Element nbVictoiresXML = new Element("nbVictoires");
+			    nbVictoiresXML.setText(nbVictoires.toString());
+			    statistiqueJoueur.addContent(nbVictoiresXML);
+			    
+			    Element nbDefaitesXML = new Element("nbDefaites");
+			    nbDefaitesXML.setText(getNbDefaites().toString());
+			    statistiqueJoueur.addContent(nbDefaitesXML);
+			    
+			    Element nbrDePartieContreJoueurXML = new Element("nbrDePartieContreJoueur");
+			    statistiqueJoueur.addContent(nbrDePartieContreJoueurXML);
+			    
+			    Collection<Joueur> c = nbrDePartieContreJoueur.keySet();
+			    Iterator<Joueur> it = c.iterator();
+			    
+			    while(it.hasNext()) {
+			    	Joueur j = it.next();
+			    	Element joueurContre = new Element("joueurs");
+			    	nbrDePartieContreJoueurXML.addContent(joueurContre);
+				 
+				    Attribute idContre = new Attribute("id",j.getId().toString());
+				    joueurContre.setAttribute(idContre);
+				    
+				    Element nbrPartie = new Element("nbrPartie");
+				    nbrPartie.setText(nbrDePartieContreJoueur.get(j).toString());
+				    joueurContre.addContent(nbrPartie);
+		        }
+			    
+			    Element tempsJeuXML = new Element("tempsJeu");
+			    tempsJeuXML.setText(String.valueOf(tempsJeu));
+			    statistiqueJoueur.addContent(tempsJeuXML);
 	}
 	
 	public void charger(Element statistiqueJoueurElement)
@@ -106,15 +145,15 @@ public class StatistiqueJoueur
 		return nbrDePartieContreJoueur;
 	}
 
-	public int getNbDefaites() {
+	public Integer getNbDefaites() {
 		return(partiesJouees-nbVictoires);
 	}
 	
-	public int getPartiesJouees() {
+	public Integer getPartiesJouees() {
 		return partiesJouees;
 	}
 
-	public int getNbVictoires() {
+	public Integer getNbVictoires() {
 		return nbVictoires;
 	}
 	

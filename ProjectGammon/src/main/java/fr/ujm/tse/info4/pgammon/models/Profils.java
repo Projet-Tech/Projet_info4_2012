@@ -12,8 +12,14 @@
 
 package fr.ujm.tse.info4.pgammon.models;
 
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.input.SAXBuilder;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
 
 public class Profils
 {
@@ -21,7 +27,21 @@ public class Profils
 	
 	public void sauvegarder()
 	{
-		throw new UnsupportedOperationException();
+		Element racine = new Element("profils");
+		Document document = new Document(racine);
+		
+		for(int i=0;i<joueurs.size();i++){
+			joueurs.get(i).sauvegarder(racine);
+		}
+	
+		try{
+			//TOTO SECURITY
+			XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
+			sortie.output(document, new FileOutputStream("sauvegarde/profils.xml"));
+	   
+		}catch(Exception e){
+			System.out.println("Erreur d'enregistrement");
+		}
 	}
 	
 	public void charger()
