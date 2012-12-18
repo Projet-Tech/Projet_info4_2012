@@ -2,9 +2,6 @@ package fr.ujm.tse.info4.pgammon.controleur;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.IOException;
-
-import org.jdom2.JDOMException;
 
 import fr.ujm.tse.info4.pgammon.models.Profils;
 import fr.ujm.tse.info4.pgammon.vues.VueAjouterJoueur;

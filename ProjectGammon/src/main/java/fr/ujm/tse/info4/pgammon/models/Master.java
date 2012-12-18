@@ -27,12 +27,15 @@ public class Master
 	{
 		idMax= 0;
 		controleurPrincipal = new ControleurPrincipal(this);
+		listSession = new ArrayList<Session>();
 	}
-	public void lancerSession()
+	
+	public void lancerSession(ParametreJeu parametreJeu)
 	{
 		if (peutLancerSession())
 		{
-			listSession.add(new Session(idMax));
+			listSession.add(new Session(idMax,parametreJeu));
+			idMax +=1;
 		}
 			
 	}
@@ -50,7 +53,7 @@ public class Master
 	public boolean peutLancerSession()
 	{
 		//TODO gere le multi THREAD
-		if (listSession.size() !=1 )
+		if (listSession.size() != 1 )
 			return true;
 		return false;
 	}
@@ -58,9 +61,14 @@ public class Master
 	public static void main(String[] args) 
 	{
 		Master master = new Master();
-		
-		
-		
-		
+
 	}
+	
+	public Session getSession() 
+	{
+		// a modifier pour le multi THREAD
+		return listSession.get(listSession.size()-1);
+	}
+	
+	
 }
