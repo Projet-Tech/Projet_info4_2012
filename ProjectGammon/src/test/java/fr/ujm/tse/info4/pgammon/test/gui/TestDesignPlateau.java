@@ -78,6 +78,59 @@ public class TestDesignPlateau {
 			panel.add(t);
 		}
 		{
+			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.NOIR,3,3), CouleurCase.BLANC);
+			panel.add(t);
+		}
+		{
+			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.BLANC,4,4), CouleurCase.NOIR);
+			panel.add(t);
+			t.setPossible(true);
+		}
+		
+		{
+			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.NOIR,5,5), CouleurCase.BLANC);
+			panel.add(t);
+			t.setPossible(true);
+		}
+		{
+			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.BLANC,6,6), CouleurCase.NOIR,false);
+			panel.add(t);
+			t.setPossible(true);
+		}
+		{
+			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.NOIR,7,7), CouleurCase.BLANC);
+			panel.add(t);
+			t.setPossible(true);
+		}
+		{
+			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.BLANC,8,8), CouleurCase.NOIR);
+			panel.add(t);
+			t.setPossible(true);
+		}
+		{
+			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.BLANC,9,9), CouleurCase.BLANC,false);
+			
+			t.setCandidated(true);
+			panel.add(t);
+		}
+		{
+			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.NOIR,10,10), CouleurCase.NOIR);
+			panel.add(t);
+		}
+		{
+			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.NOIR,11,1), CouleurCase.BLANC);
+			panel.add(t);
+		}
+		{
+			Case c = new Case(CouleurCase.NOIR,12,12);
+			TriangleCaseButton t = new TriangleCaseButton(c, CouleurCase.NOIR);
+			panel.add(t);
+		}
+		{
+			TriangleCaseButton t = new TriangleCaseButton(new Case(CouleurCase.NOIR,0,13), CouleurCase.NOIR);
+			panel.add(t);
+		}
+		{
 			DeSixFaces dsf = new DeSixFaces(CouleurCase.BLANC,1);
 			dsf.utiliser();
 			DeButton d = new DeButton(dsf);

@@ -70,7 +70,7 @@ public class BarreCaseButton extends CaseButton {
 		if(getCase().getCouleurDame() == CouleurCase.VIDE){
 			icon = new ImageIcon();
 		}if(isPossible()){
-			icon = (getCase().getCouleurDame()==CouleurCase.BLANC)?iconeAide:iconeAide;
+			icon = (getCase().getCouleurDame()==CouleurCase.BLANC)?iconeAideBlanc:iconeAideNoir;
 		}else{
 			icon = (getCase().getCouleurDame()==CouleurCase.BLANC)?iconeBlanche:iconeNoire;
 		}

@@ -99,7 +99,7 @@ public class TriangleCaseButton extends CaseButton{
 			icon = new ImageIcon();
 		}
 		else if(isPossible()){
-			icon = iconeAide;
+			icon = (getCase().getCouleurDame()==CouleurCase.BLANC)?iconeAideBlanc:iconeAideNoir;;
 		}else{
 			icon = (getCase().getCouleurDame()==CouleurCase.BLANC)?iconeBlanche:iconeNoire;
 		}
