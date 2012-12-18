@@ -12,6 +12,7 @@
 
 package fr.ujm.tse.info4.pgammon.models;
 
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -19,14 +20,22 @@ public class Session
 {
 	private int idSession;
 	private Partie partieEnCours;
+
+
 	private Map<Joueur, Integer> scores;
 	private EtatSession etatSession;
 	private ParametreJeu parametreSession;
 	
-	public Session(int idSession)
+	public Session(int idSession,ParametreJeu parametreJeu)
 	{
 		this.idSession = idSession;
 		etatSession = EtatSession.CONFIGURATION;
+		parametreSession = parametreJeu;
+		scores = new HashMap<Joueur, Integer>();
+		scores.put(parametreSession.getJoueurBlanc(),0);
+		scores.put(parametreSession.getJoueurNoir(),0);
+		
+		partieEnCours = new Partie(parametreSession);
 	}
 	
 	private void modifierScore(Joueur j, Videau multiplicateur)
@@ -42,17 +51,17 @@ public class Session
 		throw new UnsupportedOperationException();
 	}
 	
+	public void LancerPartie()
+	{
+		partieEnCours.LancerPartie();
+	}
+	
 	public void finPartie()
 	{
 		//TODO
 		throw new UnsupportedOperationException();
 	}
 	
-	public Partie lancerPartie()
-	{
-		//TODO
-		throw new UnsupportedOperationException();
-	}
 	
 	public void setJoueurBlanc(Joueur j)
 	{
@@ -94,6 +103,11 @@ public class Session
 	public int getIdSession() {
 		return idSession;
 	}
+	
+	public Partie getPartieEnCours() {
+		return partieEnCours;
+	}
+
 
 
 }

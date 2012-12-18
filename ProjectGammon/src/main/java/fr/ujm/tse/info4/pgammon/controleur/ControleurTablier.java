@@ -7,6 +7,8 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.SortedSet;
+import java.util.concurrent.ConcurrentSkipListSet;
 
 import javax.swing.Timer;
 
@@ -39,14 +41,19 @@ public class ControleurTablier {
 		build();
 			vueTablier.updateDes();
 		vuePartie.afficherTransition(partie.getParametreJeu().getJoueur(partie.getJoueurEnCour()).getPseudo(), "Joueur" + partie.getJoueurEnCour().toString());
-			
+		
 	}
 
 
 	private void build() {
 			
 		buildTimer();
+		ListenerCaseButton();
 		
+	}
+	
+	private void ListenerCaseButton()
+	{
 		Collection<CaseButton> lCase = vueTablier.getCasesButtons();
 		for (CaseButton caseButton : lCase) {
 			caseButton.addMouseListener(new MouseListener() {
@@ -78,7 +85,16 @@ public class ControleurTablier {
 								if (partie.siDesUtilises())
 								{	
 									//TODO affichage changement de Tour
-									changerTour();			
+									changerTour();	
+									if(partie.isPartieFini())
+									{
+										SortedSet<String> hs = new ConcurrentSkipListSet<>();
+										//hs.add("Non");
+										//hs.add("Oui");
+	
+										hs.add("Peut-etre");
+										vuePartie.afficherFenetreDemande("Ca va?", hs);
+									}
 								}
 								else if(!partie.hasCoupPossible())
 								{
@@ -117,6 +133,9 @@ public class ControleurTablier {
 			
 		}
 	}
+	
+	
+	
 	
 	public void changerTour() 
 	{

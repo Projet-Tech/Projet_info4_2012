@@ -11,24 +11,25 @@ package fr.ujm.tse.info4.pgammon.controleur;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-
-import javax.security.auth.callback.LanguageCallback;
+import java.util.SortedSet;
+import java.util.concurrent.ConcurrentSkipListSet;
 
 import fr.ujm.tse.info4.pgammon.models.Case;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 import fr.ujm.tse.info4.pgammon.models.Partie;
-import fr.ujm.tse.info4.pgammon.models.Tablier;
+import fr.ujm.tse.info4.pgammon.models.Session;
 import fr.ujm.tse.info4.pgammon.vues.VuePartie;
-import fr.ujm.tse.info4.pgammon.vues.VueTablier;
 
 
 public class ControleurPartie
 {
+	private Session session;
 	private Partie partie;
 	private VuePartie vuePartie;
 	private ControleurTablier controleurTablier;
 	
+	//Ce constructeur seras detruit
 	public  ControleurPartie(Partie partie)
 	{
 		
@@ -38,8 +39,27 @@ public class ControleurPartie
 		build();
 		controleurTablier = new ControleurTablier(partie,vuePartie);
 	}
+	
+	public  ControleurPartie(Session session)
+	{
+		this.session =session;
+		this.partie = this.session.getPartieEnCours();
+		//testInitialisation();
+		vuePartie = new VuePartie(partie);
+		build();
+		controleurTablier = new ControleurTablier(partie,vuePartie);
+	}
 
 	private void build() {
+		listenerBack();
+		listenerLancerDe();
+		listenerGetCoupPossibleJoueur1();
+		listenerGetCoupPossibleJoueur2();
+		listenerButtonVideau();
+	}
+	
+	public void listenerBack()
+	{
 		vuePartie.getPaneldroitencours().getBack().addMouseListener(new MouseListener(){
 
 			@Override
@@ -58,7 +78,10 @@ public class ControleurPartie
 			public void mouseReleased(MouseEvent arg0) {}
 			
 		});
-		
+	}
+	
+	public void listenerLancerDe()
+	{
 		vuePartie.getPaneldroitencours().getDices().addMouseListener(new MouseListener(){
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -84,7 +107,10 @@ public class ControleurPartie
 			@Override
 			public void mouseReleased(MouseEvent arg0) {}			
 		});
-		
+	}
+	
+	public void listenerGetCoupPossibleJoueur1()
+	{
 		vuePartie.getPaneljoueur1().getCouppossible().addMouseListener(new MouseListener() {
 
 			@Override
@@ -104,7 +130,9 @@ public class ControleurPartie
 			@Override
 			public void mouseReleased(MouseEvent arg0) {}
 		});
-		
+	}
+	public void listenerGetCoupPossibleJoueur2()
+	{
 		vuePartie.getPaneljoueur2().getCouppossible().addMouseListener(new MouseListener() {
 
 			@Override
@@ -124,11 +152,32 @@ public class ControleurPartie
 			@Override
 			public void mouseReleased(MouseEvent arg0) {}
 		});
+	}
+	public void listenerButtonVideau()
+	{
+		vuePartie.getPaneldroitencours().getVideau().addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				SortedSet<String> hs = new ConcurrentSkipListSet<>();
+				hs.add("Non");
+				hs.add("Oui");
+				vuePartie.afficherFenetreDemande("Accepter vous le videau", hs);
+			}
+			@Override
+			public void mouseEntered(MouseEvent arg0) {}
+			@Override
+			public void mouseExited(MouseEvent arg0) {}
+			@Override
+			public void mousePressed(MouseEvent arg0) {}
+			@Override
+			public void mouseReleased(MouseEvent arg0) {}
+		});
 		
+			
 		
 		
 	}
-	
 	public Partie getPartie() {
 		return partie;
 	}

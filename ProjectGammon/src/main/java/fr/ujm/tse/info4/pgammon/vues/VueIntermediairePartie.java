@@ -2,6 +2,8 @@ package fr.ujm.tse.info4.pgammon.vues;
 
 import javax.swing.JPanel;
 
+import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
+
 public class VueIntermediairePartie extends JPanel{
 	private static final long serialVersionUID = -8524922151654361657L;
 	
@@ -9,6 +11,11 @@ public class VueIntermediairePartie extends JPanel{
 	private VueChargerPartie vueChargerPartie;
 	
 	private Boolean fenetreAAfficher;
+	
+	private MonochromeButton boutonReprendre;
+	private MonochromeButton boutonRetour;
+	
+	private MonochromeButton boutonNouvellePartie;
 	
 	
 	//pasage de parametre de booleen pour savoir quelle fenetre afficher
@@ -31,6 +38,18 @@ public class VueIntermediairePartie extends JPanel{
 		vueChargerPartie.setBounds(0, 0, 800, 600);
 		add(vueChargerPartie);
 		
+		boutonRetour = new MonochromeButton("Retour");
+		boutonRetour.setBounds(500, 10, 200, 50);
+		add(boutonRetour);
+		
+		boutonReprendre = new MonochromeButton("Reprendre");
+		boutonReprendre.setBounds(300, 10, 200, 50);
+		add(boutonReprendre);
+		
+		boutonNouvellePartie = new MonochromeButton("Nouvelle partie");
+		boutonNouvellePartie.setBounds(150, 10, 200, 50);
+		add(boutonNouvellePartie);
+		
 		
 		if(fenetreAAfficher == true){
 			vueNouvelleSession.setVisible(true);
@@ -49,6 +68,10 @@ public class VueIntermediairePartie extends JPanel{
 
 	public VueChargerPartie getVueChargerPartie() {
 		return vueChargerPartie;
+	}
+
+	public MonochromeButton getBoutonRetour() {
+		return boutonRetour;
 	}
 
 	

@@ -17,6 +17,8 @@ import java.awt.event.MouseListener;
 import javax.swing.JFrame;
 
 import fr.ujm.tse.info4.pgammon.models.Master;
+import fr.ujm.tse.info4.pgammon.models.ParametreJeu;
+import fr.ujm.tse.info4.pgammon.models.Session;
 import fr.ujm.tse.info4.pgammon.vues.VueIntermediairePartie;
 import fr.ujm.tse.info4.pgammon.vues.VueMenu;
 
@@ -57,8 +59,7 @@ public class ControleurPrincipal {
 	 * 
 	 * listenerButtonNouvellePartie
 	 * 
-	 */
-	
+	 */	
 	private void listenerButtonNouvellePartie()
 	{
 		vueMenu.getBoutonNouvellePartie().addMouseListener(new MouseListener() {
@@ -151,5 +152,16 @@ public class ControleurPrincipal {
 		vueMenu = new VueMenu();
 		frame.setContentPane(vueMenu);
 		build();
+	}
+	
+	public void nouvelleSession(ParametreJeu parametreJeu)
+	{
+		master.lancerSession(parametreJeu);
+		Session s1 = master.getSession();
+		s1.LancerPartie();
+		ControleurPartie controleurPartie = new ControleurPartie(s1.getPartieEnCours());
+		
+		frame.setContentPane(controleurPartie.getVuePartie());
+		
 	}
 }

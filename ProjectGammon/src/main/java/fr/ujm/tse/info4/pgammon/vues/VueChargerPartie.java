@@ -8,12 +8,28 @@ import java.awt.Paint;
 import java.awt.RadialGradientPaint;
 import java.awt.RenderingHints;
 import java.awt.geom.Point2D;
+import java.util.Vector;
 
 import javax.swing.JPanel;
+
+import fr.ujm.tse.info4.pgammon.gui.JoueurCellRenderer;
+import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
+import fr.ujm.tse.info4.pgammon.gui.MonochromeListe;
+import fr.ujm.tse.info4.pgammon.models.Joueur;
+import fr.ujm.tse.info4.pgammon.models.Profils;
+import fr.ujm.tse.info4.pgammon.models.Session;
 
 public class VueChargerPartie extends JPanel{
 
 	private static final long serialVersionUID = 2698819973936287585L;
+	
+	private MonochromeButton boutonCommencer;
+	
+	private Session session;
+	
+	private MonochromeListe<Session>  sessions;
+	
+	private PanelParametresVueCharger panelParametresVueCharger;
 	
 	public VueChargerPartie(){
 		
@@ -21,7 +37,25 @@ public class VueChargerPartie extends JPanel{
 	}
 
 	private void build() {
-		setLayout(null);		
+		setLayout(null);	
+		setOpaque(false);
+		
+		panelParametresVueCharger = new PanelParametresVueCharger();
+		panelParametresVueCharger.setBounds(450, 80, 300, 400);
+		add(panelParametresVueCharger);
+		
+		
+		//il faut que j'ajoute les sessions
+		
+		//sessions = new MonochromeListe<>("Parties enregistrées",new Vector<Session>(session.ge),new SessionCellRenderer());
+		//sessions.setBounds(40, 50, 330, 450);
+		//add(sessions);
+		
+		
+		boutonCommencer = new MonochromeButton("Commencer");
+		boutonCommencer.setBounds(300, 520, 200, 50);
+		add(boutonCommencer);
+		
 	}
 	
 	@Override
