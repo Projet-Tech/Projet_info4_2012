@@ -48,7 +48,7 @@ public class TestTransition {
 
 		hs.add("Peut-etre");
 
-		vue.afficherFenetreDemande("aa", hs);
+		vue.afficherFenetreDemande("Ca va?", hs);
 		
 		frame.setVisible(true);
 	}

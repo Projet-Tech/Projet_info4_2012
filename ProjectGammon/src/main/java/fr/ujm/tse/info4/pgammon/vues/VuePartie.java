@@ -202,7 +202,7 @@ etat=EtatSession.EN_COURS;
 	}
 	
 	public FenetreDemandeAnimationBase afficherFenetreDemande(String titre,SortedSet<String> reponses){
-		FenetreDemandeAnimationBase fenetreDemande = new FenetreDemandeAnimationBase(titre,"",reponses);
+		FenetreDemandeAnimationBase fenetreDemande = new FenetreDemandeAnimationBase(titre,titre,reponses);
 		setAnimation(fenetreDemande);
 		fenetreDemande.start();
 		return fenetreDemande;
