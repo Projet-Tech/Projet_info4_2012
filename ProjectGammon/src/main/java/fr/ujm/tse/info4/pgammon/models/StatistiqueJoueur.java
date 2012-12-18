@@ -125,10 +125,11 @@ public class StatistiqueJoueur
 			    statistiqueJoueur.addContent(tempsJeuXML);
 	}
 	
-	public void charger(Element statistiqueJoueurElement)
+	public void charger(Element it)
 	{
-		//TODO
-		throw new UnsupportedOperationException();
+		partiesJouees = Integer.valueOf(it.getChildText("partiejoue"));
+		nbVictoires = Integer.valueOf(it.getChildText("nbVictoires"));
+		tempsJeu = Float.valueOf(it.getChildText("tempsJeu"));
 	}
 
 	/**

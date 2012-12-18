@@ -9,9 +9,6 @@
 
 package fr.ujm.tse.info4.pgammon.models;
 
-import java.util.Collection;
-import java.util.Iterator;
-
 import org.jdom2.Attribute;
 import org.jdom2.Element;
 
@@ -67,10 +64,19 @@ public class Joueur
 		    
 	}
 	
-	public void charger(Element joueurElement)
+	public void charger(Element it)
 	{
-		//TODO charger
-		throw new UnsupportedOperationException();
+		id = Integer.valueOf(it.getAttributeValue("id"));
+		pseudo = it.getChildText("pseudo");;
+		imageSource = it.getChildText("imageSource");
+		switch(it.getChildText("niveauAssistant")){
+			
+			case "NON_UTILISE":niveauAssistant = NiveauAssistant.NON_UTILISE;
+			case "SIMPLE":niveauAssistant = NiveauAssistant.SIMPLE;
+			case "COMPLET":niveauAssistant = NiveauAssistant.COMPLET;
+			
+		}
+		stat.charger(it.getChild("statistiqueJoueur"));
 	}	
 	
 	public Integer getId() {
