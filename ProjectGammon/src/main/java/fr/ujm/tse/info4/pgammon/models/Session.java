@@ -13,29 +13,30 @@
 package fr.ujm.tse.info4.pgammon.models;
 
 import java.util.HashMap;
-import java.util.Map;
 
 
 public class Session
 {
 	private int idSession;
+	private int idMaxPartie;
 	private Partie partieEnCours;
 
-
-	private Map<Joueur, Integer> scores;
+	private Joueur JoueurGagnantSession;
+	private HashMap<Joueur, Integer> scores;
 	private EtatSession etatSession;
 	private ParametreJeu parametreSession;
 	
 	public Session(int idSession,ParametreJeu parametreJeu)
 	{
 		this.idSession = idSession;
+		idMaxPartie=1;
 		etatSession = EtatSession.CONFIGURATION;
 		parametreSession = parametreJeu;
 		scores = new HashMap<Joueur, Integer>();
 		scores.put(parametreSession.getJoueurBlanc(),0);
 		scores.put(parametreSession.getJoueurNoir(),0);
-		
-		partieEnCours = new Partie(parametreSession);
+		JoueurGagnantSession =null;
+		nouvellePartie();
 	}
 	
 	private void modifierScore(Joueur j, Videau multiplicateur)
@@ -50,6 +51,24 @@ public class Session
 		//TODO
 		throw new UnsupportedOperationException();
 	}
+	private void finSession()
+	{
+		JoueurGagnantSession.getStat().ajouterVictoire();
+		
+		if (JoueurGagnantSession == parametreSession.getJoueurBlanc())
+			parametreSession.getJoueurNoir().getStat().ajouterDefaite();
+		else
+			parametreSession.getJoueurBlanc().getStat().ajouterDefaite();
+	
+	}
+	
+	public void nouvellePartie()
+	{
+		idMaxPartie ++;
+		partieEnCours = new Partie(idMaxPartie,parametreSession);
+	}
+	
+	
 	
 	public void LancerPartie()
 	{
@@ -58,34 +77,27 @@ public class Session
 	
 	public void finPartie()
 	{
-		//TODO
-		throw new UnsupportedOperationException();
+		int videau = partieEnCours.getVideau().getvideau();
+		CouleurCase CouleurVictorieuse = partieEnCours.getJoueurEnCour();	
+		scores.put(parametreSession.getJoueur(CouleurVictorieuse),scores.get(parametreSession.getJoueur(CouleurVictorieuse))+videau);
 	}
 	
-	
-	public void setJoueurBlanc(Joueur j)
-	{
-		//TODO
-		throw new UnsupportedOperationException();
-	}
-	
-	public void setJoueurNoir(Joueur j)
-	{
-		//TODO
-		throw new UnsupportedOperationException();
-	}
-	
-	public void inverserCouleur()
-	{
-		//TODO
-		throw new UnsupportedOperationException();
-	}
 	
 	public void verifFinSession()
 	{
-		//TODO
-		throw new UnsupportedOperationException();
+		if(scores.get(parametreSession.getJoueurBlanc()) >= parametreSession.getNbrPartieGagnante())
+		{
+			etatSession = EtatSession.TERMINEE;
+			JoueurGagnantSession = parametreSession.getJoueurBlanc();
+		}
+		else if(scores.get(parametreSession.getJoueurNoir()) >= parametreSession.getNbrPartieGagnante())
+		{
+			etatSession = EtatSession.TERMINEE;
+			JoueurGagnantSession = parametreSession.getJoueurBlanc();
+		}
 	}
+	
+	
 	
 	public void sauvegarder()
 	{
@@ -108,6 +120,17 @@ public class Session
 		return partieEnCours;
 	}
 
+	public Joueur getJoueurGagnantSession() {
+		return JoueurGagnantSession;
+	}
+	
+	public boolean isSessionFini()
+	{
+		if (JoueurGagnantSession == null)
+			return false;
+		else
+			return true;
+	}
 
 
 }

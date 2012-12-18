@@ -10,12 +10,15 @@
 package fr.ujm.tse.info4.pgammon.controleur;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.SortedSet;
 import java.util.concurrent.ConcurrentSkipListSet;
 
 import fr.ujm.tse.info4.pgammon.models.Case;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
+import fr.ujm.tse.info4.pgammon.models.EtatSession;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 import fr.ujm.tse.info4.pgammon.models.Partie;
 import fr.ujm.tse.info4.pgammon.models.Session;
@@ -25,15 +28,16 @@ import fr.ujm.tse.info4.pgammon.vues.VuePartie;
 public class ControleurPartie
 {
 	private Session session;
-	private Partie partie;
 	private VuePartie vuePartie;
 	private ControleurTablier controleurTablier;
+	private ControleurPartie controleurPartie;
 	
-	//Ce constructeur seras detruit
+	//TODO Ce constructeur seras detruit
 	public  ControleurPartie(Partie partie)
 	{
 		
-		this.partie = partie;
+		
+		controleurPartie = this;
 		//testInitialisation();
 		vuePartie = new VuePartie(partie);
 		build();
@@ -42,12 +46,12 @@ public class ControleurPartie
 	
 	public  ControleurPartie(Session session)
 	{
-		this.session =session;
-		this.partie = this.session.getPartieEnCours();
+		this.session = session;
+	
 		//testInitialisation();
-		vuePartie = new VuePartie(partie);
+		vuePartie = new VuePartie(session.getPartieEnCours());
 		build();
-		controleurTablier = new ControleurTablier(partie,vuePartie);
+		controleurTablier = new ControleurTablier(session.getPartieEnCours(),vuePartie);
 	}
 
 	private void build() {
@@ -56,6 +60,17 @@ public class ControleurPartie
 		listenerGetCoupPossibleJoueur1();
 		listenerGetCoupPossibleJoueur2();
 		listenerButtonVideau();
+		listenerPartieSuivante();
+		
+		vuePartie.getPaneldroitencours().addPropertyChangeListener(new PropertyChangeListener() {
+			
+			@Override
+			public void propertyChange(PropertyChangeEvent arg0) {
+				if (session != null)
+					if (session.getPartieEnCours().isPartieFini())
+						session.finPartie();
+			}
+		});
 	}
 	
 	public void listenerBack()
@@ -64,7 +79,7 @@ public class ControleurPartie
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				partie.annulerDernierCoup();
+				session.getPartieEnCours().annulerDernierCoup();
 				vuePartie.updateUI();
 				vuePartie.getVueTablier().updateDes();
 			}
@@ -85,10 +100,10 @@ public class ControleurPartie
 		vuePartie.getPaneldroitencours().getDices().addMouseListener(new MouseListener(){
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				if(partie.isTourFini())
+				if(session.getPartieEnCours().isTourFini() && !session.getPartieEnCours().isPartieFini())
 				{
-					partie.lancerDes();
-					if(!partie.hasCoupPossible())
+					session.getPartieEnCours().lancerDes();
+					if(!session.getPartieEnCours().hasCoupPossible())
 					{
 						//TODO affichage plus de coup possible
 						controleurTablier.changerTour();
@@ -115,10 +130,10 @@ public class ControleurPartie
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				if(partie.getParametreJeu().getJoueurBlanc().getNiveauAssistant() == NiveauAssistant.NON_UTILISE )
-					partie.getParametreJeu().getJoueurBlanc().setNiveauAssistant(NiveauAssistant.SIMPLE);
+				if(session.getPartieEnCours().getParametreJeu().getJoueurBlanc().getNiveauAssistant() == NiveauAssistant.NON_UTILISE )
+					session.getPartieEnCours().getParametreJeu().getJoueurBlanc().setNiveauAssistant(NiveauAssistant.SIMPLE);
 				else
-					partie.getParametreJeu().getJoueurBlanc().setNiveauAssistant(NiveauAssistant.NON_UTILISE);
+					session.getPartieEnCours().getParametreJeu().getJoueurBlanc().setNiveauAssistant(NiveauAssistant.NON_UTILISE);
 				vuePartie.getPaneljoueur1().updateData();
 			}
 			@Override
@@ -137,10 +152,10 @@ public class ControleurPartie
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				if(partie.getParametreJeu().getJoueurNoir().getNiveauAssistant() == NiveauAssistant.NON_UTILISE )
-					partie.getParametreJeu().getJoueurNoir().setNiveauAssistant(NiveauAssistant.SIMPLE);
+				if(session.getPartieEnCours().getParametreJeu().getJoueurNoir().getNiveauAssistant() == NiveauAssistant.NON_UTILISE )
+					session.getPartieEnCours().getParametreJeu().getJoueurNoir().setNiveauAssistant(NiveauAssistant.SIMPLE);
 				else
-					partie.getParametreJeu().getJoueurNoir().setNiveauAssistant(NiveauAssistant.NON_UTILISE);
+					session.getPartieEnCours().getParametreJeu().getJoueurNoir().setNiveauAssistant(NiveauAssistant.NON_UTILISE);
 				vuePartie.getPaneljoueur2().updateData();
 			}
 			@Override
@@ -173,14 +188,38 @@ public class ControleurPartie
 			@Override
 			public void mouseReleased(MouseEvent arg0) {}
 		});
-		
+
+	}
+	
+	public void listenerPartieSuivante()
+	{
+		vuePartie.getPaneldroitrevoir().getNext().addMouseListener(new MouseListener() {
 			
-		
-		
+			@Override
+			public void mouseReleased(MouseEvent arg0) {}		
+			@Override
+			public void mousePressed(MouseEvent arg0) {}		
+			@Override
+			public void mouseExited(MouseEvent arg0) {}		
+			@Override
+			public void mouseEntered(MouseEvent arg0) {}		
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				session.nouvellePartie();
+				controleurTablier.nouvellePartie(session.getPartieEnCours());
+				vuePartie.setPartie(session.getPartieEnCours());
+				vuePartie.setEtat(EtatSession.EN_COURS);
+				session.LancerPartie();
+				
+			}
+		});
 	}
+	
+	
 	public Partie getPartie() {
-		return partie;
+		return session.getPartieEnCours();
 	}
+	
 
 	public VuePartie getVuePartie() {
 		return vuePartie;
@@ -218,17 +257,17 @@ public class ControleurPartie
 		lCase.add(new Case(CouleurCase.BLANC, 3, 23));
 		lCase.add(new Case(CouleurCase.BLANC, 3, 24));
 
-		partie.getTablier().initialiserCase(lCase);
+		session.getPartieEnCours().getTablier().initialiserCase(lCase);
 		
 		lCase = new ArrayList<Case>();
 		lCase.add(new Case(CouleurCase.BLANC, 0, 25));
 		lCase.add(new Case(CouleurCase.NOIR, 0, 0));
-		partie.getTablier().initialiserCaseVictoire(lCase);
+		session.getPartieEnCours().getTablier().initialiserCaseVictoire(lCase);
 		
 		lCase = new ArrayList<Case>();
 		lCase.add(new Case(CouleurCase.BLANC, 2, 0));
 		lCase.add(new Case(CouleurCase.NOIR, 0, 25));
-		partie.getTablier().initialiserCaseBarre(lCase);
+		session.getPartieEnCours().getTablier().initialiserCaseBarre(lCase);
 		
 	}
 	

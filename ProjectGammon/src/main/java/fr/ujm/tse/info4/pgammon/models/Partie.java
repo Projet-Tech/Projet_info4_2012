@@ -26,7 +26,6 @@ public class Partie {
 	private CouleurCase joueurEnCour;
 	private ArrayList<Tour> historiqueToursJoueur;
 	private int idPartie;
-	private Timer timerTour;
 	private boolean partieFini;
 	private boolean tourFini;
 	private int deUtiliser;
@@ -37,7 +36,7 @@ public class Partie {
 		videau = new Videau();
 		statistique = new StatistiquePartie();
 		historiqueToursJoueur = new ArrayList<Tour>();
-		timerTour = new Timer();
+		
 		deSixFaces = new ArrayList<DeSixFaces>();
 		
 		//ces variables permet de connaitre l'état de la partie
@@ -53,7 +52,6 @@ public class Partie {
 		videau = new Videau();
 		statistique = new StatistiquePartie();
 		historiqueToursJoueur = new ArrayList<Tour>();
-		timerTour = new Timer();
 		deSixFaces = new ArrayList<DeSixFaces>();
 		
 		//ces variables permet de connaitre l'état de la partie
@@ -63,6 +61,8 @@ public class Partie {
 
 
 	public void LancerPartie() {
+		
+		partieFini = false;
 		choixPremierJoueurLancementPartie();
 		//lancerDes();
 		
@@ -94,12 +94,9 @@ public class Partie {
 	}
 
 	public void finPartie() {
-		System.out.println("le joueur "+joueurEnCour + " a gagnée");
-		partieFini=true;
+		//System.out.println("le joueur "+joueurEnCour + " a gagnée");
+			partieFini=true;
 		
-			parametreJeu.getJoueur(joueurEnCour).getStat().ajouterVictoire();
-			parametreJeu.getAdversaireJoueur(joueurEnCour).getStat().ajouterDefaite();
-
 	}
 
 	
@@ -478,13 +475,6 @@ public class Partie {
 		this.idPartie = idPartie;
 	}
 
-	public Timer getTimerTour() {
-		return timerTour;
-	}
-
-	public void setTimerTour(Timer timerTour) {
-		this.timerTour = timerTour;
-	}
 
 	public boolean isPartieFini() {
 		return partieFini;
