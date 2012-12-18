@@ -26,7 +26,6 @@ public class ControleurPrincipal {
 	private Master master;
 	private JFrame frame;
 	private VueIntermediairePartie creationPartie;
-	private ControleurIntermediairePartie controleurIntermediairePartie;
 	private ControleurPrincipal controleurPrincipal;
 	
 	public ControleurPrincipal(Master master) {
@@ -51,6 +50,7 @@ public class ControleurPrincipal {
 		listenerButtonQuitter();
 		listenerButtonNouvellePartie();
 		listenerButtonReprendrePartie();
+		listenerButtonAjouter();
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class ControleurPrincipal {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				vueMenu.setVisible(false);
-				controleurIntermediairePartie = new ControleurIntermediairePartie(true,controleurPrincipal);	
+				ControleurIntermediairePartie controleurIntermediairePartie = new ControleurIntermediairePartie(true,controleurPrincipal);	
 			}
 		});
 	}
@@ -94,7 +94,26 @@ public class ControleurPrincipal {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				vueMenu.setVisible(false);
-				controleurIntermediairePartie = new ControleurIntermediairePartie(false,controleurPrincipal);
+				ControleurIntermediairePartie	controleurIntermediairePartie = new ControleurIntermediairePartie(false,controleurPrincipal);
+			}
+		});
+	}
+	private void listenerButtonAjouter()
+	{
+		vueMenu.getBoutonAjouter().addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}		
+			@Override
+			public void mouseExited(MouseEvent e) {}			
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				vueMenu.setVisible(false);
+				ControleurListeJoueur controleurListeJoueur = new ControleurListeJoueur(controleurPrincipal);	
 			}
 		});
 	}
