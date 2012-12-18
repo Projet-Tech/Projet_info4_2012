@@ -33,11 +33,18 @@ public class VuePartie extends JPanel{
 	
 	
 	
+	
 	private PanelTermineVueDroite paneldroitrevoir;
 	
 	private PanelEnCoursVueDroite paneldroitencours;
 	
 	private PanelEnCoursVueBas panelEnCoursVueBas;
+	
+	private PanelTermineVueBas panelTermineVueBas;
+	
+	private PanelJoueurVuePartie paneljoueur1;
+	private PanelJoueurVuePartie paneljoueur2;
+	
 	
 	
 	public VuePartie(Partie partie) {
@@ -53,6 +60,8 @@ public class VuePartie extends JPanel{
 		setLayout(null);
 		vueTablier.setBounds(173, 30, 547, 446);
 		add(vueTablier);
+		
+		
 		
 		//
 		//
@@ -73,6 +82,14 @@ public class VuePartie extends JPanel{
 		paneldroitrevoir.setBounds(720,0,80,476);
 		add(paneldroitrevoir);
 		
+		paneljoueur1 = new PanelJoueurVuePartie(partie.getParametreJeu().getJoueurBlanc(), CouleurCase.BLANC);
+		paneljoueur1.setBounds(10, 30, 150, 210);
+		add(paneljoueur1);
+		
+		
+		paneljoueur2 = new PanelJoueurVuePartie(partie.getParametreJeu().getJoueurNoir(), CouleurCase.NOIR);
+		paneljoueur2.setBounds(10, 260, 150, 215);
+		add(paneljoueur2);
 		
 		
 		//changement des panels en fonctionde l'etat
@@ -143,6 +160,20 @@ etat=EtatSession.EN_COURS;
 
 	public void setPaneldroitrevoir(PanelTermineVueDroite paneldroitrevoir) {
 		this.paneldroitrevoir = paneldroitrevoir;
+	}
+	
+	
+
+	public PanelTermineVueBas getPanelTermineVueBas() {
+		return panelTermineVueBas;
+	}
+
+	public PanelJoueurVuePartie getPaneljoueur1() {
+		return paneljoueur1;
+	}
+
+	public PanelJoueurVuePartie getPaneljoueur2() {
+		return paneljoueur2;
 	}
 
 	@Override
