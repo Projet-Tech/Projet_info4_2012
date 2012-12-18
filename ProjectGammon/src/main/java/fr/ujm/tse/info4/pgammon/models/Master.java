@@ -14,15 +14,19 @@ package fr.ujm.tse.info4.pgammon.models;
 
 import java.util.ArrayList;
 
+import fr.ujm.tse.info4.pgammon.controleur.ControleurPrincipal;
+
 
 public class Master
 {
 	private int idMax;
 	private ArrayList<Session> listSession;
+	private ControleurPrincipal controleurPrincipal;
 	
 	public Master()
 	{
 		idMax= 0;
+		controleurPrincipal = new ControleurPrincipal(this);
 	}
 	public void lancerSession()
 	{
@@ -51,11 +55,12 @@ public class Master
 		return false;
 	}
 	
-	public static void main()
+	public static void main(String[] args) 
 	{
 		Master master = new Master();
 		
-
+		
+		
 		
 	}
 }
