@@ -63,7 +63,7 @@ public class MonochromeButton extends JButton {
 		Graphics2D g2 = (Graphics2D) g.create(); 
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); 
     	g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
-
+ 
 		int h = getHeight(); 
 		int w = getWidth(); 
 		

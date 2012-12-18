@@ -1,7 +1,86 @@
 package fr.ujm.tse.info4.pgammon.gui;
 
-public class ImageAvatar {
-	public enum aa{
-		
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Paint;
+import java.awt.RenderingHints;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import fr.ujm.tse.info4.pgammon.gui.MonochromeIconButton.Size;
+
+public class ImageAvatar extends JButton{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8469198767397141845L;
+	public static final String AVATAR_PATH = "images/avatars/";
+	private Avatar avatar;
+	
+
+	public ImageAvatar(Avatar avatar){
+		setEnabled(false);
+		this.setAvatar(avatar); 
+		setOpaque(false);
 	}
+	
+	public ImageAvatar(Avatar avatar,boolean isButton){
+		setEnabled(isButton);
+		this.setAvatar(avatar); 
+		setOpaque(false);
+	}
+
+	
+    @Override
+    protected void paintComponent(Graphics g) {
+		Graphics2D g2 = (Graphics2D) g.create(); 
+		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); 
+		Paint p;
+		
+		int tailleBordure = 3;
+		int h = getHeight(); 
+		int w = getWidth(); 
+		
+		int iconW = avatar.getIcon().getImage().getWidth(null);
+		int iconH = avatar.getIcon().getImage().getHeight(null);
+		
+		double scaleX = 0, scaleY = 0;
+		if(iconW != 2*tailleBordure && iconH != 2*tailleBordure){
+			scaleX = (double)h/(double)(iconW-2*tailleBordure);
+			scaleY = (double)w/(double)(iconH-2*tailleBordure);
+		}
+		
+		
+		// Icone
+		AffineTransform at = new AffineTransform(scaleX,0,0,scaleY, tailleBordure,tailleBordure);
+		g2.drawImage(avatar.getIcon().getImage(),at,this);
+		
+		// Bordure
+		p = new Color(0xEEEEEE);
+		g2.setStroke(new BasicStroke(2*tailleBordure));
+		g2.setPaint(p); 
+		g2.drawRect(0, 0, w-1 , h-1);
+		
+		g2.dispose();
+    }
+    
+
+	public Avatar getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(Avatar avatar) {
+		this.avatar = avatar;
+	}
+	
+	
 }
