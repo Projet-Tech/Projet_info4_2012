@@ -12,27 +12,36 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
-import javax.security.auth.callback.LanguageCallback;
-
 import fr.ujm.tse.info4.pgammon.models.Case;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 import fr.ujm.tse.info4.pgammon.models.Partie;
-import fr.ujm.tse.info4.pgammon.models.Tablier;
+import fr.ujm.tse.info4.pgammon.models.Session;
 import fr.ujm.tse.info4.pgammon.vues.VuePartie;
-import fr.ujm.tse.info4.pgammon.vues.VueTablier;
 
 
 public class ControleurPartie
 {
+	private Session session;
 	private Partie partie;
 	private VuePartie vuePartie;
 	private ControleurTablier controleurTablier;
 	
+	//Ce constructeur seras detruit
 	public  ControleurPartie(Partie partie)
 	{
 		
 		this.partie = partie;
+		//testInitialisation();
+		vuePartie = new VuePartie(partie);
+		build();
+		controleurTablier = new ControleurTablier(partie,vuePartie);
+	}
+	
+	public  ControleurPartie(Session session)
+	{
+		this.session =session;
+		this.partie = this.session.getPartieEnCours();
 		//testInitialisation();
 		vuePartie = new VuePartie(partie);
 		build();
