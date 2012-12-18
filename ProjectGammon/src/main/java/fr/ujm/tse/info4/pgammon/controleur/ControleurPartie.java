@@ -34,8 +34,8 @@ public class ControleurPartie
 		this.partie = partie;
 		//testInitialisation();
 		vuePartie = new VuePartie(partie);
-		controleurTablier = new ControleurTablier(partie,vuePartie);
 		build();
+		controleurTablier = new ControleurTablier(partie,vuePartie);
 	}
 
 	private void build() {

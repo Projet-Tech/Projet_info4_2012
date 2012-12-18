@@ -1,13 +1,15 @@
 package fr.ujm.tse.info4.pgammon.gui;
 
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.Timer;
 
 import javax.swing.JPanel;
 
-public abstract class TranstionAnimeeBase extends JPanel implements ActionListener {
+public class TranstionAnimeeBase extends JButton implements ActionListener {
 	
 	private static final long serialVersionUID = 8608824468305555276L;
 	protected int duree;
@@ -18,6 +20,7 @@ public abstract class TranstionAnimeeBase extends JPanel implements ActionListen
 	protected int value;
 	
 	public TranstionAnimeeBase(int interval, int duree) {
+		TranstionAnimeeBase aa = new TranstionAnimeeBase(interval);
 		this.duree = duree;
 		this.interval = interval;
 		timer = new Timer(interval, this);
@@ -33,12 +36,17 @@ public abstract class TranstionAnimeeBase extends JPanel implements ActionListen
 	public void actionPerformed(ActionEvent e) {
 		value+=interval;
 		repaint();
-		if(value > duree)
+		if(value > duree){
 			stop();
-			
+			this.setEnabled(false);
+			this.setVisible(false);
+		}
 	}
 
-
+	@Override
+	protected void paintBorder(Graphics g) {
+		//super.paintBorder(g);
+	}
 
 	
 	public void start(){

@@ -6,17 +6,21 @@ import java.awt.Graphics;
 import java.awt.Paint;
 import java.awt.RadialGradientPaint;
 import java.awt.geom.Point2D;
+import java.util.Set;
+import java.util.SortedSet;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import fr.ujm.tse.info4.pgammon.gui.ChangementTourAnimation;
+import fr.ujm.tse.info4.pgammon.gui.FenetreDemandeAnimationBase;
 import fr.ujm.tse.info4.pgammon.gui.IconMonochromeType;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeIconButton;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeLabel;
 import fr.ujm.tse.info4.pgammon.gui.PanelJoueur;
+import fr.ujm.tse.info4.pgammon.gui.TranstionAnimeeBase;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 import fr.ujm.tse.info4.pgammon.models.EtatSession;
 import fr.ujm.tse.info4.pgammon.models.Partie;
@@ -30,8 +34,6 @@ public class VuePartie extends JPanel{
 	private Partie partie;
 	private VueTablier vueTablier;
 	private EtatSession etat;
-	private ChangementTourAnimation tourAnimation;
-	
 	
 	
 	
@@ -46,21 +48,23 @@ public class VuePartie extends JPanel{
 	
 	private PanelJoueurVuePartie paneljoueur1;
 	private PanelJoueurVuePartie paneljoueur2;
-	
-	
+	private JPanel animationPanel;
 	
 	public VuePartie(Partie partie) {
 		this.partie = partie;
 		vueTablier = new VueTablier(partie);
+
+		setOpaque(false);
 		build();
 	}
 	
 	private void build() {
-
-		tourAnimation = new ChangementTourAnimation("", "");
-
-		tourAnimation.setBounds(0,0,800,600);
-		add(tourAnimation);
+		
+		animationPanel = new JPanel();
+		animationPanel.setLayout(null);
+		animationPanel.setBounds(0,0,800,600);
+		animationPanel.setOpaque(false);
+		add(animationPanel);
 		
 		setPreferredSize(new Dimension(800,600));
 		setOpaque(false);
@@ -185,12 +189,24 @@ etat=EtatSession.EN_COURS;
 		return paneljoueur2;
 	}
 
+	private void setAnimation(TranstionAnimeeBase animation){
+		animation.setBounds(animationPanel.getBounds());
+		animationPanel.removeAll();
+		animationPanel.add(animation);
+	}
 
 	public void afficherTransition(String titre, String text){
-		tourAnimation.end();
-		tourAnimation.setText(text);
-		tourAnimation.setTitle(titre);
-		tourAnimation.restart();
+		ChangementTourAnimation tourAnimation = new ChangementTourAnimation(titre, text);
+		tourAnimation.start();
+		setAnimation(tourAnimation);
+	}
+	
+	public FenetreDemandeAnimationBase afficherFenetreDemande(String titre,String btnLabel,SortedSet<String> reponses){
+		FenetreDemandeAnimationBase fenetreDemande = new FenetreDemandeAnimationBase(titre,btnLabel,reponses);
+		setAnimation(fenetreDemande);
+		fenetreDemande.start();
+		return fenetreDemande;
+		
 	}
 	
 	@Override

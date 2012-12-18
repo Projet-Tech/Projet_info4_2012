@@ -2,7 +2,11 @@ package fr.ujm.tse.info4.pgammon.test.gui;
 
 import java.awt.Container;
 import java.awt.FlowLayout;
+import java.awt.List;
 import java.io.ObjectInputStream.GetField;
+import java.util.HashSet;
+import java.util.SortedSet;
+import java.util.concurrent.ConcurrentSkipListSet;
 
 import javax.swing.JFrame;
 
@@ -20,7 +24,7 @@ public class TestTransition {
 		JFrame frame = new JFrame("TestTransition");
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(800,600);
+		frame.setSize(812,645);
 		
 		Container panel = frame.getContentPane();
 		panel.setLayout(null);
@@ -32,14 +36,19 @@ public class TestTransition {
 
 		ParametreJeu param = new ParametreJeu(0, 3, true, jBlanc, jNoir);
 		Partie p = new Partie(param);
-		
+		p.LancerPartie();
 		ControleurPartie controleurPartie = new ControleurPartie(p);
 		VuePartie vue = controleurPartie.getVuePartie();
-		vue.setBounds(0,0,800,600);
+		vue.setBounds(0,0,830,630);
 
 		panel.add(vue);
-		
-		vue.afficherTransition("aa","Coucou");
+		SortedSet<String> hs = new ConcurrentSkipListSet<>();
+		hs.add("Non");
+		hs.add("Oui");
+
+		hs.add("Peut-etre");
+
+		vue.afficherFenetreDemande("aa","Coucou", hs);
 		
 		frame.setVisible(true);
 	}

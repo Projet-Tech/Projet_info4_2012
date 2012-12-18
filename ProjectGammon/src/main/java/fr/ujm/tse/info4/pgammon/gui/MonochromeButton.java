@@ -1,5 +1,6 @@
 package fr.ujm.tse.info4.pgammon.gui;
 
+import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -21,6 +22,7 @@ public class MonochromeButton extends JButton {
 	private static final long serialVersionUID = 1L;
 	String text;
 	JLabel label;
+	float alpha = 1f;
 	public MonochromeButton(){
 		super();
 		
@@ -60,7 +62,8 @@ public class MonochromeButton extends JButton {
 		
 		Graphics2D g2 = (Graphics2D) g.create(); 
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); 
-		
+    	g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
+
 		int h = getHeight(); 
 		int w = getWidth(); 
 		
@@ -108,6 +111,10 @@ public class MonochromeButton extends JButton {
 	public void setText(String text){
 		this.text = text;
 		label.setText(text);
+	}
+	
+	public void setAlpha(float value){
+		alpha = value;
 	}
 
 
