@@ -37,7 +37,9 @@ public class ControleurTablier {
 		
 	
 		build();
-		vueTablier.updateDes();
+			vueTablier.updateDes();
+		vuePartie.afficherTransition(partie.getParametreJeu().getJoueur(partie.getJoueurEnCour()).getPseudo(), "Joueur" + partie.getJoueurEnCour().toString());
+			
 	}
 
 
@@ -98,30 +100,19 @@ public class ControleurTablier {
 							if (timer!= null)
 								timer.restart();
 						}
-					
-					
+
 					vueTablier.updateUI();
 					vueTablier.updateDes();
 				}
-				
-
-				
-				@Override
-				public void mouseEntered(MouseEvent e) {
-				}
 
 				@Override
-				public void mouseExited(MouseEvent e) {
-				}
-
+				public void mouseEntered(MouseEvent e) {}
 				@Override
-				public void mousePressed(MouseEvent e) {
-				}
-
+				public void mouseExited(MouseEvent e) {}
 				@Override
-				public void mouseReleased(MouseEvent e) {
-					
-				}
+				public void mousePressed(MouseEvent e) {}
+				@Override
+				public void mouseReleased(MouseEvent e) {}
 			});
 			
 		}
@@ -129,8 +120,8 @@ public class ControleurTablier {
 	
 	public void changerTour() 
 	{
-		vuePartie.afficherTransition(partie.getParametreJeu().getJoueur(partie.getJoueurEnCour()).getPseudo(), partie.getJoueurEnCour().toString());
 		partie.changerTour();
+		vuePartie.afficherTransition(partie.getParametreJeu().getJoueur(partie.getJoueurEnCour()).getPseudo(),"Joueur" + partie.getJoueurEnCour().toString());
 	}
 	
 	private void buildTimer(){

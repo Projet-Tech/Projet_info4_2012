@@ -22,7 +22,6 @@ public class ChangementTourAnimation extends TranstionAnimeeBase {
 		setTitle(titre);
 		setText(text);
 		setOpaque(false);
-		start();
 	}
 	
 	public void setText(String text){
