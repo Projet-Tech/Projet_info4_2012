@@ -11,9 +11,11 @@ import javax.swing.JScrollPane;
 
 import fr.ujm.tse.info4.pgammon.gui.JoueurCellRenderer;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeListe;
+import fr.ujm.tse.info4.pgammon.gui.SessionCellRenderer;
 import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 import fr.ujm.tse.info4.pgammon.models.Profils;
+import fr.ujm.tse.info4.pgammon.models.Session;
 
 public class TestListe {
 
@@ -27,6 +29,7 @@ public class TestListe {
 		tmp.ajouter("FRANCON Adrien","Image Adrien",NiveauAssistant.COMPLET);
 		tmp.ajouter("POTHELUNE Jean-Michel","Image JM",NiveauAssistant.SIMPLE);
 		tmp.ajouter("DONG Chuan","Image DONG",NiveauAssistant.NON_UTILISE);
+		/*
 		tmp.ajouter("BONNETTO Benjamin","Image Ben",NiveauAssistant.COMPLET);
 		tmp.ajouter("FRANCON Adrien","Image Adrien",NiveauAssistant.COMPLET);
 		tmp.ajouter("POTHELUNE Jean-Michel","Image JM",NiveauAssistant.SIMPLE);
@@ -34,10 +37,9 @@ public class TestListe {
 		tmp.ajouter("BONNETTO Benjamin","Image Ben",NiveauAssistant.COMPLET);
 		tmp.ajouter("FRANCON Adrien","Image Adrien",NiveauAssistant.COMPLET);
 		tmp.ajouter("POTHELUNE Jean-Michel","Image JM",NiveauAssistant.SIMPLE);
-		
+		*/
 		
 		JFrame frame = new JFrame("Test Design");
-
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(800,600);
 		
@@ -54,6 +56,13 @@ public class TestListe {
 		MonochromeListe<Joueur> j = new MonochromeListe<>("Joueurs",new Vector<Joueur>(tmp.getList()),new JoueurCellRenderer());
 		j.setBounds(100,100,300,400);
 	    panel.add(j);
+	    
+	    Vector<Session> sessions = new Vector<>();
+	    sessions.add(new Session());
+	    MonochromeListe<Session> k = new MonochromeListe<>("Sessions",sessions,new SessionCellRenderer());
+		k.setBounds(450,100,300,400);
+	    panel.add(k);
+	    
 	    
 		panel.setBackground(new Color(0x00000));
 		frame.setVisible(true);

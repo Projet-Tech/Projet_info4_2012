@@ -27,13 +27,25 @@ public class MonochromeListe<T> extends MonochromePanel{
 		
 		scrollpane = new JScrollPane(list);
 		scrollpane.setBounds(0,0,getPreferredSize().width,getPreferredSize().height);
-		
+
+		list.setOpaque(false);
+		scrollpane.setOpaque(false);
 		add(scrollpane);
+
+		setBackground(Color.BLACK);
+		list.setBackground(Color.BLACK);
+		scrollpane.setBackground(Color.BLACK);
+
+		scrollpane.getViewport().setBackground(null);
+		scrollpane.setOpaque(true);
+		scrollpane.getViewport().setBorder(null);
+		scrollpane.setBorder(null);
 	}
 	
 	@Override
 	protected void paintComponent(Graphics g) {
-		scrollpane.setBounds(4,4+MonochromePanel.TITLE_HEIGHT,getBounds().width-8,getBounds().height-8-MonochromePanel.TITLE_HEIGHT);
+		scrollpane.setBounds(5,5+MonochromePanel.TITLE_HEIGHT,getBounds().width-10,getBounds().height-10-MonochromePanel.TITLE_HEIGHT);
+		
 		super.paintComponent(g);
 	}
 	
