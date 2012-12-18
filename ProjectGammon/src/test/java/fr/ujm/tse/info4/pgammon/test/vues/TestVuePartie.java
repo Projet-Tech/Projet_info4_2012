@@ -15,7 +15,7 @@ import fr.ujm.tse.info4.pgammon.vues.VuePartie;
 public class TestVuePartie {
 	
 	public static void main(String[] args) {
-		JFrame frame = new JFrame("Test Menu");
+		JFrame frame = new JFrame("Test vue partie");
 
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(816,638);

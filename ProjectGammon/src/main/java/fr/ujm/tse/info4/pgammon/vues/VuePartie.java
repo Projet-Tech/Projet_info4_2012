@@ -15,6 +15,8 @@ import fr.ujm.tse.info4.pgammon.gui.IconMonochromeType;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeIconButton;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeLabel;
+import fr.ujm.tse.info4.pgammon.gui.PanelJoueur;
+import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 import fr.ujm.tse.info4.pgammon.models.EtatSession;
 import fr.ujm.tse.info4.pgammon.models.Partie;
 
@@ -28,11 +30,6 @@ public class VuePartie extends JPanel{
 	private VueTablier vueTablier;
 	private EtatSession etat;
 	
-	//composant des images de jouer partie
-	//composant panel droit
-	MonochromeIconButton back;
-	MonochromeIconButton dices;
-	MonochromeButton videau;
 	
 	
 	//composante panel bas
@@ -42,11 +39,10 @@ public class VuePartie extends JPanel{
 	MonochromeButton scorej1;
 	MonochromeButton scorej2;
 	
-	//composante des images de revoir partie
-	MonochromeIconButton next;
-	MonochromeIconButton undo;
-	MonochromeIconButton x_white;
 	
+	private PanelTermineVueDroite paneldroitrevoir;
+	
+	private PanelEnCoursVueDroite paneldroitencours;
 	
 	
 	public VuePartie(Partie partie) {
@@ -64,50 +60,15 @@ public class VuePartie extends JPanel{
 		add(vueTablier);
 		etat=EtatSession.EN_COURS;
 		
-		JPanel conteneurboutondroitjouerpartie = new JPanel();
-		conteneurboutondroitjouerpartie.setLayout(null);
-		conteneurboutondroitjouerpartie.setBounds(720,0,80,476);
-		add(conteneurboutondroitjouerpartie);
+	
+		
 		
 		if(etat.equals(EtatSession.EN_COURS)){
-		conteneurboutondroitjouerpartie.setOpaque(false);
-		//
-		//panel du coté droit
-		//
+			
+			paneldroitencours = new PanelEnCoursVueDroite();
+			paneldroitencours.setBounds(720,0,80,476);
+			add(paneldroitencours);
 		
-		
-		//composant et label d'annuler coup
-		back = new MonochromeIconButton(IconMonochromeType.RETOUR,"MonochromeIconButton","NOIR");
-		back.setSizeBig();
-		back.setBounds(10, 34, back.getPreferredSize().width, back.getPreferredSize().height);
-		conteneurboutondroitjouerpartie.add(back);
-		
-		JLabel labback = new JLabel("<html>Annuler<br>coup");
-		labback.setBounds(20, 79, 80, 60);
-		conteneurboutondroitjouerpartie.add(labback);
-		
-		
-		//composant avec label de lancer de dès
-		dices = new MonochromeIconButton(IconMonochromeType.DES,"MonochromeIconButton","NOIR");
-		dices.setSizeBig();
-		dices.setBounds(10, 259, dices.getPreferredSize().width, dices.getPreferredSize().height);
-		conteneurboutondroitjouerpartie.add(dices);
-		
-		JLabel labdices = new JLabel("<html>Lancer<br>dés");
-		labdices.setForeground(new Color(0xCCCCCC));
-		labdices.setBounds(20, 304, 80, 60);
-		conteneurboutondroitjouerpartie.add(labdices);
-		
-		//creation composant et label du videau
-		//attention ici j'ai pris la largeur et hauteur du dices
-		videau = new MonochromeButton("2");
-		videau.setBounds(10, 379, dices.getPreferredSize().width, dices.getPreferredSize().height);
-		conteneurboutondroitjouerpartie.add(videau);
-		
-		JLabel labvideau = new JLabel("<html>Lancer<br>videau");
-		labvideau.setForeground(new Color(0xCCCCCC));
-		labvideau.setBounds(20, 429, 80, 60);
-		conteneurboutondroitjouerpartie.add(labvideau);
 		
 		//
 		//panel du bas
@@ -155,11 +116,11 @@ public class VuePartie extends JPanel{
 		
 		//composant et label du score
 		scorej1 = new MonochromeButton("4");
-		scorej1.setBounds(270, 5, dices.getPreferredSize().width, dices.getPreferredSize().height);
+		scorej1.setBounds(270, 5, x_black.getPreferredSize().width, x_black.getPreferredSize().height);
 		conteneurboutonbasjouerpartie.add(scorej1);
 		
 		scorej2 = new MonochromeButton("3");
-		scorej2.setBounds(350, 5, dices.getPreferredSize().width, dices.getPreferredSize().height);
+		scorej2.setBounds(350, 5, x_black.getPreferredSize().width, x_black.getPreferredSize().height);
 		conteneurboutonbasjouerpartie.add(scorej2);
 		
 		JLabel labscore = new JLabel("Scores");
@@ -171,51 +132,16 @@ public class VuePartie extends JPanel{
 		
 		else if(etat.equals(EtatSession.TERMINEE)){
 		
-			conteneurboutondroitjouerpartie.setForeground(new Color(0xB3B3B3));
-			conteneurboutondroitjouerpartie.repaint();
-		//bouton pour revoir la partie
-		next = new MonochromeIconButton(IconMonochromeType.SUIVANT,"MonochromeIconButton");
-		next.setSizeBig();
-		next.setBounds(10, 20, next.getPreferredSize().width, next.getPreferredSize().height);
-		conteneurboutondroitjouerpartie.add(next);
-		
-		JLabel labnext = new JLabel("<html>partie<br>suivante");
-		labnext.setForeground(new Color(0xCCCCCC));
-		labnext.setBounds(15, 70, 80, 60);
-		conteneurboutondroitjouerpartie.add(labnext);
-		
-		undo = new MonochromeIconButton(IconMonochromeType.ANNULER,"MonochromeIconButton");
-		undo.setSizeBig();
-		undo.setBounds(10, 185, undo.getPreferredSize().width, undo.getPreferredSize().height);
-		conteneurboutondroitjouerpartie.add(undo);
-		
-		JLabel labundo = new JLabel("<html>revoir<br>partie<br>du début");
-		labundo.setForeground(new Color(0xCCCCCC));
-		labundo.setBounds(10, 240, 80, 60);
-		conteneurboutondroitjouerpartie.add(labundo);
-		
-		x_white = new MonochromeIconButton(IconMonochromeType.X_BLANC,"MonochromeIconButton");
-		x_white.setSizeBig();
-		x_white.setBounds(10, 350, x_white.getPreferredSize().width, x_white.getPreferredSize().height);
-		conteneurboutondroitjouerpartie.add(x_white);
-		
-		JLabel labx_white = new JLabel("<html>Interrompre<br>la partie");
-		labx_white.setForeground(new Color(0xCCCCCC));
-		labx_white.setBounds(10, 400, 80, 60);
-		conteneurboutondroitjouerpartie.add(labx_white);
-		
+			paneldroitrevoir = new PanelTermineVueDroite();
+			paneldroitrevoir.setBounds(720,0,80,476);
+			add(paneldroitrevoir);
+			
 		}
 	}
 	
 	
 	
-	public MonochromeButton getVideau() {
-		return videau;
-	}
-
-	public void setVideau(MonochromeButton videau) {
-		this.videau = videau;
-	}
+	
 
 	public MonochromeButton getScorej1() {
 		return scorej1;
@@ -241,14 +167,6 @@ public class VuePartie extends JPanel{
 		return etat;
 	}
 
-	public MonochromeIconButton getBack() {
-		return back;
-	}
-
-	public MonochromeIconButton getDices() {
-		return dices;
-	}
-
 	public MonochromeIconButton getHelp() {
 		return help;
 	}
@@ -261,39 +179,32 @@ public class VuePartie extends JPanel{
 		return x_black;
 	}
 
-	public MonochromeIconButton getNext() {
-		return next;
-	}
-
-	public MonochromeIconButton getUndo() {
-		return undo;
-	}
-
-	public MonochromeIconButton getX_white() {
-		return x_white;
-	}
 
 	public VueTablier getVueTablier() {
 		return vueTablier;
 	}
 	
+	
+	
+	
+	public PanelEnCoursVueDroite getPaneldroitencours() {
+		return paneldroitencours;
+	}
+
+	public PanelTermineVueDroite getPaneldroitrevoir() {
+		return paneldroitrevoir;
+	}
+
+	public void setPaneldroitrevoir(PanelTermineVueDroite paneldroitrevoir) {
+		this.paneldroitrevoir = paneldroitrevoir;
+	}
+
 	@Override
 	protected void paintComponent(Graphics g) {
 		
 		g.drawImage(img_fond.getImage(),0,0,this);
 		super.paintComponent(g);
 		
-		Paint p;
-		int h = getHeight(); 
-		int w = getWidth(); 
-		
-		// Arriere plan
-		p = new RadialGradientPaint(new Point2D.Double(getWidth() / 2.0,
-                getHeight() / 2.0), 
-                getHeight(),
-                new float[] { 0.0f, 0.8f },
-                new Color[] { new Color(0x333333), new Color(0x000000) },
-                RadialGradientPaint.CycleMethod.NO_CYCLE);
 	}
 	
 	
