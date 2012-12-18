@@ -39,8 +39,10 @@ public class Partie {
 		historiqueToursJoueur = new ArrayList<Tour>();
 		timerTour = new Timer();
 		deSixFaces = new ArrayList<DeSixFaces>();
-		partieFini = false;
+		
+		//ces variables permet de connaitre l'état de la partie
 		tourFini=true;
+		partieFini = false;
 	}
 
 
@@ -49,8 +51,13 @@ public class Partie {
 		//lancerDes();
 		
 		//on ajout un tour dans l'historique
-		historiqueToursJoueur.add(new Tour(joueurEnCour, deSixFaces));
+		//historiqueToursJoueur.add(new Tour(joueurEnCour, deSixFaces));
 		
+	}
+	
+	public void debutTour()
+	{
+		historiqueToursJoueur.add(new Tour(joueurEnCour, deSixFaces));
 	}
 
 	public void changerTour(){
@@ -192,13 +199,19 @@ public class Partie {
 			dernierDeplacement =null;
 		
 		if (dernierDeplacement!=null){
-			for (DeSixFaces de : deSixFaces) {
-				if (de.getValeur() == Math.abs(tablier.distanceDeuxCase(dernierDeplacement.getCaseArriver(), dernierDeplacement.getCaseDepart())));
+			for (DeSixFaces de : dernierTour.getDeSixFaces()) {
+				if (de.isUtilise() && de.getValeur() == Math.abs(tablier.distanceDeuxCase(dernierDeplacement.getCaseArriver(), dernierDeplacement.getCaseDepart())))
 				{
 					tablier.deplacerDame(dernierDeplacement.getCaseArriver(),dernierDeplacement.getCaseDepart());
 					de.notUtiliser();
 					if(getDernierTour().getDernierDeplacement().isSiCaseBattue())
 						tablier.getCaseBarre(dernierDeplacement.getCaseDepart().getCouleurDame()).moinDame();
+					if (tourFini)
+					{
+						tourFini = false;
+						deSixFaces = dernierTour.getDeSixFaces();
+						joueurEnCour = dernierTour.getCouleurJoueur();
+					}
 					dernierTour.supprimerDernierDeplacement();
 					return;
 				}
@@ -225,6 +238,7 @@ public class Partie {
 					.getValeur()));
 		}	
 		tourFini=false;
+		debutTour();
 	}
 
 	public void doublerVideau() {

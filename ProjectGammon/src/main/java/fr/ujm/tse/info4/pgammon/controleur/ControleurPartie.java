@@ -45,6 +45,7 @@ public class ControleurPartie
 			public void mouseClicked(MouseEvent arg0) {
 				partie.annulerDernierCoup();
 				vuePartie.updateUI();
+				vuePartie.getVueTablier().updateDes();
 			}
 
 			@Override
