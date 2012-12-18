@@ -55,6 +55,8 @@ public class StatistiqueJoueur
 				maxKey = key;
 			}
 		}
+		if( maxKey == null)
+			return "Personne";
 		return maxKey.getPseudo();
 	}
 	
