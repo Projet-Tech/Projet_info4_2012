@@ -30,7 +30,7 @@ public class TestControleurPartie {
 						NiveauAssistant.NON_UTILISE);
 				Joueur jNoir = new Joueur(2, "JM", "null", NiveauAssistant.COMPLET);
 
-				ParametreJeu param = new ParametreJeu(1000, 3, true, jBlanc, jNoir);
+				ParametreJeu param = new ParametreJeu(0, 3, true, jBlanc, jNoir);
 				Partie p = new Partie(param);
 				
 				ControleurPartie controleurPartie = new ControleurPartie(p);

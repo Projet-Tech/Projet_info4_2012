@@ -1,22 +1,32 @@
-package fr.ujm.tse.info4.pgammon.gui;
+package fr.ujm.tse.info4.pgammon.vues;
 
+import java.awt.BasicStroke;
+import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.LayoutManager;
+import java.awt.Graphics2D;
+import java.awt.Paint;
+import java.awt.RadialGradientPaint;
+import java.awt.RenderingHints;
+import java.awt.geom.Point2D;
 
 import javax.swing.ImageIcon;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import fr.ujm.tse.info4.pgammon.gui.MonochromeCheckbox;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 import fr.ujm.tse.info4.pgammon.models.Joueur;
 
-public class PanelJoueur extends MonochromePanel{
+public class PanelJoueurVuePartie extends JPanel {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7344853213808679707L;
 	
-	private static final long serialVersionUID = 7553310687895062778L;
 	private Joueur joueur;
 	private CouleurCase couleur;
 	
@@ -29,12 +39,11 @@ public class PanelJoueur extends MonochromePanel{
 	
 	private MonochromeCheckbox couppossible;
 	private MonochromeCheckbox conseilcoup;
-	private JLabel affichestat;
+	private JLabel labNomJoueur;
 	private JLabel conteneurimgjoueur;
 	private JLabel conteneurimgpion;
 	
-		public PanelJoueur(Joueur j,CouleurCase coul){
-			super(j.getPseudo());
+		public PanelJoueurVuePartie(Joueur j,CouleurCase coul){
 			joueur=j;
 			couleur=coul;
 			
@@ -42,12 +51,10 @@ public class PanelJoueur extends MonochromePanel{
 			
 		}
 		
-		public void setJoueur(Joueur j){
-			joueur=j;
-			setTitle(joueur.getPseudo());
-		}
 		
 		public void build(){
+			setLayout(null);
+			
 			
 			//récupération de l'image
 			try{
@@ -62,40 +69,42 @@ public class PanelJoueur extends MonochromePanel{
 				System.err.println(err);
 			}
 			
-			affichestat = new JLabel();
+			labNomJoueur = new JLabel();
 			conteneurimgjoueur = new JLabel();
 			conteneurimgpion = new JLabel();
 			couppossible = new MonochromeCheckbox("<html> Afficher les <br> coups possibles");
 			conseilcoup = new MonochromeCheckbox("<html> conseiller le <br> prochain coup");
 			
 			
-			
+			JPanel centragePseudo = new JPanel();
+			centragePseudo.setLayout(new BorderLayout());
+			centragePseudo.setBounds(0,0,150,50);
+			centragePseudo.setOpaque(false);
 			//affichage des stats du joueur
-			affichestat.setForeground(new Color(0xCCCCCC));
+			labNomJoueur.setForeground(new Color(0xCCCCCC));
+			labNomJoueur.setText(joueur.getPseudo());
+			//labNomJoueur.setPreferredSize(new Dimension(150,50));
 			
-			affichestat.setBounds(130, 25, 200, 50);
-			affichestat.setFont(new Font("Arial",Font.HANGING_BASELINE,12));
+			labNomJoueur.setHorizontalAlignment(0);
+			add(centragePseudo);
+			centragePseudo.add(labNomJoueur);
 			
-			affichestat.setText("<html> Vitoires &nbsp : "
-						+new Integer(joueur.getStat().getNbVictoires()).toString()
-						+"<br>Défaites : "+joueur.getStat().getNbDefaites()
-						);
-			
-			//creation composant checbox
-			conseilcoup.setForeground(new Color(0xCCCCCC));
-			conseilcoup.setBounds(190, 90, 150, 50);
-			conseilcoup.setOpaque(false);
 			
 			//creation composant checbox
 			couppossible.setForeground(new Color(0xCCCCCC));
-			couppossible.setBounds(10, 90, 150, 50);
+			couppossible.setBounds(10, 120, 150, 50);
 			couppossible.setOpaque(false);
+			
+			//creation composant checbox
+			conseilcoup.setForeground(new Color(0xCCCCCC));
+			conseilcoup.setBounds(10, 160, 150, 50);
+			conseilcoup.setOpaque(false);
 			
 			//conteneurimgpion
 			
 			add(couppossible);
 			add(conseilcoup);
-			add(affichestat);
+			
 		}
 		
 		
@@ -124,26 +133,53 @@ public class PanelJoueur extends MonochromePanel{
 			this.conseilcoup = conseilcoup;
 		}
 
-		public JLabel getAffichestat() {
-			return affichestat;
+		public JLabel getLabNomJoueur() {
+			return labNomJoueur;
 		}
 
-		public void setAffichestat(JLabel affichestat) {
-			this.affichestat = affichestat;
+		public void setLabNomJoueur(JLabel affichestat) {
+			this.labNomJoueur = affichestat;
 		}
 
 		public Joueur getJoueur() {
 			return joueur;
 		}
+		
 
 		@Override
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			
-			g.drawImage(imgpion.getImage(),250,40,this);
+			
+			Graphics2D g2 = (Graphics2D) g.create(); 
+			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); 
+			
+			Paint p;
+			int h = getHeight(); 
+			int w = getWidth(); 
+			
+			// Arriere plan
+			p = new RadialGradientPaint(new Point2D.Double(getWidth() / 2.0,
+	                getHeight() / 2.0), 
+	                getHeight(),
+	                new float[] { 0.0f, 0.8f },
+	                new Color[] { new Color(0x333333), new Color(0x000000) },
+	                RadialGradientPaint.CycleMethod.NO_CYCLE);
+			
+			g2.setPaint(p); 
+			g2.fillRect(0, 0, w, h); 
+			
+			// Bordure
+			p = new Color(0x808080);
+			g2.setStroke(new BasicStroke(5.0f) );
+			g2.setPaint(p); 
+			g2.drawRect(2, 0, w - 5 , h - 5);
+			
+
+			g.drawImage(imgpion.getImage(),80,55,this);
+			g2.dispose(); 
 			
 			
 		}
-		
 
 }

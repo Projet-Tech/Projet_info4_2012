@@ -23,7 +23,7 @@ public class TestVuePartie {
 		panel.setLayout(new FlowLayout());
 		
 		
-		Joueur jBlanc = new Joueur(1, "ben", "beauGoss",
+		Joueur jBlanc = new Joueur(1, "benjamin bonnetto", "beauGoss",
 				NiveauAssistant.NON_UTILISE);
 		Joueur jNoir = new Joueur(2, "JM", "null", NiveauAssistant.COMPLET);
 
