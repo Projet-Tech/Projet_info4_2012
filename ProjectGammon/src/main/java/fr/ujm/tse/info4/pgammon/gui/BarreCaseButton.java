@@ -13,7 +13,7 @@ import fr.ujm.tse.info4.pgammon.models.Case;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 
 public class BarreCaseButton extends CaseButton {
-	//TODO quand les dame son en bleu on ne fait plus la différence entre amie et ennemie
+	//
 	private static final long serialVersionUID = 1696544283522096083L;
 	private final int MAX_DAMES_DRAWED = 5;
 	private final int DAME_SEPARATION = 27;
