@@ -28,6 +28,23 @@ public class Profils
 {
 	public List<Joueur> joueurs = new ArrayList<Joueur>();
 	private List<Element> listJoueurs;
+	private Profils Profil;
+	
+	private Profils()
+	{
+		
+	}
+	
+	public Profils getProfils()
+	{
+		if(Profil == null){
+			  Profil = new Profils();
+		}
+	    
+		return Profil; 
+		
+	}
+	
 	
 	public void sauvegarder()
 	{
@@ -63,17 +80,17 @@ public class Profils
 			 joueurs.add(j);
 		 }
 		 
-		 //Pour chager MAP<Joueur,Integer> dans Stat
+		 //Pour charger MAP<Joueur,Integer> dans Stat de chaque joueur
 		 Iterator<Element> itStat = listJoueurs.iterator();
 		 while(itStat.hasNext()){
-			 Element e = itStat.next();//joueurs e
+			 Element e = itStat.next();//"e" est pour le premier child "joueurs"
 			 Iterator<Element> itContre = e.getChild("statistiqueJoueur").getChild("nbrDePartieContreJoueur").getChildren("joueurs").iterator();
 			 while(itContre.hasNext()){
-				 Element c = itContre.next();
+				 Element c = itContre.next();//"c" est pour le deuxeme child "joueurs"
 				 for(int i=0;i<joueurs.size();i++){
-					 if(joueurs.get(i).getId()== Integer.valueOf(e.getAttributeValue("id")))
+					 if(joueurs.get(i).getId()== Integer.valueOf(e.getAttributeValue("id")))//Chercher lequel joueur qu'on va charger leur MAP.
 						 for(int j=0;j<joueurs.size();j++){
-							 if(joueurs.get(j).getId()== Integer.valueOf(c.getAttributeValue("id"))){
+							 if(joueurs.get(j).getId()== Integer.valueOf(c.getAttributeValue("id"))){//Chercher lequel joueur est L'Adversaire
 								 Joueur jcontre = joueurs.get(j);
 								 joueurs.get(i).getStat().getNbrDePartieContreJoueur().put(jcontre,Integer.valueOf(c.getChildText("nbrPartie")));
 							 }
