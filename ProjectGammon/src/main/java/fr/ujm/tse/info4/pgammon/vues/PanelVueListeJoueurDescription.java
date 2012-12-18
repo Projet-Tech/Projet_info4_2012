@@ -1,24 +1,25 @@
-package fr.ujm.tse.info4.pgammon.gui;
+package fr.ujm.tse.info4.pgammon.vues;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.LayoutManager;
 
 import javax.swing.ImageIcon;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
+import fr.ujm.tse.info4.pgammon.gui.MonochromeCheckbox;
+import fr.ujm.tse.info4.pgammon.gui.MonochromePanel;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 import fr.ujm.tse.info4.pgammon.models.Joueur;
 
-public class PanelJoueur extends MonochromePanel{
+public class PanelVueListeJoueurDescription extends MonochromePanel{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7183137442304137995L;
 	
-	private static final long serialVersionUID = 7553310687895062778L;
 	private Joueur joueur;
-	private CouleurCase couleur;
 	
 	
 	public static final String pionblanc = "images/big_pion_blanc.png";
@@ -33,44 +34,29 @@ public class PanelJoueur extends MonochromePanel{
 	private JLabel conteneurimgjoueur;
 	private JLabel conteneurimgpion;
 	
-		public PanelJoueur(Joueur j,CouleurCase coul){
-			super(j.getPseudo());
+		public PanelVueListeJoueurDescription(Joueur j){
+			super("Description");
 			joueur=j;
-			couleur=coul;
 			
 			build();
 			updateData();
-			
 		}
 		
 		public void setJoueur(Joueur j){
 			joueur=j;
-			updateData();
 		}
 		
 		public void updateData(){
-			setTitle(joueur.getPseudo());
+			
 			affichestat.setText("<html> Vitoires &nbsp : "
 					+new Integer(joueur.getStat().getNbVictoires()).toString()
 					+"<br>Défaites : "+joueur.getStat().getNbDefaites()
 					);
-			
 		}
 		
 		public void build(){
 			
 			//récupération de l'image
-			try{
-				if(couleur.equals(CouleurCase.BLANC)){
-					imgpion = new ImageIcon(pionblanc);
-				}
-				else{
-					imgpion = new ImageIcon(pionnoir);
-				}
-				
-			}catch(Exception err){
-				System.err.println(err);
-			}
 			
 			affichestat = new JLabel();
 			conteneurimgjoueur = new JLabel();
@@ -85,7 +71,6 @@ public class PanelJoueur extends MonochromePanel{
 			
 			affichestat.setBounds(130, 25, 200, 50);
 			affichestat.setFont(new Font("Arial",Font.HANGING_BASELINE,12));
-			
 			
 			
 			//creation composant checbox
@@ -147,10 +132,8 @@ public class PanelJoueur extends MonochromePanel{
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			
-			g.drawImage(imgpion.getImage(),250,40,this);
 			
 			
 		}
-		
 
 }
