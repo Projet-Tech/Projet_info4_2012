@@ -18,7 +18,7 @@ public class TestVueListeJoueur {
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Test vue Liste Joueur");
 		
-		Profils tmp = new Profils();
+		Profils tmp = Profils.getProfils();
 		
 		tmp.ajouter("DONG Chuan","Image DONG",NiveauAssistant.NON_UTILISE);
 		tmp.ajouter("BONNETTO Benjamin","Image Ben",NiveauAssistant.COMPLET);

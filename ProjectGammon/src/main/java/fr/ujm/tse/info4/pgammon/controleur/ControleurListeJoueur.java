@@ -19,7 +19,7 @@ public class ControleurListeJoueur {
 	{
 		this.controleurPrincipal = controleurPrincipal;
 		//TODO a changer
-		profil = Profils().getProfil();
+		profil = Profils.getProfils();
 		try {
 			profil.charger();
 		} catch (JDOMException e) {

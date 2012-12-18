@@ -10,7 +10,7 @@ public class TestProfils {
 
 		System.out.println("Lancement du test de la Partie");
 		
-		Profils tmp = new Profils();
+		Profils tmp = Profils.getProfils();
 				
 		tmp.ajouter("DONG Chuan","Image DONG",NiveauAssistant.NON_UTILISE);
 		tmp.ajouter("BONNETTO Benjamin","Image Ben",NiveauAssistant.COMPLET);

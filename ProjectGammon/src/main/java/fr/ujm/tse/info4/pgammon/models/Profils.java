@@ -28,14 +28,14 @@ public class Profils
 {
 	public List<Joueur> joueurs = new ArrayList<Joueur>();
 	private List<Element> listJoueurs;
-	private Profils Profil;
+	private static  Profils Profil;
 	
 	private Profils()
 	{
 		
 	}
 	
-	public Profils getProfils()
+	public static Profils getProfils()
 	{
 		if(Profil == null){
 			  Profil = new Profils();
