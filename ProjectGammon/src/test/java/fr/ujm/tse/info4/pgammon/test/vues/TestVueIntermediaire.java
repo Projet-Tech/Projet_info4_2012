@@ -26,9 +26,6 @@ public class TestVueIntermediaire {
 		
 		
 		frame.setVisible(true);
-		
-		
-		
 	}
 	
 	

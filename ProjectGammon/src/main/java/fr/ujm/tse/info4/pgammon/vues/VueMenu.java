@@ -96,11 +96,11 @@ public class VueMenu extends JPanel {
 		
 	}
 	
-	public MonochromeButton getBoutonLancerPartie() {
+	public MonochromeButton getBoutonNouvellePartie() {
 		return boutonnouvellepartie;
 	}
 
-	public MonochromeButton getBoutonNouvellePartie() {
+	public MonochromeButton getBoutonReprendrePartie() {
 		return boutonreprendrepartie;
 	}
 

@@ -43,4 +43,14 @@ public class VueIntermediairePartie extends JPanel{
 		
 	}
 
+	public VueNouvelleSession getVueNouvelleSession() {
+		return vueNouvelleSession;
+	}
+
+	public VueChargerPartie getVueChargerPartie() {
+		return vueChargerPartie;
+	}
+
+	
+	
 }
