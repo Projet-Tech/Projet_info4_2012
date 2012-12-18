@@ -1,5 +1,6 @@
 package fr.ujm.tse.info4.pgammon.gui;
 
+import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -48,19 +49,25 @@ public class MonochromeCheckbox extends JCheckBox {
 		
 		int h = getHeight(); 
 		int w = getWidth(); 
-		
+
+		if (!model.isEnabled()) { 
+			label.setForeground(new Color(0x555555));
+	    	g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.2f));
+		}else{
+			label.setForeground(new Color(0xCCCCCC));
+	    	g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+
+		}
 		Paint p;
 		
-		//Fond
-		if (!model.isEnabled()) { 
-			setForeground(Color.GRAY);
-			p = new Color(0x444444);
-		}else{ 
-			if (model.isRollover()) 
-				p = (couleur.equals(BLANC))?new Color(0xAAAAAA):new Color(0x666666);
-			else 
-				p = (couleur.equals(BLANC))?new Color(0xCCCCCC):new Color(0x888888);
-		} 
+		//Fond{ 
+		if (model.isRollover()) 
+			p = (couleur.equals(BLANC))?new Color(0xAAAAAA):new Color(0x666666);
+		else 
+			p = (couleur.equals(BLANC))?new Color(0xCCCCCC):new Color(0x888888);
+		
+			
+			
 		g2.setPaint(p); 
 		g2.fillRect(4,(h-26)/2 , 26, 26); 
 		
