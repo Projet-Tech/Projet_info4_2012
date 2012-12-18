@@ -43,8 +43,8 @@ public class TestTransition {
 
 		panel.add(vue);
 		SortedSet<String> hs = new ConcurrentSkipListSet<>();
-		//hs.add("Non");
-		//hs.add("Oui");
+		hs.add("Non");
+		hs.add("Oui");
 
 		hs.add("Peut-etre");
 
