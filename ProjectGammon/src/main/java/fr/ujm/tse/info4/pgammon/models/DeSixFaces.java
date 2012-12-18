@@ -42,6 +42,11 @@ public class DeSixFaces
 		isUtilise= true;
 	}
 	
+	public void notUtiliser()
+	{
+		isUtilise= false;
+	}
+	
 	
 	public void sauvegarder(Element partieElement)
 	{

@@ -42,8 +42,10 @@ public class Tour
 	}
 	
 	public Deplacement getDernierDeplacement()
-	{
-		return listDeplacement.get(listDeplacement.size()-1);
+	{	if (listDeplacement.size()!=0)
+			return listDeplacement.get(listDeplacement.size()-1);
+		else
+			return null;
 	}
 	
 	

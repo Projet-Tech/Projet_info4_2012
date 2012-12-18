@@ -194,10 +194,27 @@ public class Partie {
 	}
 	
 	public void annulerDernierCoup() {
-		tablier.deplacerDame(getDernierTour().getDernierDeplacement().getCaseArriver(),getDernierTour().getDernierDeplacement().getCaseDepart());
-		if(getDernierTour().getDernierDeplacement().isSiCaseBattue())
-			tablier.getCaseBarre(getDernierTour().getDernierDeplacement().getCaseDepart().getCouleurDame()).moinDame();
-		getDernierTour().supprimerDernierDeplacement();
+		Deplacement dernierDeplacement;
+		
+		Tour dernierTour = getDernierTour();
+		if (dernierTour != null)
+			dernierDeplacement = getDernierTour().getDernierDeplacement();
+		else
+			dernierDeplacement =null;
+		
+		if (dernierDeplacement!=null){
+			for (DeSixFaces de : deSixFaces) {
+				if (de.getValeur() == Math.abs(tablier.distanceDeuxCase(dernierDeplacement.getCaseArriver(), dernierDeplacement.getCaseDepart())));
+				{
+					tablier.deplacerDame(dernierDeplacement.getCaseArriver(),dernierDeplacement.getCaseDepart());
+					de.notUtiliser();
+					if(getDernierTour().getDernierDeplacement().isSiCaseBattue())
+						tablier.getCaseBarre(dernierDeplacement.getCaseDepart().getCouleurDame()).moinDame();
+					dernierTour.supprimerDernierDeplacement();
+					return;
+				}
+			}
+		}
 	}
 
 	public boolean siDesUtilises()
@@ -351,7 +368,10 @@ public class Partie {
 
 	public Tour getDernierTour()
 	{
-		return historiqueToursJoueur.get(historiqueToursJoueur.size()-1);
+		if (historiqueToursJoueur.size() != 0)
+			return historiqueToursJoueur.get(historiqueToursJoueur.size()-1);
+		else
+			return null;
 	}
 	
 	
