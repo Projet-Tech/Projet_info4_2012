@@ -15,6 +15,7 @@ import javax.swing.Timer;
 import fr.ujm.tse.info4.pgammon.exeption.TourNonJouableException;
 import fr.ujm.tse.info4.pgammon.gui.CaseButton;
 import fr.ujm.tse.info4.pgammon.models.Case;
+import fr.ujm.tse.info4.pgammon.models.EtatSession;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 import fr.ujm.tse.info4.pgammon.models.Partie;
 import fr.ujm.tse.info4.pgammon.models.Tablier;
@@ -88,12 +89,9 @@ public class ControleurTablier {
 									changerTour();	
 									if(partie.isPartieFini())
 									{
-										SortedSet<String> hs = new ConcurrentSkipListSet<>();
-										//hs.add("Non");
-										//hs.add("Oui");
-	
-										hs.add("Peut-etre");
-										vuePartie.afficherFenetreDemande("Ca va?", hs);
+										vuePartie.afficherFenetreDemande( " Le Joueur " +partie.getJoueurEnCour() + " à Gagnée", null);
+										vuePartie.setEtat(EtatSession.TERMINEE);
+										
 									}
 								}
 								else if(!partie.hasCoupPossible())
@@ -135,7 +133,11 @@ public class ControleurTablier {
 	}
 	
 	
-	
+	public void nouvellePartie(Partie partie)
+	{
+		this.partie = partie;
+		vueTablier.setPartie(partie);
+	}
 	
 	public void changerTour() 
 	{

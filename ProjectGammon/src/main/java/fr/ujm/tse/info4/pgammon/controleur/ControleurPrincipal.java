@@ -159,7 +159,7 @@ public class ControleurPrincipal {
 		master.lancerSession(parametreJeu);
 		Session s1 = master.getSession();
 		s1.LancerPartie();
-		ControleurPartie controleurPartie = new ControleurPartie(s1.getPartieEnCours());
+		ControleurPartie controleurPartie = new ControleurPartie(s1);
 		
 		frame.setContentPane(controleurPartie.getVuePartie());
 		

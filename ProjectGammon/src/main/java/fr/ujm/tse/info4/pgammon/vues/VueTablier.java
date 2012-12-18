@@ -42,6 +42,7 @@ public class VueTablier extends JPanel{
 		build();
 	}
 
+
 	public CaseButton getCandidat() {
 		return candidat;
 	}
@@ -64,6 +65,13 @@ public class VueTablier extends JPanel{
 		new_candidat.setCandidated(true);
 		this.candidat = new_candidat;
 	}
+	
+	public void setPartie(Partie partie) {
+		this.partie = partie;
+		this.tablier = partie.getTablier();
+	}
+
+	
 
 	public void uncandidateAll() {
 		if(this.candidat != null)
