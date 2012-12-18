@@ -35,7 +35,7 @@ public class ControleurPartie
 	}
 
 	private void build() {
-		vuePartie.getBack().addMouseListener(new MouseListener(){
+		vuePartie.getPaneldroitencours().getBack().addMouseListener(new MouseListener(){
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
