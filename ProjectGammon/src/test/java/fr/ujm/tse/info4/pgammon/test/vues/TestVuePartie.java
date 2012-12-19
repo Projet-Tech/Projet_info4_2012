@@ -28,7 +28,7 @@ public class TestVuePartie {
 		
 		ParametreJeu param = new ParametreJeu(0, 3, true, jBlanc, jNoir);
 		Partie p = new Partie(param);
-		p.LancerPartie();
+		p.lancerPremierePartie();
 		
 		ControleurPartie controleurPartie = new ControleurPartie(p);
 		

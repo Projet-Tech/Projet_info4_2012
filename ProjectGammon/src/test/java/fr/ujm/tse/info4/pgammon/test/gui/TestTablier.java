@@ -37,7 +37,7 @@ public class TestTablier {
 
 		ParametreJeu param = new ParametreJeu(0, 3, true, jBlanc, jNoir);
 		Partie p = new Partie(param);
-		p.LancerPartie();
+		p.lancerPremierePartie();
 		// partie lancée
 		
 		VuePartie vp = new VuePartie(p);

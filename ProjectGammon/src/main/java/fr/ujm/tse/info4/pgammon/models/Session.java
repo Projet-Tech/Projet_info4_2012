@@ -14,6 +14,9 @@ package fr.ujm.tse.info4.pgammon.models;
 
 import java.util.HashMap;
 
+import org.jdom2.Attribute;
+import org.jdom2.Element;
+
 
 public class Session
 {
@@ -21,13 +24,15 @@ public class Session
 	private int idMaxPartie;
 	private Partie partieEnCours;
 
-	private Joueur JoueurGagnantSession;
+	private Joueur joueurGagnantSession;
+	private CouleurCase couleurJoueurAnciennePartie;
 	private HashMap<Joueur, Integer> scores;
 	private EtatSession etatSession;
 	private ParametreJeu parametreSession;
 	
 	public Session(int idSession,ParametreJeu parametreJeu)
 	{
+		couleurJoueurAnciennePartie = null;
 		this.idSession = idSession;
 		idMaxPartie=1;
 		etatSession = EtatSession.CONFIGURATION;
@@ -35,7 +40,7 @@ public class Session
 		scores = new HashMap<Joueur, Integer>();
 		scores.put(parametreSession.getJoueurBlanc(),0);
 		scores.put(parametreSession.getJoueurNoir(),0);
-		JoueurGagnantSession =null;
+		joueurGagnantSession =null;
 		nouvellePartie();
 	}
 	
@@ -53,9 +58,9 @@ public class Session
 	}
 	private void finSession()
 	{
-		JoueurGagnantSession.getStat().ajouterVictoire();
+		joueurGagnantSession.getStat().ajouterVictoire();
 		
-		if (JoueurGagnantSession == parametreSession.getJoueurBlanc())
+		if (joueurGagnantSession == parametreSession.getJoueurBlanc())
 			parametreSession.getJoueurNoir().getStat().ajouterDefaite();
 		else
 			parametreSession.getJoueurBlanc().getStat().ajouterDefaite();
@@ -68,41 +73,82 @@ public class Session
 		partieEnCours = new Partie(idMaxPartie,parametreSession);
 	}
 	
-	
-	
 	public void LancerPartie()
 	{
-		partieEnCours.LancerPartie();
+		if (couleurJoueurAnciennePartie == null)
+			partieEnCours.lancerPremierePartie();
+		else
+			partieEnCours.lancerNouvellePartie(couleurJoueurAnciennePartie);
 	}
 	
 	public void finPartie()
 	{
+		couleurJoueurAnciennePartie = partieEnCours.getPremierJoueur();
 		int videau = partieEnCours.getVideau().getvideau();
 		CouleurCase CouleurVictorieuse = partieEnCours.getJoueurEnCour();	
 		scores.put(parametreSession.getJoueur(CouleurVictorieuse),scores.get(parametreSession.getJoueur(CouleurVictorieuse))+videau);
 	}
-	
 	
 	public void verifFinSession()
 	{
 		if(scores.get(parametreSession.getJoueurBlanc()) >= parametreSession.getNbrPartieGagnante())
 		{
 			etatSession = EtatSession.TERMINEE;
-			JoueurGagnantSession = parametreSession.getJoueurBlanc();
+			joueurGagnantSession = parametreSession.getJoueurBlanc();
 		}
 		else if(scores.get(parametreSession.getJoueurNoir()) >= parametreSession.getNbrPartieGagnante())
 		{
 			etatSession = EtatSession.TERMINEE;
-			JoueurGagnantSession = parametreSession.getJoueurBlanc();
+			joueurGagnantSession = parametreSession.getJoueurBlanc();
 		}
 	}
 	
-	
-	
-	public void sauvegarder()
+	public void sauvegarder(Element racine)
 	{
-		//TODO
-		throw new UnsupportedOperationException();
+		Element session = new Element("session");
+	    racine.addContent(session);
+	    
+	    Attribute idsession = new Attribute("id",String.valueOf(idSession));
+	    session.setAttribute(idsession);
+	    
+		    Element etatSessionXML = new Element("etatSession");
+		    etatSessionXML.setText(String.valueOf(etatSession));
+		    session.addContent(etatSessionXML);
+		    
+		    Element idMaxPartieXML = new Element("idMaxPartie");
+		    idMaxPartieXML.setText(String.valueOf(idMaxPartie));
+		    session.addContent(idMaxPartieXML);
+		    
+		    Element couleurJoueurAnciennePartieXML = new Element("couleurJoueurAnciennePartie");
+		    couleurJoueurAnciennePartieXML.setText(String.valueOf(couleurJoueurAnciennePartie));
+		    session.addContent(couleurJoueurAnciennePartieXML);
+
+		    Element joueursXML = new Element("joueurs");
+		    session.addContent(joueursXML);
+		    
+			    Element joueurNoirXML = new Element("joueurNoir");
+			    joueursXML.addContent(joueurNoirXML);
+			    
+			    Attribute idNoir = new Attribute("id",String.valueOf(parametreSession.getJoueurNoir().getId()));
+			    joueurNoirXML.setAttribute(idNoir);
+			    
+				    Element scoreNoirXML = new Element("score");
+				    scoreNoirXML.setText(String.valueOf(scores.get(parametreSession.getJoueurNoir())));
+				    joueurNoirXML.addContent(scoreNoirXML);	
+				    
+				Element joueurBlancXML = new Element("joueurBlanc");
+				joueursXML.addContent(joueurBlancXML);
+				    
+				Attribute idBlanc = new Attribute("id",String.valueOf(parametreSession.getJoueurBlanc().getId()));
+				joueurBlancXML.setAttribute(idBlanc);
+				    
+					Element scoreBlancXML = new Element("score");
+					scoreBlancXML.setText(String.valueOf(scores.get(parametreSession.getJoueurBlanc())));
+					joueurBlancXML.addContent(scoreBlancXML);
+		    
+		    parametreSession.sauvegarder(session);
+		    
+		    partieEnCours.sauvegarder(session);
 	}
 	
 	public void charger()
@@ -121,7 +167,7 @@ public class Session
 	}
 
 	public Joueur getJoueurGagnantSession() {
-		return JoueurGagnantSession;
+		return joueurGagnantSession;
 	}
 	
 	public HashMap<Joueur, Integer> getScores() {
@@ -130,7 +176,7 @@ public class Session
 
 	public boolean isSessionFini()
 	{
-		if (JoueurGagnantSession == null)
+		if (joueurGagnantSession == null)
 			return false;
 		else
 			return true;

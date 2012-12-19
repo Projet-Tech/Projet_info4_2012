@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <profils>
-  <joueurs id="114794">
-    <pseudo>aaaaa</pseudo>
+  <joueurs id="115067">
+    <pseudo>a</pseudo>
     <imageSource />
     <niveauAssistant>COMPLET</niveauAssistant>
     <statistiqueJoueur>
@@ -12,8 +12,8 @@
       <tempsJeu>0.0</tempsJeu>
     </statistiqueJoueur>
   </joueurs>
-  <joueurs id="114799">
-    <pseudo>vvvvvv</pseudo>
+  <joueurs id="115065">
+    <pseudo>b</pseudo>
     <imageSource />
     <niveauAssistant>COMPLET</niveauAssistant>
     <statistiqueJoueur>
@@ -24,8 +24,8 @@
       <tempsJeu>0.0</tempsJeu>
     </statistiqueJoueur>
   </joueurs>
-  <joueurs id="114799">
-    <pseudo>vvvvvv</pseudo>
+  <joueurs id="115070">
+    <pseudo>c</pseudo>
     <imageSource />
     <niveauAssistant>COMPLET</niveauAssistant>
     <statistiqueJoueur>
@@ -36,8 +36,32 @@
       <tempsJeu>0.0</tempsJeu>
     </statistiqueJoueur>
   </joueurs>
-  <joueurs id="114807">
-    <pseudo>qqweqweq</pseudo>
+  <joueurs id="115070">
+    <pseudo>c</pseudo>
+    <imageSource />
+    <niveauAssistant>COMPLET</niveauAssistant>
+    <statistiqueJoueur>
+      <partiejoue>0</partiejoue>
+      <nbVictoires>0</nbVictoires>
+      <nbDefaites>0</nbDefaites>
+      <nbrDePartieContreJoueur />
+      <tempsJeu>0.0</tempsJeu>
+    </statistiqueJoueur>
+  </joueurs>
+  <joueurs id="115074">
+    <pseudo>d</pseudo>
+    <imageSource />
+    <niveauAssistant>COMPLET</niveauAssistant>
+    <statistiqueJoueur>
+      <partiejoue>0</partiejoue>
+      <nbVictoires>0</nbVictoires>
+      <nbDefaites>0</nbDefaites>
+      <nbrDePartieContreJoueur />
+      <tempsJeu>0.0</tempsJeu>
+    </statistiqueJoueur>
+  </joueurs>
+  <joueurs id="115074">
+    <pseudo>ddez</pseudo>
     <imageSource />
     <niveauAssistant>COMPLET</niveauAssistant>
     <statistiqueJoueur>

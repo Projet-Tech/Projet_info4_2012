@@ -28,6 +28,8 @@ public class PanelJoueur extends MonochromePanel{
 	
 	
 	
+	
+	
 	private MonochromeCheckbox couppossible;
 	private MonochromeCheckbox conseilcoup;
 	private JLabel affichestat;
@@ -52,7 +54,7 @@ public class PanelJoueur extends MonochromePanel{
 		
 		public void updateData(){
 			setTitle(joueur.getPseudo());
-			affichestat.setText("<html> Vitoires &nbsp : "
+			affichestat.setText("<html> Victoires &nbsp : "
 					+new Integer(joueur.getStat().getNbVictoires()).toString()
 					+"<br>Défaites : "+joueur.getStat().getNbDefaites()
 					);
@@ -88,7 +90,7 @@ public class PanelJoueur extends MonochromePanel{
 			//affichage des stats du joueur
 			affichestat.setForeground(new Color(0xCCCCCC));
 			
-			affichestat.setBounds(130, 25, 200, 50);
+			affichestat.setBounds(130, 40, 200, 50);
 			affichestat.setFont(new Font("Arial",Font.HANGING_BASELINE,12));
 			
 			
@@ -144,7 +146,7 @@ public class PanelJoueur extends MonochromePanel{
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			
-			g.drawImage(imgpion.getImage(),250,40,this);
+			g.drawImage(imgpion.getImage(),70,40,this);
 			
 			
 		}

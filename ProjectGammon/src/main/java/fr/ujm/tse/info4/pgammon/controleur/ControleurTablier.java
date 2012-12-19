@@ -1,5 +1,6 @@
 package fr.ujm.tse.info4.pgammon.controleur;
 
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.swing.JFrame;
 import javax.swing.Timer;
 
 import fr.ujm.tse.info4.pgammon.exeption.TourNonJouableException;
@@ -20,21 +22,25 @@ import fr.ujm.tse.info4.pgammon.models.Tablier;
 import fr.ujm.tse.info4.pgammon.vues.VuePartie;
 import fr.ujm.tse.info4.pgammon.vues.VueTablier;
 
-public class ControleurTablier {
+public class ControleurTablier implements Controleur{
 	private Tablier tablier;
 	private Partie partie;
 	private VueTablier vueTablier;
 	private VuePartie vuePartie;
 	private Timer timer;
-	
-	public ControleurTablier(Partie partie,VuePartie vuePartie)
+	private ControleurPartie controleurPartie;
+	private JFrame frame;
+
+
+
+	public ControleurTablier(Partie partie,VuePartie vuePartie,ControleurPartie controleurPartie)
 	{
 
 		this.partie = partie;
 		this.tablier = partie.getTablier();
 		this.vuePartie = vuePartie;
 		this.vueTablier = vuePartie.getVueTablier();
-		
+		this.controleurPartie = controleurPartie;
 	
 		build();
 		vueTablier.updateDes();
@@ -80,15 +86,19 @@ public class ControleurTablier {
 							{
 								vueTablier.uncandidateAll();
 								vueTablier.setPossibles((List)(new ArrayList<Case>()));
+								
+								if(partie.isPartieFini())
+								{
+									controleurPartie.finPartie();
+									vuePartie.afficherFenetreDemande(partie.getParametreJeu().getJoueur(partie.getJoueurEnCour()) + " a Gagné", null);
+									vuePartie.setEtat(EtatSession.TERMINEE);
+								}
+								
 								if (partie.siDesUtilises())
 								{	
 									//TODO affichage changement de Tour
 									changerTour();	
-									if(partie.isPartieFini())
-									{
-										vuePartie.afficherFenetreDemande( " Le Joueur " +partie.getJoueurEnCour() + " à Gagnée", null);
-										vuePartie.setEtat(EtatSession.TERMINEE);
-									}
+									
 								}
 								else if(!partie.hasCoupPossible())
 								{
@@ -174,7 +184,7 @@ public class ControleurTablier {
 					  
 					  vueTablier.updateUI();
 					  vueTablier.updateDes();
-					  timer.restart();
+					  
 				  }
 				});
 			
@@ -185,6 +195,29 @@ public class ControleurTablier {
 		{
 			timer =null;
 		}
+	}
+	
+	public Timer getTimer() {
+		return timer;
+	}
+
+
+	@Override
+	public Controleur getControleur() {
+		return this;
+	}
+
+
+	@Override
+	public JFrame getFrame() {
+		return frame;
+	}
+
+
+	@Override
+	public void retour() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

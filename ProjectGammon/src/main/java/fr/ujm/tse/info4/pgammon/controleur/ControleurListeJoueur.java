@@ -1,34 +1,43 @@
 package fr.ujm.tse.info4.pgammon.controleur;
 
+import java.awt.Frame;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Date;
+
+import javax.swing.JFrame;
 
 import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.Profils;
 import fr.ujm.tse.info4.pgammon.vues.VueAjouterJoueur;
 import fr.ujm.tse.info4.pgammon.vues.VueListeJoueur;
 
-public class ControleurListeJoueur {
+public class ControleurListeJoueur implements Controleur{
 
 	private VueListeJoueur vueListeJoueur;
-	private ControleurPrincipal controleurPrincipal;
+	private Controleur controleur;
 	private Profils profil;
 	private VueAjouterJoueur vueAjouterJoueur;
 	private Boolean flag = true;
     private Integer id = 0;
+    private boolean isCharger;
+    private JFrame frame;
     
-	public ControleurListeJoueur(ControleurPrincipal controleurPrincipal) 
+	public ControleurListeJoueur (boolean isCharger,Controleur controleur) 
 	{
-		this.controleurPrincipal = controleurPrincipal;
+		this.controleur = controleur;
 		//TODO a changer
 		profil = Profils.getProfils();
 		//
 		
+		this.isCharger = isCharger;
+		
 		vueListeJoueur = new VueListeJoueur(profil);
-		controleurPrincipal.getFrame().setContentPane(vueListeJoueur);
+		controleur.getControleur().getFrame().setContentPane(vueListeJoueur);
 		build();
 	}
+	
+	
 	
 	public void build()
 	{
@@ -36,8 +45,28 @@ public class ControleurListeJoueur {
 		listenerBouttonAjouter();
 		listenerBouttonModifier();
 		listenerBouttonSupprimer();
+		listenerBouttonSelection();
 	}
-	
+	public void listenerBouttonSelection()
+	{
+		vueListeJoueur.getSelectionner().addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {}			
+			@Override
+			public void mousePressed(MouseEvent e) {}			
+			@Override
+			public void mouseExited(MouseEvent e) {}			
+			@Override
+			public void mouseEntered(MouseEvent e) {}			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			
+					
+			}
+		});
+	}
 	public void listenerBouttonRetour()
 	{
 		vueListeJoueur.getRetour().addMouseListener(new MouseListener() {
@@ -46,7 +75,7 @@ public class ControleurListeJoueur {
 			public void mouseClicked(MouseEvent e) {
 				vueListeJoueur.setVisible(false);
 				profil.sauvegarder();
-				controleurPrincipal.retourMenu();
+				controleur.retour();
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {}
@@ -157,6 +186,8 @@ public class ControleurListeJoueur {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(flag){
+					boolean drapeau = true;
+					
 					Joueur tmpJoueur = new Joueur();		 
 					tmpJoueur.setPseudo(vueAjouterJoueur.getnomPseudo().getText());	
 					
@@ -165,7 +196,17 @@ public class ControleurListeJoueur {
 					
 					tmpJoueur.setId(id);
 					
-					profil.getList().add(tmpJoueur);
+					for(int i=0;i<profil.getList().size();i++){
+						if((int)tmpJoueur.getId()== (int)profil.getList().get(i).getId()){
+							drapeau = false;
+						}
+					}
+					
+					if(drapeau){
+						profil.getList().add(tmpJoueur);
+						System.out.println("what !!!!!!!!");
+						profil.afficher();
+					}
 					
 				}else{
 					vueListeJoueur.getPanelDescription().getJoueur().setPseudo(vueAjouterJoueur.getnomPseudo().getText());
@@ -181,6 +222,26 @@ public class ControleurListeJoueur {
 			@Override
 			public void mouseReleased(MouseEvent e) {}
 		});
+	}
+
+
+
+	@Override
+	public Controleur getControleur() {
+		return this;
+	}
+	
+	@Override
+	public JFrame getFrame() {
+		return frame;
+	}
+
+
+
+	@Override
+	public void retour() {
+		// TODO Auto-generated method stub
+		
 	}
 
 				

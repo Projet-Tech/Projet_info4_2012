@@ -36,7 +36,7 @@ public class TestTransition {
 
 		ParametreJeu param = new ParametreJeu(0, 3, true, jBlanc, jNoir);
 		Partie p = new Partie(param);
-		p.LancerPartie();
+		p.lancerPremierePartie();
 		ControleurPartie controleurPartie = new ControleurPartie(p);
 		VuePartie vue = controleurPartie.getVuePartie();
 		vue.setBounds(0,0,830,630);

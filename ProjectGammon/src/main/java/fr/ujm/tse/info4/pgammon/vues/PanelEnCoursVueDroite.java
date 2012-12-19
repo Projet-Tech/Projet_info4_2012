@@ -94,7 +94,9 @@ public AfficheurScore getVideau() {
 	return videau;
 }
 		
-	
+public void setPartie(Partie partie) {
+	this.partie = partie;
+}
 		
 
 	

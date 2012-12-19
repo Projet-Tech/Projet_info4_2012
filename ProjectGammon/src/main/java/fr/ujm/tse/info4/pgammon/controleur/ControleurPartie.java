@@ -8,35 +8,36 @@
 //
 
 package fr.ujm.tse.info4.pgammon.controleur;
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.nio.channels.SeekableByteChannel;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.SortedSet;
 import java.util.concurrent.ConcurrentSkipListSet;
 
-import javax.swing.JButton;
+import javax.swing.JFrame;
 
 import fr.ujm.tse.info4.pgammon.models.Case;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 import fr.ujm.tse.info4.pgammon.models.EtatSession;
+import fr.ujm.tse.info4.pgammon.models.GestionDeSession;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 import fr.ujm.tse.info4.pgammon.models.Partie;
 import fr.ujm.tse.info4.pgammon.models.Session;
 import fr.ujm.tse.info4.pgammon.vues.VuePartie;
 
 
-public class ControleurPartie
+public class ControleurPartie implements Controleur
 {
 	private Session session;
 	private VuePartie vuePartie;
 	private ControleurTablier controleurTablier;
 	private ControleurPartie controleurPartie;
+	private JFrame frame;
 	
 	//TODO Ce constructeur seras detruit
 	public  ControleurPartie(Partie partie)
@@ -46,7 +47,7 @@ public class ControleurPartie
 		vuePartie = new VuePartie(partie);
 		
 		build();
-		controleurTablier = new ControleurTablier(partie,vuePartie);
+		controleurTablier = new ControleurTablier(partie,vuePartie,this);
 	}
 	
 	public  ControleurPartie(Session session)
@@ -58,7 +59,7 @@ public class ControleurPartie
 		vuePartie = new VuePartie(session.getPartieEnCours());
 		build();
 		
-		controleurTablier = new ControleurTablier(session.getPartieEnCours(),vuePartie);
+		controleurTablier = new ControleurTablier(session.getPartieEnCours(),vuePartie,this);
 		
 		
 	}
@@ -106,6 +107,7 @@ public class ControleurPartie
 	
 	public void listenerLancerDe()
 	{
+		
 		vuePartie.getPaneldroitencours().getDices().addMouseListener(new MouseListener(){
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -121,6 +123,7 @@ public class ControleurPartie
 				vuePartie.updateUI();
 				vuePartie.getVueTablier().updateUI();
 				vuePartie.getVueTablier().updateDes();
+				controleurTablier.getTimer().restart();
 			}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {}
@@ -179,6 +182,12 @@ public class ControleurPartie
 	}
 	public void listenerButtonVideau()
 	{
+		if (!session.getParametreSession().isUtiliseVideau())
+		{
+			vuePartie.getPaneldroitencours().getVideau().setEnabled(false);
+		}
+		else
+		{
 		vuePartie.getPaneldroitencours().getVideau().addMouseListener(new MouseListener(){
 
 			@Override
@@ -193,9 +202,15 @@ public class ControleurPartie
 						
 						String action = e.getActionCommand();
 						if (action == "Oui")
+						{
 							session.getPartieEnCours().doublerVideau();
+							
+						}
 						else if (action == "Non")
+						{
 							finPartie();
+							controleurPartie.nouvellePartie();
+						}
 						vuePartie.getPaneldroitencours().updateVideau();
 					}
 				});
@@ -209,7 +224,7 @@ public class ControleurPartie
 			@Override
 			public void mouseReleased(MouseEvent arg0) {}
 		});
-
+		}
 	}
 	
 	public void listenerPartieSuivante()
@@ -238,17 +253,25 @@ public class ControleurPartie
 		
 		vuePartie.setPartie(session.getPartieEnCours());
 		vuePartie.setEtat(EtatSession.EN_COURS);
-		controleurTablier = new ControleurTablier(session.getPartieEnCours(),vuePartie);
+		controleurTablier = new ControleurTablier(session.getPartieEnCours(),vuePartie,this);
 		
 		session.LancerPartie();
 		vuePartie.updateUI();
 	}
 	
-	public void finPartie()
+	public void finPartie() 
 	{
+		try {
+			GestionDeSession gestion = GestionDeSession.getGestionDeSession();
+			gestion.sauvegarder();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		session.finPartie();
 		vuePartie.getPanelEnCoursVueBas().updateScore(session.getScores().get(session.getParametreSession().getJoueurBlanc()), session.getScores().get(session.getParametreSession().getJoueurNoir()));
-	}
+	
+		}
 	
 	public Partie getPartie() {
 		return session.getPartieEnCours();
@@ -301,6 +324,22 @@ public class ControleurPartie
 		lCase.add(new Case(CouleurCase.BLANC, 0, 0));
 		lCase.add(new Case(CouleurCase.NOIR, 0, 25));
 		session.getPartieEnCours().getTablier().initialiserCaseBarre(lCase);	
+	}
+
+	@Override
+	public Controleur getControleur() {
+		return this;
+	}
+	
+	@Override
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	@Override
+	public void retour() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

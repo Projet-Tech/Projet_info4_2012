@@ -3,6 +3,7 @@ package fr.ujm.tse.info4.pgammon.vues;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Paint;
@@ -36,6 +37,9 @@ public class VueNouvelleSession extends JPanel{
 	private PanelJoueur paneljoueur2;
 	private PanelParametre panelparamètre;
 	
+	private MonochromeButton boutonChangerJoueurBlanc;
+	private MonochromeButton boutonChangerJoueurNoir;
+	
 	private Joueur j1;
 	private Joueur j2;
 
@@ -67,6 +71,15 @@ public class VueNouvelleSession extends JPanel{
 		 boutonchangercouleur.setBounds(10, 34, boutonchangercouleur.getPreferredSize().width, boutonchangercouleur.getPreferredSize().height);
 		 add(boutonchangercouleur);
 		 
+		 boutonChangerJoueurBlanc = new MonochromeButton("Change");
+		boutonChangerJoueurBlanc.setBounds(250, 75, 105, 50);
+		//boutonChangerJoueurBlanc.setFont(new Font("Arial", Font.PLAIN, 8));
+		add(boutonChangerJoueurBlanc);
+		
+		boutonChangerJoueurNoir = new MonochromeButton("Change");
+		boutonChangerJoueurNoir.setBounds(250, 285, 105, 50);
+		add(boutonChangerJoueurNoir);
+		 
 		 
 		 paneljoueur1.setBounds(37, 35, 332, 141);
 		 
@@ -95,6 +108,14 @@ public class VueNouvelleSession extends JPanel{
 		
 	}
 	
+	public MonochromeButton getBoutonChangerJoueurBlanc() {
+		return boutonChangerJoueurBlanc;
+	}
+
+	public MonochromeButton getBoutonChangerJoueurNoir() {
+		return boutonChangerJoueurNoir;
+	}
+
 	private void listenerboutonchangercouleur()
 	{
 		boutonchangercouleur.addMouseListener(new MouseListener() {

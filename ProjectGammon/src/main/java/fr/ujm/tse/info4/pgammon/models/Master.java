@@ -25,7 +25,7 @@ public class Master
 	
 	public Master()
 	{
-		idMax= 0;
+		idMax= 1;
 		controleurPrincipal = new ControleurPrincipal(this);
 		listSession = new ArrayList<Session>();
 	}
@@ -37,6 +37,15 @@ public class Master
 			listSession.add(new Session(idMax,parametreJeu));
 			idMax +=1;
 		}
+		try {
+			GestionDeSession gestion = GestionDeSession.getGestionDeSession();
+			gestion.setListSession(listSession);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
+		
 	}
 	
 	public void arreterSession(int id)

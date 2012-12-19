@@ -7,11 +7,19 @@ import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.RadialGradientPaint;
 import java.awt.RenderingHints;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import fr.ujm.tse.info4.pgammon.gui.Avatar;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
+import fr.ujm.tse.info4.pgammon.models.Joueur;
+import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
+import fr.ujm.tse.info4.pgammon.models.ParametreJeu;
+import fr.ujm.tse.info4.pgammon.models.Session;
 
 public class VueIntermediairePartie extends JPanel{
 	private static final long serialVersionUID = -8524922151654361657L;
@@ -25,6 +33,13 @@ public class VueIntermediairePartie extends JPanel{
 	private MonochromeButton boutonRetour;
 	
 	private MonochromeButton boutonNouvellePartie;
+	
+	Joueur jBlanc = new Joueur(1, "ben", Avatar.CHAT_JAUNE.getPath(),NiveauAssistant.NON_UTILISE);
+	Joueur jNoir = new Joueur(2, "JM", Avatar.CHEVAL.getPath(), NiveauAssistant.COMPLET);
+	
+	ParametreJeu param = new ParametreJeu(0, 3, true, jBlanc, jNoir);
+	ArrayList<Session> listSession;
+	
 	
 	
 	//pasage de parametre de booleen pour savoir quelle fenetre afficher
@@ -55,11 +70,16 @@ public class VueIntermediairePartie extends JPanel{
 		setLayout(null);
 		setOpaque(false);
 		
+		listSession = new ArrayList<>();
+		
+		listSession.add(new Session(1,param));
+		listSession.add(new Session(2,param));
+		
 		vueNouvelleSession = new VueNouvelleSession();
 		vueNouvelleSession.setBounds(0, 80, 800, 520);
 		add(vueNouvelleSession);
 		
-		vueChargerPartie = new VueChargerPartie();
+		vueChargerPartie = new VueChargerPartie(listSession);
 		vueChargerPartie.setBounds(0, 80, 800, 520);
 		add(vueChargerPartie);
 		
@@ -67,7 +87,7 @@ public class VueIntermediairePartie extends JPanel{
 		boutonRetour.setBounds(550, 15, 200, 50);
 		add(boutonRetour);
 		
-		boutonReprendre = new MonochromeButton("Reprendre");
+		boutonReprendre = new MonochromeButton("Charger");
 		boutonReprendre.setBounds(300, 15, 200, 50);
 		add(boutonReprendre);
 		
@@ -85,6 +105,55 @@ public class VueIntermediairePartie extends JPanel{
 			vueChargerPartie.setVisible(true);
 		}
 		
+		listenerboutonReprendre();
+		listenerboutonNouvellePartie();
+		
+	}
+	
+	private void listenerboutonNouvellePartie()
+	{
+		boutonNouvellePartie.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}		
+			@Override
+			public void mouseExited(MouseEvent e) {}			
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(fenetreAAfficher == false){
+					vueNouvelleSession.setVisible(true);
+					vueChargerPartie.setVisible(false);
+					fenetreAAfficher=true;
+				}
+			}
+		});
+	}
+	
+	private void listenerboutonReprendre()
+	{
+		boutonReprendre.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}		
+			@Override
+			public void mouseExited(MouseEvent e) {}			
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(fenetreAAfficher == true){
+					vueNouvelleSession.setVisible(false);
+					vueChargerPartie.setVisible(true);
+					fenetreAAfficher=false;
+				}
+			}
+		});
 	}
 
 	public VueNouvelleSession getVueNouvelleSession() {
