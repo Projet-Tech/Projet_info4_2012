@@ -12,7 +12,7 @@ import javax.swing.JScrollPane;
 public class AvatarList extends JPanel{
 	private static final long serialVersionUID = 4047846163448859090L;
 	private OpaqueBG bg;
-	
+	private String path = null;
 	public AvatarList() {
 		build();
 	}
@@ -39,7 +39,9 @@ public class AvatarList extends JPanel{
 			img.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					dispatchEvent(e);close();}
+					path = ((ImageAvatar) e.getSource()).getPath();
+					System.out.println(path);
+				}
 			});
 		}
 		
@@ -47,7 +49,7 @@ public class AvatarList extends JPanel{
 		closeBtn.setBounds(450, 400, 200, 40);
 		closeBtn.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {close();}
+			public void actionPerformed(ActionEvent e) {}
 		});
 		bg = new OpaqueBG();
 		bg.setBounds(getBounds());
@@ -70,6 +72,14 @@ public class AvatarList extends JPanel{
 	public void setBounds(int x, int y, int width, int height) {
 		super.setBounds(x, y, width, height);
 		bg.setBounds(0,0, width, height);
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
 	}
 
 	

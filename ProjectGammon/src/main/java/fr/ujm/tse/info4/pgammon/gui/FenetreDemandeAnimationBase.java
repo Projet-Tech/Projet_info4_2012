@@ -56,7 +56,6 @@ public class FenetreDemandeAnimationBase extends TranstionAnimeeBase {
 				@Override
 				public void actionPerformed(ActionEvent evt) {
 					close();
-					System.out.println(evt);
 					fireActionPerformed(evt);
 				}
 			});
@@ -66,7 +65,6 @@ public class FenetreDemandeAnimationBase extends TranstionAnimeeBase {
 		}
 		int i = 0;
 		for (String reponse : reponses) {
-			System.out.println(reponse);
 			MonochromeButton btn = new MonochromeButton(reponse);
 			btn.setName(reponse);
 			btn.addActionListener(new ActionListener() {
