@@ -1,18 +1,22 @@
 package fr.ujm.tse.info4.pgammon.controleur;
 
+import java.awt.Frame;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import fr.ujm.tse.info4.pgammon.models.ParametreJeu;
+import javax.swing.JFrame;
+
 import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
+import fr.ujm.tse.info4.pgammon.models.ParametreJeu;
 import fr.ujm.tse.info4.pgammon.vues.VueIntermediairePartie;
 
-public class ControleurIntermediairePartie extends Controleur{
+public class ControleurIntermediairePartie implements Controleur{
 
 	private ControleurPrincipal controleurPrincipal;
 	private boolean isNouvellePartie;
 	private VueIntermediairePartie vueCreationPartie;
+	private JFrame frame;
 	
 	public ControleurIntermediairePartie(boolean isNouvellePartie,ControleurPrincipal controleurPrincipal)
 	{
@@ -38,7 +42,7 @@ public class ControleurIntermediairePartie extends Controleur{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				vueCreationPartie.setVisible(false);
-				controleurPrincipal.retourMenu();
+				controleurPrincipal.retour();
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {}
@@ -81,6 +85,23 @@ public class ControleurIntermediairePartie extends Controleur{
 			public void mouseReleased(MouseEvent e) {}
 		});
 			
+	}
+
+	@Override
+	public Controleur getControleur() {
+		return this;
+	}
+	
+	@Override
+	public JFrame getFrame() {
+		// TODO Auto-generated method stub
+		return frame;
+	}
+
+	@Override
+	public void retour() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

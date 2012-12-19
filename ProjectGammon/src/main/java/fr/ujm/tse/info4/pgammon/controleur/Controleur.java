@@ -1,5 +1,10 @@
 package fr.ujm.tse.info4.pgammon.controleur;
 
-public class Controleur {
+import javax.swing.JFrame;
 
+public interface Controleur {
+	
+	public Controleur getControleur();
+	public JFrame getFrame();
+	public void retour();
 }

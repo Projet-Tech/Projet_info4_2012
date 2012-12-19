@@ -8,19 +8,18 @@
 //
 
 package fr.ujm.tse.info4.pgammon.controleur;
-import java.awt.Component;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.nio.channels.SeekableByteChannel;
 import java.util.ArrayList;
 import java.util.SortedSet;
 import java.util.concurrent.ConcurrentSkipListSet;
 
-import javax.swing.JButton;
+import javax.swing.JFrame;
 
 import fr.ujm.tse.info4.pgammon.models.Case;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
@@ -31,12 +30,13 @@ import fr.ujm.tse.info4.pgammon.models.Session;
 import fr.ujm.tse.info4.pgammon.vues.VuePartie;
 
 
-public class ControleurPartie extends Controleur
+public class ControleurPartie implements Controleur
 {
 	private Session session;
 	private VuePartie vuePartie;
 	private ControleurTablier controleurTablier;
 	private ControleurPartie controleurPartie;
+	private JFrame frame;
 	
 	//TODO Ce constructeur seras detruit
 	public  ControleurPartie(Partie partie)
@@ -316,6 +316,22 @@ public class ControleurPartie extends Controleur
 		lCase.add(new Case(CouleurCase.BLANC, 0, 0));
 		lCase.add(new Case(CouleurCase.NOIR, 0, 25));
 		session.getPartieEnCours().getTablier().initialiserCaseBarre(lCase);	
+	}
+
+	@Override
+	public Controleur getControleur() {
+		return this;
+	}
+	
+	@Override
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	@Override
+	public void retour() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

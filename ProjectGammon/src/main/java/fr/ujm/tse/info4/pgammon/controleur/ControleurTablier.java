@@ -1,5 +1,6 @@
 package fr.ujm.tse.info4.pgammon.controleur;
 
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.swing.JFrame;
 import javax.swing.Timer;
 
 import fr.ujm.tse.info4.pgammon.exeption.TourNonJouableException;
@@ -20,13 +22,14 @@ import fr.ujm.tse.info4.pgammon.models.Tablier;
 import fr.ujm.tse.info4.pgammon.vues.VuePartie;
 import fr.ujm.tse.info4.pgammon.vues.VueTablier;
 
-public class ControleurTablier extends Controleur{
+public class ControleurTablier implements Controleur{
 	private Tablier tablier;
 	private Partie partie;
 	private VueTablier vueTablier;
 	private VuePartie vuePartie;
 	private Timer timer;
 	private ControleurPartie controleurPartie;
+	private JFrame frame;
 
 
 
@@ -196,6 +199,25 @@ public class ControleurTablier extends Controleur{
 	
 	public Timer getTimer() {
 		return timer;
+	}
+
+
+	@Override
+	public Controleur getControleur() {
+		return this;
+	}
+
+
+	@Override
+	public JFrame getFrame() {
+		return frame;
+	}
+
+
+	@Override
+	public void retour() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

@@ -1,28 +1,31 @@
 package fr.ujm.tse.info4.pgammon.controleur;
 
+import java.awt.Frame;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Date;
-import java.util.List;
+
+import javax.swing.JFrame;
 
 import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.Profils;
 import fr.ujm.tse.info4.pgammon.vues.VueAjouterJoueur;
 import fr.ujm.tse.info4.pgammon.vues.VueListeJoueur;
 
-public class ControleurListeJoueur extends Controleur{
+public class ControleurListeJoueur implements Controleur{
 
 	private VueListeJoueur vueListeJoueur;
-	private ControleurPrincipal controleurPrincipal;
+	private Controleur controleur;
 	private Profils profil;
 	private VueAjouterJoueur vueAjouterJoueur;
 	private Boolean flag = true;
     private Integer id = 0;
     private boolean isCharger;
+    private JFrame frame;
     
-	public ControleurListeJoueur (ControleurPrincipal controleurPrincipal) 
+	public ControleurListeJoueur (Controleur controleur) 
 	{
-		this.controleurPrincipal = controleurPrincipal;
+		this.controleur = controleur;
 		//TODO a changer
 		profil = Profils.getProfils();
 		//
@@ -30,7 +33,7 @@ public class ControleurListeJoueur extends Controleur{
 		this.isCharger = false;
 		
 		vueListeJoueur = new VueListeJoueur(profil);
-		controleurPrincipal.getFrame().setContentPane(vueListeJoueur);
+		controleur.getControleur().getFrame().setContentPane(vueListeJoueur);
 		build();
 	}
 	
@@ -72,7 +75,7 @@ public class ControleurListeJoueur extends Controleur{
 			public void mouseClicked(MouseEvent e) {
 				vueListeJoueur.setVisible(false);
 				profil.sauvegarder();
-				controleurPrincipal.retourMenu();
+				controleur.retour();
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {}
@@ -219,6 +222,26 @@ public class ControleurListeJoueur extends Controleur{
 			@Override
 			public void mouseReleased(MouseEvent e) {}
 		});
+	}
+
+
+
+	@Override
+	public Controleur getControleur() {
+		return this;
+	}
+	
+	@Override
+	public JFrame getFrame() {
+		return frame;
+	}
+
+
+
+	@Override
+	public void retour() {
+		// TODO Auto-generated method stub
+		
 	}
 
 				

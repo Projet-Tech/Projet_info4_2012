@@ -22,7 +22,7 @@ import fr.ujm.tse.info4.pgammon.models.Session;
 import fr.ujm.tse.info4.pgammon.vues.VueIntermediairePartie;
 import fr.ujm.tse.info4.pgammon.vues.VueMenu;
 
-public class ControleurPrincipal extends Controleur{
+public class ControleurPrincipal implements Controleur{
 
 	private VueMenu vueMenu;
 	private Master master;
@@ -148,8 +148,8 @@ public class ControleurPrincipal extends Controleur{
 	public JFrame getFrame() {
 		return frame;
 	}
-
-	public void retourMenu()
+	@Override
+	public void retour()
 	{
 		vueMenu = new VueMenu();
 		frame.setContentPane(vueMenu);
@@ -165,5 +165,10 @@ public class ControleurPrincipal extends Controleur{
 		
 		frame.setContentPane(controleurPartie.getVuePartie());
 		
+	}
+
+	@Override
+	public Controleur getControleur() {
+		return this;
 	}
 }
