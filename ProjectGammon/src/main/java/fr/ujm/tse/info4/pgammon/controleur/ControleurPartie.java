@@ -114,6 +114,8 @@ public class ControleurPartie implements Controleur
 				if(session.getPartieEnCours().isTourFini() && !session.getPartieEnCours().isPartieFini())
 				{
 					session.getPartieEnCours().lancerDes();
+					if (controleurTablier.getTimer()!= null)
+						controleurTablier.getTimer().restart();
 					if(!session.getPartieEnCours().hasCoupPossible())
 					{
 						//TODO affichage plus de coup possible
@@ -123,8 +125,7 @@ public class ControleurPartie implements Controleur
 				vuePartie.updateUI();
 				vuePartie.getVueTablier().updateUI();
 				vuePartie.getVueTablier().updateDes();
-				if (controleurTablier.getTimer()!= null)
-					controleurTablier.getTimer().restart();
+				
 			}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {}
