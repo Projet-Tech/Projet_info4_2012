@@ -52,39 +52,44 @@ public class ControleurListeJoueur implements Controleur{
 	}
 	public void listenerBouttonSelection()
 	{
-		vueListeJoueur.getSelectionner().addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {}			
-			@Override
-			public void mousePressed(MouseEvent e) {}			
-			@Override
-			public void mouseExited(MouseEvent e) {}			
-			@Override
-			public void mouseEntered(MouseEvent e) {}			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (isCharger)
-				{
-					if (vueListeJoueur.getPanelDescription().getJoueur() !=null){
-						Joueur j=vueListeJoueur.getPanelDescription().getJoueur();
-						((ControleurIntermediairePartie)controleur).retour(j);
-						vueListeJoueur.setVisible(false);
-						profil.sauvegarder();
+		if (isCharger)
+		{
+			vueListeJoueur.getSelectionner().addMouseListener(new MouseListener() {
+				
+				@Override
+				public void mouseReleased(MouseEvent e) {}			
+				@Override
+				public void mousePressed(MouseEvent e) {}			
+				@Override
+				public void mouseExited(MouseEvent e) {}			
+				@Override
+				public void mouseEntered(MouseEvent e) {}			
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if (isCharger)
+					{
+						if (vueListeJoueur.getPanelDescription().getJoueur() !=null){
+							Joueur j=vueListeJoueur.getPanelDescription().getJoueur();
+							((ControleurIntermediairePartie)controleur).retour(j);
+							vueListeJoueur.setVisible(false);
+							profil.sauvegarder();
+						}
+						else
+						{
+							//vueListeJoueur.afficherFenetreDemande("Accepter vous le videau ?", null).addActionListener(new ActionListener() {
+						}
 					}
 					else
 					{
-						//vueListeJoueur.afficherFenetreDemande("Accepter vous le videau ?", null).addActionListener(new ActionListener() {
+						vueListeJoueur.setVisible(false);
+						profil.sauvegarder();
+						controleur.retour();
 					}
 				}
-				else
-				{
-					vueListeJoueur.setVisible(false);
-					profil.sauvegarder();
-					controleur.retour();
-				}
-			}
-		});
+			});
+		}
+		else
+			vueListeJoueur.getSelectionner().setVisible(false);
 	}
 	public void listenerBouttonRetour()
 	{

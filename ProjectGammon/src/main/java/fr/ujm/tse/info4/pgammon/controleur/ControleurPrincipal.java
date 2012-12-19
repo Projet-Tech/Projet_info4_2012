@@ -162,7 +162,7 @@ public class ControleurPrincipal implements Controleur{
 		master.lancerSession(parametreJeu);
 		Session s1 = master.getSession();
 		s1.LancerPartie();
-		ControleurPartie controleurPartie = new ControleurPartie(s1);
+		ControleurPartie controleurPartie = new ControleurPartie(s1,this);
 		
 		frame.setContentPane(controleurPartie.getVuePartie());
 		

@@ -11,9 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import fr.ujm.tse.info4.pgammon.gui.IconMonochromeType;
-import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeIconButton;
-import fr.ujm.tse.info4.pgammon.models.EtatSession;
 
 public class PanelTermineVueDroite extends JPanel{
 	
@@ -21,9 +19,12 @@ public class PanelTermineVueDroite extends JPanel{
 	private static final long serialVersionUID = 1735758716220950070L;
 	//composante des images de revoir partie
 		//Composant du panel droit
-		MonochromeIconButton next;
-		MonochromeIconButton undo;
-		MonochromeIconButton x_white;
+		private MonochromeIconButton next;
+		private MonochromeIconButton undo;
+		private MonochromeIconButton x_white;
+		private JLabel labnext;
+
+
 
 	public PanelTermineVueDroite(){
 		
@@ -49,7 +50,7 @@ public class PanelTermineVueDroite extends JPanel{
 			next.setBounds(10, 20, next.getPreferredSize().width, next.getPreferredSize().height);
 			add(next);
 			
-			JLabel labnext = new JLabel("<html>partie<br>suivante");
+			labnext = new JLabel("<html>partie<br>suivante");
 			labnext.setForeground(new Color(0xCCCCCC));
 			labnext.setBounds(15, 70, 80, 60);
 			add(labnext);
@@ -113,6 +114,10 @@ public class PanelTermineVueDroite extends JPanel{
 		
 		g2.fillRect(0, 0, w, h);
 		g2.dispose();
+	}
+	
+	public JLabel getLabnext() {
+		return labnext;
 	}
 	
 }

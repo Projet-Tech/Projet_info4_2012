@@ -5,6 +5,8 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.LayoutManager;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
@@ -13,6 +15,7 @@ import javax.swing.JPanel;
 
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 import fr.ujm.tse.info4.pgammon.models.Joueur;
+import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 
 public class PanelJoueur extends MonochromePanel{
 	
@@ -60,6 +63,47 @@ public class PanelJoueur extends MonochromePanel{
 					);
 			imgjoueur.setPath(joueur.getImageSource());
 			
+			if(joueur.getNiveauAssistant() == NiveauAssistant.COMPLET){
+				couppossible.setSelected(true);
+				conseilcoup.setSelected(true);
+			}
+			else if(joueur.getNiveauAssistant() == NiveauAssistant.SIMPLE){
+				couppossible.setSelected(true);
+				conseilcoup.setSelected(false);
+			}
+			else{
+				couppossible.setSelected(false);
+				conseilcoup.setSelected(false);
+			}
+			if(couppossible.isSelected()){
+				conseilcoup.setEnabled(true);
+			}else{
+				conseilcoup.setEnabled(false);
+			}
+			
+		}
+		
+		private void listenerboutonchangerCoupPossible()
+		{
+			couppossible.addMouseListener(new MouseListener() {
+				
+				@Override
+				public void mouseReleased(MouseEvent e) {}
+				@Override
+				public void mousePressed(MouseEvent e) {}		
+				@Override
+				public void mouseExited(MouseEvent e) {}			
+				@Override
+				public void mouseEntered(MouseEvent e) {}
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if(joueur.getNiveauAssistant() == NiveauAssistant.NON_UTILISE )
+						joueur.setNiveauAssistant(NiveauAssistant.SIMPLE);
+					else
+						joueur.setNiveauAssistant(NiveauAssistant.NON_UTILISE);
+					updateData();
+				}
+			});
 		}
 		
 		public void build(){
@@ -110,6 +154,8 @@ public class PanelJoueur extends MonochromePanel{
 			add(couppossible);
 			add(conseilcoup);
 			add(affichestat);
+			
+			listenerboutonchangerCoupPossible();
 		}
 		
 		

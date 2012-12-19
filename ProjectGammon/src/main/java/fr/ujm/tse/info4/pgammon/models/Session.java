@@ -89,18 +89,21 @@ public class Session
 		scores.put(parametreSession.getJoueur(CouleurVictorieuse),scores.get(parametreSession.getJoueur(CouleurVictorieuse))+videau);
 	}
 	
-	public void verifFinSession()
+	public boolean verifFinSession()
 	{
 		if(scores.get(parametreSession.getJoueurBlanc()) >= parametreSession.getNbrPartieGagnante())
 		{
 			etatSession = EtatSession.TERMINEE;
 			joueurGagnantSession = parametreSession.getJoueurBlanc();
+			return true;
 		}
 		else if(scores.get(parametreSession.getJoueurNoir()) >= parametreSession.getNbrPartieGagnante())
 		{
 			etatSession = EtatSession.TERMINEE;
 			joueurGagnantSession = parametreSession.getJoueurBlanc();
+			return true;
 		}
+		return false;
 	}
 	
 	public void sauvegarder(Element racine)
@@ -175,11 +178,13 @@ public class Session
 	}
 
 	public boolean isSessionFini()
-	{
+	{	
 		if (joueurGagnantSession == null)
 			return false;
 		else
 			return true;
+		
+			
 	}
 
 	public ParametreJeu getParametreSession() {

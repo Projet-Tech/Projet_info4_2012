@@ -79,6 +79,7 @@ public class PanelParametresVueCharger extends MonochromePanel{
 		imgjoueurNoir.setPath(session.getPartieEnCours().getParametreJeu().getJoueurNoir().getImageSource());
 		nomJoueurBlanc.setText(session.getPartieEnCours().getParametreJeu().getJoueurBlanc().getPseudo());
 		nomJoueurNoir.setText(session.getPartieEnCours().getParametreJeu().getJoueurNoir().getPseudo());
+		
 		if(session.getPartieEnCours().getParametreJeu().isUtiliseVideau() == true){
 			text_videau.setText("Le videau est utilisé");
 		}
