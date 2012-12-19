@@ -26,18 +26,18 @@ public class ControleurTablier {
 	private VueTablier vueTablier;
 	private VuePartie vuePartie;
 	private Timer timer;
-	
+	private ControleurPartie controleurPartie;
 
 
 
-	public ControleurTablier(Partie partie,VuePartie vuePartie)
+	public ControleurTablier(Partie partie,VuePartie vuePartie,ControleurPartie controleurPartie)
 	{
 
 		this.partie = partie;
 		this.tablier = partie.getTablier();
 		this.vuePartie = vuePartie;
 		this.vueTablier = vuePartie.getVueTablier();
-		
+		this.controleurPartie = controleurPartie;
 	
 		build();
 		vueTablier.updateDes();
@@ -86,7 +86,8 @@ public class ControleurTablier {
 								
 								if(partie.isPartieFini())
 								{
-									vuePartie.afficherFenetreDemande( " Le Joueur " +partie.getJoueurEnCour() + " à Gagnée", null);
+									controleurPartie.finPartie();
+									vuePartie.afficherFenetreDemande(partie.getParametreJeu().getJoueur(partie.getJoueurEnCour()) + " a Gagné", null);
 									vuePartie.setEtat(EtatSession.TERMINEE);
 								}
 								

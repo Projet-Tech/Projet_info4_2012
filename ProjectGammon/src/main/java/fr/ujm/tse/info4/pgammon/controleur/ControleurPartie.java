@@ -46,7 +46,7 @@ public class ControleurPartie
 		vuePartie = new VuePartie(partie);
 		
 		build();
-		controleurTablier = new ControleurTablier(partie,vuePartie);
+		controleurTablier = new ControleurTablier(partie,vuePartie,this);
 	}
 	
 	public  ControleurPartie(Session session)
@@ -58,7 +58,7 @@ public class ControleurPartie
 		vuePartie = new VuePartie(session.getPartieEnCours());
 		build();
 		
-		controleurTablier = new ControleurTablier(session.getPartieEnCours(),vuePartie);
+		controleurTablier = new ControleurTablier(session.getPartieEnCours(),vuePartie,this);
 		
 		
 	}
@@ -252,7 +252,7 @@ public class ControleurPartie
 		
 		vuePartie.setPartie(session.getPartieEnCours());
 		vuePartie.setEtat(EtatSession.EN_COURS);
-		controleurTablier = new ControleurTablier(session.getPartieEnCours(),vuePartie);
+		controleurTablier = new ControleurTablier(session.getPartieEnCours(),vuePartie,this);
 		
 		session.LancerPartie();
 		vuePartie.updateUI();
