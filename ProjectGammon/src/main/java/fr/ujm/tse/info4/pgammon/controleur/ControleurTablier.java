@@ -198,7 +198,7 @@ public class ControleurTablier implements Controleur{
 				});
 			
 			timer.setRepeats(false);
-			timer.start();
+			
 		}
 		else
 		{
