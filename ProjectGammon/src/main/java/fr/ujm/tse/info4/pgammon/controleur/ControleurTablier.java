@@ -90,8 +90,6 @@ public class ControleurTablier implements Controleur{
 								if(partie.isPartieFini())
 								{
 									controleurPartie.finPartie();
-									vuePartie.afficherFenetreDemande(partie.getParametreJeu().getJoueur(partie.getJoueurEnCour()) + " a Gagné", null);
-									vuePartie.setEtat(EtatSession.TERMINEE);
 								}
 								
 								if (partie.siDesUtilises())

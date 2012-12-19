@@ -38,7 +38,7 @@ public class ControleurPartie implements Controleur
 	private ControleurTablier controleurTablier;
 	private ControleurPartie controleurPartie;
 	private JFrame frame;
-	
+	private Controleur controleur;
 	//TODO Ce constructeur seras detruit
 	public  ControleurPartie(Partie partie)
 	{
@@ -50,8 +50,9 @@ public class ControleurPartie implements Controleur
 		controleurTablier = new ControleurTablier(partie,vuePartie,this);
 	}
 	
-	public  ControleurPartie(Session session)
+	public  ControleurPartie(Session session,Controleur controleur)
 	{
+		this.controleur = controleur;
 		controleurPartie = this;
 		this.session = session;
 		testInitialisation();
@@ -209,7 +210,9 @@ public class ControleurPartie implements Controleur
 						else if (action == "Non")
 						{
 							finPartie();
-							controleurPartie.nouvellePartie();
+							if (!session.isSessionFini())
+								controleurPartie.nouvellePartie();
+							
 						}
 						vuePartie.getPaneldroitencours().updateVideau();
 					}
@@ -241,7 +244,11 @@ public class ControleurPartie implements Controleur
 			public void mouseEntered(MouseEvent arg0) {}		
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				if(session.isSessionFini())
+					controleur.retour();
+				else
 					controleurPartie.nouvellePartie();
+					
 			}
 		});
 	}
@@ -269,9 +276,21 @@ public class ControleurPartie implements Controleur
 			// TODO: handle exception
 		}
 		session.finPartie();
+	
 		vuePartie.getPanelEnCoursVueBas().updateScore(session.getScores().get(session.getParametreSession().getJoueurBlanc()), session.getScores().get(session.getParametreSession().getJoueurNoir()));
 	
+		if(session.verifFinSession())
+		{
+			vuePartie.getPaneldroitrevoir().getLabnext().setText("<html>Finir<br>Session");
+			vuePartie.afficherFenetreDemande(session.getPartieEnCours().getParametreJeu().getJoueur(session.getPartieEnCours().getJoueurEnCour()).getPseudo() + " a Gagné la session", null);
 		}
+		else
+		{
+			vuePartie.afficherFenetreDemande(session.getPartieEnCours().getParametreJeu().getJoueur(session.getPartieEnCours().getJoueurEnCour()).getPseudo() + " a Gagné", null);	
+		}
+		vuePartie.setEtat(EtatSession.TERMINEE);
+		
+	}
 	
 	public Partie getPartie() {
 		return session.getPartieEnCours();
