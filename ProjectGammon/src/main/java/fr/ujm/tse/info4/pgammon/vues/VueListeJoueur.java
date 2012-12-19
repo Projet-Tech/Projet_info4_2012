@@ -25,11 +25,12 @@ import fr.ujm.tse.info4.pgammon.gui.AvatarList;
 import fr.ujm.tse.info4.pgammon.gui.JoueurCellRenderer;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeListe;
+import fr.ujm.tse.info4.pgammon.gui.MonochromeVue;
 import fr.ujm.tse.info4.pgammon.gui.OpaqueBG;
 import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.Profils;
 
-public class VueListeJoueur extends JPanel{
+public class VueListeJoueur extends MonochromeVue{
 
 	/**
 	 * 

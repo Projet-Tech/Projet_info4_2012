@@ -16,12 +16,13 @@ import javax.swing.JPanel;
 
 import fr.ujm.tse.info4.pgammon.gui.Avatar;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
+import fr.ujm.tse.info4.pgammon.gui.MonochromeVue;
 import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 import fr.ujm.tse.info4.pgammon.models.ParametreJeu;
 import fr.ujm.tse.info4.pgammon.models.Session;
 
-public class VueIntermediairePartie extends JPanel{
+public class VueIntermediairePartie extends MonochromeVue{
 	private static final long serialVersionUID = -8524922151654361657L;
 	
 	private VueNouvelleSession vueNouvelleSession;

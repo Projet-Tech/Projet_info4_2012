@@ -8,7 +8,7 @@
       <joueurNoir id="115313">
         <score>0</score>
       </joueurNoir>
-      <joueurBlanc id="115313">
+      <joueurBlanc id="115296">
         <score>0</score>
       </joueurBlanc>
     </joueurs>
@@ -25,12 +25,12 @@
       <premierJoueur>BLANC</premierJoueur>
       <deSixFaces>
         <deSixFace>
-          <valeur>1</valeur>
+          <valeur>5</valeur>
           <isUtilise>non</isUtilise>
           <couleurDe>BLANC</couleurDe>
         </deSixFace>
         <deSixFace>
-          <valeur>4</valeur>
+          <valeur>2</valeur>
           <isUtilise>oui</isUtilise>
           <couleurDe>BLANC</couleurDe>
         </deSixFace>
@@ -160,12 +160,12 @@
           <couleurJoueur>BLANC</couleurJoueur>
           <deSixFaces>
             <deSixFace>
-              <valeur>1</valeur>
+              <valeur>5</valeur>
               <isUtilise>non</isUtilise>
               <couleurDe>BLANC</couleurDe>
             </deSixFace>
             <deSixFace>
-              <valeur>4</valeur>
+              <valeur>2</valeur>
               <isUtilise>oui</isUtilise>
               <couleurDe>BLANC</couleurDe>
             </deSixFace>

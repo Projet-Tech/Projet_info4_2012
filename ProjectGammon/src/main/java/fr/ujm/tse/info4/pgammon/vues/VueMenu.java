@@ -18,8 +18,9 @@ import javax.swing.JPanel;
 
 import fr.ujm.tse.info4.pgammon.gui.ChangementTourAnimation;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
+import fr.ujm.tse.info4.pgammon.gui.MonochromeVue;
 
-public class VueMenu extends JPanel {
+public class VueMenu extends MonochromeVue {
 
 	private static final long serialVersionUID = 3060121008717453091L;
 	public static final String img_menu = "images/menu_bg.png";

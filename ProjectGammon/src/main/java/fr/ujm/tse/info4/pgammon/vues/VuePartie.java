@@ -19,13 +19,14 @@ import fr.ujm.tse.info4.pgammon.gui.IconMonochromeType;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeIconButton;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeLabel;
+import fr.ujm.tse.info4.pgammon.gui.MonochromeVue;
 import fr.ujm.tse.info4.pgammon.gui.PanelJoueur;
 import fr.ujm.tse.info4.pgammon.gui.TranstionAnimeeBase;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 import fr.ujm.tse.info4.pgammon.models.EtatSession;
 import fr.ujm.tse.info4.pgammon.models.Partie;
 
-public class VuePartie extends JPanel{
+public class VuePartie extends MonochromeVue{
 	private static final long serialVersionUID = 2417367501490643145L;
 	
 	//recuperation de l'image de fond
@@ -48,7 +49,6 @@ public class VuePartie extends JPanel{
 	
 	private PanelJoueurVuePartie paneljoueur1;
 	private PanelJoueurVuePartie paneljoueur2;
-	private JPanel animationPanel;
 	
 	public VuePartie(Partie partie) {
 		this.partie = partie;
@@ -60,11 +60,6 @@ public class VuePartie extends JPanel{
 	
 	private void build() {
 		
-		animationPanel = new JPanel();
-		animationPanel.setLayout(null);
-		animationPanel.setBounds(0,0,800,600);
-		animationPanel.setOpaque(false);
-		add(animationPanel);
 		
 		setPreferredSize(new Dimension(800,600));
 		setOpaque(false);
@@ -207,26 +202,6 @@ etat=EtatSession.EN_COURS;
 
 	public PanelJoueurVuePartie getPaneljoueur2() {
 		return paneljoueur2;
-	}
-
-	private void setAnimation(TranstionAnimeeBase animation){
-		animation.setBounds(animationPanel.getBounds());
-		animationPanel.removeAll();
-		animationPanel.add(animation);
-	}
-
-	public void afficherTransition(String titre, String text){
-		ChangementTourAnimation tourAnimation = new ChangementTourAnimation(titre, text);
-		tourAnimation.start();
-		setAnimation(tourAnimation);
-	}
-	
-	public FenetreDemandeAnimationBase afficherFenetreDemande(String titre,SortedSet<String> reponses){
-		FenetreDemandeAnimationBase fenetreDemande = new FenetreDemandeAnimationBase(titre,titre,reponses);
-		setAnimation(fenetreDemande);
-		fenetreDemande.start();
-		return fenetreDemande;
-		
 	}
 	
 	@Override
