@@ -7,6 +7,8 @@ import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.RadialGradientPaint;
 import java.awt.RenderingHints;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
@@ -103,6 +105,55 @@ public class VueIntermediairePartie extends JPanel{
 			vueChargerPartie.setVisible(true);
 		}
 		
+		listenerboutonReprendre();
+		listenerboutonNouvellePartie();
+		
+	}
+	
+	private void listenerboutonNouvellePartie()
+	{
+		boutonNouvellePartie.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}		
+			@Override
+			public void mouseExited(MouseEvent e) {}			
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(fenetreAAfficher == false){
+					vueNouvelleSession.setVisible(true);
+					vueChargerPartie.setVisible(false);
+					fenetreAAfficher=true;
+				}
+			}
+		});
+	}
+	
+	private void listenerboutonReprendre()
+	{
+		boutonReprendre.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}		
+			@Override
+			public void mouseExited(MouseEvent e) {}			
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(fenetreAAfficher == true){
+					vueNouvelleSession.setVisible(false);
+					vueChargerPartie.setVisible(true);
+					fenetreAAfficher=false;
+				}
+			}
+		});
 	}
 
 	public VueNouvelleSession getVueNouvelleSession() {
