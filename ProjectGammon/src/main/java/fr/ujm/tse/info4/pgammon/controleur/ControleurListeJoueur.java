@@ -2,6 +2,8 @@ package fr.ujm.tse.info4.pgammon.controleur;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Date;
+
 import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.Profils;
 import fr.ujm.tse.info4.pgammon.vues.VueAjouterJoueur;
@@ -14,7 +16,8 @@ public class ControleurListeJoueur {
 	private Profils profil;
 	private VueAjouterJoueur vueAjouterJoueur;
 	private Boolean flag = true;
-
+    private Integer id = 0;
+    
 	public ControleurListeJoueur(ControleurPrincipal controleurPrincipal) 
 	{
 		this.controleurPrincipal = controleurPrincipal;
@@ -150,12 +153,20 @@ public class ControleurListeJoueur {
 	public void listenerBouttonEnregistrerEditerProfil(){
 		vueAjouterJoueur.getenregistrer().addMouseListener(new MouseListener() {
 
+			@SuppressWarnings("deprecation")
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(flag){
 					Joueur tmpJoueur = new Joueur();		 
 					tmpJoueur.setPseudo(vueAjouterJoueur.getnomPseudo().getText());	
+					
+					Date date = new Date();
+					id = 10000*date.getMonth()+1000*date.getDay()+100*date.getHours()+10*date.getMinutes()+date.getSeconds();
+					
+					tmpJoueur.setId(id);
+					
 					profil.getList().add(tmpJoueur);
+					
 				}else{
 					vueListeJoueur.getPanelDescription().getJoueur().setPseudo(vueAjouterJoueur.getnomPseudo().getText());
 				}
