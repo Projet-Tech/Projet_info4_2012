@@ -12,7 +12,7 @@ import fr.ujm.tse.info4.pgammon.vues.VueMenu;
 public class TestVueIntermediaire {
 
 	public static void main(String[] args){
-		Boolean test=false;
+		Boolean test=true;
 		
 		JFrame frame = new JFrame("Test Menu");
 

@@ -41,7 +41,7 @@ public class VueChargerPartie extends JPanel{
 		setOpaque(false);
 		
 		panelParametresVueCharger = new PanelParametresVueCharger();
-		panelParametresVueCharger.setBounds(450, 80, 300, 400);
+		panelParametresVueCharger.setBounds(450, 35, 300, 340);
 		add(panelParametresVueCharger);
 		
 		
@@ -53,7 +53,7 @@ public class VueChargerPartie extends JPanel{
 		
 		
 		boutonCommencer = new MonochromeButton("Commencer");
-		boutonCommencer.setBounds(300, 520, 200, 50);
+		boutonCommencer.setBounds(300, 440, 200, 50);
 		add(boutonCommencer);
 		
 	}

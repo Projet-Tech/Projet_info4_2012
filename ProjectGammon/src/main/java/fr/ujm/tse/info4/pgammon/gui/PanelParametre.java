@@ -3,10 +3,13 @@ package fr.ujm.tse.info4.pgammon.gui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import fr.ujm.tse.info4.pgammon.controleur.ControleurIntermediairePartie;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 
 public class PanelParametre extends MonochromePanel{
@@ -33,6 +36,7 @@ public class PanelParametre extends MonochromePanel{
 	private JLabel text_temps;
 	
 	private MonochromeCheckbox videau;
+	
 	
 	private int nbParties;
 	private int nbTemps;
@@ -64,7 +68,7 @@ public class PanelParametre extends MonochromePanel{
 		add(text_parties);
 		
 		text_temps = new JLabel();
-		text_temps.setText("limitation du temps par tour");
+		text_temps.setText("limitation du temps par tour en seconde");
 		text_temps.setForeground(new Color(0xCCCCCC));
 		text_temps.setBounds(20, 150, 300, 50);
 		add(text_temps);
@@ -114,7 +118,158 @@ public class PanelParametre extends MonochromePanel{
 			videau.setBounds(100, 270, 150, 50);
 			add(videau);
 			
+			listenerplus_partie();
+			listenermoins_partie();
+			listenerinfinite_partie();
+			listenerplus_Temps();
+			listenermoins_Temps();
+			listenerinfinite_Temps();
 			
+			
+	}
+	
+	public void changerValeurNbTemps(int i){
+		if(i == 0){
+			lab_temps.setText("\u221E");
+		}else{
+			lab_temps.setText(new Integer(i).toString());
+		}
+		
+	}
+	
+	private void listenerplus_Temps()
+	{
+		plus_temps.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}		
+			@Override
+			public void mouseExited(MouseEvent e) {}			
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				nbTemps ++;
+				changerValeurNbTemps(nbTemps);
+			}
+		});
+	}
+	
+	private void listenermoins_Temps()
+	{
+		moins_temps.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}		
+			@Override
+			public void mouseExited(MouseEvent e) {}			
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(nbTemps > 1){
+					nbTemps --;
+					changerValeurNbTemps(nbTemps);
+				}
+			}
+		});
+	}
+	
+	private void listenerinfinite_Temps()
+	{
+		infinite_temps.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}		
+			@Override
+			public void mouseExited(MouseEvent e) {}			
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				nbTemps = 0;
+				changerValeurNbTemps(nbTemps);
+			}
+		});
+	}
+	
+	
+	public void changerValeurNbPartie(int i){
+		if(i == 0){
+			lab_parties.setText("\u221E");
+		}else{
+			lab_parties.setText(new Integer(i).toString());
+		}
+		
+		
+	}
+	
+	private void listenerplus_partie()
+	{
+		plus_partie.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}		
+			@Override
+			public void mouseExited(MouseEvent e) {}			
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				nbParties ++;
+				changerValeurNbPartie(nbParties);
+			}
+		});
+	}
+	
+	private void listenermoins_partie()
+	{
+		moins_partie.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}		
+			@Override
+			public void mouseExited(MouseEvent e) {}			
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(nbParties > 1){
+					nbParties --;
+					changerValeurNbPartie(nbParties);
+				}
+			}
+		});
+	}
+	
+	private void listenerinfinite_partie()
+	{
+		infinite_partie.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}		
+			@Override
+			public void mouseExited(MouseEvent e) {}			
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				nbParties = 0;
+				changerValeurNbPartie(nbParties);
+			}
+		});
 	}
 	
 	

@@ -99,6 +99,8 @@ public class ControleurPrincipal {
 			}
 		});
 	}
+	
+	
 	private void listenerButtonAjouter()
 	{
 		vueMenu.getBoutonAjouter().addMouseListener(new MouseListener() {
