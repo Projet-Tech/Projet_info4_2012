@@ -5,10 +5,10 @@
     <idMaxPartie>2</idMaxPartie>
     <couleurJoueurAnciennePartie>null</couleurJoueurAnciennePartie>
     <joueurs>
-      <joueurNoir id="2">
+      <joueurNoir id="115313">
         <score>0</score>
       </joueurNoir>
-      <joueurBlanc id="1">
+      <joueurBlanc id="115313">
         <score>0</score>
       </joueurBlanc>
     </joueurs>
@@ -25,12 +25,12 @@
       <premierJoueur>BLANC</premierJoueur>
       <deSixFaces>
         <deSixFace>
-          <valeur>2</valeur>
+          <valeur>1</valeur>
           <isUtilise>non</isUtilise>
           <couleurDe>BLANC</couleurDe>
         </deSixFace>
         <deSixFace>
-          <valeur>6</valeur>
+          <valeur>4</valeur>
           <isUtilise>oui</isUtilise>
           <couleurDe>BLANC</couleurDe>
         </deSixFace>
@@ -160,12 +160,12 @@
           <couleurJoueur>BLANC</couleurJoueur>
           <deSixFaces>
             <deSixFace>
-              <valeur>2</valeur>
+              <valeur>1</valeur>
               <isUtilise>non</isUtilise>
               <couleurDe>BLANC</couleurDe>
             </deSixFace>
             <deSixFace>
-              <valeur>6</valeur>
+              <valeur>4</valeur>
               <isUtilise>oui</isUtilise>
               <couleurDe>BLANC</couleurDe>
             </deSixFace>

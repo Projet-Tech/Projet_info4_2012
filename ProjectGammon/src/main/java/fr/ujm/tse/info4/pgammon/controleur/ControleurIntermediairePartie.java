@@ -5,6 +5,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
 
+import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 import fr.ujm.tse.info4.pgammon.models.ParametreJeu;
@@ -17,6 +18,7 @@ public class ControleurIntermediairePartie implements Controleur{
 	private boolean isNouvellePartie;
 	private VueIntermediairePartie vueCreationPartie;
 	private JFrame frame;
+	private CouleurCase joueurEnCourDeModification;
 	
 	public ControleurIntermediairePartie(boolean isNouvellePartie,ControleurPrincipal controleurPrincipal)
 	{
@@ -34,6 +36,7 @@ public class ControleurIntermediairePartie implements Controleur{
 		listenerRetour();
 		listenerCommencer();
 		listenerChargerJoueur1();
+		listenerChargerJoueur2();
 	}
 	
 	public void listenerRetour()
@@ -68,8 +71,8 @@ public class ControleurIntermediairePartie implements Controleur{
 				boolean videau = vueCreationPartie.getVueNouvelleSession().getPanelparamètre().getVideau().isSelected();
 				
 				//TODO gerer dynamiquement les joueurs
-				Joueur jBlanc = new Joueur(1, "Benjamin BONNETTO", "beauGoss",NiveauAssistant.NON_UTILISE);
-				Joueur jNoir = new Joueur(2, "l'anne", "null", NiveauAssistant.COMPLET);
+				Joueur jBlanc =  vueCreationPartie.getVueNouvelleSession().getPaneljoueur1().getJoueur();
+				Joueur jNoir = vueCreationPartie.getVueNouvelleSession().getPaneljoueur2().getJoueur();
 				
 				//Creation des paramétres de jeu.
 				ParametreJeu param = new ParametreJeu(temp,nbPartie,videau,jBlanc,jNoir);
@@ -95,7 +98,7 @@ public class ControleurIntermediairePartie implements Controleur{
 			public void mouseClicked(MouseEvent e) {
 				vueCreationPartie.setVisible(false);
 				ControleurListeJoueur controleurListeJoueur = new ControleurListeJoueur(true,controleurIntermediairePartie);
-				
+				joueurEnCourDeModification = CouleurCase.BLANC;
 			}
 
 			@Override
@@ -115,7 +118,9 @@ public class ControleurIntermediairePartie implements Controleur{
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+				vueCreationPartie.setVisible(false);
+				ControleurListeJoueur controleurListeJoueur = new ControleurListeJoueur(true,controleurIntermediairePartie);
+				joueurEnCourDeModification = CouleurCase.NOIR;
 			}
 
 			@Override
@@ -146,6 +151,17 @@ public class ControleurIntermediairePartie implements Controleur{
 		getFrame().setContentPane(vueCreationPartie);
 		vueCreationPartie.setVisible(true);
 
+		//build();
+	}
+	
+	public void retour(Joueur j) {
+		getFrame().setContentPane(vueCreationPartie);
+		vueCreationPartie.setVisible(true);
+		if (joueurEnCourDeModification == CouleurCase.BLANC)
+			vueCreationPartie.getVueNouvelleSession().setJoueur1(j);
+		else
+			vueCreationPartie.getVueNouvelleSession().setJoueur2(j);
+		//TODO  mettre a jour la fenétre
 		//build();
 	}
 	

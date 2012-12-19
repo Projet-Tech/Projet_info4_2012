@@ -1,9 +1,12 @@
 package fr.ujm.tse.info4.pgammon.controleur;
 
 import java.awt.Frame;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Date;
+import java.util.SortedSet;
+import java.util.concurrent.ConcurrentSkipListSet;
 
 import javax.swing.JFrame;
 
@@ -61,9 +64,25 @@ public class ControleurListeJoueur implements Controleur{
 			public void mouseEntered(MouseEvent e) {}			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-			
-					
+				if (isCharger)
+				{
+					if (vueListeJoueur.getPanelDescription().getJoueur() !=null){
+						Joueur j=vueListeJoueur.getPanelDescription().getJoueur();
+						((ControleurIntermediairePartie)controleur).retour(j);
+						vueListeJoueur.setVisible(false);
+						profil.sauvegarder();
+					}
+					else
+					{
+						//vueListeJoueur.afficherFenetreDemande("Accepter vous le videau ?", null).addActionListener(new ActionListener() {
+					}
+				}
+				else
+				{
+					vueListeJoueur.setVisible(false);
+					profil.sauvegarder();
+					controleur.retour();
+				}
 			}
 		});
 	}
