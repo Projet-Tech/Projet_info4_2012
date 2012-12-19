@@ -35,23 +35,26 @@ public class ControleurPartie
 	//TODO Ce constructeur seras detruit
 	public  ControleurPartie(Partie partie)
 	{
-		
-		
 		controleurPartie = this;
 		//testInitialisation();
 		vuePartie = new VuePartie(partie);
+		
 		build();
 		controleurTablier = new ControleurTablier(partie,vuePartie);
 	}
 	
 	public  ControleurPartie(Session session)
 	{
+		controleurPartie = this;
 		this.session = session;
-	
+		testInitialisation();
 		//testInitialisation();
 		vuePartie = new VuePartie(session.getPartieEnCours());
 		build();
+		
 		controleurTablier = new ControleurTablier(session.getPartieEnCours(),vuePartie);
+		
+		
 	}
 
 	private void build() {
@@ -205,22 +208,38 @@ public class ControleurPartie
 			public void mouseEntered(MouseEvent arg0) {}		
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				session.nouvellePartie();
-				controleurTablier.nouvellePartie(session.getPartieEnCours());
-				vuePartie.setPartie(session.getPartieEnCours());
-				vuePartie.setEtat(EtatSession.EN_COURS);
-				session.LancerPartie();
-				vuePartie.updateUI();		
+					controleurPartie.nouvellePartie();
 			}
 		});
 	}
 	
+	public void nouvellePartie()
+	{
+		session.nouvellePartie();
+		session.LancerPartie();
+		/*controleurPartie = this;
+		this.session = session;
+		testInitialisation();
+		//testInitialisation();
+		vuePartie = new VuePartie(session.getPartieEnCours());
+		build();
+		
+		controleurTablier = new ControleurTablier(session.getPartieEnCours(),vuePartie);
+		*/
+		//vuePartie = new VuePartie(session.getPartieEnCours());
+		
+		vuePartie.setPartie(session.getPartieEnCours());
+		vuePartie.setEtat(EtatSession.EN_COURS);
+		controleurTablier = new ControleurTablier(session.getPartieEnCours(),vuePartie);
+		
+		session.LancerPartie();
+		vuePartie.updateUI();
+	}
 	
 	public Partie getPartie() {
 		return session.getPartieEnCours();
 	}
 	
-
 	public VuePartie getVuePartie() {
 		return vuePartie;
 	}
@@ -232,12 +251,12 @@ public class ControleurPartie
 	private void testInitialisation(){
 		ArrayList<Case> lCase = new ArrayList<Case>();
 		
-		lCase.add(new Case(CouleurCase.NOIR, 3, 1));
-		lCase.add(new Case(CouleurCase.NOIR, 3, 2));
-		lCase.add(new Case(CouleurCase.NOIR, 3, 3));
-		lCase.add(new Case(CouleurCase.NOIR, 2, 4));
-		lCase.add(new Case(CouleurCase.NOIR, 2, 5));
-		lCase.add(new Case(CouleurCase.NOIR, 2, 6));
+		lCase.add(new Case(CouleurCase.NOIR, 1, 1));
+		lCase.add(new Case(CouleurCase.VIDE, 0, 2));
+		lCase.add(new Case(CouleurCase.VIDE, 0, 3));
+		lCase.add(new Case(CouleurCase.VIDE, 0, 4));
+		lCase.add(new Case(CouleurCase.VIDE, 0, 5));
+		lCase.add(new Case(CouleurCase.VIDE, 0, 6));
 		lCase.add(new Case(CouleurCase.VIDE, 0, 7));
 		lCase.add(new Case(CouleurCase.VIDE, 0, 8));
 		lCase.add(new Case(CouleurCase.VIDE, 0, 9));
@@ -251,21 +270,21 @@ public class ControleurPartie
 		lCase.add(new Case(CouleurCase.VIDE, 0, 17));
 		lCase.add(new Case(CouleurCase.VIDE, 0, 18));
 		lCase.add(new Case(CouleurCase.VIDE, 0, 19));
-		lCase.add(new Case(CouleurCase.BLANC, 2, 20));
-		lCase.add(new Case(CouleurCase.BLANC, 2, 21));
-		lCase.add(new Case(CouleurCase.BLANC, 3, 22));
-		lCase.add(new Case(CouleurCase.BLANC, 3, 23));
-		lCase.add(new Case(CouleurCase.BLANC, 3, 24));
+		lCase.add(new Case(CouleurCase.VIDE, 0, 20));
+		lCase.add(new Case(CouleurCase.VIDE, 0, 21));
+		lCase.add(new Case(CouleurCase.VIDE, 0, 22));
+		lCase.add(new Case(CouleurCase.VIDE, 0, 23));
+		lCase.add(new Case(CouleurCase.BLANC, 1, 24));
 
 		session.getPartieEnCours().getTablier().initialiserCase(lCase);
 		
 		lCase = new ArrayList<Case>();
-		lCase.add(new Case(CouleurCase.BLANC, 0, 25));
-		lCase.add(new Case(CouleurCase.NOIR, 0, 0));
+		lCase.add(new Case(CouleurCase.BLANC, 14, 25));
+		lCase.add(new Case(CouleurCase.NOIR, 14, 0));
 		session.getPartieEnCours().getTablier().initialiserCaseVictoire(lCase);
 		
 		lCase = new ArrayList<Case>();
-		lCase.add(new Case(CouleurCase.BLANC, 2, 0));
+		lCase.add(new Case(CouleurCase.BLANC, 0, 0));
 		lCase.add(new Case(CouleurCase.NOIR, 0, 25));
 		session.getPartieEnCours().getTablier().initialiserCaseBarre(lCase);	
 	}

@@ -49,12 +49,17 @@ public class Tour
 			return null;
 	}
 	
+	
 	public CouleurCase getCouleurJoueur() {
 		return couleurJoueur;
 	}
 	
 	public ArrayList<DeSixFaces> getDeSixFaces() {
 		return deSixFaces;
+	}
+	
+	public ArrayList<Deplacement> getListDeplacement(){
+		return null;
 	}
 	
 	

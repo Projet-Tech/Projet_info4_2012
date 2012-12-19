@@ -7,8 +7,6 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.SortedSet;
-import java.util.concurrent.ConcurrentSkipListSet;
 
 import javax.swing.Timer;
 
@@ -19,7 +17,6 @@ import fr.ujm.tse.info4.pgammon.models.EtatSession;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 import fr.ujm.tse.info4.pgammon.models.Partie;
 import fr.ujm.tse.info4.pgammon.models.Tablier;
-import fr.ujm.tse.info4.pgammon.models.Tour;
 import fr.ujm.tse.info4.pgammon.vues.VuePartie;
 import fr.ujm.tse.info4.pgammon.vues.VueTablier;
 
@@ -40,7 +37,7 @@ public class ControleurTablier {
 		
 	
 		build();
-			vueTablier.updateDes();
+		vueTablier.updateDes();
 		vuePartie.afficherTransition(partie.getParametreJeu().getJoueur(partie.getJoueurEnCour()).getPseudo(), "Joueur" + partie.getJoueurEnCour().toString());
 		
 	}
@@ -133,13 +130,13 @@ public class ControleurTablier {
 	}
 	
 	
-	public void nouvellePartie(Partie partie)
+	/*public void nouvellePartie(Partie partie)
 	{
 		this.partie = partie;
 		vueTablier.setPartie(partie);
 		vueTablier.updateUI();
 		vueTablier.updateDes();
-	}
+	}*/
 	
 	public void changerTour() 
 	{

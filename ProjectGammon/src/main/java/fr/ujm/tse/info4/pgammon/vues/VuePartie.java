@@ -151,6 +151,7 @@ etat=EtatSession.EN_COURS;
 
 	public void setPartie(Partie partie) {
 		this.partie = partie;
+		vueTablier.setVisible(false);
 		vueTablier = new VueTablier(partie);
 		vueTablier.setBounds(173, 30, 547, 446);
 		add(vueTablier);
