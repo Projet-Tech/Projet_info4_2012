@@ -12,6 +12,7 @@ import java.awt.Paint;
 import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ import javax.swing.JButton;
 
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 
-public class FenetreDemandeAnimationBase extends TranstionAnimeeBase{
+public class FenetreDemandeAnimationBase extends TranstionAnimeeBase {
 	
 	private static final long serialVersionUID = -4787023438548267991L;
 	private char[] c_titre;
@@ -50,21 +51,16 @@ public class FenetreDemandeAnimationBase extends TranstionAnimeeBase{
 		corresp = new HashMap<>();
 		if(reponses == null)
 		{
-			addMouseListener(new MouseListener() {
+				addActionListener(new ActionListener() {
 				
 				@Override
-				public void mouseReleased(MouseEvent arg0) {}
-				@Override
-				public void mousePressed(MouseEvent arg0) {
+				public void actionPerformed(ActionEvent evt) {
 					close();
+					System.out.println(evt);
+					fireActionPerformed(evt);
 				}
-				@Override
-				public void mouseExited(MouseEvent arg0) {}
-				@Override
-				public void mouseEntered(MouseEvent arg0) {}
-				@Override
-				public void mouseClicked(MouseEvent arg0) {}
 			});
+
 			
 			return;
 		}
@@ -72,22 +68,16 @@ public class FenetreDemandeAnimationBase extends TranstionAnimeeBase{
 		for (String reponse : reponses) {
 			System.out.println(reponse);
 			MonochromeButton btn = new MonochromeButton(reponse);
-			btn.addMouseListener(new MouseListener() {
+			btn.setName(reponse);
+			btn.addActionListener(new ActionListener() {
+				
 				@Override
-				public void mouseReleased(MouseEvent arg0) {}
-				@Override
-				public void mousePressed(MouseEvent evt) {
+				public void actionPerformed(ActionEvent evt) {
 					close();
-					System.out.println(evt);
-					dispatchEvent(evt);
-
+					MonochromeButton btn = (MonochromeButton) evt.getSource();
+					String text = btn.getName();
+					fireActionPerformed(new ActionEvent(evt.getSource(), 0, text));
 				}
-				@Override
-				public void mouseExited(MouseEvent arg0) {}
-				@Override
-				public void mouseEntered(MouseEvent arg0) {}
-				@Override
-				public void mouseClicked(MouseEvent arg0) {}
 			});
 
 			add(btn);

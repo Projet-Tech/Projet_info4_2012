@@ -8,13 +8,19 @@
 //
 
 package fr.ujm.tse.info4.pgammon.controleur;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.nio.channels.SeekableByteChannel;
 import java.util.ArrayList;
 import java.util.SortedSet;
 import java.util.concurrent.ConcurrentSkipListSet;
+
+import javax.swing.JButton;
 
 import fr.ujm.tse.info4.pgammon.models.Case;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
@@ -180,7 +186,19 @@ public class ControleurPartie
 				SortedSet<String> hs = new ConcurrentSkipListSet<>();
 				hs.add("Non");
 				hs.add("Oui");
-				vuePartie.afficherFenetreDemande("Accepter vous le videau ?", hs);
+				vuePartie.afficherFenetreDemande("Accepter vous le videau ?", hs).addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						
+						String action = e.getActionCommand();
+						if (action == "Oui")
+							session.getPartieEnCours().doublerVideau();
+						else if (action == "Non")
+							finPartie();
+						vuePartie.getPaneldroitencours().updateVideau();
+					}
+				});
 			}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {}
@@ -217,16 +235,6 @@ public class ControleurPartie
 	{
 		session.nouvellePartie();
 		session.LancerPartie();
-		/*controleurPartie = this;
-		this.session = session;
-		testInitialisation();
-		//testInitialisation();
-		vuePartie = new VuePartie(session.getPartieEnCours());
-		build();
-		
-		controleurTablier = new ControleurTablier(session.getPartieEnCours(),vuePartie);
-		*/
-		//vuePartie = new VuePartie(session.getPartieEnCours());
 		
 		vuePartie.setPartie(session.getPartieEnCours());
 		vuePartie.setEtat(EtatSession.EN_COURS);
@@ -234,6 +242,12 @@ public class ControleurPartie
 		
 		session.LancerPartie();
 		vuePartie.updateUI();
+	}
+	
+	public void finPartie()
+	{
+		session.finPartie();
+		vuePartie.getPanelEnCoursVueBas().updateScore(session.getScores().get(session.getParametreSession().getJoueurBlanc()), session.getScores().get(session.getParametreSession().getJoueurNoir()));
 	}
 	
 	public Partie getPartie() {

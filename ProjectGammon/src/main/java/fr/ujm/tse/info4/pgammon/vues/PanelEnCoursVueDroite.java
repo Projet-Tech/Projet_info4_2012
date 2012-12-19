@@ -76,7 +76,10 @@ private void build() {
 		
 	}
 
-
+public void updateVideau()
+{
+	videau.setScore(partie.getVideau().getvideau());
+}
 public MonochromeIconButton getBack() {
 	return back;
 }

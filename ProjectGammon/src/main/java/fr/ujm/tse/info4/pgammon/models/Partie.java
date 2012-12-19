@@ -61,15 +61,13 @@ public class Partie {
 
 
 	public void LancerPartie() {
-		
 		partieFini = false;
 		choixPremierJoueurLancementPartie();
 		//lancerDes();
-		
+
 		//on ajout un tour dans l'historique
 		//historiqueToursJoueur.add(new Tour(joueurEnCour, deSixFaces));
-		
-	}
+		}
 	
 	public void debutTour()
 	{
