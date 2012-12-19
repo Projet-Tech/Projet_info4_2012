@@ -31,7 +31,7 @@ import fr.ujm.tse.info4.pgammon.models.Session;
 import fr.ujm.tse.info4.pgammon.vues.VuePartie;
 
 
-public class ControleurPartie
+public class ControleurPartie extends Controleur
 {
 	private Session session;
 	private VuePartie vuePartie;

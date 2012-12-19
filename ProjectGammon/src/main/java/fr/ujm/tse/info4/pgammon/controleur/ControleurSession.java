@@ -15,7 +15,7 @@ package fr.ujm.tse.info4.pgammon.controleur;
 import fr.ujm.tse.info4.pgammon.models.Session;
 
 
-public class ControleurSession
+public class ControleurSession extends Controleur
 {
 	private Session session;
 	//private VueSession vueSession;

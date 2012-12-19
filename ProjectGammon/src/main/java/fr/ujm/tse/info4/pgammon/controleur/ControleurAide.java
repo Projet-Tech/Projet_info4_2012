@@ -13,7 +13,7 @@
 package fr.ujm.tse.info4.pgammon.controleur;
 
 
-public class ControleurAide
+public class ControleurAide extends Controleur
 {
 	//public VueAide vueAide;
 }

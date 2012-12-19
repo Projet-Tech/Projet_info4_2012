@@ -8,7 +8,7 @@ import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 import fr.ujm.tse.info4.pgammon.vues.VueIntermediairePartie;
 
-public class ControleurIntermediairePartie {
+public class ControleurIntermediairePartie extends Controleur{
 
 	private ControleurPrincipal controleurPrincipal;
 	private boolean isNouvellePartie;

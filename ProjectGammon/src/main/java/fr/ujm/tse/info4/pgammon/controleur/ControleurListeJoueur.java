@@ -10,7 +10,7 @@ import fr.ujm.tse.info4.pgammon.models.Profils;
 import fr.ujm.tse.info4.pgammon.vues.VueAjouterJoueur;
 import fr.ujm.tse.info4.pgammon.vues.VueListeJoueur;
 
-public class ControleurListeJoueur {
+public class ControleurListeJoueur extends Controleur{
 
 	private VueListeJoueur vueListeJoueur;
 	private ControleurPrincipal controleurPrincipal;
@@ -18,18 +18,23 @@ public class ControleurListeJoueur {
 	private VueAjouterJoueur vueAjouterJoueur;
 	private Boolean flag = true;
     private Integer id = 0;
+    private boolean isCharger;
     
-	public ControleurListeJoueur(ControleurPrincipal controleurPrincipal) 
+	public ControleurListeJoueur (ControleurPrincipal controleurPrincipal) 
 	{
 		this.controleurPrincipal = controleurPrincipal;
 		//TODO a changer
 		profil = Profils.getProfils();
 		//
 		
+		this.isCharger = false;
+		
 		vueListeJoueur = new VueListeJoueur(profil);
 		controleurPrincipal.getFrame().setContentPane(vueListeJoueur);
 		build();
 	}
+	
+	
 	
 	public void build()
 	{
@@ -37,8 +42,28 @@ public class ControleurListeJoueur {
 		listenerBouttonAjouter();
 		listenerBouttonModifier();
 		listenerBouttonSupprimer();
+		listenerBouttonSelection();
 	}
-	
+	public void listenerBouttonSelection()
+	{
+		vueListeJoueur.getSelectionner().addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {}			
+			@Override
+			public void mousePressed(MouseEvent e) {}			
+			@Override
+			public void mouseExited(MouseEvent e) {}			
+			@Override
+			public void mouseEntered(MouseEvent e) {}			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			
+					
+			}
+		});
+	}
 	public void listenerBouttonRetour()
 	{
 		vueListeJoueur.getRetour().addMouseListener(new MouseListener() {

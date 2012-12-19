@@ -22,7 +22,7 @@ import fr.ujm.tse.info4.pgammon.models.Session;
 import fr.ujm.tse.info4.pgammon.vues.VueIntermediairePartie;
 import fr.ujm.tse.info4.pgammon.vues.VueMenu;
 
-public class ControleurPrincipal {
+public class ControleurPrincipal extends Controleur{
 
 	private VueMenu vueMenu;
 	private Master master;

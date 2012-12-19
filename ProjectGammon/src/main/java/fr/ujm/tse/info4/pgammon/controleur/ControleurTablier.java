@@ -20,7 +20,7 @@ import fr.ujm.tse.info4.pgammon.models.Tablier;
 import fr.ujm.tse.info4.pgammon.vues.VuePartie;
 import fr.ujm.tse.info4.pgammon.vues.VueTablier;
 
-public class ControleurTablier {
+public class ControleurTablier extends Controleur{
 	private Tablier tablier;
 	private Partie partie;
 	private VueTablier vueTablier;

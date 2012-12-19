@@ -13,7 +13,7 @@
 package fr.ujm.tse.info4.pgammon.controleur;
 
 
-public class ControleurProfils
+public class ControleurProfils extends Controleur
 {
 	//public VueProfils vueProfils;
 }
