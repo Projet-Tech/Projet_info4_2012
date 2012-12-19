@@ -42,27 +42,33 @@ public class AfficheurScore extends JPanel {
 		Color c = (couleur==CouleurCase.BLANC)?new Color(0x111111):new Color(0xEEEEEE);
 		label.setForeground(c);
         setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
-		label.setPreferredSize(getPreferredSize());
 		updateFont();
 		label.setAlignmentX(CENTER_ALIGNMENT);
 		add(label);
 	}
 	
 	private void updateFont(){
-		int h = getPreferredSize().height;
+		int h = Math.max(getPreferredSize().height,getSize().height);
 		int fontSize = (int) (h/1.5);
 		label.setFont(new Font("Arial",Font.BOLD,fontSize));
+		label.setPreferredSize(getSize());
 	}
 	
 	public void setScore(int score) {
 		this.score = score;
 		label.setText(String.valueOf(score));
+		updateFont();
+	}
+	
+	@Override
+	public void setBounds(int x, int y, int width, int height) {
+		super.setBounds(x, y, width, height);
+		updateFont();
 	}
 	
 	@Override
 	public void setPreferredSize(Dimension preferredSize) {
 		super.setPreferredSize(preferredSize);
-		label.setPreferredSize(preferredSize);
 		updateFont();
 	}
 
