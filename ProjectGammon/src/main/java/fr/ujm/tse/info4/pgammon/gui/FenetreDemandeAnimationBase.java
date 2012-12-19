@@ -27,7 +27,7 @@ import javax.swing.JButton;
 
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 
-public class FenetreDemandeAnimationBase extends TranstionAnimeeBase{
+public class FenetreDemandeAnimationBase extends TranstionAnimeeBase {
 	
 	private static final long serialVersionUID = -4787023438548267991L;
 	private char[] c_titre;
@@ -55,7 +55,6 @@ public class FenetreDemandeAnimationBase extends TranstionAnimeeBase{
 				
 				@Override
 				public void actionPerformed(ActionEvent evt) {
-
 					close();
 					System.out.println(evt);
 					fireActionPerformed(evt);
@@ -74,10 +73,10 @@ public class FenetreDemandeAnimationBase extends TranstionAnimeeBase{
 				
 				@Override
 				public void actionPerformed(ActionEvent evt) {
-
 					close();
-					System.out.println(evt);
-					fireActionPerformed(new ActionEvent(evt.getSource(), 2, "aa"));
+					MonochromeButton btn = (MonochromeButton) evt.getSource();
+					String text = btn.getName();
+					fireActionPerformed(new ActionEvent(evt.getSource(), 0, text));
 				}
 			});
 

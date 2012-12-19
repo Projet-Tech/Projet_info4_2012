@@ -191,15 +191,13 @@ public class ControleurPartie
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						
-						String text = ((Component) e.getSource()).getName();
-
-						System.out.println(text);
-						if (text.equals("Oui"))
+						String action = e.getActionCommand();
+						if (action == "Oui")
 							session.getPartieEnCours().doublerVideau();
-						else
+						else if (action == "Non")
 							finPartie();
 						vuePartie.getPaneldroitencours().updateVideau();
-						}
+					}
 				});
 			}
 			@Override
