@@ -71,14 +71,20 @@ public class PanelParametresVueCharger extends MonochromePanel{
 	}
 	
 	public void updateData(){
-		/*nomJoueur.setText(joueur.getPseudo());
-		statisitques.setText("<html>" +new Integer(joueur.getStat().getPartiesJouees()).toString()+
-				"<br>"+new Integer(joueur.getStat().getNbVictoires()).toString() +
-				"<br>"+new Integer(joueur.getStat().getNbDefaites()).toString() +
-				"<br>"+new Float(joueur.getStat().getPourcentageVictoire()).toString() +
-				"<br>"+joueur.getStat().getEnnemiFavoris() +
-				"<br>"+new Float(joueur.getStat().getTempsJeu()).toString());
-				*/
+		lab_parties.setText(new Integer(session.getParametreSession().getNbrPartieGagnante()).toString());
+		lab_temps.setText(new Integer(session.getParametreSession().getSecondesParTour()).toString());
+		scorej1.setScore(session.getScores().get(session.getPartieEnCours().getParametreJeu().getJoueurBlanc()));
+		scorej2.setScore(session.getScores().get(session.getPartieEnCours().getParametreJeu().getJoueurNoir()));
+		imgjoueurBlanc.setPath(session.getPartieEnCours().getParametreJeu().getJoueurBlanc().getImageSource());
+		imgjoueurNoir.setPath(session.getPartieEnCours().getParametreJeu().getJoueurNoir().getImageSource());
+		nomJoueurBlanc.setText(session.getPartieEnCours().getParametreJeu().getJoueurBlanc().getPseudo());
+		nomJoueurNoir.setText(session.getPartieEnCours().getParametreJeu().getJoueurNoir().getPseudo());
+		if(session.getPartieEnCours().getParametreJeu().isUtiliseVideau() == true){
+			text_videau.setText("Le videau est utilisé");
+		}
+		else{
+			text_videau.setText("Le videau n'est pas utilisé");
+		}
 	}
 	
 	public void build(){
@@ -151,13 +157,6 @@ public class PanelParametresVueCharger extends MonochromePanel{
 			add(nomJoueurNoir);
 			
 			text_videau = new JLabel();
-			if(session.getPartieEnCours().getParametreJeu().isUtiliseVideau() == true){
-				text_videau.setText("Le videau est utilisé");
-			}
-			else{
-				text_videau.setText("Le videau n'est pas utilisé");
-			}
-				
 			text_videau.setForeground(new Color(0xCCCCCC));
 			text_videau.setBounds(20, 330, 300, 50);
 			add(text_videau);
