@@ -3,6 +3,7 @@ package fr.ujm.tse.info4.pgammon.controleur;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Date;
+import java.util.List;
 
 import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.Profils;
@@ -157,6 +158,8 @@ public class ControleurListeJoueur {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(flag){
+					boolean drapeau = true;
+					
 					Joueur tmpJoueur = new Joueur();		 
 					tmpJoueur.setPseudo(vueAjouterJoueur.getnomPseudo().getText());	
 					
@@ -165,7 +168,17 @@ public class ControleurListeJoueur {
 					
 					tmpJoueur.setId(id);
 					
-					profil.getList().add(tmpJoueur);
+					for(int i=0;i<profil.getList().size();i++){
+						if((int)tmpJoueur.getId()== (int)profil.getList().get(i).getId()){
+							drapeau = false;
+						}
+					}
+					
+					if(drapeau){
+						profil.getList().add(tmpJoueur);
+						System.out.println("what !!!!!!!!");
+						profil.afficher();
+					}
 					
 				}else{
 					vueListeJoueur.getPanelDescription().getJoueur().setPseudo(vueAjouterJoueur.getnomPseudo().getText());
