@@ -25,7 +25,7 @@ public class Master
 	
 	public Master()
 	{
-		idMax= 0;
+		idMax= 1;
 		controleurPrincipal = new ControleurPrincipal(this);
 		listSession = new ArrayList<Session>();
 	}

@@ -31,7 +31,7 @@ public class GestionDeSession {
 		
 		for(int i=0;i<listSession.size();i++){
 	        try{
-	        	String tmpNom = "Session"+String.valueOf(i);
+	        	String tmpNom = "Session"+String.valueOf(listSession.get(i).getIdSession());
 				Element racine = new Element(tmpNom);
 				Document document = new Document(racine);
 				listSession.get(i).sauvegarder(racine);
