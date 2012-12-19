@@ -24,21 +24,36 @@ import fr.ujm.tse.info4.pgammon.models.Joueur;
 
 public class JoueurCellRenderer extends JPanel implements ListCellRenderer<Joueur> {
 	JLabel label;
+	ImageAvatar imgjoueur;
+	Joueur joueur;
 	public JoueurCellRenderer() {
 		label = new JLabel();
+		joueur = new Joueur();
+		
+		setLayout(null);
 
 		setPreferredSize(new Dimension(100, 45));
-		label.setAlignmentX(CENTER_ALIGNMENT);
-		label.setAlignmentY(CENTER_ALIGNMENT);
+		
+		imgjoueur = new ImageAvatar(joueur.getImageSource());
+		imgjoueur.setBounds(2, 6, 30, 30);
+		//imgjoueur.setPreferredSize(new Dimension(30,30));
+		add(imgjoueur);
+		
+		//label.setAlignmentX(CENTER_ALIGNMENT);
+		//label.setAlignmentY(CENTER_ALIGNMENT);
+		label.setBounds(40, 0, 250, 45);
 		label.setFont(new Font("Arial",Font.BOLD,18));
+		//label.setForeground(new Color(0xCCCCCC));
 		add(label);
+		
+		
 	}
 
 	@Override
 	public Component getListCellRendererComponent(JList<? extends Joueur> list,
 			Joueur j, int index, boolean isSelected, boolean cellHasFocus) {
 		
-		label.setForeground(new Color(0x808080));
+		label.setForeground(new Color(0xCCCCCC));
 		Color bgColor;
 		if(isSelected)
 			if(cellHasFocus)
@@ -54,6 +69,8 @@ public class JoueurCellRenderer extends JPanel implements ListCellRenderer<Joueu
 		setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(0x555555)));
 		label.setText(j.getPseudo());
 		setAlignmentX(0.5f);
+		joueur=j;
+		imgjoueur.setPath(j.getImageSource());
 		return this;
 		/*
 		Paint p;
