@@ -21,7 +21,7 @@ public class Session
 	private int idMaxPartie;
 	private Partie partieEnCours;
 
-	private Joueur JoueurGagnantSession;
+	private Joueur joueurGagnantSession;
 	private HashMap<Joueur, Integer> scores;
 	private EtatSession etatSession;
 	private ParametreJeu parametreSession;
@@ -35,7 +35,7 @@ public class Session
 		scores = new HashMap<Joueur, Integer>();
 		scores.put(parametreSession.getJoueurBlanc(),0);
 		scores.put(parametreSession.getJoueurNoir(),0);
-		JoueurGagnantSession =null;
+		joueurGagnantSession =null;
 		nouvellePartie();
 	}
 	
@@ -53,9 +53,9 @@ public class Session
 	}
 	private void finSession()
 	{
-		JoueurGagnantSession.getStat().ajouterVictoire();
+		joueurGagnantSession.getStat().ajouterVictoire();
 		
-		if (JoueurGagnantSession == parametreSession.getJoueurBlanc())
+		if (joueurGagnantSession == parametreSession.getJoueurBlanc())
 			parametreSession.getJoueurNoir().getStat().ajouterDefaite();
 		else
 			parametreSession.getJoueurBlanc().getStat().ajouterDefaite();
@@ -88,12 +88,12 @@ public class Session
 		if(scores.get(parametreSession.getJoueurBlanc()) >= parametreSession.getNbrPartieGagnante())
 		{
 			etatSession = EtatSession.TERMINEE;
-			JoueurGagnantSession = parametreSession.getJoueurBlanc();
+			joueurGagnantSession = parametreSession.getJoueurBlanc();
 		}
 		else if(scores.get(parametreSession.getJoueurNoir()) >= parametreSession.getNbrPartieGagnante())
 		{
 			etatSession = EtatSession.TERMINEE;
-			JoueurGagnantSession = parametreSession.getJoueurBlanc();
+			joueurGagnantSession = parametreSession.getJoueurBlanc();
 		}
 	}
 	
@@ -121,7 +121,7 @@ public class Session
 	}
 
 	public Joueur getJoueurGagnantSession() {
-		return JoueurGagnantSession;
+		return joueurGagnantSession;
 	}
 	
 	public HashMap<Joueur, Integer> getScores() {
@@ -130,7 +130,7 @@ public class Session
 
 	public boolean isSessionFini()
 	{
-		if (JoueurGagnantSession == null)
+		if (joueurGagnantSession == null)
 			return false;
 		else
 			return true;
