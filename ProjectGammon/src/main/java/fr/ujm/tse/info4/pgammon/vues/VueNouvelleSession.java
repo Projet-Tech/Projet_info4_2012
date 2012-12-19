@@ -8,6 +8,8 @@ import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.RadialGradientPaint;
 import java.awt.RenderingHints;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.geom.Point2D;
 
 import javax.swing.JPanel;
@@ -87,12 +89,46 @@ public class VueNouvelleSession extends JPanel{
 		 add(boutoncommencer);
 		 add(boutonchangercouleur);
 		 add(boutonRetour);
+		 
+		 listenerboutonchangercouleur();
 		
 		
 	}
 	
+	private void listenerboutonchangercouleur()
+	{
+		boutonchangercouleur.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}		
+			@Override
+			public void mouseExited(MouseEvent e) {}			
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Joueur jou1=j1;
+				Joueur jou2=j2;
+				setJoueur1(jou2);
+				setJoueur2(jou1);
+			}
+		});
+	}
 	
 	
+	public void setJoueur1(Joueur jBlanc){
+		paneljoueur1.setJoueur(jBlanc);
+		j1=jBlanc;
+		
+	}
+
+	public void setJoueur2(Joueur jNoir) {
+		paneljoueur2.setJoueur(jNoir);
+		j2=jNoir;
+		
+	}
 	
 	public MonochromeButton getBoutonlistejoueur() {
 		return boutonlistejoueur;
@@ -122,6 +158,10 @@ public class VueNouvelleSession extends JPanel{
 		return panelparamètre;
 	}
 
+
+	
+
+	
 	@Override
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g.create(); 
@@ -150,18 +190,6 @@ public class VueNouvelleSession extends JPanel{
 		
 		
 		g2.dispose(); 
-		
-	}
-	
-	public void setJoueur1(Joueur jBlanc){
-		paneljoueur1.setJoueur(jBlanc);
-		j1=jBlanc;
-		
-	}
-
-	public void setJoueur2(Joueur jNoir) {
-		paneljoueur2.setJoueur(jNoir);
-		j2=jNoir;
 		
 	}
 
