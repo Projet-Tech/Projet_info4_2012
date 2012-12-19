@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import fr.ujm.tse.info4.pgammon.gui.ImageAvatar;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeCheckbox;
 import fr.ujm.tse.info4.pgammon.gui.MonochromePanel;
@@ -45,6 +46,8 @@ public class PanelVueListeJoueurDescription extends MonochromePanel{
 	
 	private MonochromeButton modifier;
 	private MonochromeButton supprimer;
+	
+	private ImageAvatar imagejoueur;
 	
 		public PanelVueListeJoueurDescription(Joueur j){
 			super("Description");
@@ -85,6 +88,8 @@ public class PanelVueListeJoueurDescription extends MonochromePanel{
 			}else{
 				conseilCoup.setEnabled(false);
 			}
+			
+			imagejoueur.setPath(joueur.getImageSource());
 		}
 		
 		private void listenerboutonchangerCoupPossible()
@@ -113,6 +118,9 @@ public class PanelVueListeJoueurDescription extends MonochromePanel{
 		public void build(){
 			
 			
+			imagejoueur = new ImageAvatar(joueur.getImageSource());
+			imagejoueur.setBounds(25, 40, 105, 105);
+			add(imagejoueur);
 			
 			JLabel textStat = new JLabel();
 			conteneurimgjoueur = new JLabel();

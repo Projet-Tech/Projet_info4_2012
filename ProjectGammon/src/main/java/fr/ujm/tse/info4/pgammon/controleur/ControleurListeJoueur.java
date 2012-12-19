@@ -120,6 +120,7 @@ public class ControleurListeJoueur implements Controleur{
 			public void mouseClicked(MouseEvent e) {
 				vueListeJoueur.afficheEditerProfil();
 				vueAjouterJoueur = vueListeJoueur.getVueAjouterJoueur();
+				
 				flag = true;
 				buildEditerProfil();
 			}
@@ -214,7 +215,7 @@ public class ControleurListeJoueur implements Controleur{
 					
 					Joueur tmpJoueur = new Joueur();		 
 					tmpJoueur.setPseudo(vueAjouterJoueur.getnomPseudo().getText());	
-					
+					tmpJoueur.setImageSource(vueListeJoueur.getPath());
 					Date date = new Date();
 					id = 10000*date.getMonth()+1000*date.getDay()+100*date.getHours()+10*date.getMinutes()+date.getSeconds();
 					
@@ -228,12 +229,13 @@ public class ControleurListeJoueur implements Controleur{
 					
 					if(drapeau){
 						profil.getList().add(tmpJoueur);
-						System.out.println("what !!!!!!!!");
+						//System.out.println("what !!!!!!!!");
 						profil.afficher();
 					}
 					
 				}else{
 					vueListeJoueur.getPanelDescription().getJoueur().setPseudo(vueAjouterJoueur.getnomPseudo().getText());
+					vueListeJoueur.getPanelDescription().getJoueur().setImageSource(vueListeJoueur.getPath());
 				}
 				vueListeJoueur.masqueEditerProfil();
 			}
