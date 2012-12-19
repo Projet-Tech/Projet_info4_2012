@@ -10,4 +10,5 @@
 .settings/
 target/
 bin/
-sauvegarde/*.xml
+*.xml
+!pom.xml
