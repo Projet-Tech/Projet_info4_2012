@@ -8,13 +8,19 @@
 //
 
 package fr.ujm.tse.info4.pgammon.controleur;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.nio.channels.SeekableByteChannel;
 import java.util.ArrayList;
 import java.util.SortedSet;
 import java.util.concurrent.ConcurrentSkipListSet;
+
+import javax.swing.JButton;
 
 import fr.ujm.tse.info4.pgammon.models.Case;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
@@ -180,7 +186,21 @@ public class ControleurPartie
 				SortedSet<String> hs = new ConcurrentSkipListSet<>();
 				hs.add("Non");
 				hs.add("Oui");
-				vuePartie.afficherFenetreDemande("Accepter vous le videau ?", hs);
+				vuePartie.afficherFenetreDemande("Accepter vous le videau ?", hs).addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						
+						String text = ((Component) e.getSource()).getName();
+
+						System.out.println(text);
+						if (text.equals("Oui"))
+							session.getPartieEnCours().doublerVideau();
+						else
+							finPartie();
+						vuePartie.getPaneldroitencours().updateVideau();
+						}
+				});
 			}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {}
@@ -234,6 +254,11 @@ public class ControleurPartie
 		
 		session.LancerPartie();
 		vuePartie.updateUI();
+	}
+	
+	public void finPartie()
+	{
+		session.getPartieEnCours().finPartie();
 	}
 	
 	public Partie getPartie() {
