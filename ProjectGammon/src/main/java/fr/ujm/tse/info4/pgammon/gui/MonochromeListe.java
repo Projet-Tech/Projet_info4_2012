@@ -66,7 +66,7 @@ public class MonochromeListe<T> extends MonochromePanel{
 	
 	public void updateList(ListCellRenderer<T> cr){
 		list.setCellRenderer(cr);
-
+		list.repaint();
 	}
 	
 }
