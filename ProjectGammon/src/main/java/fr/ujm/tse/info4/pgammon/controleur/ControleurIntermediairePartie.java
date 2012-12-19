@@ -35,6 +35,7 @@ public class ControleurIntermediairePartie implements Controleur{
 	{
 		listenerRetour();
 		listenerCommencer();
+		listenerCommencerCharger();
 		listenerChargerJoueur1();
 		listenerChargerJoueur2();
 	}
@@ -90,6 +91,29 @@ public class ControleurIntermediairePartie implements Controleur{
 		});
 			
 	}
+	
+	public void listenerCommencerCharger()
+	{
+		vueCreationPartie.getVueChargerPartie().getBoutonCommencer().addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				vueCreationPartie.setVisible(false);
+				controleurPrincipal.chargerSession(vueCreationPartie.getVueChargerPartie().getSession());
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			@Override
+			public void mouseExited(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+		});
+			
+	}
+	
+
 
 	public void  listenerChargerJoueur1(){
 		vueCreationPartie.getVueNouvelleSession().getBoutonChangerJoueurBlanc().addMouseListener(new MouseListener() {

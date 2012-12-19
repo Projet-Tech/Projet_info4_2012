@@ -149,7 +149,7 @@ public class VueListeJoueur extends MonochromeVue{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				path = listeAvatar.getPath();
-				System.out.println(listeAvatar.getPath());
+				
 				vueAjouterJoueur.setPath(path);
 				listeAvatar.setVisible(false);
 			}
@@ -171,7 +171,7 @@ public class VueListeJoueur extends MonochromeVue{
 			public void mouseEntered(MouseEvent e) {}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("sa passe ici");
+				
 				listeAvatar.setVisible(true);
 			}
 		});

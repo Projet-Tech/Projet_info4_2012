@@ -35,10 +35,15 @@ public class VueIntermediairePartie extends MonochromeVue{
 	
 	private MonochromeButton boutonNouvellePartie;
 	
+	//TODO a gere dynamiquement
 	Joueur jBlanc = new Joueur(1, "ben", Avatar.CHAT_JAUNE.getPath(),NiveauAssistant.NON_UTILISE);
 	Joueur jNoir = new Joueur(2, "JM", Avatar.CHEVAL.getPath(), NiveauAssistant.COMPLET);
 	
-	ParametreJeu param = new ParametreJeu(0, 3, true, jBlanc, jNoir);
+	Joueur jBlanc2 = new Joueur(3, "Benjamin", Avatar.YEUX_ROUGES.getPath(),NiveauAssistant.NON_UTILISE);
+	Joueur jNoir2 = new Joueur(4, "Jean", Avatar.FLEUR.getPath(), NiveauAssistant.COMPLET);
+	
+	ParametreJeu param = new ParametreJeu(0, 5, true, jBlanc, jNoir);
+	ParametreJeu param2 = new ParametreJeu(10000, 3, true, jBlanc2, jNoir2);
 	ArrayList<Session> listSession;
 	
 	
@@ -74,7 +79,7 @@ public class VueIntermediairePartie extends MonochromeVue{
 		listSession = new ArrayList<>();
 		
 		listSession.add(new Session(1,param));
-		listSession.add(new Session(2,param));
+		listSession.add(new Session(2,param2));
 		
 		vueNouvelleSession = new VueNouvelleSession();
 		vueNouvelleSession.setBounds(0, 80, 800, 520);
@@ -111,6 +116,7 @@ public class VueIntermediairePartie extends MonochromeVue{
 		
 	}
 	
+
 	private void listenerboutonNouvellePartie()
 	{
 		boutonNouvellePartie.addMouseListener(new MouseListener() {
@@ -200,6 +206,5 @@ public class VueIntermediairePartie extends MonochromeVue{
 		
 	}
 
-	
 	
 }

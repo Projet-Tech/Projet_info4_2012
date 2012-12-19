@@ -167,6 +167,17 @@ public class ControleurPrincipal implements Controleur{
 		frame.setContentPane(controleurPartie.getVuePartie());
 		
 	}
+	
+	public void chargerSession(Session session)
+	{
+		master.lancerSession(session.getParametreSession());
+		Session s1 = master.getSession();
+		s1.LancerPartie();
+		ControleurPartie controleurPartie = new ControleurPartie(s1,this);
+		
+		frame.setContentPane(controleurPartie.getVuePartie());
+		
+	}
 
 	@Override
 	public Controleur getControleur() {

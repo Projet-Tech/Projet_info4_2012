@@ -31,12 +31,15 @@ public class VueChargerPartie extends JPanel{
 	
 	private MonochromeButton boutonCommencer;
 	
+
+
+
 	private ArrayList<Session> listSession;
 	
 	private MonochromeListe<Session>  sessions;
 	
 	private Session session;
-	
+
 	private PanelParametresVueCharger panelParametresVueCharger;
 	
 	public VueChargerPartie(ArrayList<Session> s){
@@ -119,5 +122,14 @@ public class VueChargerPartie extends JPanel{
 		g2.dispose(); 
 		
 	}
+	
+	public MonochromeButton getBoutonCommencer() {
+		return boutonCommencer;
+	}
+	
+	public Session getSession() {
+		return session;
+	}
+
 
 }
