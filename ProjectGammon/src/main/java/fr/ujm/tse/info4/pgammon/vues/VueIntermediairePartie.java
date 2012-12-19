@@ -35,6 +35,22 @@ public class VueIntermediairePartie extends JPanel{
 		
 	}
 
+	public Boolean getFenetreAAfficher() {
+		return fenetreAAfficher;
+	}
+
+	public void setFenetreAAfficher(Boolean fenetreAAfficher) {
+		this.fenetreAAfficher = fenetreAAfficher;
+	}
+
+	public MonochromeButton getBoutonReprendre() {
+		return boutonReprendre;
+	}
+
+	public MonochromeButton getBoutonNouvellePartie() {
+		return boutonNouvellePartie;
+	}
+
 	private void build() {
 		setLayout(null);
 		setOpaque(false);
