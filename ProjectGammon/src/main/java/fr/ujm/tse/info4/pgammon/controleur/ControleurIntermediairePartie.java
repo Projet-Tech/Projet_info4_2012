@@ -145,9 +145,7 @@ public class ControleurIntermediairePartie implements Controleur{
 	public void retour() {
 		getFrame().setContentPane(vueCreationPartie);
 		vueCreationPartie.setVisible(true);
-		
-		
-		vueCreationPartie.validate();
+
 		//build();
 	}
 	

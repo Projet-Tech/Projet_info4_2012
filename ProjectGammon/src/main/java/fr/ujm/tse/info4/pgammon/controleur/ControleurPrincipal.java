@@ -151,8 +151,9 @@ public class ControleurPrincipal implements Controleur{
 	@Override
 	public void retour()
 	{
-		vueMenu = new VueMenu();
+		//vueMenu = new VueMenu();
 		frame.setContentPane(vueMenu);
+		vueMenu.setVisible(true);
 		build();
 	}
 	
