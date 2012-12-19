@@ -11,4 +11,5 @@
 target/
 bin/
 *.xml
+sauvegarde/
 !pom.xml
