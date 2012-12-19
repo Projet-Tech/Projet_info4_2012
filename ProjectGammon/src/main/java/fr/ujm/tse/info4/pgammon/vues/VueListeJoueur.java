@@ -21,6 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import fr.ujm.tse.info4.pgammon.gui.AvatarList;
 import fr.ujm.tse.info4.pgammon.gui.JoueurCellRenderer;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeListe;
@@ -49,6 +50,8 @@ public class VueListeJoueur extends JPanel{
 	private MonochromeButton selectionner;
 	private MonochromeButton retour;
 	private OpaqueBG bg;
+	
+	private AvatarList listeAvatar;
 	
 	
 	
@@ -99,6 +102,11 @@ public class VueListeJoueur extends JPanel{
 		//création de la fenetre d'ajouter joueur
 
 		bg = new OpaqueBG();
+		
+		listeAvatar = new AvatarList();
+		listeAvatar.setBounds(0, 0, 800, 600);
+		add(listeAvatar);
+		listeAvatar.setVisible(false);
 
 		vueAjouterJoueur = new VueAjouterJoueur();
 		vueAjouterJoueur.setBounds(200, 150, 400, 300);
@@ -127,8 +135,29 @@ public class VueListeJoueur extends JPanel{
 		retour.setBounds(600, 530, 150, 50);
 		add(retour);
 		
+		listenerchangerAvatar();
 		
-		
+	}
+	
+	private void listenerchangerAvatar()
+	{
+		vueAjouterJoueur.getchangerAvatar().addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}		
+			@Override
+			public void mouseExited(MouseEvent e) {}			
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.out.println("sa passe ici");
+				masqueEditerProfil();
+				listeAvatar.setVisible(true);
+			}
+		});
 	}
 	
 	public void updateListe(){
