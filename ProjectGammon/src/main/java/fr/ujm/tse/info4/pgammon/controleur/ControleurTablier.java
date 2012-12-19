@@ -15,6 +15,7 @@ import javax.swing.Timer;
 import fr.ujm.tse.info4.pgammon.exeption.TourNonJouableException;
 import fr.ujm.tse.info4.pgammon.gui.CaseButton;
 import fr.ujm.tse.info4.pgammon.models.Case;
+import fr.ujm.tse.info4.pgammon.models.DeSixFaces;
 import fr.ujm.tse.info4.pgammon.models.EtatSession;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 import fr.ujm.tse.info4.pgammon.models.Partie;
@@ -159,7 +160,17 @@ public class ControleurTablier implements Controleur{
 				  public void actionPerformed(ActionEvent ae) {
 					  
 					  try {
-						partie.deplacementAleatoire();
+						  //Deplacement aleatoire du nombre de de restant
+						  int nbDeNonUtiliser=0;
+						  for (DeSixFaces de : partie.getDeSixFaces()) {
+							if(!de.isUtilise())
+								nbDeNonUtiliser++;
+						  }
+						  for(int i=0;i<nbDeNonUtiliser;i++)
+						  {
+							  partie.deplacementAleatoire();
+						  }
+
 					} catch (TourNonJouableException e) {
 						// TODO affichage ecran
 						changerTour();
