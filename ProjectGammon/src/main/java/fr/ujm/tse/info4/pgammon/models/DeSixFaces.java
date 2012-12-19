@@ -55,7 +55,7 @@ public class DeSixFaces
 		
 		Element valeurXML = new Element("valeur");
 		valeurXML.setText(String.valueOf(valeur));
-		deSixFaces.addContent(valeurXML);
+		deSixFaceXML.addContent(valeurXML);
 		
 		Element isUtiliseXML = new Element("isUtilise");
 		if(isUtilise){
@@ -63,11 +63,11 @@ public class DeSixFaces
 		}else{
 			isUtiliseXML.setText("non");
 		}
-		deSixFaces.addContent(isUtiliseXML);
+		deSixFaceXML.addContent(isUtiliseXML);
 		
 		Element couleurDeXML = new Element("couleurDe");
 		couleurDeXML.setText(String.valueOf(couleurDe));
-		deSixFaces.addContent(couleurDeXML);
+		deSixFaceXML.addContent(couleurDeXML);
 	
 	}
 	
