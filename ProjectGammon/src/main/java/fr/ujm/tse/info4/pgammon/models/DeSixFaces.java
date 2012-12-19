@@ -48,10 +48,27 @@ public class DeSixFaces
 	}
 	
 	
-	public void sauvegarder(Element partieElement)
+	public void sauvegarder(Element deSixFaces)
 	{
-		//TODO
-		throw new UnsupportedOperationException();
+		Element deSixFaceXML = new Element("deSixFace");
+		deSixFaces.addContent(deSixFaceXML);
+		
+		Element valeurXML = new Element("valeur");
+		valeurXML.setText(String.valueOf(valeur));
+		deSixFaces.addContent(valeurXML);
+		
+		Element isUtiliseXML = new Element("isUtilise");
+		if(isUtilise){
+			isUtiliseXML.setText("oui");
+		}else{
+			isUtiliseXML.setText("non");
+		}
+		deSixFaces.addContent(isUtiliseXML);
+		
+		Element couleurDeXML = new Element("couleurDe");
+		couleurDeXML.setText(String.valueOf(couleurDe));
+		deSixFaces.addContent(couleurDeXML);
+	
 	}
 	
 	public void charger(Element desixfacesElement)

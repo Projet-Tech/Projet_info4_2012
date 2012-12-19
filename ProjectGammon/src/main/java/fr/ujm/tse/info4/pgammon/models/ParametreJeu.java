@@ -34,10 +34,26 @@ public class ParametreJeu
 	}
 
 
-	public void sauvegarder(Element sessionElement)
+	public void sauvegarder(Element session)
 	{
-		//TODO
-		throw new UnsupportedOperationException();
+		Element parametres = new Element("parametres");
+		session.addContent(parametres);
+		
+		Element secondesParTourXML = new Element("secondesParTour");
+		secondesParTourXML.setText(String.valueOf(secondesParTour));
+		parametres.addContent(secondesParTourXML);
+	    
+	    Element nbrPartieGagnanteXML = new Element("nbrPartieGagnante");
+	    nbrPartieGagnanteXML.setText(String.valueOf(nbrPartieGagnante));
+	    parametres.addContent(nbrPartieGagnanteXML);
+	    
+	    Element utiliseVideauXML = new Element("utiliseVideau");
+	    if(utiliseVideau){
+	    	 utiliseVideauXML.setText("1");
+	    }else{
+	    	 utiliseVideauXML.setText("0");
+	    }
+	    parametres.addContent(utiliseVideauXML);
 	}
 	
 	public void charger(Element parametreJeuElement)

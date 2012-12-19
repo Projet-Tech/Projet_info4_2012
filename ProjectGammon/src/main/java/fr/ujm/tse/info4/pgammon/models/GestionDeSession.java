@@ -34,10 +34,10 @@ public class GestionDeSession {
 	        	String tmpNom = "Session"+String.valueOf(i);
 				Element racine = new Element(tmpNom);
 				Document document = new Document(racine);
-				//listSession.get(i).sauvegarder(racine);
+				listSession.get(i).sauvegarder(racine);
 				XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
 				String tmpPath = "sauvegarde/"+tmpNom; 
-				sortie.output(document, new FileOutputStream("sauvegarde/profils.xml"));
+				sortie.output(document, new FileOutputStream(tmpPath));
 	        }catch(Exception e){
 				System.out.println("Erreur d'enregistrement");
 			}

@@ -15,6 +15,7 @@ package fr.ujm.tse.info4.pgammon.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jdom2.Attribute;
 import org.jdom2.Element;
 
 
@@ -380,10 +381,64 @@ public class Tablier
 	 */
 	
 	
-	public void sauvegarder(Element partieElement)
+	public void sauvegarder(Element partie)
 	{
-		//TODO
-		throw new UnsupportedOperationException();
+		Element tablierXML = new Element("tablier");
+	    partie.addContent(tablierXML);
+	    
+	    Element casesXML = new Element("Cases");
+	    tablierXML.addContent(casesXML);
+	    
+	    for(int i = 0;i<listeCase.size();i++){
+	    	
+	    	Element CaseXML = new Element("Case");
+	    	casesXML.addContent(CaseXML);
+		    
+		    Attribute idCase = new Attribute("id",String.valueOf(listeCase.get(i).getPosition()));
+		    CaseXML.setAttribute(idCase);
+		    
+			    Element couleurDameXML = new Element("couleurDame");
+			    couleurDameXML.setText(String.valueOf(listeCase.get(i).getCouleurDame()));
+			    CaseXML.addContent(couleurDameXML);
+			    
+			    Element nbrDameXML = new Element("nbrDame");
+			    nbrDameXML.setText(String.valueOf(listeCase.get(i).getNbDame()));
+			    CaseXML.addContent(nbrDameXML);
+	    }
+	    
+	    Element CaseVictoiresXML = new Element("CaseVictoires");
+	    tablierXML.addContent(CaseVictoiresXML);
+	    
+	    for(int i = 0;i<caseVictoire.size();i++){
+	    	
+	    	Element CaseVictoireXML = new Element("CaseVictoire");
+	    	CaseVictoiresXML.addContent(CaseVictoireXML);
+		    
+			    Element couleurDameVXML = new Element("couleurDame");
+			    couleurDameVXML.setText(String.valueOf(caseVictoire.get(i).getCouleurDame()));
+			    CaseVictoireXML.addContent(couleurDameVXML);
+			    
+			    Element nbrDameVXML = new Element("nbrDame");
+			    nbrDameVXML.setText(String.valueOf(caseVictoire.get(i).getNbDame()));
+			    CaseVictoireXML.addContent(nbrDameVXML);
+	    }
+	    
+	    Element CaseBarsXML = new Element("CaseBars");
+	    tablierXML.addContent(CaseBarsXML);
+	    
+	    for(int i = 0;i<caseBarre.size();i++){
+	    	
+	    	Element CaseBarXML = new Element("CaseBar");
+	    	CaseBarsXML.addContent(CaseBarXML);
+		    
+			    Element couleurDameBXML = new Element("couleurDame");
+			    couleurDameBXML.setText(String.valueOf(caseBarre.get(i).getCouleurDame()));
+			    CaseBarXML.addContent(couleurDameBXML);
+			    
+			    Element nbrDameBXML = new Element("nbrDame");
+			    nbrDameBXML.setText(String.valueOf(caseBarre.get(i).getNbDame()));
+			    CaseBarXML.addContent(nbrDameBXML);
+	    }
 	}
 	
 	public void charger(Element tablierElement)

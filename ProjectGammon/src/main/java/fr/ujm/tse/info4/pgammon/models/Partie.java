@@ -63,7 +63,6 @@ public class Partie {
 		partieFini = false;
 	}
 
-
 	public void lancerPremierePartie() {
 		partieFini = false;
 		choixPremierJoueurLancementPartie();
@@ -111,7 +110,6 @@ public class Partie {
 			partieFini=true;
 		
 	}
-
 	
 	public void choixPremierJoueurLancementPartie() {
 		ArrayList<DeSixFaces> deChoix = new ArrayList<DeSixFaces>();
@@ -194,7 +192,6 @@ public class Partie {
 
 	}
 	
-
 	public boolean peutMarquerCetteDame(Case caseDame)
 	{
 		boolean siDeExiste = false;
@@ -294,7 +291,6 @@ public class Partie {
 		videau.doubler();
 	}
 
-
 	public void deplacementAleatoire() throws TourNonJouableException {
 		 List<Coup> casesPossible = getCoupsPossibles();
 		 if (casesPossible.size() != 0)
@@ -380,7 +376,6 @@ public class Partie {
 					return false;
 			}
 
-	
 	public boolean isCoupPossible(Case caseDepart) {
 		boolean possible=false;
 		for (DeSixFaces de : deSixFaces) {
@@ -418,8 +413,6 @@ public class Partie {
 			return null;
 	}
 	
-	
-	
 	public void lectureProchainCoup() {
 		// TODO
 		throw new UnsupportedOperationException();
@@ -432,9 +425,47 @@ public class Partie {
 
 	/* SERIALISATION */
 
-	public void sauvegarder(Element sessionElement) {
-		// TODO
-		throw new UnsupportedOperationException();
+	public void sauvegarder(Element session) {
+		
+		Element partie = new Element("partie");
+		session.addContent(partie);
+		
+		Element videauXML = new Element("videau");
+		videauXML.setText(String.valueOf(videau.getvideau()));
+		partie.addContent(videauXML);
+	    
+	    Element joueurEnCourXML = new Element("joueurEnCour");
+	    joueurEnCourXML.setText(String.valueOf(joueurEnCour));
+	    partie.addContent(joueurEnCourXML);
+	    
+	    Element idPartieXML = new Element("idPartie");
+	    idPartieXML.setText(String.valueOf(idPartie));
+	    partie.addContent(idPartieXML);
+
+	    Element deUtiliserXML = new Element("deUtiliser");
+	    deUtiliserXML.setText(String.valueOf(deUtiliser));
+	    partie.addContent(deUtiliserXML);
+	    
+	    Element premierJoueurXML = new Element("premierJoueur");
+	    premierJoueurXML.setText(String.valueOf(premierJoueur));
+	    partie.addContent(premierJoueurXML);
+	    
+	    Element deSixFacesXML = new Element("deSixFaces");
+	    partie.addContent(deSixFacesXML);
+	    
+		for(int i=0;i<deSixFaces.size();i++){
+			deSixFaces.get(i).sauvegarder(deSixFacesXML);
+		}
+		
+		tablier.sauvegarder(partie);
+		
+		Element historiqueToursJoueurXML = new Element("historiqueToursJoueur");
+		partie.addContent(historiqueToursJoueurXML);
+		    
+		for(int i=0;i<historiqueToursJoueur.size();i++){
+			historiqueToursJoueur.get(i).sauvegarder(historiqueToursJoueurXML);
+		}
+	
 	}
 
 	public void charger(Element partieElement) {

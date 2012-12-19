@@ -27,10 +27,26 @@ public class Deplacement
 		this.caseArriver = caseArriver;
 		this.siCaseBattue = siCaseBattue;
 	}
-	public void sauvegarder(Element tourElement)
+	public void sauvegarder(Element deplacementsXML)
 	{
-		//TODO
-		throw new UnsupportedOperationException();
+		Element deplacementXML = new Element("deplacement");
+		deplacementsXML.addContent(deplacementXML);
+		
+			Element caseDepartXML = new Element("caseDepart");
+			caseDepartXML.setText(String.valueOf(caseDepart.getPosition()));
+			deplacementXML.addContent(caseDepartXML);
+			
+			Element caseArriverXML = new Element("caseArriver");
+			caseArriverXML.setText(String.valueOf(caseArriver.getPosition()));
+			deplacementXML.addContent(caseArriverXML);
+			
+			Element siCaseBattueXML = new Element("siCaseBattue");
+			if(siCaseBattue){
+				siCaseBattueXML.setText("true");
+			}else{
+				siCaseBattueXML.setText("false");
+			}
+			deplacementXML.addContent(siCaseBattueXML);
 	}
 	
 	public void charger(Element deplacementElement)

@@ -64,10 +64,28 @@ public class Tour
 	
 	
 	// SERIALISATION
-	public void sauvegarder(Element partieElement)
+	public void sauvegarder(Element historiqueToursJoueurXML)
 	{
-		//TODO
-		throw new UnsupportedOperationException();
+		Element tourXML = new Element("tour");
+		historiqueToursJoueurXML.addContent(tourXML);
+			
+			Element couleurJoueurXML = new Element("couleurJoueur");
+			couleurJoueurXML.setText(String.valueOf(couleurJoueur));
+			tourXML.addContent(couleurJoueurXML);
+		
+			Element deSixFacesXML = new Element("deSixFaces");
+			tourXML.addContent(deSixFacesXML);
+			
+			for(int i=0;i<deSixFaces.size();i++){
+				deSixFaces.get(i).sauvegarder(deSixFacesXML);
+			}
+			
+			Element deplacementsXML = new Element("deplacements");
+			tourXML.addContent(deplacementsXML);
+			
+			for(int i=0;i<listDeplacement.size();i++){
+				listDeplacement.get(i).sauvegarder(deplacementsXML);
+			}
 	}
 	
 	public void charger(Element tourElement)
