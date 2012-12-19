@@ -2,7 +2,7 @@
 <profils>
   <joueurs id="115313">
     <pseudo>Benjamin BONNETTO</pseudo>
-    <imageSource />
+    <imageSource>images/avatars/chouette.png</imageSource>
     <niveauAssistant>COMPLET</niveauAssistant>
     <statistiqueJoueur>
       <partiejoue>0</partiejoue>
@@ -14,7 +14,7 @@
   </joueurs>
   <joueurs id="115296">
     <pseudo>Adrien Francon</pseudo>
-    <imageSource />
+    <imageSource>images/avatars/choupi.png</imageSource>
     <niveauAssistant>COMPLET</niveauAssistant>
     <statistiqueJoueur>
       <partiejoue>0</partiejoue>
