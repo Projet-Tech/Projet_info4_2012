@@ -1,6 +1,5 @@
 package fr.ujm.tse.info4.pgammon.controleur;
 
-import java.awt.Frame;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -10,11 +9,11 @@ import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 import fr.ujm.tse.info4.pgammon.models.ParametreJeu;
 import fr.ujm.tse.info4.pgammon.vues.VueIntermediairePartie;
-import fr.ujm.tse.info4.pgammon.vues.VueMenu;
 
 public class ControleurIntermediairePartie implements Controleur{
 
 	private ControleurPrincipal controleurPrincipal;
+	private ControleurIntermediairePartie controleurIntermediairePartie;
 	private boolean isNouvellePartie;
 	private VueIntermediairePartie vueCreationPartie;
 	private JFrame frame;
@@ -23,10 +22,10 @@ public class ControleurIntermediairePartie implements Controleur{
 	{
 		this.controleurPrincipal = controleurPrincipal;
 		this.isNouvellePartie = isNouvellePartie;
-		
+		controleurIntermediairePartie = this;
 		vueCreationPartie = new VueIntermediairePartie(this.isNouvellePartie);
 		controleurPrincipal.getFrame().setContentPane(vueCreationPartie);
-		
+		frame = controleurPrincipal.getFrame();
 		build();
 	}
 	
@@ -34,6 +33,7 @@ public class ControleurIntermediairePartie implements Controleur{
 	{
 		listenerRetour();
 		listenerCommencer();
+		listenerChargerJoueur1();
 	}
 	
 	public void listenerRetour()
@@ -88,6 +88,48 @@ public class ControleurIntermediairePartie implements Controleur{
 			
 	}
 
+	public void  listenerChargerJoueur1(){
+		vueCreationPartie.getVueNouvelleSession().getBoutonChangerJoueurBlanc().addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				vueCreationPartie.setVisible(false);
+				ControleurListeJoueur controleurListeJoueur = new ControleurListeJoueur(true,controleurIntermediairePartie);
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			@Override
+			public void mouseExited(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+		
+		});
+	}
+	
+	public void  listenerChargerJoueur2(){
+		vueCreationPartie.getVueNouvelleSession().getBoutonChangerJoueurNoir().addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			@Override
+			public void mouseExited(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+		
+		});
+	}
+	
 	@Override
 	public Controleur getControleur() {
 		return this;
@@ -101,9 +143,12 @@ public class ControleurIntermediairePartie implements Controleur{
 
 	@Override
 	public void retour() {
-		vueCreationPartie = new VueIntermediairePartie(false);
-		frame.setContentPane(vueCreationPartie);
-		build();
+		getFrame().setContentPane(vueCreationPartie);
+		vueCreationPartie.setVisible(true);
+		
+		
+		vueCreationPartie.validate();
+		//build();
 	}
 	
 	

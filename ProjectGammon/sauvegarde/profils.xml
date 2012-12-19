@@ -61,19 +61,7 @@
     </statistiqueJoueur>
   </joueurs>
   <joueurs id="115074">
-    <pseudo>d</pseudo>
-    <imageSource />
-    <niveauAssistant>COMPLET</niveauAssistant>
-    <statistiqueJoueur>
-      <partiejoue>0</partiejoue>
-      <nbVictoires>0</nbVictoires>
-      <nbDefaites>0</nbDefaites>
-      <nbrDePartieContreJoueur />
-      <tempsJeu>0.0</tempsJeu>
-    </statistiqueJoueur>
-  </joueurs>
-  <joueurs id="115074">
-    <pseudo>d</pseudo>
+    <pseudo>ddez</pseudo>
     <imageSource />
     <niveauAssistant>COMPLET</niveauAssistant>
     <statistiqueJoueur>
