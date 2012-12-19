@@ -2,6 +2,7 @@ package fr.ujm.tse.info4.pgammon.vues;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Paint;
@@ -14,6 +15,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import fr.ujm.tse.info4.pgammon.gui.AfficheurScore;
+import fr.ujm.tse.info4.pgammon.gui.Avatar;
+import fr.ujm.tse.info4.pgammon.gui.ImageAvatar;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeLabel;
 import fr.ujm.tse.info4.pgammon.gui.MonochromePanel;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
@@ -42,6 +45,11 @@ public class PanelParametresVueCharger extends MonochromePanel{
 	
 	private Session session;
 	
+	private ImageAvatar imgjoueurBlanc;
+	private ImageAvatar imgjoueurNoir;
+	
+	private JLabel nomJoueurBlanc;
+	private JLabel nomJoueurNoir;
 	
 	public static final String pionblanc = "images/big_pion_blanc.png";
 	public static final String pionnoir = "images/big_pion_noir.png";
@@ -87,9 +95,55 @@ public class PanelParametresVueCharger extends MonochromePanel{
 			add(scorej1);
 			
 			scorej2 = new AfficheurScore(session.getScores().get(session.getPartieEnCours().getParametreJeu().getJoueurNoir()), CouleurCase.NOIR);
-			scorej2.setBounds(165, 70, 40, 40);
+			scorej2.setBounds(160, 70, 40, 40);
 			add(scorej2);
 			
+			imgjoueurBlanc = new ImageAvatar(session.getPartieEnCours().getParametreJeu().getJoueurBlanc().getImageSource());
+			imgjoueurBlanc.setBounds(15, 70, 70, 70);
+			add(imgjoueurBlanc);
+			
+			imgjoueurNoir = new ImageAvatar(session.getPartieEnCours().getParametreJeu().getJoueurNoir().getImageSource());
+			imgjoueurNoir.setBounds(210, 70, 70, 70);
+			add(imgjoueurNoir);
+			
+			
+			text_parties = new JLabel();
+			text_parties.setText("<html>nombre de partie<br> pour la session");
+			text_parties.setForeground(new Color(0xCCCCCC));
+			text_parties.setBounds(20, 180, 300, 50);
+			add(text_parties);
+			
+			text_temps = new JLabel();
+			text_temps.setText("<html>limitation du temps <br>par tour en seconde");
+			text_temps.setForeground(new Color(0xCCCCCC));
+			text_temps.setBounds(170, 180, 300, 50);
+			add(text_temps);
+			
+			nomJoueurBlanc = new JLabel();
+			nomJoueurBlanc.setText(session.getPartieEnCours().getParametreJeu().getJoueurBlanc().getPseudo());
+			nomJoueurBlanc.setForeground(new Color(0xCCCCCC));
+			nomJoueurBlanc.setFont(new Font("Arial", Font.BOLD, 22));
+			nomJoueurBlanc.setBounds(15, 28, 120, 50);
+			add(nomJoueurBlanc);
+			
+			nomJoueurNoir = new JLabel();
+			nomJoueurNoir.setText(session.getPartieEnCours().getParametreJeu().getJoueurNoir().getPseudo());
+			nomJoueurNoir.setForeground(new Color(0xCCCCCC));
+			nomJoueurNoir.setFont(new Font("Arial", Font.BOLD, 22));
+			nomJoueurNoir.setBounds(160, 28, 120, 50);
+			add(nomJoueurNoir);
+			
+			text_videau = new JLabel();
+			if(session.getPartieEnCours().getParametreJeu().isUtiliseVideau() == true){
+				text_videau.setText("Le videau est utilisé");
+			}
+			else{
+				text_videau.setText("Le videau n'est pas utilisé");
+			}
+				
+			text_videau.setForeground(new Color(0xCCCCCC));
+			text_videau.setBounds(20, 330, 300, 50);
+			add(text_videau);
 	}
 	
 	
@@ -99,8 +153,8 @@ public class PanelParametresVueCharger extends MonochromePanel{
 		
 		g.drawImage(iconeparties.getImage(),50,230,this);
 		g.drawImage(iconetime.getImage(),200,230,this);
-		g.drawImage(imgpionBlanc.getImage(),50,110,this);
-		g.drawImage(imgpionNoir.getImage(),205,110,this);
+		g.drawImage(imgpionBlanc.getImage(),60,115,this);
+		g.drawImage(imgpionNoir.getImage(),187,115,this);
 	}
 	
 
