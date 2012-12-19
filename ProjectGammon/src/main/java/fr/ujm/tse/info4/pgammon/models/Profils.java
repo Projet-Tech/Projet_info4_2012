@@ -135,7 +135,7 @@ public class Profils
 	public void supprimer(Joueur j)
 	{
 		for(int i=0;i<joueurs.size();i++){
-			if(joueurs.get(i).getId()==j.getId()){
+			if(joueurs.get(i).getId() == j.getId()){
 				joueurs.remove(i);
 			}
 		}

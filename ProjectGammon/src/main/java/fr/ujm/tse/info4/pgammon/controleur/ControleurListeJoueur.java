@@ -2,13 +2,8 @@ package fr.ujm.tse.info4.pgammon.controleur;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.IOException;
-
-import org.jdom2.JDOMException;
-
 import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.Profils;
-import fr.ujm.tse.info4.pgammon.vues.PanelVueListeJoueurDescription;
 import fr.ujm.tse.info4.pgammon.vues.VueAjouterJoueur;
 import fr.ujm.tse.info4.pgammon.vues.VueListeJoueur;
 
@@ -18,6 +13,7 @@ public class ControleurListeJoueur {
 	private ControleurPrincipal controleurPrincipal;
 	private Profils profil;
 	private VueAjouterJoueur vueAjouterJoueur;
+	private Boolean flag = true;
 
 	public ControleurListeJoueur(ControleurPrincipal controleurPrincipal) 
 	{
@@ -68,6 +64,7 @@ public class ControleurListeJoueur {
 			public void mouseClicked(MouseEvent e) {
 				vueListeJoueur.afficheEditerProfil();
 				vueAjouterJoueur = vueListeJoueur.getVueAjouterJoueur();
+				flag = true;
 				buildEditerProfil();
 			}
 			@Override
@@ -86,9 +83,10 @@ public class ControleurListeJoueur {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				vueListeJoueur.afficheEditerProfilM();
-				vueAjouterJoueur = vueListeJoueur.getVueAjouterJoueurModifier();
-				buildEditerProfilModifier();
+				vueListeJoueur.afficheEditerProfil();
+				vueAjouterJoueur = vueListeJoueur.getVueAjouterJoueur();
+				flag = false;
+				buildEditerProfil();
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {}
@@ -106,9 +104,7 @@ public class ControleurListeJoueur {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Joueur tmpJoueur = null;
-				vueListeJoueur.getPanelDescription().setJoueur(tmpJoueur);
-				
+				profil.supprimer(vueListeJoueur.getPanelDescription().getJoueur());
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {}
@@ -122,6 +118,13 @@ public class ControleurListeJoueur {
 	}
 		
 	public void buildEditerProfil(){
+		
+		if(flag){
+			vueAjouterJoueur.getnomPseudo().setText("");
+		}else{
+			vueAjouterJoueur.getnomPseudo().setText(vueListeJoueur.getPanelDescription().getJoueur().getPseudo());
+		}
+		
 		listenerBouttonFermerEditerProfil();
 		listenerBouttonEnregistrerEditerProfil();
 	}
@@ -149,12 +152,14 @@ public class ControleurListeJoueur {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Joueur tmpJoueur = new Joueur();
-				tmpJoueur.setPseudo(vueAjouterJoueur.getnomPseudo().getText());	
-				profil.getList().add(tmpJoueur);
-				//vueListeJoueur.updateData();
+				if(flag){
+					Joueur tmpJoueur = new Joueur();		 
+					tmpJoueur.setPseudo(vueAjouterJoueur.getnomPseudo().getText());	
+					profil.getList().add(tmpJoueur);
+				}else{
+					vueListeJoueur.getPanelDescription().getJoueur().setPseudo(vueAjouterJoueur.getnomPseudo().getText());
+				}
 				vueListeJoueur.masqueEditerProfil();
-				//vueListeJoueur.getListeJoueur().getList().updateUI();
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {}
@@ -167,28 +172,6 @@ public class ControleurListeJoueur {
 		});
 	}
 
-	public void buildEditerProfilModifier(){
-		listenerBouttonFermerEditerProfil();
-		listenerBouttonMofifierEditerProfil();
-	}
+				
 	
-	public void listenerBouttonMofifierEditerProfil(){
-		vueAjouterJoueur.getnomPseudo().setText(vueListeJoueur.getPanelDescription().getJoueur().getPseudo());
-		vueAjouterJoueur.getenregistrer().addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				vueListeJoueur.getPanelDescription().getJoueur().setPseudo(vueAjouterJoueur.getnomPseudo().getText());
-				vueListeJoueur.masqueEditerProfilM();
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {}
-			@Override
-			public void mouseExited(MouseEvent e) {}
-			@Override
-			public void mousePressed(MouseEvent e) {}
-			@Override
-			public void mouseReleased(MouseEvent e) {}
-		});
-	}
 }

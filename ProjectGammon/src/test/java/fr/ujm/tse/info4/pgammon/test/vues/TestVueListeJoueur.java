@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import javax.swing.JFrame;
 
 import fr.ujm.tse.info4.pgammon.controleur.ControleurPartie;
+import fr.ujm.tse.info4.pgammon.gui.Avatar;
 import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 import fr.ujm.tse.info4.pgammon.models.ParametreJeu;
@@ -20,11 +21,11 @@ public class TestVueListeJoueur {
 		
 		Profils tmp = Profils.getProfils();
 		
-		tmp.ajouter("DONG Chuan","Image DONG",NiveauAssistant.NON_UTILISE);
-		tmp.ajouter("BONNETTO Benjamin","Image Ben",NiveauAssistant.COMPLET);
-		tmp.ajouter("FRANCON Adrien","Image Adrien",NiveauAssistant.COMPLET);
-		tmp.ajouter("POTHELUNE Jean-Michel","Image JM",NiveauAssistant.SIMPLE);
-		tmp.ajouter("DONG Chuan","Image DONG",NiveauAssistant.NON_UTILISE);
+		tmp.ajouter("DONG Chuan",Avatar.FLEUR.getPath(),NiveauAssistant.NON_UTILISE);
+		tmp.ajouter("BONNETTO Benjamin",Avatar.CHAT_JAUNE.getPath(),NiveauAssistant.COMPLET);
+		tmp.ajouter("FRANCON Adrien",Avatar.LION.getPath(),NiveauAssistant.COMPLET);
+		tmp.ajouter("POTHELUNE Jean-Michel",Avatar.COCHON_D_INDE.getPath(),NiveauAssistant.SIMPLE);
+		tmp.ajouter("DONG Chuan",Avatar.ESCARGOTS.getPath(),NiveauAssistant.NON_UTILISE);
 
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(816,638);
