@@ -177,7 +177,7 @@ public class ControleurPartie
 				SortedSet<String> hs = new ConcurrentSkipListSet<>();
 				hs.add("Non");
 				hs.add("Oui");
-				vuePartie.afficherFenetreDemande("Accepter vous le videau", hs);
+				vuePartie.afficherFenetreDemande("Accepter vous le videau ?", hs);
 			}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {}
@@ -210,7 +210,7 @@ public class ControleurPartie
 				vuePartie.setPartie(session.getPartieEnCours());
 				vuePartie.setEtat(EtatSession.EN_COURS);
 				session.LancerPartie();
-				
+				vuePartie.updateUI();		
 			}
 		});
 	}
@@ -267,8 +267,7 @@ public class ControleurPartie
 		lCase = new ArrayList<Case>();
 		lCase.add(new Case(CouleurCase.BLANC, 2, 0));
 		lCase.add(new Case(CouleurCase.NOIR, 0, 25));
-		session.getPartieEnCours().getTablier().initialiserCaseBarre(lCase);
-		
+		session.getPartieEnCours().getTablier().initialiserCaseBarre(lCase);	
 	}
 	
 }
