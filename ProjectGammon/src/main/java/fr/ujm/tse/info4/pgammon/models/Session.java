@@ -22,12 +22,14 @@ public class Session
 	private Partie partieEnCours;
 
 	private Joueur joueurGagnantSession;
+	private CouleurCase couleurJoueurAnciennePartie;
 	private HashMap<Joueur, Integer> scores;
 	private EtatSession etatSession;
 	private ParametreJeu parametreSession;
 	
 	public Session(int idSession,ParametreJeu parametreJeu)
 	{
+		couleurJoueurAnciennePartie = null;
 		this.idSession = idSession;
 		idMaxPartie=1;
 		etatSession = EtatSession.CONFIGURATION;
@@ -72,11 +74,15 @@ public class Session
 	
 	public void LancerPartie()
 	{
-		partieEnCours.lancerPremierePartie();
+		if (couleurJoueurAnciennePartie == null)
+			partieEnCours.lancerPremierePartie();
+		else
+			partieEnCours.lancerNouvellePartie(couleurJoueurAnciennePartie);
 	}
 	
 	public void finPartie()
 	{
+		couleurJoueurAnciennePartie = partieEnCours.getPremierJoueur();
 		int videau = partieEnCours.getVideau().getvideau();
 		CouleurCase CouleurVictorieuse = partieEnCours.getJoueurEnCour();	
 		scores.put(parametreSession.getJoueur(CouleurVictorieuse),scores.get(parametreSession.getJoueur(CouleurVictorieuse))+videau);

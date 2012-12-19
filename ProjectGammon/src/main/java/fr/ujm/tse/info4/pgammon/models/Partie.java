@@ -22,6 +22,10 @@ public class Partie {
 	private Videau videau;
 	private ArrayList<DeSixFaces> deSixFaces;
 	private Tablier tablier;
+	private CouleurCase premierJoueur;
+
+
+
 	private StatistiquePartie statistique;
 	private CouleurCase joueurEnCour;
 	private ArrayList<Tour> historiqueToursJoueur;
@@ -69,9 +73,15 @@ public class Partie {
 		//historiqueToursJoueur.add(new Tour(joueurEnCour, deSixFaces));
 		}
 	
-	public void lancerNouvellePartie() {
+	public void lancerNouvellePartie(CouleurCase joueur) {
 		partieFini = false;
-		choixPremierJoueurLancementPartie();
+		
+		if(joueur == CouleurCase.BLANC)
+			joueurEnCour = CouleurCase.NOIR;
+		else
+			joueurEnCour = CouleurCase.BLANC;
+		
+		premierJoueur = joueurEnCour;
 	}
 	
 	public void debutTour()
@@ -116,6 +126,8 @@ public class Partie {
 			joueurEnCour = CouleurCase.BLANC;
 		else
 			joueurEnCour = CouleurCase.NOIR;	
+		
+		premierJoueur = joueurEnCour;
 	}
 
 	public boolean jouerCoup(int caseDepartInt, int caseArriveeInt) {
@@ -506,4 +518,7 @@ public class Partie {
 		return tourFini;
 	}
 	
+	public CouleurCase getPremierJoueur() {
+		return premierJoueur;
+	}
 }
