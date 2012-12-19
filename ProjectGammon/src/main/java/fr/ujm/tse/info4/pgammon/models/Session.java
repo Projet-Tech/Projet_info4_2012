@@ -91,6 +91,8 @@ public class Session
 	
 	public boolean verifFinSession()
 	{
+		if(parametreSession.getNbrPartieGagnante() == 0) 
+			return false;
 		if(scores.get(parametreSession.getJoueurBlanc()) >= parametreSession.getNbrPartieGagnante())
 		{
 			etatSession = EtatSession.TERMINEE;
