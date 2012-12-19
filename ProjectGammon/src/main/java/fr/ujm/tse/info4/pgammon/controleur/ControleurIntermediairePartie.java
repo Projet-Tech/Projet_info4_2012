@@ -10,6 +10,7 @@ import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 import fr.ujm.tse.info4.pgammon.models.ParametreJeu;
 import fr.ujm.tse.info4.pgammon.vues.VueIntermediairePartie;
+import fr.ujm.tse.info4.pgammon.vues.VueMenu;
 
 public class ControleurIntermediairePartie implements Controleur{
 
@@ -100,8 +101,9 @@ public class ControleurIntermediairePartie implements Controleur{
 
 	@Override
 	public void retour() {
-		// TODO Auto-generated method stub
-		
+		vueCreationPartie = new VueIntermediairePartie(false);
+		frame.setContentPane(vueCreationPartie);
+		build();
 	}
 	
 	

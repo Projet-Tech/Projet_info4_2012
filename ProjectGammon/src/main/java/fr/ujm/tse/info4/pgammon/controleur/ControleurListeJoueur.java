@@ -23,7 +23,7 @@ public class ControleurListeJoueur implements Controleur{
     private boolean isCharger;
     private JFrame frame;
     
-	public ControleurListeJoueur (Controleur controleur) 
+	public ControleurListeJoueur (boolean isCharger,Controleur controleur) 
 	{
 		this.controleur = controleur;
 		//TODO a changer

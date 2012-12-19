@@ -116,7 +116,7 @@ public class ControleurPrincipal implements Controleur{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				vueMenu.setVisible(false);
-				ControleurListeJoueur controleurListeJoueur = new ControleurListeJoueur(controleurPrincipal);	
+				ControleurListeJoueur controleurListeJoueur = new ControleurListeJoueur(false,controleurPrincipal);	
 			}
 		});
 	}
