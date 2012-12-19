@@ -51,14 +51,27 @@ public class FenetreDemandeAnimationBase extends TranstionAnimeeBase {
 		corresp = new HashMap<>();
 		if(reponses == null)
 		{
-				addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent evt) {
-					close();
-					fireActionPerformed(evt);
-				}
-			});
+				addMouseListener(new MouseListener() {
+					
+					@Override
+					public void mouseReleased(MouseEvent arg0) {
+
+						close();
+						fireActionPerformed(null);
+					}
+					
+					@Override
+					public void mousePressed(MouseEvent arg0) {}
+					
+					@Override
+					public void mouseExited(MouseEvent arg0) {}
+					
+					@Override
+					public void mouseEntered(MouseEvent arg0) {}
+					
+					@Override
+					public void mouseClicked(MouseEvent arg0) {}
+				});
 
 			
 			return;
