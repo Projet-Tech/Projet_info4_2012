@@ -66,7 +66,7 @@ public class ControleurTablier implements Controleur{
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					CaseButton caseButton = (CaseButton) e.getSource();
-					if (!partie.isTourFini())
+					if (!partie.isTourFini() && !partie.isPartieFini())
 						if(vueTablier.getCandidat() == null 
 								&& partie.getJoueurEnCour() == caseButton.getCase().getCouleurDame())
 						{

@@ -85,7 +85,8 @@ public class Session
 	{
 		couleurJoueurAnciennePartie = partieEnCours.getPremierJoueur();
 		int videau = partieEnCours.getVideau().getvideau();
-		CouleurCase CouleurVictorieuse = partieEnCours.getJoueurEnCour();	
+		CouleurCase CouleurVictorieuse = partieEnCours.getJoueurEnCour();
+		partieEnCours.finPartie();
 		scores.put(parametreSession.getJoueur(CouleurVictorieuse),scores.get(parametreSession.getJoueur(CouleurVictorieuse))+videau);
 	}
 	
