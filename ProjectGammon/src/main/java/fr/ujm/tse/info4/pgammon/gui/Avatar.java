@@ -34,4 +34,7 @@ public enum Avatar{
 	public ImageIcon getIcon() {
 		return icon;
 	}
+	public String getPath() {
+		return path;
+	}
 }

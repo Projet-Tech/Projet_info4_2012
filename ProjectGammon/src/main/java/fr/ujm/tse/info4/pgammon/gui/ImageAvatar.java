@@ -24,7 +24,8 @@ public class ImageAvatar extends JButton{
 	 */
 	private static final long serialVersionUID = 8469198767397141845L;
 	public static final String AVATAR_PATH = "images/avatars/";
-	private Avatar avatar;
+	private ImageIcon icon;
+	private String path;
 	
 
 	public ImageAvatar(Avatar avatar){
@@ -32,13 +33,18 @@ public class ImageAvatar extends JButton{
 		this.setAvatar(avatar); 
 		setOpaque(false);
 	}
-	
 	public ImageAvatar(Avatar avatar,boolean isButton){
 		setEnabled(isButton);
 		this.setAvatar(avatar); 
 		setOpaque(false);
 	}
 
+
+	public ImageAvatar(String path){
+		setEnabled(false);
+		this.setPath(path);
+		setOpaque(false);
+	}
 	
     @Override
     protected void paintComponent(Graphics g) {
@@ -50,8 +56,8 @@ public class ImageAvatar extends JButton{
 		int h = getHeight(); 
 		int w = getWidth(); 
 		
-		int iconW = avatar.getIcon().getImage().getWidth(null);
-		int iconH = avatar.getIcon().getImage().getHeight(null);
+		int iconW = icon.getImage().getWidth(null);
+		int iconH = icon.getImage().getHeight(null);
 		
 		double scaleX = 0, scaleY = 0;
 		if(iconW != 2*tailleBordure && iconH != 2*tailleBordure){
@@ -62,7 +68,7 @@ public class ImageAvatar extends JButton{
 		
 		// Icone
 		AffineTransform at = new AffineTransform(scaleX,0,0,scaleY, tailleBordure,tailleBordure);
-		g2.drawImage(avatar.getIcon().getImage(),at,this);
+		g2.drawImage(icon.getImage(),at,this);
 		
 		// Bordure
 		p = new Color(0xEEEEEE);
@@ -74,12 +80,18 @@ public class ImageAvatar extends JButton{
     }
     
 
-	public Avatar getAvatar() {
-		return avatar;
+	public String getPath() {
+		return path;
 	}
 
 	public void setAvatar(Avatar avatar) {
-		this.avatar = avatar;
+		this.path = avatar.getPath();
+		this.icon = avatar.getIcon();
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+		this.icon = new ImageIcon(path);
 	}
 	
 	
