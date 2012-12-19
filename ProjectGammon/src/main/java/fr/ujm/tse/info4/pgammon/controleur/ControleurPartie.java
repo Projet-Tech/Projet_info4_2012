@@ -71,8 +71,9 @@ public class ControleurPartie implements Controleur
 		listenerGetCoupPossibleJoueur2();
 		listenerButtonVideau();
 		listenerPartieSuivante();
-		
-		vuePartie.getPaneldroitencours().addPropertyChangeListener(new PropertyChangeListener() {
+		listenerInterrompreSession();
+		//TODO a supprimer
+		/*vuePartie.getPaneldroitencours().addPropertyChangeListener(new PropertyChangeListener() {
 			
 			@Override
 			public void propertyChange(PropertyChangeEvent arg0) {
@@ -80,7 +81,7 @@ public class ControleurPartie implements Controleur
 					if (session.getPartieEnCours().isPartieFini())
 						session.finPartie();
 			}
-		});
+		});*/
 	}
 	
 	public void listenerBack()
@@ -231,6 +232,60 @@ public class ControleurPartie implements Controleur
 		}
 	}
 	
+	public void listenerInterrompreSession()
+	{
+		vuePartie.getPanelEnCoursVueBas().getX_black().addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				SortedSet<String> hs = new ConcurrentSkipListSet<>();
+				hs.add("Oui");
+				hs.add("Annuler");
+				hs.add("Sauvegarder");
+				vuePartie.afficherFenetreDemande("Quitter sans Sauvegarder ?", hs).addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						
+						String action = e.getActionCommand();
+						if (action == "Oui")
+						{
+							controleur.retour();
+							
+						}
+						else if (action == "Annuler")
+						{
+							
+							
+						}
+						else if (action == "Sauvegarder")
+						{
+							try {
+								GestionDeSession gestion = GestionDeSession.getGestionDeSession();
+								gestion.sauvegarder();
+								
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							controleur.retour();
+							
+						}
+						
+					}
+				});
+			}
+			@Override
+			public void mouseEntered(MouseEvent arg0) {}
+			@Override
+			public void mouseExited(MouseEvent arg0) {}
+			@Override
+			public void mousePressed(MouseEvent arg0) {}
+			@Override
+			public void mouseReleased(MouseEvent arg0) {}
+		});
+		
+	}
 	public void listenerPartieSuivante()
 	{
 		vuePartie.getPaneldroitrevoir().getNext().addMouseListener(new MouseListener() {
