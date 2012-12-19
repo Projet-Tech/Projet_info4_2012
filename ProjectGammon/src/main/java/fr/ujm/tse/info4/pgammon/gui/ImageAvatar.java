@@ -87,11 +87,13 @@ public class ImageAvatar extends JButton{
 	public void setAvatar(Avatar avatar) {
 		this.path = avatar.getPath();
 		this.icon = avatar.getIcon();
+		repaint();
 	}
 
 	public void setPath(String path) {
 		this.path = path;
 		this.icon = new ImageIcon(path);
+		repaint();
 	}
 	
 	

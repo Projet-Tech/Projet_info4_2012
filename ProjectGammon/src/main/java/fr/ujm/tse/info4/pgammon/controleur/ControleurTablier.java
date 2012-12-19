@@ -137,6 +137,8 @@ public class ControleurTablier {
 	{
 		this.partie = partie;
 		vueTablier.setPartie(partie);
+		vueTablier.updateUI();
+		vueTablier.updateDes();
 	}
 	
 	public void changerTour() 

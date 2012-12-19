@@ -5,23 +5,28 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import fr.ujm.tse.info4.pgammon.gui.AfficheurScore;
 import fr.ujm.tse.info4.pgammon.gui.IconMonochromeType;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeIconButton;
+import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 import fr.ujm.tse.info4.pgammon.models.EtatSession;
+import fr.ujm.tse.info4.pgammon.models.Partie;
 
 public class PanelEnCoursVueDroite extends JPanel{
 
 	private static final long serialVersionUID = -7846360859879404327L;
 	//composant des images de jouer partie
 	//composant panel droit
-	MonochromeIconButton back;
-	MonochromeIconButton dices;
-	MonochromeButton videau;
+	private MonochromeIconButton back;
+	private MonochromeIconButton dices;
+	private AfficheurScore videau;
+	private Partie partie;
+	
 	
 
-public PanelEnCoursVueDroite(){
-	
+public PanelEnCoursVueDroite(Partie p){
+	partie = p;
 	build();
 }
 
@@ -60,7 +65,7 @@ private void build() {
 		
 		//creation composant et label du videau
 		//attention ici j'ai pris la largeur et hauteur du dices
-		videau = new MonochromeButton("2");
+		videau = new AfficheurScore(partie.getVideau().getvideau(),CouleurCase.BLANC);
 		videau.setBounds(10, 379, dices.getPreferredSize().width, dices.getPreferredSize().height);
 		add(videau);
 		
@@ -82,7 +87,7 @@ public MonochromeIconButton getDices() {
 }
 
 
-public MonochromeButton getVideau() {
+public AfficheurScore getVideau() {
 	return videau;
 }
 		

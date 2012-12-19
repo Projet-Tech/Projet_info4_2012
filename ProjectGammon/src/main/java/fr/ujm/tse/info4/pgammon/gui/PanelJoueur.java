@@ -23,15 +23,15 @@ public class PanelJoueur extends MonochromePanel{
 	
 	public static final String pionblanc = "images/big_pion_blanc.png";
 	public static final String pionnoir = "images/big_pion_noir.png";
-	private ImageIcon imgjoueur;
 	private ImageIcon imgpion;
+	
+	
 	
 	
 	private MonochromeCheckbox couppossible;
 	private MonochromeCheckbox conseilcoup;
 	private JLabel affichestat;
-	private JLabel conteneurimgjoueur;
-	private JLabel conteneurimgpion;
+	private ImageAvatar imgjoueur;
 	
 		public PanelJoueur(Joueur j,CouleurCase coul){
 			super(j.getPseudo());
@@ -48,12 +48,15 @@ public class PanelJoueur extends MonochromePanel{
 			updateData();
 		}
 		
+		
+		
 		public void updateData(){
 			setTitle(joueur.getPseudo());
 			affichestat.setText("<html> Vitoires &nbsp : "
 					+new Integer(joueur.getStat().getNbVictoires()).toString()
 					+"<br>Défaites : "+joueur.getStat().getNbDefaites()
 					);
+			imgjoueur.setPath(joueur.getImageSource());
 			
 		}
 		
@@ -72,9 +75,11 @@ public class PanelJoueur extends MonochromePanel{
 				System.err.println(err);
 			}
 			
+			imgjoueur = new ImageAvatar(joueur.getImageSource());
+			imgjoueur.setBounds(15, 40, 50, 50);
+			add(imgjoueur);
+			
 			affichestat = new JLabel();
-			conteneurimgjoueur = new JLabel();
-			conteneurimgpion = new JLabel();
 			couppossible = new MonochromeCheckbox("<html> Afficher les <br> coups possibles");
 			conseilcoup = new MonochromeCheckbox("<html> conseiller le <br> prochain coup");
 			
@@ -107,14 +112,6 @@ public class PanelJoueur extends MonochromePanel{
 		
 		
 		
-		public ImageIcon getImgjoueur() {
-			return imgjoueur;
-		}
-
-		public void setImgjoueur(ImageIcon imgjoueur) {
-			this.imgjoueur = imgjoueur;
-		}
-
 		public MonochromeCheckbox getCouppossible() {
 			return couppossible;
 		}

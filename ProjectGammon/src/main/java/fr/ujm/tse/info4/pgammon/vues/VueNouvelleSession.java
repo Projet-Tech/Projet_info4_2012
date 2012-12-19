@@ -8,11 +8,15 @@ import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.RadialGradientPaint;
 import java.awt.RenderingHints;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.geom.Point2D;
 
 import javax.swing.JPanel;
 
+import fr.ujm.tse.info4.pgammon.gui.IconMonochromeType;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
+import fr.ujm.tse.info4.pgammon.gui.MonochromeIconButton;
 import fr.ujm.tse.info4.pgammon.gui.MonochromePanel;
 import fr.ujm.tse.info4.pgammon.gui.PanelJoueur;
 import fr.ujm.tse.info4.pgammon.gui.PanelParametre;
@@ -26,7 +30,7 @@ public class VueNouvelleSession extends JPanel{
 	
 	private MonochromeButton boutonlistejoueur;
 	private MonochromeButton boutoncommencer; 
-	private MonochromeButton boutonchangercouleur; 
+	private MonochromeIconButton boutonchangercouleur; 
 	private MonochromeButton boutonRetour;
 	private PanelJoueur paneljoueur1;
 	private PanelJoueur paneljoueur2;
@@ -57,7 +61,11 @@ public class VueNouvelleSession extends JPanel{
 		boutonRetour = new MonochromeButton("Retour");
 		 boutonlistejoueur = new MonochromeButton("Liste des joueurs");
 		 boutoncommencer = new MonochromeButton("Commencer");
-		 boutonchangercouleur = new MonochromeButton();
+		 
+		 boutonchangercouleur = new MonochromeIconButton(IconMonochromeType.SWITCH,"MonochromeIconButton","NOIR");
+		 boutonchangercouleur.setSizeBig();
+		 boutonchangercouleur.setBounds(10, 34, boutonchangercouleur.getPreferredSize().width, boutonchangercouleur.getPreferredSize().height);
+		 add(boutonchangercouleur);
 		 
 		 
 		 paneljoueur1.setBounds(37, 35, 332, 141);
@@ -81,12 +89,46 @@ public class VueNouvelleSession extends JPanel{
 		 add(boutoncommencer);
 		 add(boutonchangercouleur);
 		 add(boutonRetour);
+		 
+		 listenerboutonchangercouleur();
 		
 		
 	}
 	
+	private void listenerboutonchangercouleur()
+	{
+		boutonchangercouleur.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}		
+			@Override
+			public void mouseExited(MouseEvent e) {}			
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Joueur jou1=j1;
+				Joueur jou2=j2;
+				setJoueur1(jou2);
+				setJoueur2(jou1);
+			}
+		});
+	}
 	
 	
+	public void setJoueur1(Joueur jBlanc){
+		paneljoueur1.setJoueur(jBlanc);
+		j1=jBlanc;
+		
+	}
+
+	public void setJoueur2(Joueur jNoir) {
+		paneljoueur2.setJoueur(jNoir);
+		j2=jNoir;
+		
+	}
 	
 	public MonochromeButton getBoutonlistejoueur() {
 		return boutonlistejoueur;
@@ -96,7 +138,7 @@ public class VueNouvelleSession extends JPanel{
 		return boutoncommencer;
 	}
 
-	public MonochromeButton getBoutonchangercouleur() {
+	public MonochromeIconButton getBoutonchangercouleur() {
 		return boutonchangercouleur;
 	}
 
@@ -116,6 +158,10 @@ public class VueNouvelleSession extends JPanel{
 		return panelparamètre;
 	}
 
+
+	
+
+	
 	@Override
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g.create(); 
@@ -144,18 +190,6 @@ public class VueNouvelleSession extends JPanel{
 		
 		
 		g2.dispose(); 
-		
-	}
-	
-	public void setJoueur1(Joueur jBlanc){
-		paneljoueur1.setJoueur(jBlanc);
-		j1=jBlanc;
-		
-	}
-
-	public void setJoueur2(Joueur jNoir) {
-		paneljoueur2.setJoueur(jNoir);
-		j2=jNoir;
 		
 	}
 

@@ -16,6 +16,8 @@ public class IconMonochromeType {
 	public static final String SMALL_MOINS 		= "images/small_moins.png";
 	public static final String SMALL_X 			= "images/small_x.png";
 	public static final String SMALL_INFINITE 	= "images/small_infinite.png";
+	public static final String SWITCH 			= "images/switch.png";
+	
 	
 	public static final ImageIcon img_retour = new ImageIcon("images/back.png");
 	public static final ImageIcon img_des = new ImageIcon("images/dices.png");

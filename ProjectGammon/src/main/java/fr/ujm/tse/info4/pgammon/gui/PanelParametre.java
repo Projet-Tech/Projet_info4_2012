@@ -58,7 +58,7 @@ public class PanelParametre extends MonochromePanel{
 			System.err.println(err);
 		}
 		
-		nbParties = 10;
+		nbParties = 3;
 		nbTemps = 0;
 		
 		text_parties = new JLabel();

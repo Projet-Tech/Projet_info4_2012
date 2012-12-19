@@ -122,13 +122,23 @@ public class Partie {
 	
 	public boolean jouerCoup(Case caseDepart, Case caseArrivee) {
 		
-		int nbDameBarre = tablier.getCaseBarre(joueurEnCour).getNbDame();
+		
 		if(isCoupPossible(caseDepart,caseArrivee))
 		{
+			CouleurCase joueurEnemie;
+			
+			if (joueurEnCour == CouleurCase.BLANC)
+				joueurEnemie = CouleurCase.NOIR;
+			else
+				joueurEnemie = CouleurCase.BLANC;
+			
+			int nbDameBarre = tablier.getCaseBarre(joueurEnemie).getNbDame();
+			
 			if (tablier.deplacerDame(caseDepart, caseArrivee))
 			{
 				deSixFaces.get(deUtiliser).utiliser();
-				getDernierTour().addDeplacement(new Deplacement(caseDepart, caseArrivee,(nbDameBarre < tablier.getCaseBarre(joueurEnCour).getNbDame())));
+				
+				getDernierTour().addDeplacement(new Deplacement(caseDepart, caseArrivee,(nbDameBarre < tablier.getCaseBarre(joueurEnemie).getNbDame())));
 				
 				return true;
 			}
@@ -215,10 +225,19 @@ public class Partie {
 			for (DeSixFaces de : dernierTour.getDeSixFaces()) {
 				if (de.isUtilise() && de.getValeur() == Math.abs(tablier.distanceDeuxCase(dernierDeplacement.getCaseArriver(), dernierDeplacement.getCaseDepart())))
 				{
+					//recuperation de la couleur de la dame manger
+					CouleurCase CaseArriverSaveCouleur;
+					if (dernierDeplacement.getCaseArriver().getCouleurDame() == CouleurCase.BLANC)
+						CaseArriverSaveCouleur = CouleurCase.NOIR;
+					else
+						CaseArriverSaveCouleur = CouleurCase.BLANC;
+					
 					tablier.deplacerDame(dernierDeplacement.getCaseArriver(),dernierDeplacement.getCaseDepart());
 					de.notUtiliser();
 					if(getDernierTour().getDernierDeplacement().isSiCaseBattue())
-						tablier.getCaseBarre(dernierDeplacement.getCaseDepart().getCouleurDame()).moinDame();
+					{
+						tablier.deplacerDame(tablier.getCaseBarre(CaseArriverSaveCouleur),dernierDeplacement.getCaseArriver());
+					}
 					if (tourFini)
 					{
 						tourFini = false;

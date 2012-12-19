@@ -37,8 +37,8 @@ public class Master
 			listSession.add(new Session(idMax,parametreJeu));
 			idMax +=1;
 		}
-			
 	}
+	
 	public void arreterSession(int id)
 	{
 		if(listSession.size()!=0)
@@ -49,7 +49,8 @@ public class Master
 			}
 		}	
 	}
-	
+
+
 	public boolean peutLancerSession()
 	{
 		//TODO gere le multi THREAD
