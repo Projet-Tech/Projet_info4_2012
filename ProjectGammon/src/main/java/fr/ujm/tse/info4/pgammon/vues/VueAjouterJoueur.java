@@ -13,6 +13,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import fr.ujm.tse.info4.pgammon.gui.Avatar;
+import fr.ujm.tse.info4.pgammon.gui.AvatarList;
+import fr.ujm.tse.info4.pgammon.gui.ImageAvatar;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
 import fr.ujm.tse.info4.pgammon.gui.MonochromePanel;
 
@@ -29,14 +32,32 @@ public class VueAjouterJoueur extends MonochromePanel{
 	
 	private JTextField nomPseudo;
 	
+	private ImageAvatar imgjoueur;
+	
+	private String chemin = Avatar.CHOUETTE.getPath();
+	
 	public VueAjouterJoueur(){
 		super("Edition de profil");
 		build();
 		
 	}
+	
+	public void setPath(String p){
+		chemin = p;
+		updateData();
+	}
+
+	private void updateData() {
+		imgjoueur.setPath(chemin);
+		
+	}
 
 	private void build() {
 		setLayout(null);
+		
+		imgjoueur = new ImageAvatar(chemin);
+		imgjoueur.setBounds(25, 130, 105, 105);
+		add(imgjoueur);
 		
 		changerAvatar = new MonochromeButton("Changer l'avatar");
 		changerAvatar.setBounds(150, 130, 230, 40);

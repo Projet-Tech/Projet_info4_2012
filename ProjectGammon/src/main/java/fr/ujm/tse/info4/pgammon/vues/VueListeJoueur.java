@@ -10,6 +10,8 @@ import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.RadialGradientPaint;
 import java.awt.RenderingHints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Point2D;
@@ -22,6 +24,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import fr.ujm.tse.info4.pgammon.gui.AvatarList;
+import fr.ujm.tse.info4.pgammon.gui.ImageAvatar;
 import fr.ujm.tse.info4.pgammon.gui.JoueurCellRenderer;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeListe;
@@ -43,7 +46,7 @@ public class VueListeJoueur extends MonochromeVue{
 	private PanelVueListeJoueurDescription panelDescription;
 	private MonochromeListe<Joueur> listeJoueur;
 	
-	
+	private String path = null;
 
 
 	private VueAjouterJoueur vueAjouterJoueur;
@@ -54,7 +57,7 @@ public class VueListeJoueur extends MonochromeVue{
 	
 	private AvatarList listeAvatar;
 	
-	
+	private ImageAvatar imgjoueur;
 	
 	public VueListeJoueur(Profils mp){
 		profil = mp;
@@ -136,7 +139,21 @@ public class VueListeJoueur extends MonochromeVue{
 		add(retour);
 		
 		listenerchangerAvatar();
-		
+		listenerAjouterAvatar();
+	}
+	
+	private void listenerAjouterAvatar(){
+	
+		listeAvatar.getAjouter().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				path = listeAvatar.getPath();
+				System.out.println(listeAvatar.getPath());
+				vueAjouterJoueur.setPath(path);
+				listeAvatar.setVisible(false);
+			}
+		});
+	
 	}
 	
 	private void listenerchangerAvatar()
@@ -154,7 +171,6 @@ public class VueListeJoueur extends MonochromeVue{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("sa passe ici");
-				masqueEditerProfil();
 				listeAvatar.setVisible(true);
 			}
 		});
@@ -198,6 +214,28 @@ public class VueListeJoueur extends MonochromeVue{
 	
 	public VueAjouterJoueur getVueAjouterJoueur() {
 		return vueAjouterJoueur;
+	}
+	
+	
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+	public Joueur getJ() {
+		return j;
+	}
+
+	public AvatarList getListeAvatar() {
+		return listeAvatar;
+	}
+
+	public ImageAvatar getImgjoueur() {
+		return imgjoueur;
 	}
 
 	@Override
