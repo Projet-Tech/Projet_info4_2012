@@ -37,6 +37,15 @@ public class Master
 			listSession.add(new Session(idMax,parametreJeu));
 			idMax +=1;
 		}
+		try {
+			GestionDeSession gestion = GestionDeSession.getGestionDeSession();
+			gestion.setListSession(listSession);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
+		
 	}
 	
 	public void arreterSession(int id)

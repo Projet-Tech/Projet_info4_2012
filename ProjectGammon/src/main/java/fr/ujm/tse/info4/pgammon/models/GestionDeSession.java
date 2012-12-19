@@ -36,7 +36,7 @@ public class GestionDeSession {
 				Document document = new Document(racine);
 				listSession.get(i).sauvegarder(racine);
 				XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
-				String tmpPath = "sauvegarde/"+tmpNom; 
+				String tmpPath = "sauvegarde/"+tmpNom+".xml"; 
 				sortie.output(document, new FileOutputStream(tmpPath));
 	        }catch(Exception e){
 				System.out.println("Erreur d'enregistrement");
@@ -44,6 +44,14 @@ public class GestionDeSession {
 		}
 	}
 	
+	public List<Session> getListSession() {
+		return listSession;
+	}
+
+	public void setListSession(List<Session> listSession) {
+		this.listSession = listSession;
+	}
+
 	public void charger(){
 		
 	}
