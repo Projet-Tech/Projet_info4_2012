@@ -72,7 +72,7 @@ public class Session
 	
 	public void LancerPartie()
 	{
-		partieEnCours.LancerPartie();
+		partieEnCours.lancerPremierePartie();
 	}
 	
 	public void finPartie()
