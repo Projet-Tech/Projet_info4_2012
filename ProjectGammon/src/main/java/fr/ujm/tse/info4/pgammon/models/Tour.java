@@ -59,7 +59,7 @@ public class Tour
 	}
 	
 	public ArrayList<Deplacement> getListDeplacement(){
-		return null;
+		return listDeplacement;
 	}
 	
 	

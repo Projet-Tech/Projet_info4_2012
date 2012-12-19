@@ -20,6 +20,7 @@ import fr.ujm.tse.info4.pgammon.gui.ImageAvatar;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeLabel;
 import fr.ujm.tse.info4.pgammon.gui.MonochromePanel;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
+import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.Session;
 
 public class PanelParametresVueCharger extends MonochromePanel{
@@ -62,6 +63,28 @@ public class PanelParametresVueCharger extends MonochromePanel{
 		session = s;
 		
 		build();
+	}
+	
+	public void setSession(Session s){
+		session=s;
+		updateData();
+	}
+	
+	public void updateData(){
+		lab_parties.setText(new Integer(session.getParametreSession().getNbrPartieGagnante()).toString());
+		lab_temps.setText(new Integer(session.getParametreSession().getSecondesParTour()).toString());
+		scorej1.setScore(session.getScores().get(session.getPartieEnCours().getParametreJeu().getJoueurBlanc()));
+		scorej2.setScore(session.getScores().get(session.getPartieEnCours().getParametreJeu().getJoueurNoir()));
+		imgjoueurBlanc.setPath(session.getPartieEnCours().getParametreJeu().getJoueurBlanc().getImageSource());
+		imgjoueurNoir.setPath(session.getPartieEnCours().getParametreJeu().getJoueurNoir().getImageSource());
+		nomJoueurBlanc.setText(session.getPartieEnCours().getParametreJeu().getJoueurBlanc().getPseudo());
+		nomJoueurNoir.setText(session.getPartieEnCours().getParametreJeu().getJoueurNoir().getPseudo());
+		if(session.getPartieEnCours().getParametreJeu().isUtiliseVideau() == true){
+			text_videau.setText("Le videau est utilisé");
+		}
+		else{
+			text_videau.setText("Le videau n'est pas utilisé");
+		}
 	}
 	
 	public void build(){
@@ -108,13 +131,13 @@ public class PanelParametresVueCharger extends MonochromePanel{
 			
 			
 			text_parties = new JLabel();
-			text_parties.setText("<html>nombre de partie<br> pour la session");
+			text_parties.setText("<html>Nombre de partie<br> pour la session");
 			text_parties.setForeground(new Color(0xCCCCCC));
 			text_parties.setBounds(20, 180, 300, 50);
 			add(text_parties);
 			
 			text_temps = new JLabel();
-			text_temps.setText("<html>limitation du temps <br>par tour en seconde");
+			text_temps.setText("<html>Limitation du temps <br>par tour en seconde");
 			text_temps.setForeground(new Color(0xCCCCCC));
 			text_temps.setBounds(170, 180, 300, 50);
 			add(text_temps);
@@ -134,13 +157,6 @@ public class PanelParametresVueCharger extends MonochromePanel{
 			add(nomJoueurNoir);
 			
 			text_videau = new JLabel();
-			if(session.getPartieEnCours().getParametreJeu().isUtiliseVideau() == true){
-				text_videau.setText("Le videau est utilisé");
-			}
-			else{
-				text_videau.setText("Le videau n'est pas utilisé");
-			}
-				
 			text_videau.setForeground(new Color(0xCCCCCC));
 			text_videau.setBounds(20, 330, 300, 50);
 			add(text_videau);
