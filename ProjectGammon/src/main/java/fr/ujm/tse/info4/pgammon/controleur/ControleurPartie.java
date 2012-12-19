@@ -123,7 +123,8 @@ public class ControleurPartie implements Controleur
 				vuePartie.updateUI();
 				vuePartie.getVueTablier().updateUI();
 				vuePartie.getVueTablier().updateDes();
-				controleurTablier.getTimer().restart();
+				if (controleurTablier.getTimer()!= null)
+					controleurTablier.getTimer().restart();
 			}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {}
