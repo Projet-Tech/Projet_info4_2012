@@ -55,7 +55,6 @@ public class FenetreDemandeAnimationBase extends TranstionAnimeeBase {
 					
 					@Override
 					public void mouseReleased(MouseEvent arg0) {
-
 						close();
 						fireActionPerformed(null);
 					}

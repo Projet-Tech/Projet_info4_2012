@@ -42,6 +42,18 @@ public class TestDesign {
 			panel.add(mbtn);
 		}
 		{
+			MonochromeButton mbtn = new MonochromeButton("Button1");
+			mbtn.setPreferredSize(new Dimension(200, 60));
+			mbtn.setEnabled(false);
+			panel.add(mbtn);
+		}
+		{
+			MonochromeButton mbtn = new MonochromeButton("MonochromeButton2");
+			mbtn.setPreferredSize(new Dimension(300, 60));
+			mbtn.setEnabled(false);
+			panel.add(mbtn);
+		}
+		{
 			MonochromeIconButton mbtn = new MonochromeIconButton(IconMonochromeType.X_BLANC,"MonochromeIconButton","NOIR");
 			mbtn.setSizeBig();
 			panel.add(mbtn);
@@ -54,6 +66,24 @@ public class TestDesign {
 		{
 			MonochromeIconButton mbtn = new MonochromeIconButton(IconMonochromeType.SMALL_INFINITE,"MonochromeIconButton","NOIR");
 			mbtn.setSizeSmall();
+			panel.add(mbtn);
+		}
+		{
+			MonochromeIconButton mbtn = new MonochromeIconButton(IconMonochromeType.X_BLANC,"MonochromeIconButton","NOIR");
+			mbtn.setSizeBig();
+			mbtn.setEnabled(false);
+			panel.add(mbtn);
+		}
+		{
+			MonochromeIconButton mbtn = new MonochromeIconButton(IconMonochromeType.X_NOIR,"MonochromeIconButton");
+			mbtn.setSizeBig();
+			mbtn.setEnabled(false);
+			panel.add(mbtn);
+		}
+		{
+			MonochromeIconButton mbtn = new MonochromeIconButton(IconMonochromeType.SMALL_INFINITE,"MonochromeIconButton","NOIR");
+			mbtn.setSizeSmall();
+			mbtn.setEnabled(false);
 			panel.add(mbtn);
 		}
 		{

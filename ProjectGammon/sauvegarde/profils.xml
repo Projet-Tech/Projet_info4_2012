@@ -3,7 +3,7 @@
   <joueurs id="114794">
     <pseudo>aaaaa</pseudo>
     <imageSource />
-    <niveauAssistant>NON_UTILISE</niveauAssistant>
+    <niveauAssistant>COMPLET</niveauAssistant>
     <statistiqueJoueur>
       <partiejoue>0</partiejoue>
       <nbVictoires>0</nbVictoires>
@@ -15,7 +15,7 @@
   <joueurs id="114799">
     <pseudo>vvvvvv</pseudo>
     <imageSource />
-    <niveauAssistant>NON_UTILISE</niveauAssistant>
+    <niveauAssistant>COMPLET</niveauAssistant>
     <statistiqueJoueur>
       <partiejoue>0</partiejoue>
       <nbVictoires>0</nbVictoires>
@@ -27,7 +27,7 @@
   <joueurs id="114799">
     <pseudo>vvvvvv</pseudo>
     <imageSource />
-    <niveauAssistant>NON_UTILISE</niveauAssistant>
+    <niveauAssistant>COMPLET</niveauAssistant>
     <statistiqueJoueur>
       <partiejoue>0</partiejoue>
       <nbVictoires>0</nbVictoires>
@@ -39,7 +39,7 @@
   <joueurs id="114807">
     <pseudo>qqweqweq</pseudo>
     <imageSource />
-    <niveauAssistant>NON_UTILISE</niveauAssistant>
+    <niveauAssistant>COMPLET</niveauAssistant>
     <statistiqueJoueur>
       <partiejoue>0</partiejoue>
       <nbVictoires>0</nbVictoires>
