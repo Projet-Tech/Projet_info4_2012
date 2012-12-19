@@ -58,7 +58,7 @@ public class ControleurIntermediairePartie {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				int temp = vueCreationPartie.getVueNouvelleSession().getPanelparamètre().getNbTemps();
+				int temp = vueCreationPartie.getVueNouvelleSession().getPanelparamètre().getNbTemps()*1000;
 				int nbPartie = vueCreationPartie.getVueNouvelleSession().getPanelparamètre().getNbParties();
 				boolean videau = vueCreationPartie.getVueNouvelleSession().getPanelparamètre().getVideau().isSelected();
 				

@@ -138,6 +138,8 @@ public class Partie {
 				
 				getDernierTour().addDeplacement(new Deplacement(caseDepart, caseArrivee,(nbDameBarre < tablier.getCaseBarre(joueurEnemie).getNbDame())));
 				
+				if (tablier.isTouteDameMarquee(joueurEnCour))
+					finPartie();	
 				return true;
 			}
 			else
@@ -275,9 +277,6 @@ public class Partie {
 		videau.doubler();
 	}
 
-	public void refusVideau() {
-		finPartie();
-	}
 
 	public void deplacementAleatoire() throws TourNonJouableException {
 		 List<Coup> casesPossible = getCoupsPossibles();

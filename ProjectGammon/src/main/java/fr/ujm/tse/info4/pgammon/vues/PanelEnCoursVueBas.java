@@ -94,6 +94,8 @@ public class PanelEnCoursVueBas extends JPanel{
 	public void updateScore(int scoreJBlanc, int scoreJNoir){
 		scorej1 = scoreJBlanc;
 		scorej2 = scoreJNoir;
+		 panelScorej1.setScore(scorej1);
+		 panelScorej2.setScore(scorej2);
 		
 	}
 
@@ -121,7 +123,6 @@ public class PanelEnCoursVueBas extends JPanel{
 	public int getScorej2() {
 		return scorej2;
 	}
-	
 	
 
 }

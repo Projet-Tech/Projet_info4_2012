@@ -27,6 +27,9 @@ public class ControleurTablier {
 	private VuePartie vuePartie;
 	private Timer timer;
 	
+
+
+
 	public ControleurTablier(Partie partie,VuePartie vuePartie)
 	{
 
@@ -80,15 +83,18 @@ public class ControleurTablier {
 							{
 								vueTablier.uncandidateAll();
 								vueTablier.setPossibles((List)(new ArrayList<Case>()));
+								
+								if(partie.isPartieFini())
+								{
+									vuePartie.afficherFenetreDemande( " Le Joueur " +partie.getJoueurEnCour() + " à Gagnée", null);
+									vuePartie.setEtat(EtatSession.TERMINEE);
+								}
+								
 								if (partie.siDesUtilises())
 								{	
 									//TODO affichage changement de Tour
 									changerTour();	
-									if(partie.isPartieFini())
-									{
-										vuePartie.afficherFenetreDemande( " Le Joueur " +partie.getJoueurEnCour() + " à Gagnée", null);
-										vuePartie.setEtat(EtatSession.TERMINEE);
-									}
+									
 								}
 								else if(!partie.hasCoupPossible())
 								{
@@ -174,7 +180,7 @@ public class ControleurTablier {
 					  
 					  vueTablier.updateUI();
 					  vueTablier.updateDes();
-					  timer.restart();
+					  
 				  }
 				});
 			
@@ -185,6 +191,10 @@ public class ControleurTablier {
 		{
 			timer =null;
 		}
+	}
+	
+	public Timer getTimer() {
+		return timer;
 	}
 	
 }

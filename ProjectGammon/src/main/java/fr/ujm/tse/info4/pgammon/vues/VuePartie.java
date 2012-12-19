@@ -139,10 +139,6 @@ etat=EtatSession.EN_COURS;
 		
 	}
 	
-	
-	
-	
-
 
 	public Partie getPartie() {
 		return partie;
@@ -154,6 +150,8 @@ etat=EtatSession.EN_COURS;
 		vueTablier.setVisible(false);
 		vueTablier = new VueTablier(partie);
 		vueTablier.setBounds(173, 30, 547, 446);
+		
+		paneldroitencours.setPartie(partie);
 		add(vueTablier);
 		
 	}

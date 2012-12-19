@@ -106,6 +106,7 @@ public class ControleurPartie
 	
 	public void listenerLancerDe()
 	{
+		
 		vuePartie.getPaneldroitencours().getDices().addMouseListener(new MouseListener(){
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -121,6 +122,7 @@ public class ControleurPartie
 				vuePartie.updateUI();
 				vuePartie.getVueTablier().updateUI();
 				vuePartie.getVueTablier().updateDes();
+				controleurTablier.getTimer().restart();
 			}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {}
@@ -179,6 +181,12 @@ public class ControleurPartie
 	}
 	public void listenerButtonVideau()
 	{
+		if (!session.getParametreSession().isUtiliseVideau())
+		{
+			vuePartie.getPaneldroitencours().getVideau().setEnabled(false);
+		}
+		else
+		{
 		vuePartie.getPaneldroitencours().getVideau().addMouseListener(new MouseListener(){
 
 			@Override
@@ -193,9 +201,15 @@ public class ControleurPartie
 						
 						String action = e.getActionCommand();
 						if (action == "Oui")
+						{
 							session.getPartieEnCours().doublerVideau();
+							
+						}
 						else if (action == "Non")
+						{
 							finPartie();
+							controleurPartie.nouvellePartie();
+						}
 						vuePartie.getPaneldroitencours().updateVideau();
 					}
 				});
@@ -209,7 +223,7 @@ public class ControleurPartie
 			@Override
 			public void mouseReleased(MouseEvent arg0) {}
 		});
-
+		}
 	}
 	
 	public void listenerPartieSuivante()
@@ -248,6 +262,7 @@ public class ControleurPartie
 	{
 		session.finPartie();
 		vuePartie.getPanelEnCoursVueBas().updateScore(session.getScores().get(session.getParametreSession().getJoueurBlanc()), session.getScores().get(session.getParametreSession().getJoueurNoir()));
+
 	}
 	
 	public Partie getPartie() {
