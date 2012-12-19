@@ -5,22 +5,27 @@ import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JFrame;
 
+import fr.ujm.tse.info4.pgammon.gui.Avatar;
 import fr.ujm.tse.info4.pgammon.gui.BarreCaseButton;
 import fr.ujm.tse.info4.pgammon.gui.CaseButton;
 import fr.ujm.tse.info4.pgammon.gui.DeButton;
 import fr.ujm.tse.info4.pgammon.gui.JoueurCellRenderer;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeListe;
+import fr.ujm.tse.info4.pgammon.gui.SessionCellRenderer;
 import fr.ujm.tse.info4.pgammon.gui.TriangleCaseButton;
 import fr.ujm.tse.info4.pgammon.models.Case;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 import fr.ujm.tse.info4.pgammon.models.DeSixFaces;
 import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
+import fr.ujm.tse.info4.pgammon.models.ParametreJeu;
+import fr.ujm.tse.info4.pgammon.models.Session;
 
 public class TestListe {
 
@@ -40,6 +45,23 @@ public class TestListe {
 		panel.setLayout(null);
 
 		panel.setBackground(Color.BLACK);
+		
+		
+		Joueur jBlanc = new Joueur(1, "ben", Avatar.CHAT_JAUNE.getPath(),NiveauAssistant.NON_UTILISE);
+		Joueur jNoir = new Joueur(2, "JM", Avatar.CHEVAL.getPath(), NiveauAssistant.COMPLET);
+		
+		ParametreJeu param = new ParametreJeu(0, 3, true, jBlanc, jNoir);
+		ArrayList<Session> listSession;
+		listSession = new ArrayList<>();
+		
+		listSession.add(new Session(1,param));
+		listSession.add(new Session(2,param));
+		
+		MonochromeListe<Session> sessions = new MonochromeListe<>("Parties enregistrées",listSession,new SessionCellRenderer());
+		sessions.setBounds(40, 50, 330, 450);
+		panel.add(sessions);
+		
+		
 		
 		js  = new Vector<>();
 		

@@ -15,7 +15,7 @@
   <joueurs id="115065">
     <pseudo>b</pseudo>
     <imageSource />
-    <niveauAssistant>NON_UTILISE</niveauAssistant>
+    <niveauAssistant>COMPLET</niveauAssistant>
     <statistiqueJoueur>
       <partiejoue>0</partiejoue>
       <nbVictoires>0</nbVictoires>
@@ -27,7 +27,7 @@
   <joueurs id="115070">
     <pseudo>c</pseudo>
     <imageSource />
-    <niveauAssistant>NON_UTILISE</niveauAssistant>
+    <niveauAssistant>COMPLET</niveauAssistant>
     <statistiqueJoueur>
       <partiejoue>0</partiejoue>
       <nbVictoires>0</nbVictoires>

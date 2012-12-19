@@ -8,6 +8,7 @@ import java.awt.Paint;
 import java.awt.RadialGradientPaint;
 import java.awt.RenderingHints;
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JPanel;
@@ -15,6 +16,7 @@ import javax.swing.JPanel;
 import fr.ujm.tse.info4.pgammon.gui.JoueurCellRenderer;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeListe;
+import fr.ujm.tse.info4.pgammon.gui.SessionCellRenderer;
 import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.Profils;
 import fr.ujm.tse.info4.pgammon.models.Session;
@@ -25,35 +27,36 @@ public class VueChargerPartie extends JPanel{
 	
 	private MonochromeButton boutonCommencer;
 	
-	private Session session;
+	private ArrayList<Session> listSession;
 	
 	private MonochromeListe<Session>  sessions;
 	
 	private PanelParametresVueCharger panelParametresVueCharger;
 	
-	public VueChargerPartie(){
-		
+	public VueChargerPartie(ArrayList<Session> session){
+		listSession = session;
 		build();
 	}
 
 	private void build() {
 		setLayout(null);	
 		setOpaque(false);
+
 		
 		panelParametresVueCharger = new PanelParametresVueCharger();
-		panelParametresVueCharger.setBounds(450, 35, 300, 340);
+		panelParametresVueCharger.setBounds(450, 35, 300, 400);
 		add(panelParametresVueCharger);
 		
 		
 		//il faut que j'ajoute les sessions
 		
-		//sessions = new MonochromeListe<>("Parties enregistrées",new Vector<Session>(session.ge),new SessionCellRenderer());
-		//sessions.setBounds(40, 50, 330, 450);
-		//add(sessions);
+		sessions = new MonochromeListe<>("Parties enregistrées",listSession,new SessionCellRenderer());
+		sessions.setBounds(40, 35, 330, 400);
+		add(sessions);
 		
 		
 		boutonCommencer = new MonochromeButton("Commencer");
-		boutonCommencer.setBounds(300, 440, 200, 50);
+		boutonCommencer.setBounds(300, 450, 200, 50);
 		add(boutonCommencer);
 		
 	}
