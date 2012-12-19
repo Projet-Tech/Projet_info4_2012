@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
+import javax.swing.DefaultCellEditor;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -55,6 +56,17 @@ public class MonochromeListe<T> extends MonochromePanel{
 	
 	public JList<T> getList(){
 		return list;
+	}
+	
+	public void setListDatas(Vector<T> listData){
+		list.setListData(listData);
+		updateUI();
+	}
+	
+	
+	public void updateList(ListCellRenderer<T> cr){
+		list.setCellRenderer(cr);
+
 	}
 	
 }

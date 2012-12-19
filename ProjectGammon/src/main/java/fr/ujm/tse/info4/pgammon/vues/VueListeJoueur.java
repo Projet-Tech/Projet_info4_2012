@@ -127,7 +127,9 @@ public class VueListeJoueur extends JPanel{
 		
 	}
 	
-	
+	public void updateListe(){
+		listeJoueur.updateList(new JoueurCellRenderer());
+	}
 	
 	
 
