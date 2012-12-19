@@ -43,7 +43,7 @@ public class VueChargerPartie extends JPanel{
 		setOpaque(false);
 
 		
-		panelParametresVueCharger = new PanelParametresVueCharger();
+		panelParametresVueCharger = new PanelParametresVueCharger(listSession.get(1));
 		panelParametresVueCharger.setBounds(450, 35, 300, 400);
 		add(panelParametresVueCharger);
 		
