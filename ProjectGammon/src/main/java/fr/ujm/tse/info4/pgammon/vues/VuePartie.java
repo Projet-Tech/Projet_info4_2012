@@ -82,7 +82,7 @@ public class VuePartie extends JPanel{
 		
 		
 		//creation des panels de la partie
-		paneldroitencours = new PanelEnCoursVueDroite();
+		paneldroitencours = new PanelEnCoursVueDroite(partie);
 		paneldroitencours.setBounds(720,0,80,476);
 		add(paneldroitencours);
 		
