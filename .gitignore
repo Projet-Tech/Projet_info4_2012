@@ -10,4 +10,4 @@
 .settings/
 target/
 bin/
-*/profils.xml
+sauvegarde/*.xml
