@@ -20,6 +20,7 @@ import fr.ujm.tse.info4.pgammon.gui.ImageAvatar;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeLabel;
 import fr.ujm.tse.info4.pgammon.gui.MonochromePanel;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
+import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.Session;
 
 public class PanelParametresVueCharger extends MonochromePanel{
@@ -62,6 +63,22 @@ public class PanelParametresVueCharger extends MonochromePanel{
 		session = s;
 		
 		build();
+	}
+	
+	public void setSession(Session s){
+		session=s;
+		updateData();
+	}
+	
+	public void updateData(){
+		/*nomJoueur.setText(joueur.getPseudo());
+		statisitques.setText("<html>" +new Integer(joueur.getStat().getPartiesJouees()).toString()+
+				"<br>"+new Integer(joueur.getStat().getNbVictoires()).toString() +
+				"<br>"+new Integer(joueur.getStat().getNbDefaites()).toString() +
+				"<br>"+new Float(joueur.getStat().getPourcentageVictoire()).toString() +
+				"<br>"+joueur.getStat().getEnnemiFavoris() +
+				"<br>"+new Float(joueur.getStat().getTempsJeu()).toString());
+				*/
 	}
 	
 	public void build(){
@@ -108,13 +125,13 @@ public class PanelParametresVueCharger extends MonochromePanel{
 			
 			
 			text_parties = new JLabel();
-			text_parties.setText("<html>nombre de partie<br> pour la session");
+			text_parties.setText("<html>Nombre de partie<br> pour la session");
 			text_parties.setForeground(new Color(0xCCCCCC));
 			text_parties.setBounds(20, 180, 300, 50);
 			add(text_parties);
 			
 			text_temps = new JLabel();
-			text_temps.setText("<html>limitation du temps <br>par tour en seconde");
+			text_temps.setText("<html>Limitation du temps <br>par tour en seconde");
 			text_temps.setForeground(new Color(0xCCCCCC));
 			text_temps.setBounds(170, 180, 300, 50);
 			add(text_temps);
