@@ -105,4 +105,8 @@ public class VueAjouterJoueur extends MonochromePanel{
 	public MonochromeButton getenregistrer() {
 		return enregistrer;
 	}
+	
+	public JTextField getnomPseudo() {
+		return nomPseudo;
+	}
 }
