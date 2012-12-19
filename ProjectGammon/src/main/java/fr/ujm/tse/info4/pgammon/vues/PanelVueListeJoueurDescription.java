@@ -201,10 +201,7 @@ public class PanelVueListeJoueurDescription extends MonochromePanel{
 
 		@Override
 		protected void paintComponent(Graphics g) {
-			super.paintComponent(g);
-			
-			
-			
+			super.paintComponent(g);	
 		}
 
 }

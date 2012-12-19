@@ -18,8 +18,7 @@ public class ControleurListeJoueur {
 	private ControleurPrincipal controleurPrincipal;
 	private Profils profil;
 	private VueAjouterJoueur vueAjouterJoueur;
-	private PanelVueListeJoueurDescription panelVueListeJoueurDescription;
-	
+
 	public ControleurListeJoueur(ControleurPrincipal controleurPrincipal) 
 	{
 		this.controleurPrincipal = controleurPrincipal;
@@ -39,7 +38,6 @@ public class ControleurListeJoueur {
 		listenerBouttonModifier();
 		listenerBouttonSupprimer();
 	}
-	
 	
 	public void listenerBouttonRetour()
 	{
@@ -84,12 +82,12 @@ public class ControleurListeJoueur {
 	}
 	
 	public void listenerBouttonModifier(){
-		vueListeJoueur.getAjouter().addMouseListener(new MouseListener() {
+		vueListeJoueur.getPanelDescription().getModifier().addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				vueListeJoueur.afficheEditerProfil();
-				vueAjouterJoueur = vueListeJoueur.getVueAjouterJoueur();
+				vueListeJoueur.afficheEditerProfilM();
+				vueAjouterJoueur = vueListeJoueur.getVueAjouterJoueurModifier();
 				buildEditerProfilModifier();
 			}
 			@Override
@@ -104,10 +102,25 @@ public class ControleurListeJoueur {
 	}
 	
 	public void listenerBouttonSupprimer(){
-		
+		vueListeJoueur.getPanelDescription().getSupprimer().addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Joueur tmpJoueur = null;
+				vueListeJoueur.getPanelDescription().setJoueur(tmpJoueur);
+				
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			@Override
+			public void mouseExited(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+		});
 	}
-	
-	
+		
 	public void buildEditerProfil(){
 		listenerBouttonFermerEditerProfil();
 		listenerBouttonEnregistrerEditerProfil();
@@ -156,6 +169,26 @@ public class ControleurListeJoueur {
 
 	public void buildEditerProfilModifier(){
 		listenerBouttonFermerEditerProfil();
-		listenerBouttonEnregistrerEditerProfil();
+		listenerBouttonMofifierEditerProfil();
+	}
+	
+	public void listenerBouttonMofifierEditerProfil(){
+		vueAjouterJoueur.getnomPseudo().setText(vueListeJoueur.getPanelDescription().getJoueur().getPseudo());
+		vueAjouterJoueur.getenregistrer().addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				vueListeJoueur.getPanelDescription().getJoueur().setPseudo(vueAjouterJoueur.getnomPseudo().getText());
+				vueListeJoueur.masqueEditerProfilM();
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			@Override
+			public void mouseExited(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+		});
 	}
 }

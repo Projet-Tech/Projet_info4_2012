@@ -45,7 +45,7 @@ public class VueListeJoueur extends JPanel{
 
 
 	private VueAjouterJoueur vueAjouterJoueur;
-	
+	private VueAjouterJoueur vueAjouterJoueurModifier;
 	private MonochromeButton ajouter;
 	private MonochromeButton selectionner;
 	private MonochromeButton retour;
@@ -80,6 +80,17 @@ public class VueListeJoueur extends JPanel{
 		vueAjouterJoueur.setVisible(false);
 		bg.setVisible(false);
 	}
+	
+	public void afficheEditerProfilM(){
+		vueAjouterJoueurModifier.setVisible(true);
+		bg.setVisible(true);
+	}
+	
+	public void masqueEditerProfilM(){
+		vueAjouterJoueurModifier.setVisible(false);
+		bg.setVisible(false);
+	}
+	
 	public void updateData(){
 		panelDescription.setVisible(true);
 		panelDescription.setJoueur(j);
@@ -101,6 +112,12 @@ public class VueListeJoueur extends JPanel{
 		add(vueAjouterJoueur);
 		add(bg);
 		masqueEditerProfil();
+		
+		vueAjouterJoueurModifier = new VueAjouterJoueur();
+		vueAjouterJoueurModifier.setBounds(200, 150, 400, 300);
+		add(vueAjouterJoueurModifier);
+		add(bg);
+		masqueEditerProfilM();
 		
 		panelDescription = new PanelVueListeJoueurDescription(j);
 		panelDescription.setBounds(420, 50, 330, 450);
@@ -165,6 +182,10 @@ public class VueListeJoueur extends JPanel{
 	
 	public VueAjouterJoueur getVueAjouterJoueur() {
 		return vueAjouterJoueur;
+	}
+	
+	public VueAjouterJoueur getVueAjouterJoueurModifier() {
+		return vueAjouterJoueurModifier;
 	}
 
 

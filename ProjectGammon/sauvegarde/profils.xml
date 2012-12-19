@@ -9,18 +9,18 @@
       <nbVictoires>2</nbVictoires>
       <nbDefaites>3</nbDefaites>
       <nbrDePartieContreJoueur>
-        <joueurs id="4">
-          <nbrPartie>2</nbrPartie>
-        </joueurs>
         <joueurs id="3">
           <nbrPartie>3</nbrPartie>
+        </joueurs>
+        <joueurs id="4">
+          <nbrPartie>2</nbrPartie>
         </joueurs>
       </nbrDePartieContreJoueur>
       <tempsJeu>0.0</tempsJeu>
     </statistiqueJoueur>
   </joueurs>
   <joueurs id="3">
-    <pseudo>FRANCON Adrien</pseudo>
+    <pseudo>FRAdrien</pseudo>
     <imageSource>Image Adrien</imageSource>
     <niveauAssistant>COMPLET</niveauAssistant>
     <statistiqueJoueur>
@@ -34,6 +34,78 @@
   <joueurs id="4">
     <pseudo>POTHELUNE Jean-Michel</pseudo>
     <imageSource>Image JM</imageSource>
+    <niveauAssistant>COMPLET</niveauAssistant>
+    <statistiqueJoueur>
+      <partiejoue>0</partiejoue>
+      <nbVictoires>0</nbVictoires>
+      <nbDefaites>0</nbDefaites>
+      <nbrDePartieContreJoueur />
+      <tempsJeu>0.0</tempsJeu>
+    </statistiqueJoueur>
+  </joueurs>
+  <joueurs id="0">
+    <pseudo>cccc</pseudo>
+    <imageSource />
+    <niveauAssistant>COMPLET</niveauAssistant>
+    <statistiqueJoueur>
+      <partiejoue>0</partiejoue>
+      <nbVictoires>0</nbVictoires>
+      <nbDefaites>0</nbDefaites>
+      <nbrDePartieContreJoueur />
+      <tempsJeu>0.0</tempsJeu>
+    </statistiqueJoueur>
+  </joueurs>
+  <joueurs id="0">
+    <pseudo>asdasad</pseudo>
+    <imageSource />
+    <niveauAssistant>COMPLET</niveauAssistant>
+    <statistiqueJoueur>
+      <partiejoue>0</partiejoue>
+      <nbVictoires>0</nbVictoires>
+      <nbDefaites>0</nbDefaites>
+      <nbrDePartieContreJoueur />
+      <tempsJeu>0.0</tempsJeu>
+    </statistiqueJoueur>
+  </joueurs>
+  <joueurs id="0">
+    <pseudo>adsadasdasdada</pseudo>
+    <imageSource />
+    <niveauAssistant>COMPLET</niveauAssistant>
+    <statistiqueJoueur>
+      <partiejoue>0</partiejoue>
+      <nbVictoires>0</nbVictoires>
+      <nbDefaites>0</nbDefaites>
+      <nbrDePartieContreJoueur />
+      <tempsJeu>0.0</tempsJeu>
+    </statistiqueJoueur>
+  </joueurs>
+  <joueurs id="0">
+    <pseudo>ccccccccccccc</pseudo>
+    <imageSource />
+    <niveauAssistant>COMPLET</niveauAssistant>
+    <statistiqueJoueur>
+      <partiejoue>0</partiejoue>
+      <nbVictoires>0</nbVictoires>
+      <nbDefaites>0</nbDefaites>
+      <nbrDePartieContreJoueur />
+      <tempsJeu>0.0</tempsJeu>
+    </statistiqueJoueur>
+  </joueurs>
+  <joueurs id="0">
+    <pseudo>adasda</pseudo>
+    <imageSource />
+    <niveauAssistant>COMPLET</niveauAssistant>
+    <statistiqueJoueur>
+      <partiejoue>0</partiejoue>
+      <nbVictoires>0</nbVictoires>
+      <nbDefaites>0</nbDefaites>
+      <nbrDePartieContreJoueur />
+      <tempsJeu>0.0</tempsJeu>
+    </statistiqueJoueur>
+  </joueurs>
+  <joueurs id="0">
+    <pseudo>qweqeq</pseudo>
+    <imageSource />
     <niveauAssistant>COMPLET</niveauAssistant>
     <statistiqueJoueur>
       <partiejoue>0</partiejoue>
