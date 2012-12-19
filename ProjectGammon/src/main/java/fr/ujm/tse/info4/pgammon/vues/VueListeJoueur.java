@@ -63,7 +63,6 @@ public class VueListeJoueur extends JPanel{
 			
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-				System.out.println(listeJoueur.getList().getSelectedValue());
 				if (listeJoueur.getList().getSelectedValue() !=null){
 					j=listeJoueur.getList().getSelectedValue();
 					updateData();

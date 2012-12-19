@@ -2,6 +2,7 @@ package fr.ujm.tse.info4.pgammon.gui;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Collection;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
@@ -15,14 +16,17 @@ import javax.swing.ListSelectionModel;
 public class MonochromeListe<T> extends MonochromePanel{
 	private static final long serialVersionUID = 1L;
 	
+	private Collection<T> ref;
+	private Vector<T> elements;
 	private JList<T> list;
 	private JScrollPane scrollpane;
-	public MonochromeListe(String titre, Vector<T> liste, ListCellRenderer<T> cellRenderer) {
+	public MonochromeListe(String titre, Collection<T> liste, ListCellRenderer<T> cellRenderer) {
 		super(titre);
 		setLayout(null);
 		setOpaque(false);
-		
-		list = new JList<T>(liste);
+		ref = liste;
+		elements = new Vector<T>(ref);
+		list = new JList<T>(elements);
 		list.setCellRenderer(cellRenderer);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
@@ -59,12 +63,15 @@ public class MonochromeListe<T> extends MonochromePanel{
 	}
 	
 	public void setListDatas(Vector<T> listData){
+		elements = new Vector<T>(ref);
 		list.setListData(listData);
 		updateUI();
 	}
 	
 	
 	public void updateList(ListCellRenderer<T> cr){
+		elements = new Vector<T>(ref);
+		list.setListData(elements);
 		list.setCellRenderer(cr);
 		list.repaint();
 	}
