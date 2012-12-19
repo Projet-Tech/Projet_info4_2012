@@ -5,24 +5,29 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import fr.ujm.tse.info4.pgammon.gui.AfficheurScore;
 import fr.ujm.tse.info4.pgammon.gui.IconMonochromeType;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeIconButton;
+import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 
 public class PanelEnCoursVueBas extends JPanel{
 	
 	private static final long serialVersionUID = 1587735370301921370L;
 	
 	//composante panel bas
-		MonochromeIconButton help;
-		MonochromeIconButton plus;
-		MonochromeIconButton x_black;
-		MonochromeButton scorej1;
-		MonochromeButton scorej2;
+		private MonochromeIconButton help;
+		private MonochromeIconButton plus;
+		private MonochromeIconButton x_black;
+		private AfficheurScore panelScorej1;
+		private AfficheurScore panelScorej2;
+		
+		private int scorej1;
+		private int scorej2;
+		
 
 
 	public PanelEnCoursVueBas(){
-		
 		build();
 	}
 
@@ -71,18 +76,24 @@ public class PanelEnCoursVueBas extends JPanel{
 		
 		
 		//composant et label du score
-		scorej1 = new MonochromeButton("4");
-		scorej1.setBounds(270, 5, x_black.getPreferredSize().width, x_black.getPreferredSize().height);
-		add(scorej1);
+		panelScorej1 = new AfficheurScore(scorej1,CouleurCase.BLANC);
+		panelScorej1.setBounds(270, 5, x_black.getPreferredSize().width, x_black.getPreferredSize().height);
+		add(panelScorej1);
 		
-		scorej2 = new MonochromeButton("3");
-		scorej2.setBounds(350, 5, x_black.getPreferredSize().width, x_black.getPreferredSize().height);
-		add(scorej2);
+		panelScorej2 = new AfficheurScore(scorej1,CouleurCase.NOIR);
+		panelScorej2.setBounds(350, 5, x_black.getPreferredSize().width, x_black.getPreferredSize().height);
+		add(panelScorej2);
 		
 		JLabel labscore = new JLabel("Scores");
 		labscore.setForeground(new Color(0xCCCCCC));
 		labscore.setBounds(320, 50, 130, 60);
 		add(labscore);
+		
+	}
+	
+	public void updateScore(int scoreJBlanc, int scoreJNoir){
+		scorej1 = scoreJBlanc;
+		scorej2 = scoreJNoir;
 		
 	}
 
@@ -102,12 +113,12 @@ public class PanelEnCoursVueBas extends JPanel{
 	}
 
 
-	public MonochromeButton getScorej1() {
+	public int getScorej1() {
 		return scorej1;
 	}
 
 
-	public MonochromeButton getScorej2() {
+	public int getScorej2() {
 		return scorej2;
 	}
 	
