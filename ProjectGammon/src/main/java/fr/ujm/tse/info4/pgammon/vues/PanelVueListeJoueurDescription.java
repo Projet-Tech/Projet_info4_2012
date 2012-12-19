@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -14,6 +16,7 @@ import fr.ujm.tse.info4.pgammon.gui.MonochromeCheckbox;
 import fr.ujm.tse.info4.pgammon.gui.MonochromePanel;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 import fr.ujm.tse.info4.pgammon.models.Joueur;
+import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 
 public class PanelVueListeJoueurDescription extends MonochromePanel{
 
@@ -64,6 +67,47 @@ public class PanelVueListeJoueurDescription extends MonochromePanel{
 					"<br>"+new Float(joueur.getStat().getPourcentageVictoire()).toString() +
 					"<br>"+joueur.getStat().getEnnemiFavoris() +
 					"<br>"+new Float(joueur.getStat().getTempsJeu()).toString());
+			
+			if(joueur.getNiveauAssistant() == NiveauAssistant.COMPLET){
+				coupPossible.setSelected(true);
+				conseilCoup.setSelected(true);
+			}
+			else if(joueur.getNiveauAssistant() == NiveauAssistant.SIMPLE){
+				coupPossible.setSelected(true);
+				conseilCoup.setSelected(false);
+			}
+			else{
+				coupPossible.setSelected(false);
+				conseilCoup.setSelected(false);
+			}
+			if(coupPossible.isSelected()){
+				conseilCoup.setEnabled(true);
+			}else{
+				conseilCoup.setEnabled(false);
+			}
+		}
+		
+		private void listenerboutonchangerCoupPossible()
+		{
+			coupPossible.addMouseListener(new MouseListener() {
+				
+				@Override
+				public void mouseReleased(MouseEvent e) {}
+				@Override
+				public void mousePressed(MouseEvent e) {}		
+				@Override
+				public void mouseExited(MouseEvent e) {}			
+				@Override
+				public void mouseEntered(MouseEvent e) {}
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if(joueur.getNiveauAssistant() == NiveauAssistant.NON_UTILISE )
+						joueur.setNiveauAssistant(NiveauAssistant.SIMPLE);
+					else
+						joueur.setNiveauAssistant(NiveauAssistant.NON_UTILISE);
+					updateData();
+				}
+			});
 		}
 		
 		public void build(){
@@ -155,6 +199,8 @@ public class PanelVueListeJoueurDescription extends MonochromePanel{
 			supprimer = new MonochromeButton("Supprimer");
 			supprimer.setBounds(175, 380, 140, 50);
 			add(supprimer);
+			
+			listenerboutonchangerCoupPossible();
 			
 		}
 		
