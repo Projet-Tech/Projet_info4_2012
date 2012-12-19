@@ -12,7 +12,9 @@ import java.awt.geom.Point2D;
 
 import javax.swing.JPanel;
 
+import fr.ujm.tse.info4.pgammon.gui.IconMonochromeType;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
+import fr.ujm.tse.info4.pgammon.gui.MonochromeIconButton;
 import fr.ujm.tse.info4.pgammon.gui.MonochromePanel;
 import fr.ujm.tse.info4.pgammon.gui.PanelJoueur;
 import fr.ujm.tse.info4.pgammon.gui.PanelParametre;
@@ -26,7 +28,7 @@ public class VueNouvelleSession extends JPanel{
 	
 	private MonochromeButton boutonlistejoueur;
 	private MonochromeButton boutoncommencer; 
-	private MonochromeButton boutonchangercouleur; 
+	private MonochromeIconButton boutonchangercouleur; 
 	private MonochromeButton boutonRetour;
 	private PanelJoueur paneljoueur1;
 	private PanelJoueur paneljoueur2;
@@ -57,7 +59,11 @@ public class VueNouvelleSession extends JPanel{
 		boutonRetour = new MonochromeButton("Retour");
 		 boutonlistejoueur = new MonochromeButton("Liste des joueurs");
 		 boutoncommencer = new MonochromeButton("Commencer");
-		 boutonchangercouleur = new MonochromeButton();
+		 
+		 boutonchangercouleur = new MonochromeIconButton(IconMonochromeType.SWITCH,"MonochromeIconButton","NOIR");
+		 boutonchangercouleur.setSizeBig();
+		 boutonchangercouleur.setBounds(10, 34, boutonchangercouleur.getPreferredSize().width, boutonchangercouleur.getPreferredSize().height);
+		 add(boutonchangercouleur);
 		 
 		 
 		 paneljoueur1.setBounds(37, 35, 332, 141);
@@ -96,7 +102,7 @@ public class VueNouvelleSession extends JPanel{
 		return boutoncommencer;
 	}
 
-	public MonochromeButton getBoutonchangercouleur() {
+	public MonochromeIconButton getBoutonchangercouleur() {
 		return boutonchangercouleur;
 	}
 
