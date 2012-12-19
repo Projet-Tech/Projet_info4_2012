@@ -30,7 +30,7 @@ public class TestVueNouvelleSession {
 			
 			Joueur jBlanc = new Joueur(1, "ben", Avatar.CHAT_JAUNE.getPath(),NiveauAssistant.NON_UTILISE);
 			Joueur jNoir = new Joueur(2, "JM", Avatar.CHEVAL.getPath(), NiveauAssistant.COMPLET);
-			System.out.println("--"+jBlanc.getImageSource());
+			
 			ParametreJeu param = new ParametreJeu(0, 3, true, jBlanc, jNoir);
 			
 			VueNouvelleSession nouvellesession = new VueNouvelleSession();

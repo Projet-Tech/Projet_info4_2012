@@ -10,12 +10,16 @@ import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.RadialGradientPaint;
 import java.awt.RenderingHints;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.geom.Point2D;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import fr.ujm.tse.info4.pgammon.gui.Avatar;
+import fr.ujm.tse.info4.pgammon.gui.ImageAvatar;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeCheckbox;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 import fr.ujm.tse.info4.pgammon.models.Joueur;
@@ -34,15 +38,13 @@ public class PanelJoueurVuePartie extends JPanel {
 
 	public static final String pionblanc = "images/big_pion_blanc.png";
 	public static final String pionnoir = "images/big_pion_noir.png";
-	private ImageIcon imgjoueur;
+	private ImageAvatar imgjoueur;
 	private ImageIcon imgpion;
 
 
 	private MonochromeCheckbox couppossible;
 	private MonochromeCheckbox conseilcoup;
 	private JLabel labNomJoueur;
-	private JLabel conteneurimgjoueur;
-	private JLabel conteneurimgpion;
 
 	public PanelJoueurVuePartie(Joueur j,CouleurCase coul){
 		joueur=j;
@@ -71,6 +73,7 @@ public class PanelJoueurVuePartie extends JPanel {
 		}else{
 			conseilcoup.setEnabled(false);
 		}
+		
 	}
 
 	public void build(){
@@ -89,10 +92,12 @@ public class PanelJoueurVuePartie extends JPanel {
 		}catch(Exception err){
 			System.err.println(err);
 		}
+		
+		imgjoueur = new ImageAvatar(joueur.getImageSource());
+		imgjoueur.setBounds(15, 40, 50, 50);
+		add(imgjoueur);
 
 		labNomJoueur = new JLabel();
-		conteneurimgjoueur = new JLabel();
-		conteneurimgpion = new JLabel();
 		couppossible = new MonochromeCheckbox("<html> Afficher les <br> coups possibles");
 		conseilcoup = new MonochromeCheckbox("<html> conseiller le <br> prochain coup");
 
@@ -127,16 +132,10 @@ public class PanelJoueurVuePartie extends JPanel {
 		add(conseilcoup);
 
 	}
+	
 
 
 
-	public ImageIcon getImgjoueur() {
-		return imgjoueur;
-	}
-
-	public void setImgjoueur(ImageIcon imgjoueur) {
-		this.imgjoueur = imgjoueur;
-	}
 
 	public MonochromeCheckbox getCouppossible() {
 		return couppossible;
