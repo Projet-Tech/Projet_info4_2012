@@ -55,7 +55,6 @@ public class ControleurPartie implements Controleur
 		this.controleur = controleur;
 		controleurPartie = this;
 		this.session = session;
-		testInitialisation();
 		//testInitialisation();
 		vuePartie = new VuePartie(session.getPartieEnCours());
 		build();
