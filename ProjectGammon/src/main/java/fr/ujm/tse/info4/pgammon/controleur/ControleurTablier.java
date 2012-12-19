@@ -88,7 +88,6 @@ public class ControleurTablier {
 									{
 										vuePartie.afficherFenetreDemande( " Le Joueur " +partie.getJoueurEnCour() + " à Gagnée", null);
 										vuePartie.setEtat(EtatSession.TERMINEE);
-										
 									}
 								}
 								else if(!partie.hasCoupPossible())
@@ -178,6 +177,7 @@ public class ControleurTablier {
 					  timer.restart();
 				  }
 				});
+			
 			timer.setRepeats(false);
 			timer.start();
 		}

@@ -124,6 +124,10 @@ public class Session
 		return JoueurGagnantSession;
 	}
 	
+	public HashMap<Joueur, Integer> getScores() {
+		return scores;
+	}
+
 	public boolean isSessionFini()
 	{
 		if (JoueurGagnantSession == null)
@@ -131,6 +135,12 @@ public class Session
 		else
 			return true;
 	}
+
+	public ParametreJeu getParametreSession() {
+		return parametreSession;
+	}
+
+
 
 
 }

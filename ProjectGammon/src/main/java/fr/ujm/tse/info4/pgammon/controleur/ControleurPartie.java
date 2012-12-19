@@ -235,16 +235,6 @@ public class ControleurPartie
 	{
 		session.nouvellePartie();
 		session.LancerPartie();
-		/*controleurPartie = this;
-		this.session = session;
-		testInitialisation();
-		//testInitialisation();
-		vuePartie = new VuePartie(session.getPartieEnCours());
-		build();
-		
-		controleurTablier = new ControleurTablier(session.getPartieEnCours(),vuePartie);
-		*/
-		//vuePartie = new VuePartie(session.getPartieEnCours());
 		
 		vuePartie.setPartie(session.getPartieEnCours());
 		vuePartie.setEtat(EtatSession.EN_COURS);
@@ -256,7 +246,8 @@ public class ControleurPartie
 	
 	public void finPartie()
 	{
-		session.getPartieEnCours().finPartie();
+		session.finPartie();
+		vuePartie.getPanelEnCoursVueBas().updateScore(session.getScores().get(session.getParametreSession().getJoueurBlanc()), session.getScores().get(session.getParametreSession().getJoueurNoir()));
 	}
 	
 	public Partie getPartie() {
