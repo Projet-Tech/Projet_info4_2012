@@ -23,6 +23,7 @@ import javax.swing.JPanel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import fr.ujm.tse.info4.pgammon.gui.Avatar;
 import fr.ujm.tse.info4.pgammon.gui.AvatarList;
 import fr.ujm.tse.info4.pgammon.gui.ImageAvatar;
 import fr.ujm.tse.info4.pgammon.gui.JoueurCellRenderer;
@@ -45,7 +46,7 @@ public class VueListeJoueur extends JPanel{
 	private PanelVueListeJoueurDescription panelDescription;
 	private MonochromeListe<Joueur> listeJoueur;
 	
-	private String path = null;
+	private String path = Avatar.CHOUETTE.getPath();
 
 
 	private VueAjouterJoueur vueAjouterJoueur;
