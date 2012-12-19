@@ -10,4 +10,5 @@
 .settings/
 target/
 bin/
-ProjectGammon/sauvegarde/profils.xml
+*.xml
+!pom.xml
