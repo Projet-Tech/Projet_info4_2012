@@ -12,6 +12,7 @@ import java.awt.event.MouseListener;
 import java.awt.geom.Point2D;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Vector;
 
 import javax.swing.JPanel;
@@ -38,9 +39,9 @@ public class VueChargerPartie extends JPanel{
 
 
 
-	private ArrayList<Session> listSession;
+	private Collection<Session> listSession;
 	
-	private MonochromeListe<Session>  sessions;
+	private MonochromeListe<Session>  mListeSessions;
 	
 	private Session session;
 
@@ -50,7 +51,8 @@ public class VueChargerPartie extends JPanel{
 		
 		try {
 			GestionDeSession gestion = GestionDeSession.getGestionDeSession();
-			listSession = (ArrayList<Session>) gestion.getListSession();
+			listSession = gestion.getListSession();
+			System.out.println(listSession);
 		} catch (IOException | JDOMException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -59,12 +61,12 @@ public class VueChargerPartie extends JPanel{
 		//listSession = s;
 		build();
 		
-		sessions.getList().addListSelectionListener(new ListSelectionListener() {
+		mListeSessions.getList().addListSelectionListener(new ListSelectionListener() {
 			
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-				if (sessions.getList().getSelectedValue() !=null){
-					session=sessions.getList().getSelectedValue();
+				if (mListeSessions.getList().getSelectedValue() !=null){
+					session=mListeSessions.getList().getSelectedValue();
 					updateData();
 						
 				}
@@ -92,9 +94,9 @@ public class VueChargerPartie extends JPanel{
 		
 		//il faut que j'ajoute les sessions
 		
-		sessions = new MonochromeListe<>("Parties enregistrées",listSession,new SessionCellRenderer());
-		sessions.setBounds(40, 35, 330, 400);
-		add(sessions);
+		mListeSessions = new MonochromeListe<>("Parties enregistrées",listSession,new SessionCellRenderer());
+		mListeSessions.setBounds(40, 35, 330, 400);
+		add(mListeSessions);
 		
 		
 		boutonCommencer = new MonochromeButton("Commencer");
