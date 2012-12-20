@@ -49,9 +49,17 @@ public class Master
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
-		
-		
+
+	}
+	
+	public void chargerSession(Session session)
+	{
+		if (peutLancerSession())
+		{
+			listSession.add(session);
+			//listSession.add(new Session(idMax,parametreJeu));
+			//idMax +=1;
+		}	
 	}
 	
 	public void arreterSession(int id)
