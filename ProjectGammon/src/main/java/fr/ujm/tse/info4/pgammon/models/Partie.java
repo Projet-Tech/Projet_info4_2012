@@ -26,7 +26,6 @@ public class Partie {
 
 
 
-	private StatistiquePartie statistique;
 	private CouleurCase joueurEnCour;
 	private ArrayList<Tour> historiqueToursJoueur;
 	private int idPartie;
@@ -38,7 +37,7 @@ public class Partie {
 		parametreJeu = p;
 		tablier = new Tablier();
 		videau = new Videau();
-		statistique = new StatistiquePartie();
+		//statistique = new StatistiquePartie();
 		historiqueToursJoueur = new ArrayList<Tour>();
 		
 		deSixFaces = new ArrayList<DeSixFaces>();
@@ -54,7 +53,7 @@ public class Partie {
 		
 		tablier = new Tablier();
 		videau = new Videau();
-		statistique = new StatistiquePartie();
+		
 		historiqueToursJoueur = new ArrayList<Tour>();
 		deSixFaces = new ArrayList<DeSixFaces>();
 		
@@ -505,14 +504,6 @@ public class Partie {
 
 	public void setTablier(Tablier tablier) {
 		this.tablier = tablier;
-	}
-
-	public StatistiquePartie getStatistique() {
-		return statistique;
-	}
-
-	public void setStatistique(StatistiquePartie statistique) {
-		this.statistique = statistique;
 	}
 
 	public CouleurCase getJoueurEnCour() {
