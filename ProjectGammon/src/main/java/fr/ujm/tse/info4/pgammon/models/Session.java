@@ -90,6 +90,24 @@ public class Session
 		scores.put(parametreSession.getJoueur(CouleurVictorieuse),scores.get(parametreSession.getJoueur(CouleurVictorieuse))+videau);
 	}
 	
+	
+		public void finSession(Joueur joueurGagnantSession)
+		{
+			this.joueurGagnantSession = joueurGagnantSession;
+			finSession();
+		}
+
+	
+	public Joueur meilleurJoueur()
+		{
+			if (scores.get(parametreSession.joueurBlanc) > scores.get(parametreSession.joueurNoir))
+					return parametreSession.joueurBlanc;
+			else if (scores.get(parametreSession.joueurBlanc) < scores.get(parametreSession.joueurNoir))
+				return parametreSession.joueurNoir;
+			else
+				return null;
+		}
+
 	public boolean verifFinSession()
 	{
 		if(parametreSession.getNbrPartieGagnante() == 0) 
