@@ -13,6 +13,7 @@
 package fr.ujm.tse.info4.pgammon.models;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.jdom2.Attribute;
@@ -444,37 +445,36 @@ public class Tablier
 	public void charger(Element Partie)
 	{
 		listeCase = new ArrayList<Case>();
-		for(int i = 0;i<listeCase.size();i++){
-			switch(Partie.getChild("Cases").getChild("Case").getChildText("couleurDame")){
-				case "BLANC":listeCase.get(i).setCouleurDame(CouleurCase.BLANC);break;
-				case "NOIR":listeCase.get(i).setCouleurDame(CouleurCase.NOIR);break;
-				case "VIDE":listeCase.get(i).setCouleurDame(CouleurCase.VIDE);
-			}
-			
-			listeCase.get(i).setNbDame(Integer.valueOf(Partie.getChild("Cases").getChild("Case").getChildText("nbrDame")));
-			listeCase.get(i).setPosition(Integer.valueOf(Partie.getChild("Cases").getChild("Case").getAttributeValue("id")));
+		
+		List<Element> listlisteCase = Partie.getChild("tablier").getChild("Cases").getChildren("Case");
+		Iterator<Element> ia = listlisteCase.iterator();
+		 
+		while(ia.hasNext()){
+			Case tmpCase = new Case();
+			tmpCase.charger(ia.next());
+			listeCase.add(tmpCase);
 		}
+		
 		caseVictoire = new ArrayList<Case>();
-		for(int i = 0;i<caseVictoire.size();i++){
-			switch(Partie.getChild("CaseVictoires").getChild("CaseVictoire").getChildText("couleurDame")){
-				case "BLANC":caseVictoire.get(i).setCouleurDame(CouleurCase.BLANC);break;
-				case "NOIR":caseVictoire.get(i).setCouleurDame(CouleurCase.NOIR);break;
-				case "VIDE":caseVictoire.get(i).setCouleurDame(CouleurCase.VIDE);
-			}
-			
-			caseVictoire.get(i).setNbDame(Integer.valueOf(Partie.getChild("CaseVictoires").getChild("CaseVictoire").getChildText("nbrDame")));
-			caseVictoire.get(i).setPosition(Integer.valueOf(Partie.getChild("CaseVictoires").getChild("CaseVictoire").getAttributeValue("id")));
+		
+		List<Element> listcaseVictoire = Partie.getChild("tablier").getChild("CaseVictoires").getChildren("CaseVictoire");
+		Iterator<Element> ib = listcaseVictoire.iterator();
+		 
+		while(ib.hasNext()){
+			Case tmpCase = new Case();
+			tmpCase.charger(ib.next());
+			caseVictoire.add(tmpCase);
 		}
+		
 		caseBarre = new ArrayList<Case>();
-		for(int i = 0;i<caseBarre.size();i++){
-			switch(Partie.getChild("CaseBars").getChild("CaseBar").getChildText("couleurDame")){
-				case "BLANC":caseBarre.get(i).setCouleurDame(CouleurCase.BLANC);break;
-				case "NOIR":caseBarre.get(i).setCouleurDame(CouleurCase.NOIR);break;
-				case "VIDE":caseBarre.get(i).setCouleurDame(CouleurCase.VIDE);
-			}
-			
-			caseBarre.get(i).setNbDame(Integer.valueOf(Partie.getChild("CaseBars").getChild("CaseBar").getChildText("nbrDame")));
-			caseBarre.get(i).setPosition(Integer.valueOf(Partie.getChild("CaseBars").getChild("CaseBar").getAttributeValue("id")));
+		
+		List<Element> listcaseBarre = Partie.getChild("tablier").getChild("CaseBars").getChildren("CaseBar");
+		Iterator<Element> ic = listcaseBarre.iterator();
+		 
+		while(ic.hasNext()){
+			Case tmpCase = new Case();
+			tmpCase.charger(ic.next());
+			caseBarre.add(tmpCase);
 		}
 	}
 	
