@@ -46,7 +46,7 @@ public class ReplayBarrButton extends JButton{
     	g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
 
 		// Arriere plan
-		p = new Color(0xFFFFFF);
+		p = new Color(0x000000);
 		
 		g2.setPaint(p); 
 		g2.fillRect(0, 0, w, h); 

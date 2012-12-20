@@ -158,7 +158,6 @@ public class ControleurListeJoueur implements Controleur{
 			public void mouseReleased(MouseEvent e) {}
 		});
 	}
-	
 	public void listenerBouttonSupprimer(){
 		vueListeJoueur.getPanelDescription().getSupprimer().addMouseListener(new MouseListener() {
 
