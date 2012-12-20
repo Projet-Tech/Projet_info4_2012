@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 
 import fr.ujm.tse.info4.pgammon.gui.ChangementTourAnimation;
 import fr.ujm.tse.info4.pgammon.gui.FenetreDemandeAnimationBase;
+import fr.ujm.tse.info4.pgammon.gui.HorlogeBarr;
 import fr.ujm.tse.info4.pgammon.gui.IconMonochromeType;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeIconButton;
@@ -55,7 +56,7 @@ public class VuePartie extends MonochromeVue{
 	
 	private PanelJoueurVuePartie panelJoueur1;
 	private PanelJoueurVuePartie panelJoueur2;
-	
+	private HorlogeBarr horlogeBarr;
 	
 	/**
 	 * Constructeur de la classe VuePartie
@@ -92,7 +93,10 @@ public class VuePartie extends MonochromeVue{
 		//
 		//
 		etat=EtatSession.EN_COURS;
-		
+
+		horlogeBarr = new HorlogeBarr(null);
+		horlogeBarr.setBounds(122,480,598,20);		
+		add(horlogeBarr);
 		
 		//creation des panels de la partie
 		panelDroitEnCours = new PanelEnCoursVueDroite(partie);
@@ -115,7 +119,6 @@ public class VuePartie extends MonochromeVue{
 		panelJoueur2 = new PanelJoueurVuePartie(partie.getParametreJeu().getJoueurNoir(), CouleurCase.NOIR);
 		panelJoueur2.setBounds(10, 260, 150, 215);
 		add(panelJoueur2);
-		
 		
 		//changement des panels en fonctionde l'etat
 		if(etat.equals(EtatSession.EN_COURS)){
@@ -286,6 +289,14 @@ etat=EtatSession.EN_COURS;
 		g.drawImage(img_fond.getImage(),0,0,this);
 		super.paintComponent(g);
 		
+	}
+	
+	/**
+	 * Renvoie le composant HorlogeBarre de la vue.
+	 * @return horlogeBarr : le composant HorlogeBarre de la vue
+	 */
+	public HorlogeBarr getHorlogeBarr() {
+		return horlogeBarr;
 	}
 	
 	

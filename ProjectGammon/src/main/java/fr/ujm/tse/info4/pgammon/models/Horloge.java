@@ -89,4 +89,17 @@ public class Horloge implements ActionListener{
 	public int getValue() {
 		return value;
 	}
+	
+	public String getTempsRestant(){
+		int i = (duree - value )/1000; 
+		int j=i/60;		
+		if(duree == 0){
+			return "\u221E";
+		}else if(i>60){
+			return new Integer(i/60).toString()+" : "+new Integer(i-60*j);
+		}
+		else{
+			return new Integer(i).toString()+" s";
+		}
+	}
 }

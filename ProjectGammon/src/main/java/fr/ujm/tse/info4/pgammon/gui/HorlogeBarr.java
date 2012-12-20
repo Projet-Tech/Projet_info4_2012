@@ -38,7 +38,9 @@ public class HorlogeBarr extends JPanel implements HorlogeEventListener {
 		this.horloge = h;
 		if(horloge != null)
 			horloge.addListener(this);
-			
+		
+		
+		setVisible(horloge != null);
 	}
 
 
@@ -47,9 +49,9 @@ public class HorlogeBarr extends JPanel implements HorlogeEventListener {
 	private void build() {
 		setLayout(null);
 		setOpaque(false);
-		timeLbl = new JLabel();
+		timeLbl = new JLabel("");
 		timeLbl.setForeground(new Color(0xCCCCCC));
-		timeLbl.setBounds(0,0,40,LABEL_WIDTH);
+		timeLbl.setBounds(10,0,LABEL_WIDTH-10,20);
 		add(timeLbl);
 	}
 
@@ -67,9 +69,8 @@ public class HorlogeBarr extends JPanel implements HorlogeEventListener {
 		Paint p;
 		int h = getHeight(); 
 		int w = getWidth(); 
-
 		int time_width = (w - LABEL_WIDTH) - (int) ((w - LABEL_WIDTH)*horloge.getRapport());
-		System.out.println(time_width);
+		
 		// Arriere plan
 		p = new Color(0xDDDDDD);
 		
@@ -93,10 +94,7 @@ public class HorlogeBarr extends JPanel implements HorlogeEventListener {
 
 
 	@Override
-	public void finHorloge(HorlogeEvent horloge) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void finHorloge(HorlogeEvent horloge) {}
 
 
 
@@ -106,7 +104,7 @@ public class HorlogeBarr extends JPanel implements HorlogeEventListener {
 		if(evt.getSource() == horloge)
 			repaint();
 		
-		if(timeLbl == null)
-			timeLbl.setText(String.valueOf(horloge.getValue()/1000));
+		if(timeLbl != null)
+			timeLbl.setText(horloge.getTempsRestant());
 	}
 }

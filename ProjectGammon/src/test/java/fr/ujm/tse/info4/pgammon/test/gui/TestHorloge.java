@@ -25,9 +25,9 @@ public class TestHorloge {
 
 		panel.setBackground(new Color(0x00000));
 		
-		final Horloge h = new Horloge(10000);
+		final Horloge h = new Horloge(100000);
 		HorlogeBarr hb  = new HorlogeBarr(h);
-		hb.setBounds(0,100,600,30);		
+		hb.setBounds(122,480,598,20);	
 		panel.add(hb);
 		h.start();
 		
