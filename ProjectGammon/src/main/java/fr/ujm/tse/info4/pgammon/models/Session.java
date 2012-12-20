@@ -56,7 +56,7 @@ public class Session
 		//TODO
 		throw new UnsupportedOperationException();
 	}
-	private void finSession()
+	public void finSession()
 	{
 		joueurGagnantSession.getStat().ajouterVictoire();
 		
