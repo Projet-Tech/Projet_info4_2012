@@ -175,7 +175,7 @@ public class ReplayBarr extends JPanel {
 		for(int i = min; i <= max ; i ++){
 			putElement(i);
 		}
-		final_position = (getSize().width-30)/2 - current * SEPARATION;
+		final_position = (getSize().width)/2 - current * SEPARATION;
 	}
 
 	@Override
@@ -218,8 +218,10 @@ public class ReplayBarr extends JPanel {
 	private int getIndexOf(Deplacement dep){
 		int i = 0;
 		for(Deplacement d : allDeplacements){
-			if(d.getIdDeplacement() == dep.getIdDeplacement())
-				return i;
+			if(d != null){
+				if(d.getIdDeplacement() == dep.getIdDeplacement())
+					return i;
+			}
 			i++;
 		}
 		return i;
