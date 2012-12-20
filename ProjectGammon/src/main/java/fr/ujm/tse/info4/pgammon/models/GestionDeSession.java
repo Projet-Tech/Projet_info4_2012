@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.jdom2.Document;
 import org.jdom2.Element;
+import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
@@ -20,7 +21,7 @@ public class GestionDeSession {
 		
 	}
 	
-	public static GestionDeSession getGestionDeSession() throws IOException{
+	public static GestionDeSession getGestionDeSession() throws IOException, JDOMException{
 		
 		if(gestionDeSession == null){
 			gestionDeSession = new GestionDeSession();  
@@ -46,23 +47,23 @@ public class GestionDeSession {
 		}
 	}
 	
-	public void charger(){
+	public void charger() throws JDOMException, IOException{
 		SAXBuilder builder = new SAXBuilder();
 		
 		
 		Document document = builder.build("sauvegarde/profils.xml");
 		Element racine = document.getRootElement();
 		
-		listJoueurs = racine.getChildren("joueurs");
-		Iterator<Element> it = listJoueurs.iterator();
+	//	listJoueurs = racine.getChildren("joueurs");
+		//Iterator<Element> it = listJoueurs.iterator();
 		 
-		 while(it.hasNext()){
-			 Joueur j = new Joueur();
-			 j.charger(it.next());
-			 joueurs.add(j);
+		// while(it.hasNext()){
+		//	 Joueur j = new Joueur();
+		//	 j.charger(it.next());
+		//	 joueurs.add(j);
 		 }	 
 		
-	}
+	//}
 	
 	public List<Session> getListSession() {
 		return listSession;
