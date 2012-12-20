@@ -16,7 +16,6 @@ public class ReplayBarrButton extends JButton{
 	private static final long serialVersionUID = 1311999467069321850L;
 
 	public ReplayBarrButton(String text) {
-		// TODO Auto-generated constructor stub
 		build();
 	}
 	
