@@ -91,9 +91,14 @@ public class ImageAvatar extends JButton{
 	}
 
 	public void setPath(String path) {
-		this.path = path;
-		this.icon = new ImageIcon(path);
-		repaint();
+		if(path == ""){
+			setAvatar(Avatar.DEFAULT);
+		}
+		else{
+			this.path = path;
+			this.icon = new ImageIcon(path);
+			repaint();
+		}
 	}
 	
 	
