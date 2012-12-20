@@ -51,7 +51,21 @@ public class TimeBarr extends JPanel {
 	}
 
 	
-
+	public void setTours(List<Tour> tours){
+		current = 0;
+		old_current=0;
+		init();
+		init_position();
+	}
+	
+	@Override
+	public void setVisible(boolean aFlag) {
+		super.setVisible(aFlag);
+		if(aFlag)
+			timer.start();
+		else
+			timer.stop();
+	}
 	public void updatePosition(){
 		
 	}
@@ -181,16 +195,16 @@ public class TimeBarr extends JPanel {
 	private void init_position() {
 
 		elmentContainer.setBounds(final_position,0,elmentContainer.getPreferredSize().width,elmentContainer.getPreferredSize().height);
-
-		timer = new Timer(30, new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				current_position = (int) (final_position - 0.7*(final_position-current_position));
-				elmentContainer.setBounds(current_position,0,elmentContainer.getPreferredSize().width,elmentContainer.getPreferredSize().height);
+		if(timer == null)
+			timer = new Timer(30, new ActionListener() {
 				
-			}
-		});
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					current_position = (int) (final_position - 0.7*(final_position-current_position));
+					elmentContainer.setBounds(current_position,0,elmentContainer.getPreferredSize().width,elmentContainer.getPreferredSize().height);
+					
+				}
+			});
 		timer.start();
 		current_position = final_position;
 	}
