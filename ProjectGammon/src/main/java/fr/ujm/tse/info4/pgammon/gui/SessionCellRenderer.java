@@ -24,6 +24,8 @@ public class SessionCellRenderer extends JPanel implements ListCellRenderer<Sess
 	
 	JLabel nom1_intermediaire;
 	JLabel nom2_intermediaire;
+	
+	
 	public SessionCellRenderer() {
 		setLayout(null);
 		setPreferredSize(new Dimension(100, 60));
@@ -73,6 +75,8 @@ public class SessionCellRenderer extends JPanel implements ListCellRenderer<Sess
 		label_j1.setText(j.getPartieEnCours().getParametreJeu().getJoueurBlanc().getPseudo());
 		label_j2.setText(j.getPartieEnCours().getParametreJeu().getJoueurNoir().getPseudo());
 				setAlignmentX(0.5f);
+		label_score_j1.setScore(j.getScores().get(j.getPartieEnCours().getParametreJeu().getJoueurBlanc()));
+		label_score_j2.setScore(j.getScores().get(j.getPartieEnCours().getParametreJeu().getJoueurNoir()));
 		return this;
 	}
 
