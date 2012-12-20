@@ -175,11 +175,31 @@ public class Session
 		    partieEnCours.sauvegarder(session);
 	}
 	
-	public void charger()
-	{
-		//TODO
-		throw new UnsupportedOperationException();
-	}
+
+		public void charger(Element racine)
+		{
+			idSession = Integer.valueOf(racine.getChild("session").getAttributeValue("id"));
+			switch(racine.getChild("session").getChildText("etatSession")){
+				case "CONFIGURATION":etatSession = EtatSession.CONFIGURATION;
+				case "EN_COURS":etatSession =  EtatSession.EN_COURS;
+				case "TERMINEE":etatSession =  EtatSession.TERMINEE;
+			}
+			idMaxPartie = Integer.valueOf(racine.getChild("session").getChildText("idMaxPartie"));
+			switch(racine.getChild("session").getChildText("couleurJoueurAnciennePartie")){
+				case "BLANC":couleurJoueurAnciennePartie = CouleurCase.BLANC;
+				case "NOIR":couleurJoueurAnciennePartie =  CouleurCase.NOIR;
+				case "VIDE":couleurJoueurAnciennePartie =  CouleurCase.VIDE;
+			}
+			
+			
+
+			//-----private Joueur joueurGagnantSession;
+			//-------private HashMap<Joueur, Integer> scores;
+			
+			parametreSession.charger(racine.getChild("session").getChild("parametres"));
+			partieEnCours.charger(racine.getChild("session").getChild("partie"));
+			
+		}
 
 
 	public int getIdSession() {
