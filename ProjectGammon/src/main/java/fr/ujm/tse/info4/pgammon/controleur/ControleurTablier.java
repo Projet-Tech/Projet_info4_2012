@@ -118,8 +118,7 @@ public class ControleurTablier implements Controleur{
 								vueTablier.uncandidateAll();
 								vueTablier.setPossibles((List)(new ArrayList<Case>()));
 							}
-							if (horloge!= null)
-								horloge.restart();
+							
 						}
 
 					vueTablier.updateUI();
@@ -150,6 +149,11 @@ public class ControleurTablier implements Controleur{
 	
 	public void changerTour() 
 	{
+		if (horloge!= null)
+		{
+			horloge.stop();
+			horloge.setValue(0);
+		}
 		partie.changerTour();
 		vuePartie.afficherTransition(partie.getParametreJeu().getJoueur(partie.getJoueurEnCour()).getPseudo(),"Joueur" + partie.getJoueurEnCour().toString());
 	}
@@ -192,8 +196,8 @@ public class ControleurTablier implements Controleur{
 						else if(!partie.hasCoupPossible())
 						{
 							//TODO affichage plus de coup possible
-							if (horloge!= null)
-								horloge.stop();
+							//if (horloge!= null)
+							//	horloge.stop();
 							changerTour();
 						}	
 					  
