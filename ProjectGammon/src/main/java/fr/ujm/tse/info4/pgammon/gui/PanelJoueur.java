@@ -39,7 +39,7 @@ public class PanelJoueur extends MonochromePanel{
 	private ImageAvatar imgjoueur;
 	
 		public PanelJoueur(Joueur j,CouleurCase coul){
-			super(j.getPseudo());
+			super("");
 			joueur=j;
 			couleur=coul;
 			
@@ -56,29 +56,39 @@ public class PanelJoueur extends MonochromePanel{
 		
 		
 		public void updateData(){
-			setTitle(joueur.getPseudo());
-			affichestat.setText("<html> Victoires &nbsp : "
-					+new Integer(joueur.getStat().getNbVictoires()).toString()
-					+"<br>Défaites : "+joueur.getStat().getNbDefaites()
-					);
-			imgjoueur.setPath(joueur.getImageSource());
-			
-			if(joueur.getNiveauAssistant() == NiveauAssistant.COMPLET){
-				couppossible.setSelected(true);
-				conseilcoup.setSelected(true);
-			}
-			else if(joueur.getNiveauAssistant() == NiveauAssistant.SIMPLE){
-				couppossible.setSelected(true);
-				conseilcoup.setSelected(false);
-			}
-			else{
+			if(joueur != null)
+			{
+				setTitle(joueur.getPseudo());
+				affichestat.setText("<html> Victoires &nbsp : "
+						+new Integer(joueur.getStat().getNbVictoires()).toString()
+						+"<br>Défaites : "+joueur.getStat().getNbDefaites()
+						);
+				imgjoueur.setPath(joueur.getImageSource());
+				
+				if(joueur.getNiveauAssistant() == NiveauAssistant.COMPLET){
+					couppossible.setSelected(true);
+					conseilcoup.setSelected(true);
+				}
+				else if(joueur.getNiveauAssistant() == NiveauAssistant.SIMPLE){
+					couppossible.setSelected(true);
+					conseilcoup.setSelected(false);
+				}
+				else{
+					couppossible.setSelected(false);
+					conseilcoup.setSelected(false);
+				}
+				if(couppossible.isSelected()){
+					conseilcoup.setEnabled(true);
+				}else{
+					conseilcoup.setEnabled(false);
+				}
+				
+			}else{
+				setTitle("");
+				affichestat.setText("");
+
 				couppossible.setSelected(false);
 				conseilcoup.setSelected(false);
-			}
-			if(couppossible.isSelected()){
-				conseilcoup.setEnabled(true);
-			}else{
-				conseilcoup.setEnabled(false);
 			}
 			
 		}
@@ -144,7 +154,7 @@ public class PanelJoueur extends MonochromePanel{
 				System.err.println(err);
 			}
 			
-			imgjoueur = new ImageAvatar(joueur.getImageSource());
+			imgjoueur = new ImageAvatar("");
 			imgjoueur.setBounds(15, 40, 50, 50);
 			add(imgjoueur);
 			

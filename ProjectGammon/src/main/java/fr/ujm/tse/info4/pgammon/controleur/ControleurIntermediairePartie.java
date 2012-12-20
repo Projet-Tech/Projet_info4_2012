@@ -76,7 +76,9 @@ public class ControleurIntermediairePartie implements Controleur{
 			@Override
 			public void mousePressed(MouseEvent e) {}
 			@Override
-			public void mouseReleased(MouseEvent e) {				
+			public void mouseReleased(MouseEvent e) {	
+				
+				
 				int temp = vueCreationPartie.getVueNouvelleSession().getPanelparamètre().getNbTemps()*1000;
 				int nbPartie = vueCreationPartie.getVueNouvelleSession().getPanelparamètre().getNbParties();
 				boolean videau = vueCreationPartie.getVueNouvelleSession().getPanelparamètre().getVideau().isSelected();
@@ -85,11 +87,20 @@ public class ControleurIntermediairePartie implements Controleur{
 				Joueur jBlanc =  vueCreationPartie.getVueNouvelleSession().getPaneljoueur1().getJoueur();
 				Joueur jNoir = vueCreationPartie.getVueNouvelleSession().getPaneljoueur2().getJoueur();
 				
+				if(jBlanc == null || jNoir == null){
+					vueCreationPartie.afficherFenetreDemande("Choisissez des joueurs!", null);
+					return;
+				}
+				
+				if(jBlanc == jNoir){
+					vueCreationPartie.afficherFenetreDemande("Les joueurs sont identiques!", null);
+					return;
+				}
 				//Creation des paramétres de jeu.
 				ParametreJeu param = new ParametreJeu(temp,nbPartie,videau,jBlanc,jNoir);
 				vueCreationPartie.setVisible(false);
 				controleurPrincipal.nouvelleSession(param);
-				}
+			}
 		});
 			
 	}
