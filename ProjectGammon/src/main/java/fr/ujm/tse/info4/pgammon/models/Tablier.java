@@ -462,7 +462,7 @@ public class Tablier
 		 
 		while(ib.hasNext()){
 			Case tmpCase = new Case();
-			tmpCase.charger(ib.next());
+			tmpCase.chargerBV(ib.next());
 			caseVictoire.add(tmpCase);
 		}
 		
@@ -473,7 +473,7 @@ public class Tablier
 		 
 		while(ic.hasNext()){
 			Case tmpCase = new Case();
-			tmpCase.charger(ic.next());
+			tmpCase.chargerBV(ic.next());
 			caseBarre.add(tmpCase);
 		}
 	}

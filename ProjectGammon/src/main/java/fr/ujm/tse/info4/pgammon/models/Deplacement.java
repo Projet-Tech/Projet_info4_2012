@@ -56,6 +56,9 @@ public class Deplacement
 	
 	public void charger(Element deplacement)
 	{
+		caseDepart = new Case();
+		caseArriver = new Case();
+		
 		caseDepart.setPosition(Integer.valueOf(deplacement.getChildText("caseDepart")));
 		caseArriver.setPosition(Integer.valueOf(deplacement.getChildText("caseArriver")));
 		siCaseBattue = Boolean.valueOf(deplacement.getChildText("siCaseBattue"));

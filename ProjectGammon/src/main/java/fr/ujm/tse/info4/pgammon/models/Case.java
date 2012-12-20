@@ -38,6 +38,17 @@ public class Case {
 			position = Integer.valueOf(Case.getAttributeValue("id"));
 
 	}
+	
+	public void chargerBV(Element Case){
+		
+		switch(Case.getChildText("couleurDame")){
+			case "BLANC":couleurDame=CouleurCase.BLANC;break;
+			case "NOIR":couleurDame=CouleurCase.NOIR;break;
+			case "VIDE":couleurDame=CouleurCase.VIDE;
+		}
+		
+		nbDame = Integer.valueOf(Case.getChildText("nbrDame"));
+}
 
 	public boolean isCaseVictoire() {
 		if (position == 25 && couleurDame == CouleurCase.BLANC
