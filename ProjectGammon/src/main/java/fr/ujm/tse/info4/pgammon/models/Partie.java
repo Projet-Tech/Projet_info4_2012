@@ -561,7 +561,7 @@ public class Partie {
 					//TODO si probléme mettre un if
 					tablier.deplacerDame(deplacementPrecedent.getCaseArriver(),deplacementPrecedent.getCaseDepart());
 					
-					if(getDernierTour().getDernierDeplacement().isSiCaseBattue())
+					if(deplacementPrecedent.isSiCaseBattue())
 					{
 						tablier.deplacerDame(tablier.getCaseBarre(CaseArriverSaveCouleur),deplacementPrecedent.getCaseArriver());
 					}					
@@ -572,6 +572,17 @@ public class Partie {
 	}
 
 
+	public int nbDeplacementHistorise()
+	{	
+		int i = 0;
+		for (Tour tour : historiqueToursJoueur) {
+			for (Deplacement deplacement : tour.getListDeplacement()) {
+				i++;
+			}
+		}
+		return i;
+	}
+	
 	/* SERIALISATION */
 
 	/**
