@@ -54,8 +54,8 @@ public class VueNouvelleSession extends JPanel{
 		//ceci est fait pour pouvoir déplacer nos panels dans le panel
 		setLayout(null);
 		
-		j1 = new Joueur();
-		j2 = new Joueur();
+		j1 = null;
+		j2 = null;
 		
 		paneljoueur1 = new PanelJoueur(j1,CouleurCase.BLANC);
 		paneljoueur2 = new PanelJoueur(j2,CouleurCase.NOIR);
