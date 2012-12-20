@@ -118,6 +118,7 @@ public class ControleurListeJoueur implements Controleur{
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				vueListeJoueur.getVueAjouterJoueur().setPath("");
 				vueListeJoueur.afficheEditerProfil();
 				vueAjouterJoueur = vueListeJoueur.getVueAjouterJoueur();
 				
@@ -163,6 +164,9 @@ public class ControleurListeJoueur implements Controleur{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				profil.supprimer(vueListeJoueur.getPanelDescription().getJoueur());
+				vueListeJoueur.updateListe();
+				vueListeJoueur.updateData();
+				vueListeJoueur.getPanelDescription().setVisible(false);
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {}
@@ -233,12 +237,16 @@ public class ControleurListeJoueur implements Controleur{
 						//System.out.println("what !!!!!!!!");
 						profil.afficher();
 					}
+					vueListeJoueur.setJ(tmpJoueur);
 					
 				}else{
 					vueListeJoueur.getPanelDescription().getJoueur().setPseudo(vueAjouterJoueur.getnomPseudo().getText());
 					vueListeJoueur.getPanelDescription().getJoueur().setImageSource(vueListeJoueur.getVueAjouterJoueur().getChemin());
+				
 				}
 				vueListeJoueur.masqueEditerProfil();
+				vueListeJoueur.updateListe();
+				vueListeJoueur.updateData();
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {}

@@ -93,7 +93,7 @@ public class VueListeJoueur extends MonochromeVue{
 	public void updateData(){
 		panelDescription.setVisible(true);
 		panelDescription.setJoueur(j);
-		listeJoueur.setListDatas(new Vector<Joueur>(profil.getList()));
+		updateListe();
 	}
 	
 	
@@ -123,7 +123,7 @@ public class VueListeJoueur extends MonochromeVue{
 		add(panelDescription);
 		panelDescription.setVisible(false);
 		
-		listeJoueur = new MonochromeListe<>("Joueurs enregistrés",new Vector<Joueur>(profil.getList()),new JoueurCellRenderer());
+		listeJoueur = new MonochromeListe<>("Joueurs enregistrés",profil.getList(),new JoueurCellRenderer());
 		listeJoueur.setBounds(40, 50, 330, 450);
 		add(listeJoueur);
 		
@@ -152,6 +152,7 @@ public class VueListeJoueur extends MonochromeVue{
 				
 				vueAjouterJoueur.setPath(path);
 				listeAvatar.setVisible(false);
+				updateListe();
 			}
 		});
 	
@@ -229,6 +230,13 @@ public class VueListeJoueur extends MonochromeVue{
 
 	public Joueur getJ() {
 		return j;
+	}
+	
+	
+
+	public void setJ(Joueur j) {
+		this.j = j;
+		updateData();
 	}
 
 	public AvatarList getListeAvatar() {
