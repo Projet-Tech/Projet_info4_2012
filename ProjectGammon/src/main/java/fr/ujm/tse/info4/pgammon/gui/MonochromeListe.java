@@ -62,9 +62,10 @@ public class MonochromeListe<T> extends MonochromePanel{
 		return list;
 	}
 	
-	public void setListDatas(Vector<T> listData){
+	public void setListDatas(Collection<T> listData){
+		ref = listData;
 		elements = new Vector<T>(ref);
-		list.setListData(listData);
+		list.setListData(elements);
 		updateUI();
 	}
 	
