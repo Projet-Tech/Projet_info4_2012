@@ -15,6 +15,9 @@ import fr.ujm.tse.info4.pgammon.exeption.TourNonJouableException;
 import fr.ujm.tse.info4.pgammon.gui.CaseButton;
 import fr.ujm.tse.info4.pgammon.models.Case;
 import fr.ujm.tse.info4.pgammon.models.DeSixFaces;
+import fr.ujm.tse.info4.pgammon.models.Horloge;
+import fr.ujm.tse.info4.pgammon.models.HorlogeEvent;
+import fr.ujm.tse.info4.pgammon.models.HorlogeEventListener;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 import fr.ujm.tse.info4.pgammon.models.Partie;
 import fr.ujm.tse.info4.pgammon.models.Tablier;
@@ -26,7 +29,8 @@ public class ControleurTablier implements Controleur{
 	private Partie partie;
 	private VueTablier vueTablier;
 	private VuePartie vuePartie;
-	private Timer timer;
+	private Horloge horloge;
+	
 	private ControleurPartie controleurPartie;
 	private JFrame frame;
 
@@ -114,8 +118,8 @@ public class ControleurTablier implements Controleur{
 								vueTablier.uncandidateAll();
 								vueTablier.setPossibles((List)(new ArrayList<Case>()));
 							}
-							if (timer!= null)
-								timer.restart();
+							if (horloge!= null)
+								horloge.restart();
 						}
 
 					vueTablier.updateUI();
@@ -154,10 +158,15 @@ public class ControleurTablier implements Controleur{
 		
 		if (partie.getParametreJeu().getSecondesParTour() != 0)
 		{
-			timer = new Timer(partie.getParametreJeu().getSecondesParTour(), new ActionListener() {
-				  public void actionPerformed(ActionEvent ae) {
-					  
-					  try {
+			
+			horloge = new Horloge(partie.getParametreJeu().getSecondesParTour());
+			horloge.addListener(new HorlogeEventListener() {
+				@Override
+				public void updateHorloge(HorlogeEvent horloge) {}
+				
+				@Override
+				public void finHorloge(HorlogeEvent evt) {
+					 try {
 						  //Deplacement aleatoire du nombre de de restant
 						  int nbDeNonUtiliser=0;
 						  for (DeSixFaces de : partie.getDeSixFaces()) {
@@ -184,8 +193,8 @@ public class ControleurTablier implements Controleur{
 						else if(!partie.hasCoupPossible())
 						{
 							//TODO affichage plus de coup possible
-							if (timer!= null)
-								timer.stop();
+							if (horloge!= null)
+								horloge.stop();
 							changerTour();
 						}	
 					  
@@ -193,19 +202,17 @@ public class ControleurTablier implements Controleur{
 					  vueTablier.updateDes();
 					  
 				  }
-				});
-			
-			timer.setRepeats(false);
-			
+			});
+
 		}
 		else
 		{
-			timer =null;
+			horloge =null;
 		}
 	}
 	
-	public Timer getTimer() {
-		return timer;
+	public Horloge getHorloge() {
+		return horloge;
 	}
 
 

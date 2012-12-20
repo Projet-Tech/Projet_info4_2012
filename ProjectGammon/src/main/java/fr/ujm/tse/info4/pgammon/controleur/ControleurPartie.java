@@ -118,8 +118,8 @@ public class ControleurPartie implements Controleur
 				if(session.getPartieEnCours().isTourFini() && !session.getPartieEnCours().isPartieFini())
 				{
 					session.getPartieEnCours().lancerDes();
-					if (controleurTablier.getTimer()!= null)
-						controleurTablier.getTimer().restart();
+					if (controleurTablier.getHorloge()!= null)
+						controleurTablier.getHorloge().restart();
 					if(!session.getPartieEnCours().hasCoupPossible())
 					{
 						//TODO affichage plus de coup possible
@@ -242,17 +242,18 @@ public class ControleurPartie implements Controleur
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				SortedSet<String> hs = new ConcurrentSkipListSet<>();
-				hs.add("Oui");
+				hs.add("Finir");
 				hs.add("Annuler");
 				hs.add("Sauvegarder");
-				vuePartie.afficherFenetreDemande("Quitter sans Sauvegarder ?", hs).addActionListener(new ActionListener() {
+				vuePartie.afficherFenetreDemande("Que voulez-vous faire ?", hs).addActionListener(new ActionListener() {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						
 						String action = e.getActionCommand();
-						if (action == "Oui")
+						if (action == "Finir")
 						{
+							session.finSession(session.meilleurJoueur());
 							controleur.retour();
 							
 						}
