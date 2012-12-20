@@ -3,12 +3,8 @@ package fr.ujm.tse.info4.pgammon.gui;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.ListIterator;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -18,7 +14,7 @@ import fr.ujm.tse.info4.pgammon.models.DeSixFaces;
 import fr.ujm.tse.info4.pgammon.models.Deplacement;
 import fr.ujm.tse.info4.pgammon.models.Tour;
 
-public class TimeBarr extends JPanel {
+public class ReplayBarr extends JPanel {
 	private static final long serialVersionUID = 1318001554445843500L;
 	private List<Tour> tours;
 	private LinkedList<DeSixFaces> allDes;
@@ -27,7 +23,7 @@ public class TimeBarr extends JPanel {
 	private int old_current;
 	private int total;
 	private final int SEPARATION = 30;
-	private final int NB_TO_SHOW = 10;
+	private final int NB_TO_SHOW = 13;
 	private final int DELAY = 30;
 	private JPanel elmentContainer;
 
@@ -41,7 +37,7 @@ public class TimeBarr extends JPanel {
 	private int current_position;
 	private int final_position;
 	
-	public TimeBarr(List<Tour> tours) {
+	public ReplayBarr(List<Tour> tours) {
 		this.tours = tours;
 		current = 0;
 		old_current=0;
@@ -52,10 +48,12 @@ public class TimeBarr extends JPanel {
 
 	
 	public void setTours(List<Tour> tours){
+		this.tours = tours;
 		current = 0;
 		old_current=0;
 		init();
 		init_position();
+		rebuild();
 	}
 	
 	@Override
@@ -115,19 +113,21 @@ public class TimeBarr extends JPanel {
 		allDes = new LinkedList<>();
 		allDeplacements = new LinkedList<>();
 		
-		for (Tour tour : tours) {
-			int length = tour.getDeSixFaces().size();
-			List<DeSixFaces> des = tour.getDeSixFaces();
-			List<Deplacement> deplacements = tour.getListDeplacement();
-			
-			for( int i = 0; i < length ; i++ ){
-				Deplacement dep = null;
-				DeSixFaces de = new DeSixFaces(des.get(i).getCouleurDe(),des.get(i).getValeur());
-				if(deplacements != null && deplacements.size()>i){
-					dep = deplacements.get(i);
+		if(tours != null){
+			for (Tour tour : tours) {
+				int length = tour.getDeSixFaces().size();
+				List<DeSixFaces> des = tour.getDeSixFaces();
+				List<Deplacement> deplacements = tour.getListDeplacement();
+				
+				for( int i = 0; i < length ; i++ ){
+					Deplacement dep = null;
+					DeSixFaces de = new DeSixFaces(des.get(i).getCouleurDe(),des.get(i).getValeur());
+					if(deplacements != null && deplacements.size()>i){
+						dep = deplacements.get(i);
+					}
+					allDes.add(de);
+					allDeplacements.add(dep);
 				}
-				allDes.add(de);
-				allDeplacements.add(dep);
 			}
 		}
 		total = allDes.size();
@@ -141,17 +141,16 @@ public class TimeBarr extends JPanel {
 		
 		elmentContainer = new JPanel();
 		elmentContainer.setLayout(null);
-		elmentContainer.setPreferredSize(new Dimension((total)*30, 100));
 		elmentContainer.setOpaque(false);
 		
-		nextBtn = new MonochromeButton("next");
-		prevBtn = new MonochromeButton("prev");
-		endBtn = new MonochromeButton("end");
-		beginBtn = new MonochromeButton("begin");
-		nextBtn.setBounds(0,150,100,50);
-		prevBtn.setBounds(100,150,100,50);
-		endBtn.setBounds(200,150,100,50);
-		beginBtn.setBounds(300,150,100,50);
+		nextBtn = new ReplayBarrButton("next");
+		prevBtn = new ReplayBarrButton("prev");
+		endBtn = new ReplayBarrButton("end");
+		beginBtn = new ReplayBarrButton("begin");
+		beginBtn.setBounds(  0, 0, 385, 100);
+		prevBtn.setBounds( 100, 0, 285, 100);
+		nextBtn.setBounds( 415, 0, 285, 100);
+		endBtn.setBounds(  415, 0, 385, 100);
 		add(nextBtn);
 		add(prevBtn);
 		add(endBtn);
@@ -164,6 +163,8 @@ public class TimeBarr extends JPanel {
 
 	
 	private void rebuild() {
+		elmentContainer.setPreferredSize(new Dimension((total)*30, 100));
+
 		elmentContainer.removeAll();
 		int min = Math.min(current, old_current);
 		int max = Math.max(current, old_current);
@@ -174,18 +175,21 @@ public class TimeBarr extends JPanel {
 		for(int i = min; i <= max ; i ++){
 			putElement(i);
 		}
-
-		final_position = (getPreferredSize().width-30)/2 - current * SEPARATION;
+		final_position = (getSize().width-30)/2 - current * SEPARATION;
 	}
 
-	
+	@Override
+	public void setBounds(int x, int y, int width, int height) {
+		super.setBounds(x, y, width, height);
+		rebuild();
+	}
 	private void putElement(int index){
 		if(index < 0 || index >= total)
 			return;
 		DeSixFaces de = allDes.get(index);
 		Deplacement dep = allDeplacements.get(index);
 		
-		TimeBarrElement elt = new TimeBarrElement(de, dep);
+		ReplayBarrElement elt = new ReplayBarrElement(de, dep);
 		elt.setBounds(SEPARATION * index, 0,
 				elt.getPreferredSize().width, elt.getPreferredSize().height);
 		elmentContainer.add(elt);
@@ -196,7 +200,7 @@ public class TimeBarr extends JPanel {
 
 		elmentContainer.setBounds(final_position,0,elmentContainer.getPreferredSize().width,elmentContainer.getPreferredSize().height);
 		if(timer == null)
-			timer = new Timer(30, new ActionListener() {
+			timer = new Timer(DELAY, new ActionListener() {
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {

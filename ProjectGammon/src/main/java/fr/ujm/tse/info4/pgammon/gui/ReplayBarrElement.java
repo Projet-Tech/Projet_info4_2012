@@ -17,7 +17,7 @@ import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 import fr.ujm.tse.info4.pgammon.models.DeSixFaces;
 import fr.ujm.tse.info4.pgammon.models.Deplacement;
 
-public class TimeBarrElement extends JPanel {
+public class ReplayBarrElement extends JPanel {
 	private static final long serialVersionUID = -6139180165139138217L;
 	private CouleurCase couleur;
 	private DeSixFaces de;
@@ -30,7 +30,7 @@ public class TimeBarrElement extends JPanel {
 	public static final ImageIcon impossibleNoir = new ImageIcon("images/coup_impossible_noir.png");
 	public static final ImageIcon impossibleBlanc = new ImageIcon("images/coup_impossible_blanc.png");
 	
-	public TimeBarrElement( DeSixFaces de , Deplacement deplacement) {
+	public ReplayBarrElement( DeSixFaces de , Deplacement deplacement) {
 		super();
 		this.deplacement = deplacement;
 		this.couleur = de.getCouleurDe();
