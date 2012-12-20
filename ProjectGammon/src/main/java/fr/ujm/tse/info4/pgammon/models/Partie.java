@@ -469,23 +469,34 @@ public class Partie {
 
 	public void charger(Element partie) {
 		
-		/*
-		private ParametreJeu parametreJeu;
-		private Videau videau;
-		private ArrayList<DeSixFaces> deSixFaces;
-		private Tablier tablier;
-		private CouleurCase premierJoueur;
+		videau = new Videau(Integer.valueOf(partie.getChildText("videau")));
+		
+		switch(partie.getChildText("joueurEnCour")){
+			case "NOIR":joueurEnCour = CouleurCase.NOIR;
+			case "BLANC":joueurEnCour = CouleurCase.BLANC;
+			case "VIDE":joueurEnCour = CouleurCase.VIDE;
+		}
+		
+		idPartie = Integer.valueOf(partie.getChildText("idPartie"));
+		deUtiliser = Integer.valueOf(partie.getChildText("deUtiliser"));
+		
+		switch(partie.getChildText("premierJoueur")){
+			case "NOIR":premierJoueur = CouleurCase.NOIR;
+			case "BLANC":premierJoueur = CouleurCase.BLANC;
+			case "VIDE":premierJoueur = CouleurCase.VIDE;
+		}
+		
+		for(int i=0;i<deSixFaces.size();i++){
+			deSixFaces.get(i).charger(partie.getChild("deSixFace"));
+		}
+			
+		tablier.charger(partie);
+	
+		for(int i=0;i<historiqueToursJoueur.size();i++){
+			historiqueToursJoueur.get(i).charger(partie);
+		}
 
-
-
-		private StatistiquePartie statistique;
-		private CouleurCase joueurEnCour;
-		private ArrayList<Tour> historiqueToursJoueur;
-		private int idPartie;
-		private boolean partieFini;
-		private boolean tourFini;
-		private int deUtiliser;
-		*/
+	
 	}
 
 	/* GETTERS ET SETTERS */

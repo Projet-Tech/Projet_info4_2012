@@ -71,13 +71,21 @@ public class DeSixFaces
 	
 	}
 	
-	public void charger(Element desixfacesElement)
+	public void charger(Element deSixFace)
 	{
-		//TODO
-		throw new UnsupportedOperationException();
+		valeur = Integer.valueOf(deSixFace.getChildText("valeur"));
+		
+		switch(deSixFace.getChildText("isUtilise")){
+			case "oui":isUtilise = true;
+			case "non":isUtilise = false;
+		}
+		
+		switch(deSixFace.getChildText("couleurDe")){
+			case "BLANC":couleurDe = CouleurCase.BLANC;
+			case "NOIR":couleurDe =  CouleurCase.NOIR;
+			case "VIDE":couleurDe =  CouleurCase.VIDE;
+		}
 	}
-	
-	
 	
 	/* GETTERS ET SETTERS */
 	

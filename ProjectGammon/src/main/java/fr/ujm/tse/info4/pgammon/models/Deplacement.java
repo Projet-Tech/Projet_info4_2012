@@ -49,10 +49,11 @@ public class Deplacement
 			deplacementXML.addContent(siCaseBattueXML);
 	}
 	
-	public void charger(Element deplacementElement)
+	public void charger(Element deplacements)
 	{
-		//TODO
-		throw new UnsupportedOperationException();
+		caseDepart.setPosition(Integer.valueOf(deplacements.getChild("deplacement").getChildText("caseDepart")));
+		caseArriver.setPosition(Integer.valueOf(deplacements.getChild("deplacement").getChildText("caseArriver")));
+		siCaseBattue = Boolean.valueOf(deplacements.getChild("deplacement").getChildText("siCaseBattue"));
 	}
 
 	

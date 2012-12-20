@@ -23,6 +23,11 @@ public class Videau
 		valeur = 1;
 	}
 	
+	public Videau(int valeur)
+	{
+		this.valeur = valeur;
+	}
+	
 	
 	public int doubler()
 	{

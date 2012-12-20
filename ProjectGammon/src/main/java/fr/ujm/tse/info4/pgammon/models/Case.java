@@ -89,5 +89,16 @@ public class Case {
 	public int getPosition() {
 		return position;
 	}
-
+	
+	public void setCouleurDame(CouleurCase _couleurDame) {
+		couleurDame = _couleurDame;
+	}
+	
+	public void setNbDame(int _NbDame) {
+		nbDame = _NbDame;
+	}
+	
+	public void setPosition(int _Position) {
+		position = _Position;
+	}
 }
