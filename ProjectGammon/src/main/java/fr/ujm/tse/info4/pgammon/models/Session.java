@@ -191,10 +191,17 @@ public class Session
 				case "VIDE":couleurJoueurAnciennePartie =  CouleurCase.VIDE;
 			}
 			
+			int tmpID = Integer.valueOf(racine.getChild("session").getChild("joueurs").getChild("joueurNoir").getAttributeValue("id"));
+			parametreSession.getJoueurNoir().setId(tmpID);
+			Joueur tmpJoueur = parametreSession.getJoueurNoir();
 			
-
-			//-----private Joueur joueurGagnantSession;
-			//-------private HashMap<Joueur, Integer> scores;
+			scores.put(tmpJoueur,Integer.valueOf(racine.getChild("session").getChild("joueurs").getChild("joueurNoir").getChildText("score")));
+			
+			tmpID = Integer.valueOf(racine.getChild("session").getChild("joueurs").getChild("joueurBlanc").getAttributeValue("id"));
+			parametreSession.getJoueurBlanc().setId(tmpID);
+			tmpJoueur = parametreSession.getJoueurBlanc();
+			
+			scores.put(tmpJoueur,Integer.valueOf(racine.getChild("session").getChild("joueurs").getChild("joueurBlanc").getChildText("score")));
 			
 			parametreSession.charger(racine.getChild("session").getChild("parametres"));
 			partieEnCours.charger(racine.getChild("session").getChild("partie"));

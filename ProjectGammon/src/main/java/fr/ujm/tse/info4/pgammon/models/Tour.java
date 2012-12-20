@@ -88,9 +88,23 @@ public class Tour
 			}
 	}
 	
-	public void charger(Element tourElement)
+	public void charger(Element partie)
 	{
-		//TODO
-		throw new UnsupportedOperationException();
+		partie.getChild("tour");
+		
+		switch(partie.getChild("tour").getChildText("couleurDame")){
+			case "BLANC":couleurJoueur = CouleurCase.BLANC;
+			case "NOIR":couleurJoueur = CouleurCase.NOIR;
+			case "VIDE":couleurJoueur = CouleurCase.VIDE;
+		}
+		
+		for(int i=0;i<deSixFaces.size();i++){
+			deSixFaces.get(i).charger(partie.getChild("tour").getChild("deSixFaces"));
+		}
+		
+		for(int i=0;i<listDeplacement.size();i++){
+			listDeplacement.get(i).charger(partie.getChild("tour").getChild("deplacements"));
+		}
+
 	}
 }
