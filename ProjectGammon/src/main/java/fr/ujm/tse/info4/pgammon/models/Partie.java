@@ -413,14 +413,57 @@ public class Partie {
 			return null;
 	}
 	
-	public void lectureProchainCoup() {
-		// TODO
-		throw new UnsupportedOperationException();
+	public Deplacement ProchainDeplacement(int i) {
+
+		int j =0;
+		for (Tour tour : historiqueToursJoueur) {
+			for (Deplacement deplacement : tour.getListDeplacement()) {
+				j++;
+				
+			}
+		}
+		return null;
+		
+		/*Tour dernierTour = getDernierTour();
+		if (dernierTour != null)
+			dernierDeplacement = getDernierTour().getDernierDeplacement();
+		else
+			dernierDeplacement =null;
+		
+		if (dernierDeplacement!=null){
+			for (DeSixFaces de : dernierTour.getDeSixFaces()) {
+				if (de.isUtilise() && de.getValeur() == Math.abs(tablier.distanceDeuxCase(dernierDeplacement.getCaseArriver(), dernierDeplacement.getCaseDepart())))
+				{
+					//recuperation de la couleur de la dame manger
+					CouleurCase CaseArriverSaveCouleur;
+					if (dernierDeplacement.getCaseArriver().getCouleurDame() == CouleurCase.BLANC)
+						CaseArriverSaveCouleur = CouleurCase.NOIR;
+					else
+						CaseArriverSaveCouleur = CouleurCase.BLANC;
+					
+					tablier.deplacerDame(dernierDeplacement.getCaseArriver(),dernierDeplacement.getCaseDepart());
+					de.notUtiliser();
+					if(getDernierTour().getDernierDeplacement().isSiCaseBattue())
+					{
+						tablier.deplacerDame(tablier.getCaseBarre(CaseArriverSaveCouleur),dernierDeplacement.getCaseArriver());
+					}
+					if (tourFini)
+					{
+						tourFini = false;
+						deSixFaces = dernierTour.getDeSixFaces();
+						joueurEnCour = dernierTour.getCouleurJoueur();
+					}
+					dernierTour.supprimerDernierDeplacement();
+					return;
+				}
+			}
+		}*/
+
 	}
 
-	public void lecturePrecedentCoup() {
-		// TODO
-		throw new UnsupportedOperationException();
+	public Deplacement PrecedentDeplacement(int i) {
+		
+		
 	}
 
 	/* SERIALISATION */
