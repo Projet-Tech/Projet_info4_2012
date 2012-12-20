@@ -194,14 +194,14 @@ public class Session
 		{
 			idSession = Integer.valueOf(racine.getChild("session").getAttributeValue("id"));
 			switch(racine.getChild("session").getChildText("etatSession")){
-				case "CONFIGURATION":etatSession = EtatSession.CONFIGURATION;
-				case "EN_COURS":etatSession =  EtatSession.EN_COURS;
+				case "CONFIGURATION":etatSession = EtatSession.CONFIGURATION;break;
+				case "EN_COURS":etatSession =  EtatSession.EN_COURS;break;
 				case "TERMINEE":etatSession =  EtatSession.TERMINEE;
 			}
 			idMaxPartie = Integer.valueOf(racine.getChild("session").getChildText("idMaxPartie"));
 			switch(racine.getChild("session").getChildText("couleurJoueurAnciennePartie")){
-				case "BLANC":couleurJoueurAnciennePartie = CouleurCase.BLANC;
-				case "NOIR":couleurJoueurAnciennePartie =  CouleurCase.NOIR;
+				case "BLANC":couleurJoueurAnciennePartie = CouleurCase.BLANC;break;
+				case "NOIR":couleurJoueurAnciennePartie =  CouleurCase.NOIR;break;
 				case "VIDE":couleurJoueurAnciennePartie =  CouleurCase.VIDE;
 			}
 			

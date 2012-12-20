@@ -446,8 +446,8 @@ public class Tablier
 		listeCase = new ArrayList<Case>();
 		for(int i = 0;i<listeCase.size();i++){
 			switch(Partie.getChild("Cases").getChild("Case").getChildText("couleurDame")){
-				case "BLANC":listeCase.get(i).setCouleurDame(CouleurCase.BLANC);
-				case "NOIR":listeCase.get(i).setCouleurDame(CouleurCase.NOIR);
+				case "BLANC":listeCase.get(i).setCouleurDame(CouleurCase.BLANC);break;
+				case "NOIR":listeCase.get(i).setCouleurDame(CouleurCase.NOIR);break;
 				case "VIDE":listeCase.get(i).setCouleurDame(CouleurCase.VIDE);
 			}
 			
@@ -457,8 +457,8 @@ public class Tablier
 		caseVictoire = new ArrayList<Case>();
 		for(int i = 0;i<caseVictoire.size();i++){
 			switch(Partie.getChild("CaseVictoires").getChild("CaseVictoire").getChildText("couleurDame")){
-				case "BLANC":caseVictoire.get(i).setCouleurDame(CouleurCase.BLANC);
-				case "NOIR":caseVictoire.get(i).setCouleurDame(CouleurCase.NOIR);
+				case "BLANC":caseVictoire.get(i).setCouleurDame(CouleurCase.BLANC);break;
+				case "NOIR":caseVictoire.get(i).setCouleurDame(CouleurCase.NOIR);break;
 				case "VIDE":caseVictoire.get(i).setCouleurDame(CouleurCase.VIDE);
 			}
 			
@@ -468,8 +468,8 @@ public class Tablier
 		caseBarre = new ArrayList<Case>();
 		for(int i = 0;i<caseBarre.size();i++){
 			switch(Partie.getChild("CaseBars").getChild("CaseBar").getChildText("couleurDame")){
-				case "BLANC":caseBarre.get(i).setCouleurDame(CouleurCase.BLANC);
-				case "NOIR":caseBarre.get(i).setCouleurDame(CouleurCase.NOIR);
+				case "BLANC":caseBarre.get(i).setCouleurDame(CouleurCase.BLANC);break;
+				case "NOIR":caseBarre.get(i).setCouleurDame(CouleurCase.NOIR);break;
 				case "VIDE":caseBarre.get(i).setCouleurDame(CouleurCase.VIDE);
 			}
 			

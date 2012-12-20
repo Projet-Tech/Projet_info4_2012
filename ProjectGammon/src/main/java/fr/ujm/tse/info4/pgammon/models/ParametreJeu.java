@@ -65,8 +65,8 @@ public class ParametreJeu
 		 secondesParTour = Integer.valueOf(parametres.getChildText("secondesParTour"));
 		 nbrPartieGagnante  = Integer.valueOf(parametres.getChildText("nbrPartieGagnante"));
 		 switch(parametres.getChildText("utiliseVideau")){
-			case "1":utiliseVideau = true;
-			case "0":utiliseVideau =  false;
+			case "1":utiliseVideau = true;break;
+			case "0":utiliseVideau = false;
 		}
 	}
 
