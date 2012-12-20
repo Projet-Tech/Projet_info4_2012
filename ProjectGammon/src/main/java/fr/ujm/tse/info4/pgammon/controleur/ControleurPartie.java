@@ -465,11 +465,11 @@ public class ControleurPartie implements Controleur
 		{
 			session.finSession();
 			vuePartie.getPaneldroitrevoir().getLabnext().setText("<html>Finir<br>Session");
-			vuePartie.afficherFenetreDemande(session.getPartieEnCours().getParametreJeu().getJoueur(session.getPartieEnCours().getJoueurEnCour()).getPseudo() + " a Gagné la session", null);
+			vuePartie.afficherFenetreDemande(session.getPartieEnCours().getParametreJeu().getJoueur(session.getPartieEnCours().getJoueurEnCour()).getPseudo() , " remporte la session!");
 		}
 		else
 		{
-			vuePartie.afficherFenetreDemande(session.getPartieEnCours().getParametreJeu().getJoueur(session.getPartieEnCours().getJoueurEnCour()).getPseudo() + " a Gagné", null);	
+			vuePartie.afficherFenetreDemande(session.getPartieEnCours().getParametreJeu().getJoueur(session.getPartieEnCours().getJoueurEnCour()).getPseudo() , " remporte la session!");	
 		}
 		vuePartie.setEtat(EtatSession.TERMINEE);
 		

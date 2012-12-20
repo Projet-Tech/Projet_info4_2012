@@ -88,12 +88,12 @@ public class ControleurIntermediairePartie implements Controleur{
 				Joueur jNoir = vueCreationPartie.getVueNouvelleSession().getPaneljoueur2().getJoueur();
 				
 				if(jBlanc == null || jNoir == null){
-					vueCreationPartie.afficherFenetreDemande("Choisissez des joueurs!", null);
+					vueCreationPartie.afficherFenetreDemande("Oups!","Choisissez des joueurs!");
 					return;
 				}
 				
 				if(jBlanc == jNoir){
-					vueCreationPartie.afficherFenetreDemande("Les joueurs sont identiques!", null);
+					vueCreationPartie.afficherFenetreDemande("Oups!", "Les joueurs sont identiques!");
 					return;
 				}
 				//Creation des paramétres de jeu.

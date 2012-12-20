@@ -31,21 +31,45 @@ public class FenetreDemandeAnimationBase extends TranstionAnimeeBase {
 	
 	private static final long serialVersionUID = -4787023438548267991L;
 	private char[] c_titre;
+	private char[] c_text;
 	private boolean isClosing;
 	private SortedSet<String> reponses;
 	private HashMap<MonochromeButton, Integer> corresp;
+	private double quad;
 	
-	public FenetreDemandeAnimationBase(String titre, String text, SortedSet<String> reponses) {
+	public FenetreDemandeAnimationBase(String titre, SortedSet<String> reponses) {
 		super(10,300);
 		setLayout(null);
 		isClosing = false;
 		setTitle(titre);
-		setTitle(text);
+		setText("");
 		this.reponses = reponses;
 		buildResponses();
 		setOpaque(false);
 		
 	}
+	public FenetreDemandeAnimationBase(String titre, String text) {
+		super(10,300);
+		setLayout(null);
+		isClosing = false;
+		setTitle(titre);
+		setText(text);
+		this.reponses = null;
+		buildResponses();
+		setOpaque(false);
+	}
+	
+	public FenetreDemandeAnimationBase(String titre) {
+		super(10,300);
+		setLayout(null);
+		isClosing = false;
+		setTitle(titre);
+		setText("");
+		this.reponses = null;
+		buildResponses();
+		setOpaque(false);
+	}
+	
 	
 	private void buildResponses() {
 		corresp = new HashMap<>();
@@ -106,19 +130,23 @@ public class FenetreDemandeAnimationBase extends TranstionAnimeeBase {
 	public void setTitle(String title){
 		c_titre = title.toCharArray();
 	}
-	private Point getTitlePosition(){
-		double p = (0.5-getRapport())*(0.5-getRapport())*(0.5-getRapport());
+	public void setText(String text){
+		String _texte = text;
+		c_text = _texte.toCharArray();
 		
-		return new Point((int) (100),(int) (245 + 400 * p) );
+	}
+
+	private Point getTitlePosition(){
+		return new Point((int) (100),(int) (245 + 400 * quad) );
 	}
 	
 	
 	private Point getTextPosition(){
-		return new Point((int) (-200+200 * getRapport()),450 );
+		return new Point((int) (150),(int) (345 + 400 * quad) );
 	}
 	
-	private Point getTextPosition2(){
-		return new Point((int) (-300+300 * getRapport()),520 );
+	private void updateQuadraticTransition(){
+		quad = (0.5-getRapport())*(0.5-getRapport())*(0.5-getRapport());
 	}
 	
 	private float getTitleAlpha(){
@@ -143,9 +171,11 @@ public class FenetreDemandeAnimationBase extends TranstionAnimeeBase {
 		Graphics2D g2 = (Graphics2D) g.create();
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		
+		updateQuadraticTransition();
 		drawFullBackground(g2);
 		drawBandeau(g2);
 		drawTitle(g2);
+		drawText(g2);
 		drawButton(g2);
 
 		g2.dispose(); 
@@ -166,6 +196,14 @@ public class FenetreDemandeAnimationBase extends TranstionAnimeeBase {
     	g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, getTitleAlpha()));
 
 		Point p = getTitlePosition();
+		g2.drawChars(c_titre, 0, c_titre.length,p.x, p.y);
+	}
+	private void drawText(Graphics2D g2) {
+		g2.setFont(new Font("Arial",Font.ITALIC | Font.BOLD,30));
+		g2.setColor(new Color(0xFFFFFF));
+    	g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, getTitleAlpha()));
+
+		Point p = getTextPosition();
 		g2.drawChars(c_titre, 0, c_titre.length,p.x, p.y);
 	}
 

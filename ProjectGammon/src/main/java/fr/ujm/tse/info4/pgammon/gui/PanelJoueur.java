@@ -58,6 +58,7 @@ public class PanelJoueur extends MonochromePanel{
 		public void updateData(){
 			if(joueur != null)
 			{
+				
 				setTitle(joueur.getPseudo());
 				affichestat.setText("<html> Victoires &nbsp : "
 						+new Integer(joueur.getStat().getNbVictoires()).toString()
@@ -82,13 +83,18 @@ public class PanelJoueur extends MonochromePanel{
 				}else{
 					conseilcoup.setEnabled(false);
 				}
+
+				imgjoueur.setVisible(true);
+				couppossible.setVisible(true);
+				conseilcoup.setVisible(true);
 				
 			}else{
 				setTitle("");
 				affichestat.setText("");
 
-				couppossible.setSelected(false);
-				conseilcoup.setSelected(false);
+				imgjoueur.setVisible(false);
+				couppossible.setVisible(false);
+				conseilcoup.setVisible(false);
 			}
 			
 		}
@@ -157,6 +163,7 @@ public class PanelJoueur extends MonochromePanel{
 			imgjoueur = new ImageAvatar("");
 			imgjoueur.setBounds(15, 40, 50, 50);
 			add(imgjoueur);
+			
 			
 			affichestat = new JLabel();
 			couppossible = new MonochromeCheckbox("<html> Afficher les <br> coups possibles");

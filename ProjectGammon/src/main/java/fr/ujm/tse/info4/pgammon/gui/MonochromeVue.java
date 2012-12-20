@@ -36,10 +36,16 @@ public class MonochromeVue extends JPanel {
 	}
 	
 	public FenetreDemandeAnimationBase afficherFenetreDemande(String titre,SortedSet<String> reponses){
-		FenetreDemandeAnimationBase fenetreDemande = new FenetreDemandeAnimationBase(titre,titre,reponses);
+		FenetreDemandeAnimationBase fenetreDemande = new FenetreDemandeAnimationBase(titre,reponses);
 		setAnimation(fenetreDemande);
 		fenetreDemande.start();
 		return fenetreDemande;
-		
+	}
+	
+	public FenetreDemandeAnimationBase afficherFenetreDemande(String titre,String subTitle){
+		FenetreDemandeAnimationBase fenetreDemande = new FenetreDemandeAnimationBase(titre,subTitle);
+		setAnimation(fenetreDemande);
+		fenetreDemande.start();
+		return fenetreDemande;
 	}
 }
