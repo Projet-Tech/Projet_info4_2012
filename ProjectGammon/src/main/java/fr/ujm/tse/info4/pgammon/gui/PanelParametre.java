@@ -59,59 +59,59 @@ public class PanelParametre extends MonochromePanel{
 		}
 		
 		nbParties = 3;
-		nbTemps = 0;
+		nbTemps = 30;
 		
 		text_parties = new JLabel();
-		text_parties.setText("nombre de partie pour la session");
+		text_parties.setText("Nombre de partie pour la session");
 		text_parties.setForeground(new Color(0xCCCCCC));
 		text_parties.setBounds(20, 30, 300, 50);
 		add(text_parties);
 		
 		text_temps = new JLabel();
-		text_temps.setText("limitation du temps par tour en seconde");
+		text_temps.setText("Limitation du temps par tour");
 		text_temps.setForeground(new Color(0xCCCCCC));
 		text_temps.setBounds(20, 150, 300, 50);
 		add(text_temps);
 		
 		lab_parties = new MonochromeLabel(new Integer(nbParties).toString());
-		lab_parties.setBounds(80, 80, 80, 40);
+		lab_parties.setBounds(70, 80, 120, 40);
 		add(lab_parties);
 		
-		lab_temps = new MonochromeLabel(new Integer(nbTemps).toString());
-		lab_temps.setBounds(80, 200, 80, 40);
+		lab_temps = new MonochromeLabel(new Integer(nbTemps).toString()+" s");
+		lab_temps.setBounds(70, 200, 120, 40);
 		add(lab_temps);
 		
 		
 			plus_partie = new MonochromeIconButton(IconMonochromeType.SMALL_PLUS,"MonochromeIconButton","NOIR");
 			plus_partie.setSizeSmall();
-			plus_partie.setBounds(180, 80, plus_partie.getPreferredSize().width, plus_partie.getPreferredSize().height);
+			plus_partie.setBounds(200, 80, plus_partie.getPreferredSize().width, plus_partie.getPreferredSize().height);
 			add(plus_partie);
 	
 			moins_partie = new MonochromeIconButton(IconMonochromeType.SMALL_MOINS,"MonochromeIconButton","NOIR");
 			moins_partie.setSizeSmall();
-			moins_partie.setBounds(230, 80, moins_partie.getPreferredSize().width, moins_partie.getPreferredSize().height);
+			moins_partie.setBounds(245, 80, moins_partie.getPreferredSize().width, moins_partie.getPreferredSize().height);
 			add(moins_partie);
 
 			infinite_partie = new MonochromeIconButton(IconMonochromeType.SMALL_INFINITE,"MonochromeIconButton","NOIR");
 			infinite_partie.setSizeSmall();
-			infinite_partie.setBounds(280, 80, infinite_partie.getPreferredSize().width, infinite_partie.getPreferredSize().height);
+			infinite_partie.setBounds(290, 80, infinite_partie.getPreferredSize().width, infinite_partie.getPreferredSize().height);
 			add(infinite_partie);
 			
 			plus_temps = new MonochromeIconButton(IconMonochromeType.SMALL_PLUS,"MonochromeIconButton","NOIR");
 			plus_temps.setSizeSmall();
-			plus_temps.setBounds(180, 200, plus_temps.getPreferredSize().width, plus_temps.getPreferredSize().height);
+			plus_temps.setBounds(200, 200, plus_temps.getPreferredSize().width, plus_temps.getPreferredSize().height);
 			add(plus_temps);
 			
 			
 			moins_temps = new MonochromeIconButton(IconMonochromeType.SMALL_MOINS,"MonochromeIconButton","NOIR");
 			moins_temps.setSizeSmall();
-			moins_temps.setBounds(230, 200, moins_temps.getPreferredSize().width, moins_temps.getPreferredSize().height);
+			moins_temps.setBounds(245, 200, moins_temps.getPreferredSize().width, moins_temps.getPreferredSize().height);
 			add(moins_temps);
 			
 			
 			infinite_temps = new MonochromeIconButton(IconMonochromeType.SMALL_INFINITE,"MonochromeIconButton","NOIR");
 			infinite_temps.setSizeSmall();
-			infinite_temps.setBounds(280, 200, infinite_temps.getPreferredSize().width, infinite_temps.getPreferredSize().height);
+			infinite_temps.setBounds(290, 200, infinite_temps.getPreferredSize().width, infinite_temps.getPreferredSize().height);
 			add(infinite_temps);
 			
 			videau = new MonochromeCheckbox("Utiliser le videau");
@@ -130,10 +130,14 @@ public class PanelParametre extends MonochromePanel{
 	}
 	
 	public void changerValeurNbTemps(int i){
+		int j=i/60;		
 		if(i == 0){
 			lab_temps.setText("\u221E");
-		}else{
-			lab_temps.setText(new Integer(i).toString());
+		}else if(i>60){
+			lab_temps.setText(new Integer(i/60).toString()+"m "+new Integer(i-60*j)+"s");
+		}
+		else{
+			lab_temps.setText(new Integer(i).toString()+" s");
 		}
 		
 	}
@@ -152,7 +156,7 @@ public class PanelParametre extends MonochromePanel{
 			public void mouseEntered(MouseEvent e) {}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				nbTemps ++;
+				nbTemps = nbTemps+15;
 				changerValeurNbTemps(nbTemps);
 			}
 		});
@@ -172,8 +176,8 @@ public class PanelParametre extends MonochromePanel{
 			public void mouseEntered(MouseEvent e) {}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(nbTemps > 1){
-					nbTemps --;
+				if(nbTemps > 15){
+					nbTemps = nbTemps - 15;
 					changerValeurNbTemps(nbTemps);
 				}
 			}
@@ -375,8 +379,8 @@ public class PanelParametre extends MonochromePanel{
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-		g.drawImage(iconeparties.getImage(),20,75,this);
-		g.drawImage(iconetime.getImage(),20,194,this);
+		g.drawImage(iconeparties.getImage(),10,75,this);
+		g.drawImage(iconetime.getImage(),10,194,this);
 	}
 
 }

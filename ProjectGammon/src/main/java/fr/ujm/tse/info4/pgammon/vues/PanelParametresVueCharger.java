@@ -71,14 +71,31 @@ public class PanelParametresVueCharger extends MonochromePanel{
 	}
 	
 	public void updateData(){
-		lab_parties.setText(new Integer(session.getParametreSession().getNbrPartieGagnante()/1000).toString());
-		lab_temps.setText(new Integer(session.getParametreSession().getSecondesParTour()/1000).toString());
 		scorej1.setScore(session.getScores().get(session.getPartieEnCours().getParametreJeu().getJoueurBlanc()));
 		scorej2.setScore(session.getScores().get(session.getPartieEnCours().getParametreJeu().getJoueurNoir()));
 		imgjoueurBlanc.setPath(session.getPartieEnCours().getParametreJeu().getJoueurBlanc().getImageSource());
 		imgjoueurNoir.setPath(session.getPartieEnCours().getParametreJeu().getJoueurNoir().getImageSource());
 		nomJoueurBlanc.setText(session.getPartieEnCours().getParametreJeu().getJoueurBlanc().getPseudo());
 		nomJoueurNoir.setText(session.getPartieEnCours().getParametreJeu().getJoueurNoir().getPseudo());
+		
+		int nbPartie = session.getParametreSession().getNbrPartieGagnante();
+		
+		if(nbPartie == 0){
+			lab_parties.setText("\u221E");
+		}else{
+			lab_parties.setText(new Integer(nbPartie).toString());
+		}
+		
+		int tempsSeconde = session.getParametreSession().getSecondesParTour()/1000;
+		int j=tempsSeconde/60;		
+		if(tempsSeconde == 0){
+			lab_temps.setText("\u221E");
+		}else if(tempsSeconde>60){
+			lab_temps.setText(new Integer(tempsSeconde/60).toString()+"m "+new Integer(tempsSeconde-60*j)+"s");
+		}
+		else{
+			lab_temps.setText(new Integer(tempsSeconde).toString()+" s");
+		}
 		
 		if(session.getPartieEnCours().getParametreJeu().isUtiliseVideau() == true){
 			text_videau.setText("Le videau est utilisé");
@@ -106,11 +123,11 @@ public class PanelParametresVueCharger extends MonochromePanel{
 				
 				
 			lab_parties = new MonochromeLabel(new Integer(session.getParametreSession().getNbrPartieGagnante()/1000).toString());
-			lab_parties.setBounds(20, 290, 110, 40);
+			lab_parties.setBounds(15, 290, 120, 40);
 			add(lab_parties);
 				
 			lab_temps = new MonochromeLabel(new Integer(session.getParametreSession().getSecondesParTour()/1000).toString());
-			lab_temps.setBounds(170, 290, 110, 40);
+			lab_temps.setBounds(165, 290, 120, 40);
 			add(lab_temps);
 			
 			
@@ -134,13 +151,13 @@ public class PanelParametresVueCharger extends MonochromePanel{
 			text_parties = new JLabel();
 			text_parties.setText("<html>Nombre de partie<br> pour la session");
 			text_parties.setForeground(new Color(0xCCCCCC));
-			text_parties.setBounds(20, 180, 300, 50);
+			text_parties.setBounds(15, 180, 300, 50);
 			add(text_parties);
 			
 			text_temps = new JLabel();
 			text_temps.setText("<html>Limitation du temps <br>par tour en seconde");
 			text_temps.setForeground(new Color(0xCCCCCC));
-			text_temps.setBounds(170, 180, 300, 50);
+			text_temps.setBounds(165, 180, 300, 50);
 			add(text_temps);
 			
 			nomJoueurBlanc = new JLabel();
