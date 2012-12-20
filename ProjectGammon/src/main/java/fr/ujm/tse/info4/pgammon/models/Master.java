@@ -13,10 +13,12 @@
 package fr.ujm.tse.info4.pgammon.models;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import fr.ujm.tse.info4.pgammon.controleur.ControleurPrincipal;
 
+//TODO: Interdire le redimensionnement
 
 public class Master
 {
@@ -25,12 +27,12 @@ public class Master
 	private ArrayList<Session> listSession;
 	private ControleurPrincipal controleurPrincipal;
 	
-	@SuppressWarnings("deprecation")
 	public Master()
 	{
 		idMax= 1;
-		Date date = new Date();
-		idDate  = 10000*date.getMonth()+1000*date.getDay()+100*date.getHours()+10*date.getMinutes()+date.getSeconds();
+		Calendar date = Calendar.getInstance();
+		idDate = 10000*date.get(Calendar.MONTH)+1000*date.get(Calendar.DATE)
+				+100*date.get(Calendar.HOUR)+10*date.get(Calendar.MINUTE)+date.get(Calendar.SECOND);
 		controleurPrincipal = new ControleurPrincipal(this);
 		listSession = new ArrayList<Session>();
 	}
