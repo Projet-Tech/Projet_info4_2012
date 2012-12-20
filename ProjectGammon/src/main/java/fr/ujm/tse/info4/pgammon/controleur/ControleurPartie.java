@@ -43,6 +43,7 @@ public class ControleurPartie implements Controleur
 	private JFrame frame;
 	private Controleur controleur;
 	//TODO Ce constructeur seras detruit
+	@Deprecated
 	public  ControleurPartie(Partie partie)
 	{
 		controleurPartie = this;
@@ -253,10 +254,13 @@ public class ControleurPartie implements Controleur
 						String action = e.getActionCommand();
 						if (action == "Finir")
 						{
-							session.finSession(session.meilleurJoueur());
+							if (session.meilleurJoueur() != null)
+							{
+								session.finSession(session.meilleurJoueur());
+								
+							}
 							((ControleurPrincipal)controleur).finSession();
 							controleur.retour();
-							
 						}
 						else if (action == "Annuler")
 						{

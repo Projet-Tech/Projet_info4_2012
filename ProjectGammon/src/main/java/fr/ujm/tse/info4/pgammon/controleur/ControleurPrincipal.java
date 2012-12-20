@@ -171,7 +171,7 @@ public class ControleurPrincipal implements Controleur{
 	public void finSession()
 	{
 		master.arreterSession(session.getIdSession());
-		session = master.getSession();
+		//session = master.getSession();
 		//session.LancerPartie();
 		//ControleurPartie controleurPartie = new ControleurPartie(session,this);
 		
