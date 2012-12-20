@@ -56,10 +56,14 @@ public class ParametreJeu
 	    parametres.addContent(utiliseVideauXML);
 	}
 	
-	public void charger(Element parametreJeuElement)
+	public void charger(Element parametres)
 	{
-		//TODO
-		throw new UnsupportedOperationException();
+		 secondesParTour = Integer.valueOf(parametres.getChildText("secondesParTour"));
+		 nbrPartieGagnante  = Integer.valueOf(parametres.getChildText("nbrPartieGagnante"));
+		 switch(parametres.getChildText("utiliseVideau")){
+			case "1":utiliseVideau = true;
+			case "0":utiliseVideau =  false;
+		}
 	}
 
 	

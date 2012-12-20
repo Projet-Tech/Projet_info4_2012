@@ -13,6 +13,7 @@
 package fr.ujm.tse.info4.pgammon.models;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import fr.ujm.tse.info4.pgammon.controleur.ControleurPrincipal;
 
@@ -20,12 +21,16 @@ import fr.ujm.tse.info4.pgammon.controleur.ControleurPrincipal;
 public class Master
 {
 	private int idMax;
+	private int idDate;
 	private ArrayList<Session> listSession;
 	private ControleurPrincipal controleurPrincipal;
 	
+	@SuppressWarnings("deprecation")
 	public Master()
 	{
 		idMax= 1;
+		Date date = new Date();
+		idDate  = 10000*date.getMonth()+1000*date.getDay()+100*date.getHours()+10*date.getMinutes()+date.getSeconds();
 		controleurPrincipal = new ControleurPrincipal(this);
 		listSession = new ArrayList<Session>();
 	}
@@ -34,8 +39,9 @@ public class Master
 	{
 		if (peutLancerSession())
 		{
-			listSession.add(new Session(idMax,parametreJeu));
-			idMax +=1;
+			listSession.add(new Session(idDate,parametreJeu));
+			//listSession.add(new Session(idMax,parametreJeu));
+			//idMax +=1;
 		}
 		try {
 			GestionDeSession gestion = GestionDeSession.getGestionDeSession();

@@ -468,9 +468,25 @@ public class Partie {
 	
 	}
 
-	public void charger(Element partieElement) {
-		// TODO
-		throw new UnsupportedOperationException();
+	public void charger(Element partie) {
+		
+		/*
+		private ParametreJeu parametreJeu;
+		private Videau videau;
+		private ArrayList<DeSixFaces> deSixFaces;
+		private Tablier tablier;
+		private CouleurCase premierJoueur;
+
+
+
+		private StatistiquePartie statistique;
+		private CouleurCase joueurEnCour;
+		private ArrayList<Tour> historiqueToursJoueur;
+		private int idPartie;
+		private boolean partieFini;
+		private boolean tourFini;
+		private int deUtiliser;
+		*/
 	}
 
 	/* GETTERS ET SETTERS */

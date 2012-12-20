@@ -1,9 +1,10 @@
 package fr.ujm.tse.info4.pgammon.models;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Arrays;
 import java.util.List;
 
 import org.jdom2.Document;
@@ -31,28 +32,47 @@ public class GestionDeSession {
 	}
 	
 	public void sauvegarder(){
-		
-		for(int i=0;i<listSession.size();i++){
-	        try{
-	        	String tmpNom = "Session"+String.valueOf(listSession.get(i).getIdSession());
+		try{
+			for(int i=0;i<listSession.size();i++){
+				
+				String tmpNom = "Session"+String.valueOf(listSession.get(i).getIdSession());
 				Element racine = new Element(tmpNom);
 				Document document = new Document(racine);
 				listSession.get(i).sauvegarder(racine);
 				XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
-				String tmpPath = "sauvegarde/"+tmpNom+".xml"; 
+				String tmpPath = "sauvegardeSessions/"+tmpNom+".xml"; 
 				sortie.output(document, new FileOutputStream(tmpPath));
-	        }catch(Exception e){
+				
+				
+				
+			}
+	    }catch(Exception e){
 				System.out.println("Erreur d'enregistrement");
 			}
-		}
 	}
+
 	
 	public void charger() throws JDOMException, IOException{
+		
+		File files[]; 
+		File path = new File("sauvegardeSessions");
+		files = path.listFiles();
+	
+		Arrays.sort(files);
+		
 		SAXBuilder builder = new SAXBuilder();
 		
+		for (int i = 0; i < files.length; i++) {
+			
+			String tmpPath = "sauvegardeSessions/"+files[i].toString();
+			Document document = builder.build(tmpPath);
+			Element racine = document.getRootElement();
+			
+			listSession.get(i).charger(racine);
+
+		}
 		
-		Document document = builder.build("sauvegarde/profils.xml");
-		Element racine = document.getRootElement();
+
 		
 	//	listJoueurs = racine.getChildren("joueurs");
 		//Iterator<Element> it = listJoueurs.iterator();
@@ -64,7 +84,8 @@ public class GestionDeSession {
 		 }	 
 		
 	//}
-	
+
+		
 	public List<Session> getListSession() {
 		return listSession;
 	}
