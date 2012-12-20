@@ -98,7 +98,12 @@ public class PanelJoueur extends MonochromePanel{
 			couppossible.addMouseListener(new MouseListener() {
 				
 				@Override
-				public void mouseReleased(MouseEvent e) {}
+				public void mouseReleased(MouseEvent e) {
+					if(joueur.getNiveauAssistant() == NiveauAssistant.NON_UTILISE )
+						joueur.setNiveauAssistant(NiveauAssistant.SIMPLE);
+					else
+						joueur.setNiveauAssistant(NiveauAssistant.NON_UTILISE);
+					updateData();}
 				@Override
 				public void mousePressed(MouseEvent e) {}		
 				@Override
@@ -107,11 +112,6 @@ public class PanelJoueur extends MonochromePanel{
 				public void mouseEntered(MouseEvent e) {}
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					if(joueur.getNiveauAssistant() == NiveauAssistant.NON_UTILISE )
-						joueur.setNiveauAssistant(NiveauAssistant.SIMPLE);
-					else
-						joueur.setNiveauAssistant(NiveauAssistant.NON_UTILISE);
-					updateData();
 				}
 			});
 		}
@@ -121,7 +121,12 @@ public class PanelJoueur extends MonochromePanel{
 			conseilcoup.addMouseListener(new MouseListener() {
 				
 				@Override
-				public void mouseReleased(MouseEvent e) {}
+				public void mouseReleased(MouseEvent e) {
+					if(joueur.getNiveauAssistant() == NiveauAssistant.COMPLET )
+						joueur.setNiveauAssistant(NiveauAssistant.SIMPLE);
+					else
+						joueur.setNiveauAssistant(NiveauAssistant.COMPLET);
+					updateData();}
 				@Override
 				public void mousePressed(MouseEvent e) {}		
 				@Override
@@ -130,11 +135,6 @@ public class PanelJoueur extends MonochromePanel{
 				public void mouseEntered(MouseEvent e) {}
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					if(joueur.getNiveauAssistant() == NiveauAssistant.COMPLET )
-						joueur.setNiveauAssistant(NiveauAssistant.SIMPLE);
-					else
-						joueur.setNiveauAssistant(NiveauAssistant.COMPLET);
-					updateData();
 				}
 			});
 		}
