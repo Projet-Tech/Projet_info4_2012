@@ -59,8 +59,9 @@ public class Master
 		if(listSession.size()!=0)
 		{
 			for (Session session : listSession) {
-				if(session.getIdSession() == id)
-					listSession.remove(session);
+				if(session != null)
+					if(session.getIdSession() == id)
+						listSession.remove(session);
 			}
 		}	
 	}

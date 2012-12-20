@@ -172,10 +172,10 @@ public class ControleurPrincipal implements Controleur{
 	{
 		master.arreterSession(session.getIdSession());
 		session = master.getSession();
-		session.LancerPartie();
-		ControleurPartie controleurPartie = new ControleurPartie(session,this);
+		//session.LancerPartie();
+		//ControleurPartie controleurPartie = new ControleurPartie(session,this);
 		
-		frame.setContentPane(controleurPartie.getVuePartie());
+		//frame.setContentPane(controleurPartie.getVuePartie());
 		
 	}
 	

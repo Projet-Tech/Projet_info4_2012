@@ -254,6 +254,7 @@ public class ControleurPartie implements Controleur
 						if (action == "Finir")
 						{
 							session.finSession(session.meilleurJoueur());
+							((ControleurPrincipal)controleur).finSession();
 							controleur.retour();
 							
 						}
@@ -314,7 +315,7 @@ public class ControleurPartie implements Controleur
 				if(session.isSessionFini())
 				{
 					controleur.retour();
-	//				((ControleurPrincipal)controleur).finSession();
+				((ControleurPrincipal)controleur).finSession();
 					Profils profil = Profils.getProfils();
 					profil.sauvegarder();
 				}
