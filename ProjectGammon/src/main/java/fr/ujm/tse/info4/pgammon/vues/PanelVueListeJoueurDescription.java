@@ -67,7 +67,7 @@ public class PanelVueListeJoueurDescription extends MonochromePanel{
 		statisitques.setText("<html>" +new Integer(joueur.getStat().getPartiesJouees()).toString()+
 				"<br>"+new Integer(joueur.getStat().getNbVictoires()).toString() +
 				"<br>"+new Integer(joueur.getStat().getNbDefaites()).toString() +
-				"<br>"+new Float(joueur.getStat().getPourcentageVictoire()*100).toString() + 
+				"<br>"+new Integer((int) (joueur.getStat().getPourcentageVictoire()*100)).toString() + 
 				" %<br>"+joueur.getStat().getEnnemiFavoris() +
 				"<br>"+new Float(joueur.getStat().getTempsJeu()).toString());
 
