@@ -75,7 +75,7 @@ public class TimeBarrElement extends JPanel {
 				icon = (couleur==CouleurCase.BLANC)?rentreeBlanc:rentreeNoir;
 			}
 			else if(deplacement.isSiCaseBattue()){
-				icon = (couleur==CouleurCase.BLANC)?priseNoir:priseBlanc;
+				icon = (couleur==CouleurCase.BLANC)?priseBlanc:priseNoir;
 			}
 		}
 

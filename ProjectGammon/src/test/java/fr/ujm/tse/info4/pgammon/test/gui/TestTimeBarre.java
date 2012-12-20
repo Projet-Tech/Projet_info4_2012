@@ -3,6 +3,8 @@ package fr.ujm.tse.info4.pgammon.test.gui;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,9 +48,8 @@ public class TestTimeBarre {
         frame.setSize(816,638);
 		
 		Container panel = frame.getContentPane();
-		panel.setLayout(new FlowLayout());
+		panel.setLayout(null);
 		panel.setBackground(Color.BLACK);
-		
 		
 		List<Tour> tours = new ArrayList<>();
 		{
@@ -177,6 +178,7 @@ public class TestTimeBarre {
 			t.addDeplacement(new Deplacement(C1, C2, true));
 			tours.add(t);
 		}
+		final Deplacement mon_deplacement = new Deplacement(C1, C2, false);
 		{
 			ArrayList<DeSixFaces> d = new ArrayList<>();
 			d.add(B2);
@@ -184,7 +186,7 @@ public class TestTimeBarre {
 			d.add(B2);
 			d.add(B2);
 			Tour t = new Tour(CouleurCase.BLANC,d);
-			t.addDeplacement(new Deplacement(C1, C2, false));
+			t.addDeplacement(mon_deplacement);
 			t.addDeplacement(new Deplacement(C1, C2, false));
 			t.addDeplacement(new Deplacement(C1, C2, false));
 			t.addDeplacement(new Deplacement(C1, C2, false));
@@ -233,8 +235,40 @@ public class TestTimeBarre {
 			tours.add(t);
 		}
 		
-		TimeBarr tb = new TimeBarr(tours);
+		final TimeBarr tb = new TimeBarr(tours);
+		tb.getNextBtn().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				tb.goNext();
+			}
+		});
+		tb.getPrevBtn().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				tb.goPrevious();
+			}
+		});
+
+		tb.getEndBtn().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				tb.goEnd();
+			}
+		});
+		tb.getBeginBtn().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				tb.goTo(mon_deplacement);
+			}
+		});
+		tb.setBounds(100,100,500,300);
 		panel.add(tb);
 		frame.setVisible(true);
+		
+		
 	}
 }
