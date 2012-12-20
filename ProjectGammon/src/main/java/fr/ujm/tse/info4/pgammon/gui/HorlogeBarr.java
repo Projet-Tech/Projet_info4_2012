@@ -31,7 +31,7 @@ public class HorlogeBarr extends JPanel implements HorlogeEventListener {
 	
 	
 
-	private void setHorloge(Horloge h) {
+	public void setHorloge(Horloge h) {
 
 		if(horloge != null)
 			horloge.removeListener(this);

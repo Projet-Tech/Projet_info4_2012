@@ -158,7 +158,6 @@ public class ControleurTablier implements Controleur{
 		
 		if (partie.getParametreJeu().getSecondesParTour() != 0)
 		{
-			
 			horloge = new Horloge(partie.getParametreJeu().getSecondesParTour());
 			horloge.addListener(new HorlogeEventListener() {
 				@Override
@@ -207,8 +206,9 @@ public class ControleurTablier implements Controleur{
 		}
 		else
 		{
-			horloge =null;
+			horloge =null;	
 		}
+		vuePartie.getHorlogeBarr().setHorloge(horloge);
 	}
 	
 	public Horloge getHorloge() {
