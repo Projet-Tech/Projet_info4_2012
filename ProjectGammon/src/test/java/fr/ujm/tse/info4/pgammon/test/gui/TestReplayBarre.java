@@ -8,10 +8,13 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
-import fr.ujm.tse.info4.pgammon.gui.TimeBarr;
-import fr.ujm.tse.info4.pgammon.gui.TimeBarrElement;
+import fr.ujm.tse.info4.pgammon.gui.JoueurCellRenderer;
+import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
+import fr.ujm.tse.info4.pgammon.gui.ReplayBarr;
+import fr.ujm.tse.info4.pgammon.gui.ReplayBarrElement;
 import fr.ujm.tse.info4.pgammon.models.Case;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 import fr.ujm.tse.info4.pgammon.models.DeSixFaces;
@@ -23,7 +26,7 @@ import fr.ujm.tse.info4.pgammon.models.Partie;
 import fr.ujm.tse.info4.pgammon.models.Tour;
 import fr.ujm.tse.info4.pgammon.vues.VuePartie;
 
-public class TestTimeBarre {
+public class TestReplayBarre {
 	
 	private final static DeSixFaces B1 = new DeSixFaces(CouleurCase.BLANC, 1);
 	private final static DeSixFaces B2 = new DeSixFaces(CouleurCase.BLANC, 2);
@@ -41,6 +44,8 @@ public class TestTimeBarre {
 	private final static Case CB = new Case(CouleurCase.BLANC, 0, 25);
 	private final static Case C1 = new Case(CouleurCase.NOIR, 0, 3);
 	private final static Case C2 = new Case(CouleurCase.BLANC, 0, 3);
+	private static List<Tour> tours;
+	
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Test Design");
 
@@ -51,7 +56,7 @@ public class TestTimeBarre {
 		panel.setLayout(null);
 		panel.setBackground(Color.BLACK);
 		
-		List<Tour> tours = new ArrayList<>();
+		tours = new ArrayList<>();
 		{
 			ArrayList<DeSixFaces> d = new ArrayList<>();
 			d.add(B1);
@@ -235,7 +240,7 @@ public class TestTimeBarre {
 			tours.add(t);
 		}
 		
-		final TimeBarr tb = new TimeBarr(tours);
+		final ReplayBarr tb = new ReplayBarr(null);
 		tb.getNextBtn().addActionListener(new ActionListener() {
 			
 			@Override
@@ -265,10 +270,20 @@ public class TestTimeBarre {
 				tb.goTo(mon_deplacement);
 			}
 		});
-		tb.setBounds(100,100,500,300);
+		tb.setBounds(0,400,800,300);
 		panel.add(tb);
 		frame.setVisible(true);
 		
+		MonochromeButton btn = new MonochromeButton("+");
+		btn.setBounds(600,100,150,50);
+		panel.add(btn);
+		btn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				tb.setTours(tours);
+			}
+		});
 		
 	}
 }
