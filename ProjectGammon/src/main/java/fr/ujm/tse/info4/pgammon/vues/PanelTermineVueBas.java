@@ -10,7 +10,6 @@ public class PanelTermineVueBas extends JPanel{
 	private static final long serialVersionUID = -4862879609262291182L;
 	private ReplayBarr replayBarr;
 	public PanelTermineVueBas(){
-
 		build();
 	}
 

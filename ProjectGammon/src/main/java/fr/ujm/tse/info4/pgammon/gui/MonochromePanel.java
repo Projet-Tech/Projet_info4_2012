@@ -34,8 +34,7 @@ public class MonochromePanel extends JButton {
 		setLayout(null);
 		this.title = title;
 		build();
-		//Test
-
+		
 	}
 
 

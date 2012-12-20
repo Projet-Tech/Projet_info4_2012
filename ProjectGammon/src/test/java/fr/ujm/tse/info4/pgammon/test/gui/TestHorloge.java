@@ -2,9 +2,10 @@ package fr.ujm.tse.info4.pgammon.test.gui;
 
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.Dimension;
-
 import javax.swing.JFrame;
+
+import fr.ujm.tse.info4.pgammon.gui.HorlogeBarr;
+import fr.ujm.tse.info4.pgammon.models.Horloge;
 
 
 public class TestHorloge {
@@ -20,8 +21,11 @@ public class TestHorloge {
 
 		panel.setBackground(new Color(0x00000));
 		
-		
-		
+		Horloge h = new Horloge(10000);
+		HorlogeBarr hb  = new HorlogeBarr(h);
+		hb.setBounds(0,100,600,50);		
+		panel.add(hb);
+		h.start();
 		
 		frame.setVisible(true);
 	}
