@@ -15,9 +15,11 @@ public class Horloge implements ActionListener{
 	Timer timer;
 	int duree;
 	int value;
+	private boolean running;
 	public Horloge(int duree_ms) {
 		timer = new Timer(UPDATE_PERIOD, this);
 		this.duree  = duree_ms;  
+		running = false;
 	}
 	
 	public void addListener(HorlogeEventListener listener){
@@ -53,10 +55,12 @@ public class Horloge implements ActionListener{
 	}
 	
 	public void start(){
+		running = true;
 		timer.start();
 	}
 	
 	public void stop(){
+		running = false;
 		timer.stop();
 	}
 
@@ -65,16 +69,18 @@ public class Horloge implements ActionListener{
 		stop();
 	}
 	public void restart(){
-		this.value = 0;
-		timer.start();
+		setValue(0);
+		start();
 	}
 	
 	public void setValue(int value) {
 		this.value = value;
+		fireUpdate();
 	}
 
 	public void setDuree(int value) {
 		this.duree = value;
+		fireUpdate();
 	}
 	public float getRapport(){
 		return (float)(value)/(float)(duree);
@@ -88,6 +94,10 @@ public class Horloge implements ActionListener{
 	}
 	public int getValue() {
 		return value;
+	}
+	
+	public boolean isRunning(){
+		return running;
 	}
 	
 	public String getTempsRestant(){
