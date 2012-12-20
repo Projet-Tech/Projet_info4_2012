@@ -108,6 +108,37 @@ public class Tablier
 		}		
 	}
 	
+	public void reinitialisationCase()
+	{
+		caseVictoire.get(0).setCase(CouleurCase.BLANC, 0, 25);
+		caseVictoire.get(1).setCase(CouleurCase.NOIR, 0, 0);
+		
+		caseBarre.get(0).setCase(CouleurCase.BLANC, 0, 0);
+		caseBarre.get(1).setCase(CouleurCase.NOIR, 0, 25);
+		
+		for (int i=0;i<24;i++)
+		{
+			if(i==0)
+				listeCase.get(i).setCase(CouleurCase.BLANC, 2, i);
+			else if(i==5)
+				listeCase.get(i).setCase(CouleurCase.NOIR, 5, i);
+			else if(i==7)
+				listeCase.get(i).setCase(CouleurCase.NOIR, 3, i);
+			else if(i==11)
+				listeCase.get(i).setCase(CouleurCase.BLANC, 5, i);
+			else if(i==12)
+				listeCase.get(i).setCase(CouleurCase.NOIR, 5, i);
+			else if(i==16)
+				listeCase.get(i).setCase(CouleurCase.BLANC, 3, i);
+			else if(i==18)
+				listeCase.get(i).setCase(CouleurCase.BLANC, 5, i);
+			else if(i==23)
+				listeCase.get(i).setCase(CouleurCase.NOIR, 2, i);
+			else
+				listeCase.get(i).setCase(CouleurCase.VIDE, 0, i);	
+		}		
+	}
+	
 	public int distanceDeuxCase(Case cDepart, Case cArrivee)
 	{
 		return cArrivee.getPosition()-cDepart.getPosition();

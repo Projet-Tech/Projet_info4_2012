@@ -42,6 +42,7 @@ public class ControleurPartie implements Controleur
 	private JFrame frame;
 	private Controleur controleur;
 	private int positionRevuePartie;
+	private boolean isSensAvancer;
 	//TODO Ce constructeur seras detruit
 	@Deprecated
 	public  ControleurPartie(Partie partie)
@@ -78,8 +79,7 @@ public class ControleurPartie implements Controleur
 		listenerInterrompreSession();
 		listenerRevoirPartie();
 		listenerBoutonRevuePartie();
-		
-			}
+	}
 	
 	public void listenerBoutonRevuePartie()
 	{
@@ -131,8 +131,17 @@ public class ControleurPartie implements Controleur
 			public void mousePressed(MouseEvent e) {}
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				
+				if(!isSensAvancer)
+				{
+					//positionRevuePartie--;
+					isSensAvancer = true;
+				}
+				else
+				{
+					positionRevuePartie++;
+				}
 				Deplacement dep = session.getPartieEnCours().ProchainDeplacement(positionRevuePartie);
-				positionRevuePartie++;
 				if ( dep != null)
 					vuePartie.getPanelTermineVueBas().getReplayBarr().goTo(dep);
 				vuePartie.updateUI();
@@ -156,8 +165,17 @@ public class ControleurPartie implements Controleur
 			public void mouseReleased(MouseEvent e) {
 				if (positionRevuePartie > 0)
 				{
-					Deplacement dep = session.getPartieEnCours().ProchainDeplacement(positionRevuePartie);
-					positionRevuePartie--;
+					if(isSensAvancer)
+					{
+						//positionRevuePartie++;
+						isSensAvancer = false;
+					}
+					else
+					{
+						positionRevuePartie--;
+					}
+					Deplacement dep = session.getPartieEnCours().PrecedentDeplacement(positionRevuePartie);
+					
 					if ( dep != null)
 						vuePartie.getPanelTermineVueBas().getReplayBarr().goTo(dep);
 				}
@@ -186,9 +204,10 @@ public class ControleurPartie implements Controleur
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
 				positionRevuePartie =0;
+				isSensAvancer = true;
 				vuePartie.setEtat(EtatSession.REPLAY);
 				vuePartie.getPanelTermineVueBas().getReplayBarr().setTours(session.getPartieEnCours().getHistoriqueToursJoueur());
-				session.getPartieEnCours().getTablier().initialiserCase();
+				session.getPartieEnCours().getTablier().reinitialisationCase();
 				vuePartie.updateUI();
 				vuePartie.getVueTablier().updateUI();
 				vuePartie.getVueTablier().updateDes();

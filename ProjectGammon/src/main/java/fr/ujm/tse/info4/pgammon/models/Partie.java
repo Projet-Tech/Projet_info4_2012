@@ -34,6 +34,10 @@ public class Partie {
 	private boolean tourFini;
 	private int deUtiliser;
 
+	/**
+	 * 
+	 * @param p
+	 */
 	public Partie(ParametreJeu p) {
 		parametreJeu = p;
 		tablier = new Tablier();
@@ -47,7 +51,11 @@ public class Partie {
 		tourFini=true;
 		partieFini = false;
 	}
-	
+	/**
+	 * 
+	 * @param idPartie
+	 * @param p
+	 */
 	public Partie(int idPartie ,ParametreJeu p) {
 		parametreJeu = p;
 		this.idPartie = idPartie;
@@ -62,7 +70,9 @@ public class Partie {
 		tourFini=true;
 		partieFini = false;
 	}
-
+/**
+ * 
+ */
 	public void lancerPremierePartie() {
 		partieFini = false;
 		choixPremierJoueurLancementPartie();
@@ -71,7 +81,10 @@ public class Partie {
 		//on ajout un tour dans l'historique
 		//historiqueToursJoueur.add(new Tour(joueurEnCour, deSixFaces));
 		}
-	
+	/**
+	 * 
+	 * @param joueur
+	 */
 	public void lancerNouvellePartie(CouleurCase joueur) {
 		partieFini = false;
 		
@@ -82,12 +95,16 @@ public class Partie {
 		
 		premierJoueur = joueurEnCour;
 	}
-	
+	/**
+	 * 
+	 */
 	public void debutTour()
 	{
 		historiqueToursJoueur.add(new Tour(joueurEnCour, deSixFaces));
 	}
-
+/**
+ * 
+ */
 	public void changerTour(){
 
 		if (tablier.isTouteDameMarquee(joueurEnCour))
@@ -105,12 +122,18 @@ public class Partie {
 
 	}
 
+	/**
+	 * 
+	 */
 	public void finPartie() {
 		//System.out.println("le joueur "+joueurEnCour + " a gagnée");
 			partieFini=true;
 		
 	}
 	
+	/**
+	 * 
+	 */
 	public void choixPremierJoueurLancementPartie() {
 		ArrayList<DeSixFaces> deChoix = new ArrayList<DeSixFaces>();
 		deChoix.add(new DeSixFaces(joueurEnCour));
@@ -128,11 +151,23 @@ public class Partie {
 		premierJoueur = joueurEnCour;
 	}
 
+	/**
+	 * 
+	 * @param caseDepartInt
+	 * @param caseArriveeInt
+	 * @return
+	 */
 	public boolean jouerCoup(int caseDepartInt, int caseArriveeInt) {
 		Coup coup = tablier.intToCoup(caseDepartInt, caseArriveeInt, joueurEnCour);
 			return jouerCoup(coup.getCaseDepart(), coup.getCaseArriver());
 	}
 	
+	/**
+	 * 
+	 * @param caseDepart
+	 * @param caseArrivee
+	 * @return
+	 */
 	public boolean jouerCoup(Case caseDepart, Case caseArrivee) {
 		
 		
@@ -167,6 +202,13 @@ public class Partie {
 	public boolean jouerCoup(Coup coup) {
 		return jouerCoup(coup.getCaseDepart(),coup.getCaseArriver());
 	}
+	
+	/**
+	 * 
+	 * @param caseDame
+	 * @param de
+	 * @return
+	 */
 	public boolean peutMarquerCetteDame(Case caseDame,DeSixFaces de)
 	{
 		Case caseVictoire;
@@ -187,11 +229,14 @@ public class Partie {
 					&& !de.isUtilise())
 				{return true;
 				}
-
 			return false;
-
 	}
 	
+	/**
+	 * 
+	 * @param caseDame
+	 * @return
+	 */
 	public boolean peutMarquerCetteDame(Case caseDame)
 	{
 		boolean siDeExiste = false;
@@ -226,6 +271,9 @@ public class Partie {
 		return true;
 	}
 	
+	/**
+	 * 
+	 */
 	public void annulerDernierCoup() {
 		Deplacement dernierDeplacement;
 		
@@ -265,6 +313,10 @@ public class Partie {
 		}
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean siDesUtilises()
 	{
 		for (int i=0;i<deSixFaces.size();i++){
@@ -273,6 +325,10 @@ public class Partie {
 		}
 		return true;
 	}
+	
+	/**
+	 * 
+	 */
 	public void lancerDes() {
 		deSixFaces = new ArrayList<DeSixFaces>();
 		deSixFaces.add(new DeSixFaces(joueurEnCour));
@@ -290,7 +346,10 @@ public class Partie {
 	public void doublerVideau() {
 		videau.doubler();
 	}
-
+/**
+ * 
+ * @throws TourNonJouableException
+ */
 	public void deplacementAleatoire() throws TourNonJouableException {
 		 List<Coup> casesPossible = getCoupsPossibles();
 		 if (casesPossible.size() != 0)
@@ -298,12 +357,21 @@ public class Partie {
 		 else
 			 throw new TourNonJouableException("Pas de possibilité de faire un déplacement");
 	}
-
+/**
+ * 
+ * @param de
+ * @return
+ */
 	public List<Coup> getCoupsPossibles(DeSixFaces de) {
 		// TODO
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * 
+	 * @param c
+	 * @return
+	 */
 	public List<Case> getCoupsPossibles(Case c) {
 		ArrayList<Case> caseReturn = new ArrayList<Case>() ;
 		Case caseArriver;
@@ -322,7 +390,10 @@ public class Partie {
 		
 		
 	}
-
+/**
+ * 
+ * @return
+ */
 	public List<Coup> getCoupsPossibles() {
 		int somme = 0;
 
@@ -341,7 +412,13 @@ public class Partie {
 		}	
 		return listeUnDe;
 	}
-
+	
+/**
+ * 
+ * @param caseDepart
+ * @param caseArrivee
+ * @return
+ */
 	public boolean isCoupPossible(Case caseDepart, Case caseArrivee) {
 		// verification de l'existance du de;
 				boolean siDeExiste = false;
@@ -376,6 +453,11 @@ public class Partie {
 					return false;
 			}
 
+	/**
+	 * 
+	 * @param caseDepart
+	 * @return
+	 */
 	public boolean isCoupPossible(Case caseDepart) {
 		boolean possible=false;
 		for (DeSixFaces de : deSixFaces) {
@@ -386,12 +468,10 @@ public class Partie {
 		return possible;
 	}
 
-	public void historisationDeplacement(Case depart, Case arrivee,
-			Object isBattue, Object isRentre) {
-		// TODO
-		throw new UnsupportedOperationException();
-	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean hasCoupPossible() {
 		for (Case caseDame : tablier.getAllCase()) {
 			if((!tablier.isDameDansCaseBarre(joueurEnCour) && caseDame.getCouleurDame() == joueurEnCour)
@@ -404,7 +484,10 @@ public class Partie {
 		}
 		return false;	
 	}
-
+/**
+ * 
+ * @return
+ */
 	public Tour getDernierTour()
 	{
 		if (historiqueToursJoueur.size() != 0)
@@ -412,7 +495,11 @@ public class Partie {
 		else
 			return null;
 	}
-	
+	/**
+	 * 
+	 * @param i
+	 * @return
+	 */
 	public Deplacement ProchainDeplacement(int i) {
 
 		Deplacement deplacementProchain = null;
@@ -422,7 +509,7 @@ public class Partie {
 			touractuelle = tour;
 			for (Deplacement deplacement : tour.getListDeplacement()) {
 				j++;
-				if(j == (i+1))
+				if(j == (i))
 				{
 					deplacementProchain = deplacement;
 					break;
@@ -440,7 +527,11 @@ public class Partie {
 	
 	
 	
-
+/**
+ * 
+ * @param i
+ * @return
+ */
 	public Deplacement PrecedentDeplacement(int i) {
 		
 		Deplacement deplacementPrecedent = null;
@@ -450,7 +541,7 @@ public class Partie {
 			touractuelle = tour;
 			for (Deplacement deplacement : tour.getListDeplacement()) {
 				j++;
-				if(j == (i-1))
+				if(j == (i))
 				{
 					deplacementPrecedent = deplacement;
 					break;
@@ -483,6 +574,10 @@ public class Partie {
 
 	/* SERIALISATION */
 
+	/**
+	 * 
+	 * @param session
+	 */
 	public void sauvegarder(Element session) {
 		
 		Element partie = new Element("partie");
@@ -525,7 +620,10 @@ public class Partie {
 		}
 	
 	}
-
+/**
+ * 
+ * @param partie
+ */
 	public void charger(Element partie) {
 		
 		videau = new Videau(Integer.valueOf(partie.getChildText("videau")));
