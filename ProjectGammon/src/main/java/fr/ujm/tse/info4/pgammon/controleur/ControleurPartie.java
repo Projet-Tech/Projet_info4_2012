@@ -12,8 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.SortedSet;
@@ -239,17 +237,19 @@ public class ControleurPartie implements Controleur
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				SortedSet<String> hs = new ConcurrentSkipListSet<>();
-				hs.add("Oui");
+				hs.add("Finir");
 				hs.add("Annuler");
 				hs.add("Sauvegarder");
-				vuePartie.afficherFenetreDemande("Quitter sans Sauvegarder ?", hs).addActionListener(new ActionListener() {
+				vuePartie.afficherFenetreDemande("Que voulez-vous faire ?", hs).addActionListener(new ActionListener() {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						
 						String action = e.getActionCommand();
-						if (action == "Oui")
+						if (action == "Finir")
 						{
+							session.finSession(session.ge);
+							finPartie();
 							controleur.retour();
 							
 						}
@@ -268,6 +268,8 @@ public class ControleurPartie implements Controleur
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
+						//	session.finSession();
+							finPartie();
 							controleur.retour();
 							
 						}
@@ -324,13 +326,7 @@ public class ControleurPartie implements Controleur
 	
 	public void finPartie() 
 	{
-		try {
-			GestionDeSession gestion = GestionDeSession.getGestionDeSession();
-			gestion.sauvegarder();
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		
 		session.finPartie();
 	
 		vuePartie.getPanelEnCoursVueBas().updateScore(session.getScores().get(session.getParametreSession().getJoueurBlanc()), session.getScores().get(session.getParametreSession().getJoueurNoir()));
