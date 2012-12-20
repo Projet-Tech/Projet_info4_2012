@@ -20,13 +20,14 @@ public class Deplacement
 	private Case caseDepart;
 	private Case caseArriver;
 	private boolean siCaseBattue;
-	private int idDeplacement;
+	private double idDeplacement;
 
 	public Deplacement(Case caseDepart, Case caseArriver, boolean siCaseBattue)
 	{
 		this.caseDepart = caseDepart;
 		this.caseArriver = caseArriver;
 		this.siCaseBattue = siCaseBattue;
+		this.idDeplacement = Math.random()*Double.MAX_VALUE;
 	}
 	
 	public Deplacement()
@@ -84,7 +85,7 @@ public class Deplacement
 	}
 
 
-	public int getIdDeplacement() {
+	public double getIdDeplacement() {
 		return idDeplacement;
 	}
 
