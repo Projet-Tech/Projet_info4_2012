@@ -472,8 +472,8 @@ public class Partie {
 		videau = new Videau(Integer.valueOf(partie.getChildText("videau")));
 		
 		switch(partie.getChildText("joueurEnCour")){
-			case "NOIR":joueurEnCour = CouleurCase.NOIR;
-			case "BLANC":joueurEnCour = CouleurCase.BLANC;
+			case "NOIR":joueurEnCour = CouleurCase.NOIR;break;
+			case "BLANC":joueurEnCour = CouleurCase.BLANC;break;
 			case "VIDE":joueurEnCour = CouleurCase.VIDE;
 		}
 		
@@ -481,8 +481,8 @@ public class Partie {
 		deUtiliser = Integer.valueOf(partie.getChildText("deUtiliser"));
 		
 		switch(partie.getChildText("premierJoueur")){
-			case "NOIR":premierJoueur = CouleurCase.NOIR;
-			case "BLANC":premierJoueur = CouleurCase.BLANC;
+			case "NOIR":premierJoueur = CouleurCase.NOIR;break;
+			case "BLANC":premierJoueur = CouleurCase.BLANC;break;
 			case "VIDE":premierJoueur = CouleurCase.VIDE;
 		}
 		
@@ -490,8 +490,11 @@ public class Partie {
 			deSixFaces.get(i).charger(partie.getChild("deSixFace"));
 		}
 			
+		tablier = new Tablier(this);
+		
 		tablier.charger(partie);
 	
+		
 		for(int i=0;i<historiqueToursJoueur.size();i++){
 			historiqueToursJoueur.get(i).charger(partie);
 		}

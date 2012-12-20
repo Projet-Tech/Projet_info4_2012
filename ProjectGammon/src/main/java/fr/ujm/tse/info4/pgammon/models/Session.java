@@ -44,6 +44,20 @@ public class Session
 		nouvellePartie();
 	}
 	
+	public Session()
+	{
+		/*couleurJoueurAnciennePartie = null;
+		this.idSession = idSession;
+		idMaxPartie=1;
+		etatSession = EtatSession.CONFIGURATION;
+		parametreSession = parametreJeu;
+		scores = new HashMap<Joueur, Integer>();
+		scores.put(parametreSession.getJoueurBlanc(),0);
+		scores.put(parametreSession.getJoueurNoir(),0);
+		joueurGagnantSession =null;
+		nouvellePartie();*/
+	}
+	
 	private void modifierScore(Joueur j, Videau multiplicateur)
 	{
 		//TODO
@@ -180,31 +194,38 @@ public class Session
 		{
 			idSession = Integer.valueOf(racine.getChild("session").getAttributeValue("id"));
 			switch(racine.getChild("session").getChildText("etatSession")){
-				case "CONFIGURATION":etatSession = EtatSession.CONFIGURATION;
-				case "EN_COURS":etatSession =  EtatSession.EN_COURS;
+				case "CONFIGURATION":etatSession = EtatSession.CONFIGURATION;break;
+				case "EN_COURS":etatSession =  EtatSession.EN_COURS;break;
 				case "TERMINEE":etatSession =  EtatSession.TERMINEE;
 			}
 			idMaxPartie = Integer.valueOf(racine.getChild("session").getChildText("idMaxPartie"));
 			switch(racine.getChild("session").getChildText("couleurJoueurAnciennePartie")){
-				case "BLANC":couleurJoueurAnciennePartie = CouleurCase.BLANC;
-				case "NOIR":couleurJoueurAnciennePartie =  CouleurCase.NOIR;
+				case "BLANC":couleurJoueurAnciennePartie = CouleurCase.BLANC;break;
+				case "NOIR":couleurJoueurAnciennePartie =  CouleurCase.NOIR;break;
 				case "VIDE":couleurJoueurAnciennePartie =  CouleurCase.VIDE;
 			}
 			
 			int tmpID = Integer.valueOf(racine.getChild("session").getChild("joueurs").getChild("joueurNoir").getAttributeValue("id"));
-			parametreSession.getJoueurNoir().setId(tmpID);
-			Joueur tmpJoueur = parametreSession.getJoueurNoir();
 			
-			scores.put(tmpJoueur,Integer.valueOf(racine.getChild("session").getChild("joueurs").getChild("joueurNoir").getChildText("score")));
+			scores = new HashMap<Joueur,Integer>();
+			
+			Profils profil = Profils.getProfils();
+			Joueur JoueurNoir = profil.getJoueur(tmpID);
+			scores.put(JoueurNoir,Integer.valueOf(racine.getChild("session").getChild("joueurs").getChild("joueurNoir").getChildText("score")));
 			
 			tmpID = Integer.valueOf(racine.getChild("session").getChild("joueurs").getChild("joueurBlanc").getAttributeValue("id"));
-			parametreSession.getJoueurBlanc().setId(tmpID);
-			tmpJoueur = parametreSession.getJoueurBlanc();
+			Joueur JoueurBlanc = profil.getJoueur(tmpID);
+			scores.put(JoueurBlanc,Integer.valueOf(racine.getChild("session").getChild("joueurs").getChild("joueurBlanc").getChildText("score")));
 			
-			scores.put(tmpJoueur,Integer.valueOf(racine.getChild("session").getChild("joueurs").getChild("joueurBlanc").getChildText("score")));
+			parametreSession = new  ParametreJeu();
 			
 			parametreSession.charger(racine.getChild("session").getChild("parametres"));
+			parametreSession.setJoueurBlanc(JoueurBlanc);
+			parametreSession.setJoueurNoir(JoueurNoir);
+			
+			partieEnCours = new Partie(parametreSession);
 			partieEnCours.charger(racine.getChild("session").getChild("partie"));
+			
 			
 		}
 

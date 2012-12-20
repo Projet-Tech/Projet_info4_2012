@@ -93,8 +93,8 @@ public class Tour
 		partie.getChild("tour");
 		
 		switch(partie.getChild("tour").getChildText("couleurDame")){
-			case "BLANC":couleurJoueur = CouleurCase.BLANC;
-			case "NOIR":couleurJoueur = CouleurCase.NOIR;
+			case "BLANC":couleurJoueur = CouleurCase.BLANC;break;
+			case "NOIR":couleurJoueur = CouleurCase.NOIR;break;
 			case "VIDE":couleurJoueur = CouleurCase.VIDE;
 		}
 		

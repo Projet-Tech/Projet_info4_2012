@@ -76,13 +76,13 @@ public class DeSixFaces
 		valeur = Integer.valueOf(deSixFace.getChildText("valeur"));
 		
 		switch(deSixFace.getChildText("isUtilise")){
-			case "oui":isUtilise = true;
+			case "oui":isUtilise = true;break;
 			case "non":isUtilise = false;
 		}
 		
 		switch(deSixFace.getChildText("couleurDe")){
-			case "BLANC":couleurDe = CouleurCase.BLANC;
-			case "NOIR":couleurDe =  CouleurCase.NOIR;
+			case "BLANC":couleurDe = CouleurCase.BLANC;break;
+			case "NOIR":couleurDe =  CouleurCase.NOIR;break;
 			case "VIDE":couleurDe =  CouleurCase.VIDE;
 		}
 	}

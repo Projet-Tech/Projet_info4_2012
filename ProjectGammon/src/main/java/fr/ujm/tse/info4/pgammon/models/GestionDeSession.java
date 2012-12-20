@@ -67,7 +67,7 @@ public class GestionDeSession {
 			String tmpPath = files[i].toString();
 			Document document = builder.build(tmpPath);
 			Element racine = document.getRootElement();
-			
+			listSession.add(new Session());
 			listSession.get(i).charger(racine);
 
 		}

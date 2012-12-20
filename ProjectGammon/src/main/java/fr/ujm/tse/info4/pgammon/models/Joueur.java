@@ -71,8 +71,8 @@ public class Joueur
 		imageSource = it.getChildText("imageSource");
 		switch(it.getChildText("niveauAssistant")){
 			
-			case "NON_UTILISE":niveauAssistant = NiveauAssistant.NON_UTILISE;
-			case "SIMPLE":niveauAssistant = NiveauAssistant.SIMPLE;
+			case "NON_UTILISE":niveauAssistant = NiveauAssistant.NON_UTILISE;break;
+			case "SIMPLE":niveauAssistant = NiveauAssistant.SIMPLE;break;
 			case "COMPLET":niveauAssistant = NiveauAssistant.COMPLET;
 			
 		}

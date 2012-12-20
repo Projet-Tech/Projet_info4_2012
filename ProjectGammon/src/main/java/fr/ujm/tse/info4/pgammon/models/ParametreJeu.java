@@ -32,7 +32,11 @@ public class ParametreJeu
 		this.joueurBlanc = joueurBlanc;
 		this.joueurNoir = joueurNoir;
 	}
-
+	
+	public ParametreJeu()
+	{
+	}
+	
 
 	public void sauvegarder(Element session)
 	{
@@ -61,8 +65,8 @@ public class ParametreJeu
 		 secondesParTour = Integer.valueOf(parametres.getChildText("secondesParTour"));
 		 nbrPartieGagnante  = Integer.valueOf(parametres.getChildText("nbrPartieGagnante"));
 		 switch(parametres.getChildText("utiliseVideau")){
-			case "1":utiliseVideau = true;
-			case "0":utiliseVideau =  false;
+			case "1":utiliseVideau = true;break;
+			case "0":utiliseVideau = false;
 		}
 	}
 
@@ -102,9 +106,12 @@ public class ParametreJeu
 			return joueurBlanc;
 	}
 
+	public void setJoueurNoir(Joueur _joueurNoir){
+		joueurNoir = _joueurNoir;
+	}
 
-
-
-
+	public void setJoueurBlanc(Joueur _joueurBlanc){
+		joueurBlanc = _joueurBlanc;
+	}
 
 }
