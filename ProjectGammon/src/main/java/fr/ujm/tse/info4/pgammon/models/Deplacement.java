@@ -27,6 +27,11 @@ public class Deplacement
 		this.caseArriver = caseArriver;
 		this.siCaseBattue = siCaseBattue;
 	}
+	
+	public Deplacement()
+	{
+	}
+	
 	public void sauvegarder(Element deplacementsXML)
 	{
 		Element deplacementXML = new Element("deplacement");

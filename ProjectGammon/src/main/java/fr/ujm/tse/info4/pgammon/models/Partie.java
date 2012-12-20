@@ -10,6 +10,7 @@
 package fr.ujm.tse.info4.pgammon.models;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.jdom2.Element;
@@ -486,20 +487,28 @@ public class Partie {
 			case "VIDE":premierJoueur = CouleurCase.VIDE;
 		}
 		
-		for(int i=0;i<deSixFaces.size();i++){
-			deSixFaces.get(i).charger(partie.getChild("deSixFace"));
-		}
+		 List<Element> listDeSixFaces = partie.getChild("deSixFaces").getChildren("deSixFace");
+		 Iterator<Element> it = listDeSixFaces.iterator();
+		 
+		 while(it.hasNext()){
+			 DeSixFaces tmpDe = new DeSixFaces();
+			 tmpDe.charger(it.next());
+			 deSixFaces.add(tmpDe);
+		 }
+		 
 			
 		tablier = new Tablier(this);
 		
 		tablier.charger(partie);
-	
 		
-		for(int i=0;i<historiqueToursJoueur.size();i++){
-			historiqueToursJoueur.get(i).charger(partie);
+		List<Element> listhistoriqueToursJoueur = partie.getChild("historiqueToursJoueur").getChildren("tour");
+		Iterator<Element> i = listhistoriqueToursJoueur.iterator();
+		 
+		while(i.hasNext()){
+			Tour tmpTour = new Tour();
+			tmpTour.charger(i.next());
+			historiqueToursJoueur.add(tmpTour);
 		}
-
-	
 	}
 
 	/* GETTERS ET SETTERS */

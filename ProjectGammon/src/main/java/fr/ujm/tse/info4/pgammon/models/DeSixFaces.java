@@ -22,7 +22,11 @@ public class DeSixFaces
 	private CouleurCase couleurDe;
 	
 	/* FUNCTION */
+	public DeSixFaces()
+	{
 
+	}
+	
 	public DeSixFaces(CouleurCase couleurCase)
 	{
 		isUtilise = false;
