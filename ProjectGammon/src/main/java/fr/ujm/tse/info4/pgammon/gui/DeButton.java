@@ -34,7 +34,7 @@ public class DeButton extends JButton {
 	private ImageIcon icon;
 	public DeButton(DeSixFaces de) {
 		this.de = de;
-
+		setEnabled(false);
 		setOpaque(false);
 		setPreferredSize(new Dimension(32,32));
 		update();
