@@ -32,12 +32,20 @@ public class Tablier
 	public Tablier(Partie p)
 	{
 		partie=p;
+		
+		listeCase= new ArrayList<Case>();
+		caseVictoire = new ArrayList<Case>();
+		caseBarre= new ArrayList<Case>();
 		initialiserCase();
 	}
 	
 	public Tablier()
 	{
 		partie= null;
+		
+		listeCase= new ArrayList<Case>();
+		caseVictoire = new ArrayList<Case>();
+		caseBarre= new ArrayList<Case>();
 		initialiserCase();
 	}
 	
@@ -66,9 +74,10 @@ public class Tablier
 	
 	public void initialiserCase()
 	{
-		listeCase = new ArrayList<Case>();
-		caseVictoire = new ArrayList<Case>();
-		caseBarre = new ArrayList<Case>();
+		
+		listeCase.clear();
+		caseVictoire.clear();
+		caseBarre.clear();
 		
 		caseVictoire.add(new Case(CouleurCase.BLANC, 0, 25));
 		caseVictoire.add(new Case(CouleurCase.NOIR, 0, 0));

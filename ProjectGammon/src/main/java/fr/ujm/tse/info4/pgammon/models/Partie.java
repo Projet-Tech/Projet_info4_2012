@@ -431,34 +431,10 @@ public class Partie {
 			}
 		}
 	
-		
 		if (deplacementProchain!=null && touractuelle !=null ){
-			for (DeSixFaces de : touractuelle.getDeSixFaces()) {
-				if (de.isUtilise() && de.getValeur() == Math.abs(tablier.distanceDeuxCase(deplacementProchain.getCaseDepart(),deplacementProchain.getCaseArriver())))
-				{
-					//recuperation de la couleur de la dame manger
-					/*CouleurCase CaseArriverSaveCouleur;
-					if (deplacementProchain.getCaseArriver().getCouleurDame() == CouleurCase.BLANC)
-						CaseArriverSaveCouleur = CouleurCase.NOIR;
-					else
-						CaseArriverSaveCouleur = CouleurCase.BLANC;*/
-					
-					//TODO si probléme mettre un if
-					tablier.deplacerDame(deplacementProchain.getCaseDepart(),deplacementProchain.getCaseArriver());
-					de.utiliser();
-					/*if(getDernierTour().getDernierDeplacement().isSiCaseBattue())
-					{
-						tablier.deplacerDame(tablier.getCaseBarre(CaseArriverSaveCouleur),deplacementProchain.getCaseArriver());
-					}*/
-					/*if (tourFini)
-					{
-						tourFini = false;
-						deSixFaces = touractuelle.getDeSixFaces();
-						joueurEnCour = touractuelle.getCouleurJoueur();
-					}*/	
-				}
-			}
+			tablier.deplacerDame(deplacementProchain.getCaseDepart(),deplacementProchain.getCaseArriver());
 		}
+		
 		return deplacementProchain;
 	}
 	
@@ -483,9 +459,7 @@ public class Partie {
 		}
 	
 		if (deplacementPrecedent!=null && touractuelle !=null ){
-			for (DeSixFaces de : touractuelle.getDeSixFaces()) {
-				if (de.isUtilise() && de.getValeur() == Math.abs(tablier.distanceDeuxCase(deplacementPrecedent.getCaseArriver(), deplacementPrecedent.getCaseDepart())))
-				{
+		
 					//recuperation de la couleur de la dame manger
 					CouleurCase CaseArriverSaveCouleur;
 					if (deplacementPrecedent.getCaseArriver().getCouleurDame() == CouleurCase.BLANC)
@@ -495,22 +469,13 @@ public class Partie {
 					
 					//TODO si probléme mettre un if
 					tablier.deplacerDame(deplacementPrecedent.getCaseArriver(),deplacementPrecedent.getCaseDepart());
-					de.notUtiliser();
+					
 					if(getDernierTour().getDernierDeplacement().isSiCaseBattue())
 					{
 						tablier.deplacerDame(tablier.getCaseBarre(CaseArriverSaveCouleur),deplacementPrecedent.getCaseArriver());
-					}
-					if (tourFini)
-					{
-						tourFini = false;
-						deSixFaces = touractuelle.getDeSixFaces();
-						joueurEnCour = touractuelle.getCouleurJoueur();
-					}
-					
+					}					
 					
 				}
-			}
-		}
 
 			return deplacementPrecedent;
 	}
