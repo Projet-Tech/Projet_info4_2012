@@ -203,7 +203,7 @@ public class TimeBarr extends JPanel {
 					current_position = (int) (final_position - 0.7*(final_position-current_position));
 					elmentContainer.setBounds(current_position,0,elmentContainer.getPreferredSize().width,elmentContainer.getPreferredSize().height);
 					
-				}
+				} 
 			});
 		timer.start();
 		current_position = final_position;
