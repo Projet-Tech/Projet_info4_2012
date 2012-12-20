@@ -12,8 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.SortedSet;
@@ -25,6 +23,7 @@ import org.jdom2.JDOMException;
 
 import fr.ujm.tse.info4.pgammon.models.Case;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
+import fr.ujm.tse.info4.pgammon.models.Deplacement;
 import fr.ujm.tse.info4.pgammon.models.EtatSession;
 import fr.ujm.tse.info4.pgammon.models.GestionDeSession;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
@@ -42,6 +41,7 @@ public class ControleurPartie implements Controleur
 	private ControleurPartie controleurPartie;
 	private JFrame frame;
 	private Controleur controleur;
+	private int positionRevuePartie;
 	//TODO Ce constructeur seras detruit
 	@Deprecated
 	public  ControleurPartie(Partie partie)
@@ -76,16 +76,121 @@ public class ControleurPartie implements Controleur
 		listenerButtonVideau();
 		listenerPartieSuivante();
 		listenerInterrompreSession();
-		//TODO a supprimer
-		/*vuePartie.getPaneldroitencours().addPropertyChangeListener(new PropertyChangeListener() {
-			
-			@Override
-			public void propertyChange(PropertyChangeEvent arg0) {
-				if (session != null)
-					if (session.getPartieEnCours().isPartieFini())
-						session.finPartie();
+		listenerRevoirPartie();
+		listenerBoutonRevuePartie();
+		
 			}
-		});*/
+	
+	public void listenerBoutonRevuePartie()
+	{
+		vuePartie.getPanelTermineVueBas().getReplayBarr().getEndBtn().addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent e) {}
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			@Override
+			public void mouseExited(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+				
+			}
+			
+		});
+		
+		vuePartie.getPanelTermineVueBas().getReplayBarr().getBeginBtn().addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent e) {}
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			@Override
+			public void mouseExited(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+				
+			}
+			
+		});
+		
+		vuePartie.getPanelTermineVueBas().getReplayBarr().getNextBtn().addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent e) {}
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			@Override
+			public void mouseExited(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				Deplacement dep = session.getPartieEnCours().ProchainDeplacement(positionRevuePartie);
+				if ( dep != null)
+					vuePartie.getPanelTermineVueBas().getReplayBarr().goTo(dep);
+				vuePartie.updateUI();
+				vuePartie.getVueTablier().updateUI();
+				vuePartie.getVueTablier().updateDes();
+			}
+			
+		});
+		
+		vuePartie.getPanelTermineVueBas().getReplayBarr().getPrevBtn().addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent e) {}
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			@Override
+			public void mouseExited(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				if (positionRevuePartie > 0)
+				{
+					Deplacement dep = session.getPartieEnCours().ProchainDeplacement(positionRevuePartie);
+					if ( dep != null)
+						vuePartie.getPanelTermineVueBas().getReplayBarr().goTo(dep);
+				}
+				vuePartie.updateUI();
+				vuePartie.getVueTablier().updateUI();
+				vuePartie.getVueTablier().updateDes();
+				
+			}
+			
+		});
+				
+		
+	}
+	public void listenerRevoirPartie()
+	{
+		vuePartie.getPaneldroitrevoir().getUndo().addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {}
+			@Override
+			public void mouseEntered(MouseEvent arg0) {}
+			@Override
+			public void mouseExited(MouseEvent arg0) {	}
+			@Override
+			public void mousePressed(MouseEvent arg0) {}
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				positionRevuePartie =0;
+				vuePartie.setEtat(EtatSession.REPLAY);
+				vuePartie.getPanelTermineVueBas().getReplayBarr().setTours(session.getPartieEnCours().getHistoriqueToursJoueur());
+				
+			}
+			
+		});
+		
 	}
 	
 	public void listenerBack()

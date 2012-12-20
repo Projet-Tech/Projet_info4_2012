@@ -20,6 +20,7 @@ public class Deplacement
 	private Case caseDepart;
 	private Case caseArriver;
 	private boolean siCaseBattue;
+	private int idDeplacement;
 
 	public Deplacement(Case caseDepart, Case caseArriver, boolean siCaseBattue)
 	{
@@ -83,7 +84,10 @@ public class Deplacement
 	}
 
 
-	
+	public int getIdDeplacement() {
+		return idDeplacement;
+	}
+
 	
 	
 }

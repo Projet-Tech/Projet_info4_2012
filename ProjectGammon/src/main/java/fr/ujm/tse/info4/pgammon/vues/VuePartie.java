@@ -103,11 +103,14 @@ public class VuePartie extends MonochromeVue{
 		panelDroitEnCours = new PanelEnCoursVueDroite(partie);
 		panelDroitEnCours.setBounds(720,0,80,476);
 		add(panelDroitEnCours);
+
+		panelTermineVueBas = new PanelTermineVueBas();
+		panelTermineVueBas.setBounds(0,505,800,95);
+		add(panelTermineVueBas);
 		
 		panelEnCoursVueBas = new PanelEnCoursVueBas();
 		panelEnCoursVueBas.setBounds(0,505,800,95);
 		add(panelEnCoursVueBas);
-		
 		panelDroitRevoir = new PanelTermineVueDroite();
 		panelDroitRevoir.setBounds(720,0,80,476);
 		add(panelDroitRevoir);
@@ -121,39 +124,8 @@ public class VuePartie extends MonochromeVue{
 		panelJoueur2.setBounds(10, 260, 150, 215);
 		add(panelJoueur2);
 		
-		//changement des panels en fonctionde l'etat
-		if(etat.equals(EtatSession.EN_COURS)){
-			
-			panelDroitEnCours.setVisible(true);
-			panelDroitRevoir.setVisible(false);
-		
-		}
-		
-		else if(etat.equals(EtatSession.TERMINEE)){
-		
-			panelDroitEnCours.setVisible(false);
-			panelDroitRevoir.setVisible(true);
-			
-		}
-		
-etat=EtatSession.EN_COURS;
-		
-	
-		
-		
-		if(etat.equals(EtatSession.EN_COURS)){
-				
-			panelDroitEnCours.setVisible(true);
-			panelDroitRevoir.setVisible(false);
-		
-		}
-		
-		else if(etat.equals(EtatSession.TERMINEE)){
-		
-			panelDroitEnCours.setVisible(false);
-			panelDroitRevoir.setVisible(true);
-		}
-		
+
+		setEtat(getEtat());
 	}
 	
 
@@ -200,13 +172,28 @@ etat=EtatSession.EN_COURS;
 	 */
 	public  void setEtat(EtatSession etat ) {
 		this.etat = etat;
+		//changement des panels en fonctionde l'etat
 		if(etat.equals(EtatSession.EN_COURS)){
+			
 			panelDroitEnCours.setVisible(true);
 			panelDroitRevoir.setVisible(false);
+		
 		}
-		else if(etat.equals(EtatSession.TERMINEE)){
+		else{
+		
 			panelDroitEnCours.setVisible(false);
 			panelDroitRevoir.setVisible(true);
+			
+		}
+		
+		
+		if(etat.equals(EtatSession.REPLAY)){
+			panelTermineVueBas.setVisible(true);
+			panelEnCoursVueBas.setVisible(false);
+		}
+		else{
+			panelTermineVueBas.setVisible(false);
+			panelEnCoursVueBas.setVisible(true);
 		}
 	}
 	
