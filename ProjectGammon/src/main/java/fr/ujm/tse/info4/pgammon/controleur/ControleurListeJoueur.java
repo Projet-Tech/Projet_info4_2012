@@ -35,7 +35,7 @@ public class ControleurListeJoueur implements Controleur{
 		
 		this.isCharger = isCharger;
 		
-		vueListeJoueur = new VueListeJoueur(profil);
+		vueListeJoueur = new VueListeJoueur();
 		controleur.getControleur().getFrame().setContentPane(vueListeJoueur);
 		build();
 	}

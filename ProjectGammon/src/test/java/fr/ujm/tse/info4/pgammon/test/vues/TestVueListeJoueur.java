@@ -32,7 +32,7 @@ public class TestVueListeJoueur {
 		Container panel = frame.getContentPane();
 		panel.setLayout(new FlowLayout());
 		
-		VueListeJoueur vueListeJoueur = new VueListeJoueur(tmp);
+		VueListeJoueur vueListeJoueur = new VueListeJoueur();
 		frame.setContentPane(vueListeJoueur);
 		
 		

@@ -60,8 +60,9 @@ public class VueListeJoueur extends MonochromeVue{
 	
 	private ImageAvatar imgjoueur;
 	
-	public VueListeJoueur(Profils mp){
-		profil = mp;
+	public VueListeJoueur(){
+		
+		profil = Profils.getProfils();
 		build();
 		
 		listeJoueur.getList().addListSelectionListener(new ListSelectionListener() {

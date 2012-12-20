@@ -10,6 +10,7 @@ import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Point2D;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -17,10 +18,13 @@ import javax.swing.JPanel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import org.jdom2.JDOMException;
+
 import fr.ujm.tse.info4.pgammon.gui.JoueurCellRenderer;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeListe;
 import fr.ujm.tse.info4.pgammon.gui.SessionCellRenderer;
+import fr.ujm.tse.info4.pgammon.models.GestionDeSession;
 import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.Profils;
 import fr.ujm.tse.info4.pgammon.models.Session;
@@ -43,7 +47,16 @@ public class VueChargerPartie extends JPanel{
 	private PanelParametresVueCharger panelParametresVueCharger;
 	
 	public VueChargerPartie(ArrayList<Session> s){
-		listSession = s;
+		
+		try {
+			GestionDeSession gestion = GestionDeSession.getGestionDeSession();
+			listSession = (ArrayList<Session>) gestion.getListSession();
+		} catch (IOException | JDOMException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		//listSession = s;
 		build();
 		
 		sessions.getList().addListSelectionListener(new ListSelectionListener() {

@@ -44,6 +44,20 @@ public class Session
 		nouvellePartie();
 	}
 	
+	public Session()
+	{
+		/*couleurJoueurAnciennePartie = null;
+		this.idSession = idSession;
+		idMaxPartie=1;
+		etatSession = EtatSession.CONFIGURATION;
+		parametreSession = parametreJeu;
+		scores = new HashMap<Joueur, Integer>();
+		scores.put(parametreSession.getJoueurBlanc(),0);
+		scores.put(parametreSession.getJoueurNoir(),0);
+		joueurGagnantSession =null;
+		nouvellePartie();*/
+	}
+	
 	private void modifierScore(Joueur j, Videau multiplicateur)
 	{
 		//TODO
