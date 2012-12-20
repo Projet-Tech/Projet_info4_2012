@@ -71,6 +71,7 @@ public class VueListeJoueur extends MonochromeVue{
 			public void valueChanged(ListSelectionEvent e) {
 				if (listeJoueur.getList().getSelectedValue() !=null){
 					j=listeJoueur.getList().getSelectedValue();
+					System.out.println(j);
 					updateData();
 						
 				}
@@ -102,7 +103,7 @@ public class VueListeJoueur extends MonochromeVue{
 		setLayout(null);
 		setOpaque(false);
 		
-		j = new Joueur();
+		j = null;
 		
 		//création de la fenetre d'ajouter joueur
 

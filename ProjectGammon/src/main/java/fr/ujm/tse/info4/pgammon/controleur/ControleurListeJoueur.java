@@ -4,6 +4,7 @@ import java.awt.Frame;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.SortedSet;
 import java.util.concurrent.ConcurrentSkipListSet;
@@ -212,7 +213,6 @@ public class ControleurListeJoueur implements Controleur{
 	public void listenerBouttonEnregistrerEditerProfil(){
 		vueAjouterJoueur.getenregistrer().addMouseListener(new MouseListener() {
 
-			@SuppressWarnings("deprecation")
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(flag){
@@ -221,8 +221,9 @@ public class ControleurListeJoueur implements Controleur{
 					Joueur tmpJoueur = new Joueur();		 
 					tmpJoueur.setPseudo(vueAjouterJoueur.getnomPseudo().getText());	
 					tmpJoueur.setImageSource(vueListeJoueur.getVueAjouterJoueur().getChemin());
-					Date date = new Date();
-					id = 10000*date.getMonth()+1000*date.getDay()+100*date.getHours()+10*date.getMinutes()+date.getSeconds();
+					Calendar date = Calendar.getInstance();
+					id = 10000*date.get(Calendar.MONTH)+1000*date.get(Calendar.DATE)
+							+100*date.get(Calendar.HOUR)+10*date.get(Calendar.MINUTE)+date.get(Calendar.SECOND);
 					
 					tmpJoueur.setId(id);
 					
@@ -274,10 +275,7 @@ public class ControleurListeJoueur implements Controleur{
 
 
 	@Override
-	public void retour() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void retour(){}
 
 				
 	
