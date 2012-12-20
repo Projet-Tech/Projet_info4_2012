@@ -1,27 +1,18 @@
 package fr.ujm.tse.info4.pgammon.vues;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Paint;
-import java.awt.RadialGradientPaint;
-import java.awt.RenderingHints;
-import java.awt.geom.Point2D;
-import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import fr.ujm.tse.info4.pgammon.gui.AfficheurScore;
-import fr.ujm.tse.info4.pgammon.gui.Avatar;
 import fr.ujm.tse.info4.pgammon.gui.ImageAvatar;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeLabel;
 import fr.ujm.tse.info4.pgammon.gui.MonochromePanel;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
-import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.Session;
 
 public class PanelParametresVueCharger extends MonochromePanel{
@@ -116,77 +107,73 @@ public class PanelParametresVueCharger extends MonochromePanel{
 		
 		
 		//récupération de l'image
-				try{
-					iconeparties = new ImageIcon(imgparties);
-					iconetime = new ImageIcon(imgtime);
-					imgpionBlanc = new ImageIcon(pionblanc);
-					imgpionNoir = new ImageIcon(pionnoir);
-				}catch(Exception err){
-					System.err.println(err);
-				}
-				
-				
-				lab_parties = new MonochromeLabel("");
-				lab_parties.setBounds(15, 290, 120, 40);
-				add(lab_parties);
-					
-				lab_temps = new MonochromeLabel("");
-				lab_temps.setBounds(165, 290, 120, 40);
-				add(lab_temps);
-				
-				
-				scorej1 = new AfficheurScore(0, CouleurCase.BLANC);
-				scorej1.setBounds(95, 70, 40, 40);
-				add(scorej1);
-				
-				scorej2 = new AfficheurScore(0, CouleurCase.NOIR);
-				scorej2.setBounds(160, 70, 40, 40);
-				add(scorej2);
-				
-				imgjoueurBlanc = new ImageAvatar("");
-				imgjoueurBlanc.setBounds(15, 70, 70, 70);
-				add(imgjoueurBlanc);
-				
-				imgjoueurNoir = new ImageAvatar("");
-				imgjoueurNoir.setBounds(210, 70, 70, 70);
-				add(imgjoueurNoir);
-				
-				
-				text_parties = new JLabel();
-				text_parties.setText("<html>Nombre de partie<br> pour la session");
-				text_parties.setForeground(new Color(0xCCCCCC));
-				text_parties.setBounds(15, 180, 300, 50);
-				add(text_parties);
-				
-				text_temps = new JLabel();
-				text_temps.setText("<html>Limitation du temps <br>par tour en seconde");
-				text_temps.setForeground(new Color(0xCCCCCC));
-				text_temps.setBounds(165, 180, 300, 50);
-				add(text_temps);
-				
-				nomJoueurBlanc = new JLabel();
-				nomJoueurBlanc.setText("");
-				nomJoueurBlanc.setForeground(new Color(0xCCCCCC));
-				nomJoueurBlanc.setFont(new Font("Arial", Font.BOLD, 22));
-				nomJoueurBlanc.setBounds(15, 28, 120, 50);
-				add(nomJoueurBlanc);
-				
-				nomJoueurNoir = new JLabel();
-				nomJoueurNoir.setText("");
-				nomJoueurNoir.setForeground(new Color(0xCCCCCC));
-				nomJoueurNoir.setFont(new Font("Arial", Font.BOLD, 22));
-				nomJoueurNoir.setBounds(160, 28, 120, 50);
-				add(nomJoueurNoir);
-				
-				text_videau = new JLabel();
-				text_videau.setForeground(new Color(0xCCCCCC));
-				text_videau.setBounds(20, 330, 300, 50);
-				add(text_videau);
-				
-				boutonSupprimer = new MonochromeButton("Sup.");
-				boutonSupprimer.setForeground(new Color(0xCCCCCC));
-				boutonSupprimer.setBounds(165, 340, 120, 40);
-				add(boutonSupprimer);
+		iconeparties = new ImageIcon(imgparties);
+		iconetime = new ImageIcon(imgtime);
+		imgpionBlanc = new ImageIcon(pionblanc);
+		imgpionNoir = new ImageIcon(pionnoir);
+
+
+		lab_parties = new MonochromeLabel("");
+		lab_parties.setBounds(15, 290, 120, 40);
+		add(lab_parties);
+
+		lab_temps = new MonochromeLabel("");
+		lab_temps.setBounds(165, 290, 120, 40);
+		add(lab_temps);
+
+
+		scorej1 = new AfficheurScore(0, CouleurCase.BLANC);
+		scorej1.setBounds(95, 70, 40, 40);
+		add(scorej1);
+
+		scorej2 = new AfficheurScore(0, CouleurCase.NOIR);
+		scorej2.setBounds(160, 70, 40, 40);
+		add(scorej2);
+
+		imgjoueurBlanc = new ImageAvatar("");
+		imgjoueurBlanc.setBounds(15, 70, 70, 70);
+		add(imgjoueurBlanc);
+
+		imgjoueurNoir = new ImageAvatar("");
+		imgjoueurNoir.setBounds(210, 70, 70, 70);
+		add(imgjoueurNoir);
+
+
+		text_parties = new JLabel();
+		text_parties.setText("<html>Nombre de partie<br> pour la session");
+		text_parties.setForeground(new Color(0xCCCCCC));
+		text_parties.setBounds(15, 180, 300, 50);
+		add(text_parties);
+
+		text_temps = new JLabel();
+		text_temps.setText("<html>Limitation du temps <br>par tour en seconde");
+		text_temps.setForeground(new Color(0xCCCCCC));
+		text_temps.setBounds(165, 180, 300, 50);
+		add(text_temps);
+
+		nomJoueurBlanc = new JLabel();
+		nomJoueurBlanc.setText("");
+		nomJoueurBlanc.setForeground(new Color(0xCCCCCC));
+		nomJoueurBlanc.setFont(new Font("Arial", Font.BOLD, 22));
+		nomJoueurBlanc.setBounds(15, 28, 120, 50);
+		add(nomJoueurBlanc);
+
+		nomJoueurNoir = new JLabel();
+		nomJoueurNoir.setText("");
+		nomJoueurNoir.setForeground(new Color(0xCCCCCC));
+		nomJoueurNoir.setFont(new Font("Arial", Font.BOLD, 22));
+		nomJoueurNoir.setBounds(160, 28, 120, 50);
+		add(nomJoueurNoir);
+
+		text_videau = new JLabel();
+		text_videau.setForeground(new Color(0xCCCCCC));
+		text_videau.setBounds(20, 330, 300, 50);
+		add(text_videau);
+
+		boutonSupprimer = new MonochromeButton("Sup.");
+		boutonSupprimer.setForeground(new Color(0xCCCCCC));
+		boutonSupprimer.setBounds(165, 340, 120, 40);
+		add(boutonSupprimer);
 	}
 	
 	
