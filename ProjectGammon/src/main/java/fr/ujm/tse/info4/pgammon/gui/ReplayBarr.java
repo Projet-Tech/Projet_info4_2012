@@ -109,11 +109,13 @@ public class ReplayBarr extends JPanel {
 	}
 	
 	public void goBegin(){
+		avance = true;
 		setCurrent(0);
 	}
 	
 	public void goEnd(){
 		setCurrent(total-1);
+		avance = false;
 	}
 	
 
