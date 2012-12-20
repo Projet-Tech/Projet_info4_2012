@@ -150,4 +150,10 @@ public class Profils
 	public List<Joueur> getList(){
 		return joueurs;
 	}
+	
+	public Joueur getJoueur(int id){
+		
+		
+		return null;
+	}
 }
