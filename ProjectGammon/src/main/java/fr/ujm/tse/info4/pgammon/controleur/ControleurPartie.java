@@ -29,6 +29,7 @@ import fr.ujm.tse.info4.pgammon.models.EtatSession;
 import fr.ujm.tse.info4.pgammon.models.GestionDeSession;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 import fr.ujm.tse.info4.pgammon.models.Partie;
+import fr.ujm.tse.info4.pgammon.models.Profils;
 import fr.ujm.tse.info4.pgammon.models.Session;
 import fr.ujm.tse.info4.pgammon.vues.VuePartie;
 
@@ -273,6 +274,10 @@ public class ControleurPartie implements Controleur
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
+							
+								Profils profil = Profils.getProfils();
+								profil.sauvegarder();
+
 							controleur.retour();
 							
 						}
@@ -306,7 +311,11 @@ public class ControleurPartie implements Controleur
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				if(session.isSessionFini())
+				{
 					controleur.retour();
+					Profils profil = Profils.getProfils();
+					profil.sauvegarder();
+				}
 				else
 					controleurPartie.nouvellePartie();
 					
@@ -329,19 +338,14 @@ public class ControleurPartie implements Controleur
 	
 	public void finPartie() 
 	{
-		try {
-			GestionDeSession gestion = GestionDeSession.getGestionDeSession();
-			gestion.sauvegarder();
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		
 		session.finPartie();
 	
 		vuePartie.getPanelEnCoursVueBas().updateScore(session.getScores().get(session.getParametreSession().getJoueurBlanc()), session.getScores().get(session.getParametreSession().getJoueurNoir()));
 	
 		if(session.verifFinSession())
 		{
+			session.finSession();
 			vuePartie.getPaneldroitrevoir().getLabnext().setText("<html>Finir<br>Session");
 			vuePartie.afficherFenetreDemande(session.getPartieEnCours().getParametreJeu().getJoueur(session.getPartieEnCours().getJoueurEnCour()).getPseudo() + " a Gagné la session", null);
 		}
