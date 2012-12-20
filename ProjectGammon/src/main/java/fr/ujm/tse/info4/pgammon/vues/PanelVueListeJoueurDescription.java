@@ -41,8 +41,6 @@ public class PanelVueListeJoueurDescription extends MonochromePanel{
 	
 	private JLabel nomJoueur;
 	private JLabel statisitques;
-	private JLabel conteneurimgjoueur;
-	private JLabel conteneurimgpion;
 	
 	private MonochromeButton modifier;
 	private MonochromeButton supprimer;
@@ -115,6 +113,29 @@ public class PanelVueListeJoueurDescription extends MonochromePanel{
 			});
 		}
 		
+		private void listenerboutonchangerConseilcoup()
+		{
+			conseilCoup.addMouseListener(new MouseListener() {
+				
+				@Override
+				public void mouseReleased(MouseEvent e) {}
+				@Override
+				public void mousePressed(MouseEvent e) {}		
+				@Override
+				public void mouseExited(MouseEvent e) {}			
+				@Override
+				public void mouseEntered(MouseEvent e) {}
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if(joueur.getNiveauAssistant() == NiveauAssistant.COMPLET )
+						joueur.setNiveauAssistant(NiveauAssistant.SIMPLE);
+					else
+						joueur.setNiveauAssistant(NiveauAssistant.COMPLET);
+					updateData();
+				}
+			});
+		}
+		
 		public void build(){
 			
 			
@@ -123,8 +144,6 @@ public class PanelVueListeJoueurDescription extends MonochromePanel{
 			add(imagejoueur);
 			
 			JLabel textStat = new JLabel();
-			conteneurimgjoueur = new JLabel();
-			conteneurimgpion = new JLabel();
 			coupPossible = new MonochromeCheckbox("<html> Afficher les <br> coups possibles");
 			conseilCoup = new MonochromeCheckbox("<html> conseiller le <br> prochain coup");
 			
@@ -209,6 +228,7 @@ public class PanelVueListeJoueurDescription extends MonochromePanel{
 			add(supprimer);
 			
 			listenerboutonchangerCoupPossible();
+			listenerboutonchangerConseilcoup();
 			
 		}
 		

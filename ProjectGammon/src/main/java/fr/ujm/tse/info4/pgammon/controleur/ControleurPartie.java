@@ -21,6 +21,8 @@ import java.util.concurrent.ConcurrentSkipListSet;
 
 import javax.swing.JFrame;
 
+import org.jdom2.JDOMException;
+
 import fr.ujm.tse.info4.pgammon.models.Case;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 import fr.ujm.tse.info4.pgammon.models.EtatSession;
@@ -265,6 +267,9 @@ public class ControleurPartie implements Controleur
 								gestion.sauvegarder();
 								
 							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							} catch (JDOMException e1) {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}

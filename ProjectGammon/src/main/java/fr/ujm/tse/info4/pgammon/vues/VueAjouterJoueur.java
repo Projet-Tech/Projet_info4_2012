@@ -7,6 +7,8 @@ import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.RadialGradientPaint;
 import java.awt.RenderingHints;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.geom.Point2D;
 
 import javax.swing.JLabel;
@@ -34,7 +36,7 @@ public class VueAjouterJoueur extends MonochromePanel{
 	
 	private ImageAvatar imgjoueur;
 	
-	private String chemin = Avatar.CHOUETTE.getPath();
+	private String chemin = "";
 	
 	public VueAjouterJoueur(){
 		super("Edition de profil");
@@ -92,6 +94,27 @@ public class VueAjouterJoueur extends MonochromePanel{
 		Avatar.setBounds(10, 90, 100, 50);
 		add(Avatar);
 		
+		listenerSupprimerAvatar();
+		
+	}
+	
+	private void listenerSupprimerAvatar()
+	{
+		supprimerAvatar.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}		
+			@Override
+			public void mouseExited(MouseEvent e) {}			
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setPath("");
+			}
+		});
 	}
 	
 	@Override

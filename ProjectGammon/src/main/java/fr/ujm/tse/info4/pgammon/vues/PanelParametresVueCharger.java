@@ -71,8 +71,8 @@ public class PanelParametresVueCharger extends MonochromePanel{
 	}
 	
 	public void updateData(){
-		lab_parties.setText(new Integer(session.getParametreSession().getNbrPartieGagnante()).toString());
-		lab_temps.setText(new Integer(session.getParametreSession().getSecondesParTour()).toString());
+		lab_parties.setText(new Integer(session.getParametreSession().getNbrPartieGagnante()/1000).toString());
+		lab_temps.setText(new Integer(session.getParametreSession().getSecondesParTour()/1000).toString());
 		scorej1.setScore(session.getScores().get(session.getPartieEnCours().getParametreJeu().getJoueurBlanc()));
 		scorej2.setScore(session.getScores().get(session.getPartieEnCours().getParametreJeu().getJoueurNoir()));
 		imgjoueurBlanc.setPath(session.getPartieEnCours().getParametreJeu().getJoueurBlanc().getImageSource());
@@ -105,11 +105,11 @@ public class PanelParametresVueCharger extends MonochromePanel{
 				
 				
 				
-			lab_parties = new MonochromeLabel(new Integer(session.getParametreSession().getNbrPartieGagnante()).toString());
+			lab_parties = new MonochromeLabel(new Integer(session.getParametreSession().getNbrPartieGagnante()/1000).toString());
 			lab_parties.setBounds(20, 290, 110, 40);
 			add(lab_parties);
 				
-			lab_temps = new MonochromeLabel(new Integer(session.getParametreSession().getSecondesParTour()).toString());
+			lab_temps = new MonochromeLabel(new Integer(session.getParametreSession().getSecondesParTour()/1000).toString());
 			lab_temps.setBounds(170, 290, 110, 40);
 			add(lab_temps);
 			
