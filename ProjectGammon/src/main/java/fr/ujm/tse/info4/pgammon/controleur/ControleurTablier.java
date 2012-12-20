@@ -97,7 +97,6 @@ public class ControleurTablier implements Controleur{
 								
 								if (partie.siDesUtilises())
 								{	
-									//TODO affichage changement de Tour
 									changerTour();	
 									
 								}
@@ -182,7 +181,6 @@ public class ControleurTablier implements Controleur{
 						  }
 
 					} catch (TourNonJouableException e) {
-						// TODO affichage ecran
 						changerTour();
 					}
 					  vueTablier.uncandidateAll();
@@ -190,7 +188,6 @@ public class ControleurTablier implements Controleur{
 					  
 					  if (partie.siDesUtilises())
 						{	
-							//TODO affichage changement de Tour
 							changerTour();			
 						}
 						else if(!partie.hasCoupPossible())
