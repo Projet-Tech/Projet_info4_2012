@@ -64,7 +64,7 @@ public class GestionDeSession {
 		
 		for (int i = 0; i < files.length; i++) {
 			
-			String tmpPath = "sauvegardeSessions/"+files[i].toString();
+			String tmpPath = files[i].toString();
 			Document document = builder.build(tmpPath);
 			Element racine = document.getRootElement();
 			
