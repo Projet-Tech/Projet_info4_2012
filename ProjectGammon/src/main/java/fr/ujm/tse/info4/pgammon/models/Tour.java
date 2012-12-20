@@ -94,7 +94,7 @@ public class Tour
 	public void charger(Element tour)
 	{
 		
-		switch(tour.getChildText("couleurDame")){
+		switch(tour.getChildText("couleurJoueur")){
 			case "BLANC":couleurJoueur = CouleurCase.BLANC;break;
 			case "NOIR":couleurJoueur = CouleurCase.NOIR;break;
 			case "VIDE":couleurJoueur = CouleurCase.VIDE;
@@ -103,6 +103,8 @@ public class Tour
 		List<Element> listdeSixFaces = tour.getChild("deSixFaces").getChildren("deSixFace");
 		Iterator<Element> i = listdeSixFaces.iterator();
 		 
+		deSixFaces = new ArrayList<DeSixFaces>();
+		
 		while(i.hasNext()){
 			DeSixFaces tmpDe = new DeSixFaces();
 			tmpDe.charger(i.next());
@@ -111,7 +113,9 @@ public class Tour
 		
 		List<Element> listlistDeplacement = tour.getChild("deplacements").getChildren("deplacement");
 		Iterator<Element> it = listlistDeplacement.iterator();
-		 
+		
+		listDeplacement = new ArrayList<Deplacement>();
+		
 		while(it.hasNext()){
 			Deplacement tmpDeplacement = new Deplacement();
 			tmpDeplacement.charger(it.next());
