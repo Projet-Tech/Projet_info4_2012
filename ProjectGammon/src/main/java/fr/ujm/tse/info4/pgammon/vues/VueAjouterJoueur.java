@@ -34,7 +34,7 @@ public class VueAjouterJoueur extends MonochromePanel{
 	
 	private ImageAvatar imgjoueur;
 	
-	private String chemin = Avatar.CHOUETTE.getPath();
+	private String chemin = "";
 	
 	public VueAjouterJoueur(){
 		super("Edition de profil");
