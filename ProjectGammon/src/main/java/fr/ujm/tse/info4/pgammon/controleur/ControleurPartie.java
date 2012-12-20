@@ -132,6 +132,7 @@ public class ControleurPartie implements Controleur
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				Deplacement dep = session.getPartieEnCours().ProchainDeplacement(positionRevuePartie);
+				positionRevuePartie++;
 				if ( dep != null)
 					vuePartie.getPanelTermineVueBas().getReplayBarr().goTo(dep);
 				vuePartie.updateUI();
@@ -156,6 +157,7 @@ public class ControleurPartie implements Controleur
 				if (positionRevuePartie > 0)
 				{
 					Deplacement dep = session.getPartieEnCours().ProchainDeplacement(positionRevuePartie);
+					positionRevuePartie--;
 					if ( dep != null)
 						vuePartie.getPanelTermineVueBas().getReplayBarr().goTo(dep);
 				}
@@ -186,6 +188,10 @@ public class ControleurPartie implements Controleur
 				positionRevuePartie =0;
 				vuePartie.setEtat(EtatSession.REPLAY);
 				vuePartie.getPanelTermineVueBas().getReplayBarr().setTours(session.getPartieEnCours().getHistoriqueToursJoueur());
+				session.getPartieEnCours().getTablier().initialiserCase();
+				vuePartie.updateUI();
+				vuePartie.getVueTablier().updateUI();
+				vuePartie.getVueTablier().updateDes();
 				
 			}
 			
