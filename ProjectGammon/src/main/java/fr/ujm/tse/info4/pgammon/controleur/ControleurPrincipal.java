@@ -181,9 +181,9 @@ public class ControleurPrincipal implements Controleur{
 	
 	public void chargerSession(Session session)
 	{
-		master.lancerSession(session.getParametreSession());
+		master.chargerSession(session);
 		session = master.getSession();
-		session.LancerPartie();
+		//session.LancerPartie();
 		ControleurPartie controleurPartie = new ControleurPartie(session,this);
 		
 		frame.setContentPane(controleurPartie.getVuePartie());
