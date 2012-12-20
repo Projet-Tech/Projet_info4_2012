@@ -142,7 +142,7 @@ public class FenetreDemandeAnimationBase extends TranstionAnimeeBase {
 	
 	
 	private Point getTextPosition(){
-		return new Point((int) (150),(int) (345 + 400 * quad) );
+		return new Point((int) (600)-c_text.length*10,(int) (315 + 500 * quad) );
 	}
 	
 	private void updateQuadraticTransition(){
@@ -204,7 +204,7 @@ public class FenetreDemandeAnimationBase extends TranstionAnimeeBase {
     	g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, getTitleAlpha()));
 
 		Point p = getTextPosition();
-		g2.drawChars(c_titre, 0, c_titre.length,p.x, p.y);
+		g2.drawChars(c_text, 0, c_text.length,p.x, p.y);
 	}
 
 
