@@ -422,11 +422,12 @@ public class Partie {
 			touractuelle = tour;
 			for (Deplacement deplacement : tour.getListDeplacement()) {
 				j++;
-				if(j == i)
+				if(j == (i+1))
 				{
 					deplacementProchain = deplacement;
 					break;
 				}
+				
 			}
 		}
 	
@@ -473,7 +474,7 @@ public class Partie {
 			touractuelle = tour;
 			for (Deplacement deplacement : tour.getListDeplacement()) {
 				j++;
-				if(j == i)
+				if(j == (i-1))
 				{
 					deplacementPrecedent = deplacement;
 					break;
