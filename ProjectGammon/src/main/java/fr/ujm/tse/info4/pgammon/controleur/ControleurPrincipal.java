@@ -25,6 +25,7 @@ import fr.ujm.tse.info4.pgammon.vues.VueMenu;
 public class ControleurPrincipal implements Controleur{
 
 	private VueMenu vueMenu;
+	private Session session;
 	private Master master;
 	private JFrame frame;
 	private VueIntermediairePartie creationPartie;
@@ -34,7 +35,7 @@ public class ControleurPrincipal implements Controleur{
 		this.master = master;
 		controleurPrincipal= this;
 		frame = new JFrame("jeu de backgammon");
-
+		session =null;
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(816, 638);
 		Container panel = frame.getContentPane();
@@ -158,9 +159,21 @@ public class ControleurPrincipal implements Controleur{
 	public void nouvelleSession(ParametreJeu parametreJeu)
 	{
 		master.lancerSession(parametreJeu);
-		Session s1 = master.getSession();
-		s1.LancerPartie();
-		ControleurPartie controleurPartie = new ControleurPartie(s1,this);
+		session = master.getSession();
+		session.LancerPartie();
+		ControleurPartie controleurPartie = new ControleurPartie(session,this);
+		
+		frame.setContentPane(controleurPartie.getVuePartie());
+		
+	}
+	
+
+	public void finSession()
+	{
+		master.arreterSession(session.getIdSession());
+		session = master.getSession();
+		session.LancerPartie();
+		ControleurPartie controleurPartie = new ControleurPartie(session,this);
 		
 		frame.setContentPane(controleurPartie.getVuePartie());
 		
@@ -169,9 +182,9 @@ public class ControleurPrincipal implements Controleur{
 	public void chargerSession(Session session)
 	{
 		master.lancerSession(session.getParametreSession());
-		Session s1 = master.getSession();
-		s1.LancerPartie();
-		ControleurPartie controleurPartie = new ControleurPartie(s1,this);
+		session = master.getSession();
+		session.LancerPartie();
+		ControleurPartie controleurPartie = new ControleurPartie(session,this);
 		
 		frame.setContentPane(controleurPartie.getVuePartie());
 		

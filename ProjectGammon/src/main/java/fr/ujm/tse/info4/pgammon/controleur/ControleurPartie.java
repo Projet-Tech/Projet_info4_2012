@@ -314,6 +314,7 @@ public class ControleurPartie implements Controleur
 				if(session.isSessionFini())
 				{
 					controleur.retour();
+	//				((ControleurPrincipal)controleur).finSession();
 					Profils profil = Profils.getProfils();
 					profil.sauvegarder();
 				}

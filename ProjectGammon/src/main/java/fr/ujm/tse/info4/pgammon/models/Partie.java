@@ -11,7 +11,6 @@ package fr.ujm.tse.info4.pgammon.models;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
 
 import org.jdom2.Element;
 
