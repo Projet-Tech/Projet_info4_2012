@@ -68,7 +68,10 @@ public class Horloge implements ActionListener{
 	public void setValue(int value) {
 		this.value = value;
 	}
-	
+
+	public void setDuree(int value) {
+		this.duree = value;
+	}
 	public float getRapport(){
 		return (float)(value)/(float)(duree);
 	}
