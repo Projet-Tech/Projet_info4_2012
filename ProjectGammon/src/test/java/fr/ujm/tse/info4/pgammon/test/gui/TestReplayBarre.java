@@ -260,14 +260,14 @@ public class TestReplayBarre {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				tb.goEnd();
+				tb.goTo(mon_deplacement,false);
 			}
 		});
 		tb.getBeginBtn().addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				tb.goTo(mon_deplacement);
+				tb.goTo(mon_deplacement,true);
 			}
 		});
 		tb.setBounds(0,400,800,300);

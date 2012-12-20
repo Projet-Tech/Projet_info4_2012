@@ -49,11 +49,13 @@ public class ReplayBarr extends JPanel {
 	private Timer timer;
 	private int current_position;
 	private int final_position;
+	private boolean avance;
 	
 	public ReplayBarr(List<Tour> tours) {
 		this.tours = tours;
 		current = 0;
 		old_current=0;
+		avance = false;
 		init();
 		build();
 		init_position();
@@ -80,10 +82,15 @@ public class ReplayBarr extends JPanel {
 	public void updatePosition(){
 		
 	}
-	public void goTo(Deplacement dep){
+	public void goTo(Deplacement dep, boolean isAvance){
+		avance = isAvance;
 		setCurrent(getIndexOf(dep));
 	}
 
+	@Deprecated
+	public void goTo(Deplacement dep){
+		setCurrent(getIndexOf(dep));
+	}
 	@Deprecated
 	public void goNext(){
 		int index = current+1;
@@ -115,8 +122,6 @@ public class ReplayBarr extends JPanel {
 			value = 0;
 		if(value>= total)
 			value = total-1;
-		if(current == value)
-			return;
 		
 		old_current = current;
 		current = value;
@@ -211,7 +216,10 @@ public class ReplayBarr extends JPanel {
 		for(int i = min; i <= max ; i ++){
 			putElement(i);
 		}
-		final_position = (getSize().width)/2 - current * SEPARATION;
+		int avance_offset = 0;
+		if(avance)
+			avance_offset = -30;
+		final_position = (getSize().width)/2 + avance_offset - current * SEPARATION;
 	}
 
 	@Override
