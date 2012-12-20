@@ -13,8 +13,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import fr.ujm.tse.info4.pgammon.models.Horloge;
+import fr.ujm.tse.info4.pgammon.models.HorlogeEvent;
+import fr.ujm.tse.info4.pgammon.models.HorlogeEventListener;
 
-public class HorlogeBarr extends JPanel {
+public class HorlogeBarr extends JPanel implements HorlogeEventListener {
 	private final int LABEL_WIDTH = 50;
 	JLabel timeLbl;
 	Horloge horloge;
@@ -30,8 +32,13 @@ public class HorlogeBarr extends JPanel {
 	
 
 	private void setHorloge(Horloge h) {
+
+		if(horloge != null)
+			horloge.removeListener(this);
 		this.horloge = h;
-		
+		if(horloge != null)
+			horloge.addListener(this);
+			
 	}
 
 
@@ -39,8 +46,10 @@ public class HorlogeBarr extends JPanel {
 
 	private void build() {
 		setLayout(null);
-		timeLbl = new JLabel("aa:bb");
-		timeLbl.setBounds(0,0,100,50);
+		setOpaque(false);
+		timeLbl = new JLabel();
+		timeLbl.setForeground(new Color(0xCCCCCC));
+		timeLbl.setBounds(0,0,40,LABEL_WIDTH);
 		add(timeLbl);
 	}
 
@@ -59,24 +68,19 @@ public class HorlogeBarr extends JPanel {
 		int h = getHeight(); 
 		int w = getWidth(); 
 
-		int time_width = (int) ((w - LABEL_WIDTH)*horloge.getRapport());
-				
+		int time_width = (w - LABEL_WIDTH) - (int) ((w - LABEL_WIDTH)*horloge.getRapport());
+		System.out.println(time_width);
 		// Arriere plan
-		p = new RadialGradientPaint(new Point2D.Double(getWidth() / 2.0,
-                getHeight() / 2.0), 
-                getHeight(),
-                new float[] { 0.0f, 0.8f },
-                new Color[] { new Color(0x333333), new Color(0x000000) },
-                RadialGradientPaint.CycleMethod.NO_CYCLE);
+		p = new Color(0xDDDDDD);
 		
 		g2.setPaint(p); 
-		g2.fillRect(LABEL_WIDTH, 0, time_width, h); 
+		g2.fillRect(LABEL_WIDTH+6, 6, time_width-9, h-11); 
 		
 		// Bordure
-		p = new Color(0x808080);
-		g2.setStroke(new BasicStroke(5.0f) );
+		p = new Color(0xAAAAAA);
+		g2.setStroke(new BasicStroke(3.0f) );
 		g2.setPaint(p); 
-		g2.drawRect(2+LABEL_WIDTH, 0, w - 5 - LABEL_WIDTH , h - 5 );
+		g2.drawRect(2+LABEL_WIDTH,2, w-4 - LABEL_WIDTH , h-4);
 		
 		
 		g2.dispose(); 
@@ -84,4 +88,25 @@ public class HorlogeBarr extends JPanel {
 	}
 	@Override
 	protected void paintBorder(Graphics g) {}
+
+
+
+
+	@Override
+	public void finHorloge(HorlogeEvent horloge) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+	@Override
+	public void updateHorloge(HorlogeEvent evt) {
+		if(evt.getSource() == horloge)
+			repaint();
+		
+		if(timeLbl == null)
+			timeLbl.setText(String.valueOf(horloge.getValue()/1000));
+	}
 }

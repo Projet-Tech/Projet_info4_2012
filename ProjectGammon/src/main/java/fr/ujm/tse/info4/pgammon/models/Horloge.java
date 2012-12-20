@@ -10,7 +10,7 @@ import javax.swing.Timer;
 import fr.ujm.tse.info4.pgammon.models.HorlogeEvent.HorlogeEventType;
 
 public class Horloge implements ActionListener{
-	private final int UPDATE_PERIOD = 100;
+	private final int UPDATE_PERIOD = 10;
 	ArrayList<HorlogeEventListener> listeners = new ArrayList<>();
 	Timer timer;
 	int duree;
@@ -22,6 +22,10 @@ public class Horloge implements ActionListener{
 	
 	public void addListener(HorlogeEventListener listener){
 		listeners.add(listener);
+	}
+	
+	public void removeListener(HorlogeEventListener listener){
+		listeners.remove(listener);
 	}
 	
 	private void fireFinHorloge(){

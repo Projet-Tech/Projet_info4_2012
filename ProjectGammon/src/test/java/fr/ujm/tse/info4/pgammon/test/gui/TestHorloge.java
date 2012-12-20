@@ -2,9 +2,13 @@ package fr.ujm.tse.info4.pgammon.test.gui;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
 
 import fr.ujm.tse.info4.pgammon.gui.HorlogeBarr;
+import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
 import fr.ujm.tse.info4.pgammon.models.Horloge;
 
 
@@ -21,11 +25,22 @@ public class TestHorloge {
 
 		panel.setBackground(new Color(0x00000));
 		
-		Horloge h = new Horloge(10000);
+		final Horloge h = new Horloge(10000);
 		HorlogeBarr hb  = new HorlogeBarr(h);
-		hb.setBounds(0,100,600,50);		
+		hb.setBounds(0,100,600,30);		
 		panel.add(hb);
 		h.start();
+		
+		MonochromeButton btn = new MonochromeButton("+");
+		btn.setBounds(600,100,150,50);
+		panel.add(btn);
+		btn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				h.restart();
+			}
+		});
 		
 		frame.setVisible(true);
 	}
