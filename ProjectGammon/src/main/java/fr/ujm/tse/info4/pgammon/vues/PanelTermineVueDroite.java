@@ -45,7 +45,7 @@ public class PanelTermineVueDroite extends JPanel{
 			
 			//setOpaque(true);
 			//bouton pour revoir la partie
-			next = new MonochromeIconButton(IconMonochromeType.SUIVANT,"MonochromeIconButton");
+			next = new MonochromeIconButton(IconMonochromeType.SUIVANT,"MonochromeIconButton",MonochromeIconButton.NOIR);
 			next.setSizeBig();
 			next.setBounds(10, 20, next.getPreferredSize().width, next.getPreferredSize().height);
 			add(next);
@@ -55,17 +55,17 @@ public class PanelTermineVueDroite extends JPanel{
 			labnext.setBounds(15, 70, 80, 60);
 			add(labnext);
 			
-			undo = new MonochromeIconButton(IconMonochromeType.ANNULER,"MonochromeIconButton");
+			undo = new MonochromeIconButton(IconMonochromeType.PLAY,"MonochromeIconButton",MonochromeIconButton.NOIR);
 			undo.setSizeBig();
 			undo.setBounds(10, 185, undo.getPreferredSize().width, undo.getPreferredSize().height);
 			add(undo);
 			
-			JLabel labundo = new JLabel("<html>revoir<br>partie<br>du début");
+			JLabel labundo = new JLabel("Replay!");
 			labundo.setForeground(new Color(0xCCCCCC));
 			labundo.setBounds(10, 240, 80, 60);
 			add(labundo);
 			
-			x_white = new MonochromeIconButton(IconMonochromeType.X_BLANC,"MonochromeIconButton");
+			x_white = new MonochromeIconButton(IconMonochromeType.X_BLANC,"MonochromeIconButton",MonochromeIconButton.NOIR);
 			x_white.setSizeBig();
 			x_white.setBounds(10, 350, x_white.getPreferredSize().width, x_white.getPreferredSize().height);
 			add(x_white);
