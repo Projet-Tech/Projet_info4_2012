@@ -79,7 +79,7 @@ public class ReplayBarrElement extends JPanel {
 			}
 		}
 
-		g2.drawImage(icon.getImage(),0,40,this);
+		g2.drawImage(icon.getImage(),0,60,this);
 		
 		g2.dispose();
 		
