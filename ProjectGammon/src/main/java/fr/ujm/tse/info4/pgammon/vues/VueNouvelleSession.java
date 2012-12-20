@@ -29,7 +29,7 @@ public class VueNouvelleSession extends JPanel{
 	//déclaration des variables
 	private static final long serialVersionUID = -5590865478480555417L;
 	
-	private MonochromeButton boutonlistejoueur;
+
 	private MonochromeButton boutoncommencer; 
 	private MonochromeIconButton boutonchangercouleur; 
 	private MonochromeButton boutonRetour;
@@ -63,7 +63,6 @@ public class VueNouvelleSession extends JPanel{
 		
 		
 		boutonRetour = new MonochromeButton("Retour");
-		 boutonlistejoueur = new MonochromeButton("Liste des joueurs");
 		 boutoncommencer = new MonochromeButton("Commencer");
 		 
 		 boutonchangercouleur = new MonochromeIconButton(IconMonochromeType.SWITCH,"MonochromeIconButton","NOIR");
@@ -87,9 +86,8 @@ public class VueNouvelleSession extends JPanel{
 		 
 		 panelparamètre.setBounds(420, 35, 344, 352);
 		 
-		 boutonlistejoueur.setBounds(37,440,332,58);
 		 
-		 boutoncommencer.setBounds(420,440,344,58);
+		 boutoncommencer.setBounds(200,420,380,58);
 		 
 		 boutonchangercouleur.setBounds(175,190,55,55);
 		 
@@ -98,7 +96,6 @@ public class VueNouvelleSession extends JPanel{
 		 add(paneljoueur1);
 		 add(paneljoueur2);
 		 add(panelparamètre);
-		 add(boutonlistejoueur);
 		 add(boutoncommencer);
 		 add(boutonchangercouleur);
 		 add(boutonRetour);
@@ -151,9 +148,6 @@ public class VueNouvelleSession extends JPanel{
 		
 	}
 	
-	public MonochromeButton getBoutonlistejoueur() {
-		return boutonlistejoueur;
-	}
 
 	public MonochromeButton getBoutoncommencer() {
 		return boutoncommencer;

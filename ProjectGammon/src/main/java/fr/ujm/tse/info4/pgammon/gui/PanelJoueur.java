@@ -106,6 +106,29 @@ public class PanelJoueur extends MonochromePanel{
 			});
 		}
 		
+		private void listenerboutonchangerConseilcoup()
+		{
+			conseilcoup.addMouseListener(new MouseListener() {
+				
+				@Override
+				public void mouseReleased(MouseEvent e) {}
+				@Override
+				public void mousePressed(MouseEvent e) {}		
+				@Override
+				public void mouseExited(MouseEvent e) {}			
+				@Override
+				public void mouseEntered(MouseEvent e) {}
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if(joueur.getNiveauAssistant() == NiveauAssistant.COMPLET )
+						joueur.setNiveauAssistant(NiveauAssistant.SIMPLE);
+					else
+						joueur.setNiveauAssistant(NiveauAssistant.COMPLET);
+					updateData();
+				}
+			});
+		}
+		
 		public void build(){
 			
 			//récupération de l'image
@@ -156,6 +179,7 @@ public class PanelJoueur extends MonochromePanel{
 			add(affichestat);
 			
 			listenerboutonchangerCoupPossible();
+			listenerboutonchangerConseilcoup();
 		}
 		
 		

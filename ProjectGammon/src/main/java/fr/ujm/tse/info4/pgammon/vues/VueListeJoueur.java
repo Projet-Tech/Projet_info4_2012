@@ -47,7 +47,7 @@ public class VueListeJoueur extends MonochromeVue{
 	private PanelVueListeJoueurDescription panelDescription;
 	private MonochromeListe<Joueur> listeJoueur;
 	
-	private String path = Avatar.CHOUETTE.getPath();
+	private String path = "";
 
 
 	private VueAjouterJoueur vueAjouterJoueur;

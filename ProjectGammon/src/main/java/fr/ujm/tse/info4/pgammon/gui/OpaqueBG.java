@@ -31,7 +31,7 @@ public class OpaqueBG extends JButton {
 		int h = getHeight(); 
 		int w = getWidth(); 
 		
-    	g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+    	g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.9f));
 
 		// Arriere plan
 		p = new RadialGradientPaint(new Point2D.Double(getWidth() / 2.0,

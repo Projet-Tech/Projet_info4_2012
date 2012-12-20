@@ -116,6 +116,7 @@ public class PanelParametre extends MonochromePanel{
 			
 			videau = new MonochromeCheckbox("Utiliser le videau");
 			videau.setBounds(100, 270, 150, 50);
+			videau.setSelected(true);
 			add(videau);
 			
 			listenerplus_partie();
