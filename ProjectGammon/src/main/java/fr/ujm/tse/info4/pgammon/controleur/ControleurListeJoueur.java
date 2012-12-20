@@ -211,7 +211,6 @@ public class ControleurListeJoueur implements Controleur{
 			@SuppressWarnings("deprecation")
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				vueAjouterJoueur.setPath(vueListeJoueur.getPanelDescription().getJoueur().getImageSource());
 				if(flag){
 					boolean drapeau = true;
 					
