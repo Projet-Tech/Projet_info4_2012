@@ -37,7 +37,8 @@ public class VuePartie extends MonochromeVue{
 	
 	//recuperation de l'image de fond
 	public static final ImageIcon img_fond = new ImageIcon("images/fond_partie.png");
-	
+	public static final ImageIcon img_fleche_big = new ImageIcon("images/fleches_big.png");
+
 	private Partie partie;
 	private VueTablier vueTablier;
 	private EtatSession etat;
@@ -287,6 +288,7 @@ etat=EtatSession.EN_COURS;
 	protected void paintComponent(Graphics g) {
 		
 		g.drawImage(img_fond.getImage(),0,0,this);
+
 		super.paintComponent(g);
 		
 	}

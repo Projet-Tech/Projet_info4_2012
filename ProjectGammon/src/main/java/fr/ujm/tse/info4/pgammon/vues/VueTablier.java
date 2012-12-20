@@ -15,6 +15,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import fr.ujm.tse.info4.pgammon.gui.BarreCaseButton;
@@ -30,6 +31,9 @@ import fr.ujm.tse.info4.pgammon.models.Tablier;
 public class VueTablier extends JPanel{
 	
 	private static final long serialVersionUID = -7479996235423541957L;
+	
+	public static final ImageIcon img_fleche = new ImageIcon("images/fleches_small.png");
+
 	private Partie partie;
 	private Tablier tablier;
 	private HashMap<Case,CaseButton> casesButtons;	private CaseButton candidat;
@@ -177,6 +181,8 @@ public class VueTablier extends JPanel{
 		p = new Color(0x333333);
 		g2.setPaint(p); 
 		g2.fillRect(252, 31, 36 ,387); 
+
+		g2.drawImage(img_fleche.getImage(), 12, 200,this);
 		
 		g2.dispose(); 
 	}
@@ -194,7 +200,6 @@ public class VueTablier extends JPanel{
 		g2.setStroke(new BasicStroke(10.0f) );
 		g2.setPaint(p); 
 		g2.drawRect(0, 0, w-1, h-1);
-		
 		
 		g2.dispose(); 
 		
