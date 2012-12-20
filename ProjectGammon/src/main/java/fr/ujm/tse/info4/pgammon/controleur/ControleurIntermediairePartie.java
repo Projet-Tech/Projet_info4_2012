@@ -46,8 +46,6 @@ public class ControleurIntermediairePartie implements Controleur{
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				vueCreationPartie.setVisible(false);
-				controleurPrincipal.retour();
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {}
@@ -56,7 +54,10 @@ public class ControleurIntermediairePartie implements Controleur{
 			@Override
 			public void mousePressed(MouseEvent e) {}
 			@Override
-			public void mouseReleased(MouseEvent e) {}
+			public void mouseReleased(MouseEvent e) {
+				vueCreationPartie.setVisible(false);
+				controleurPrincipal.retour();
+				}
 		});
 	}
 	
@@ -66,7 +67,16 @@ public class ControleurIntermediairePartie implements Controleur{
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			@Override
+			public void mouseExited(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseReleased(MouseEvent e) {				
 				int temp = vueCreationPartie.getVueNouvelleSession().getPanelparamètre().getNbTemps()*1000;
 				int nbPartie = vueCreationPartie.getVueNouvelleSession().getPanelparamètre().getNbParties();
 				boolean videau = vueCreationPartie.getVueNouvelleSession().getPanelparamètre().getVideau().isSelected();
@@ -79,15 +89,7 @@ public class ControleurIntermediairePartie implements Controleur{
 				ParametreJeu param = new ParametreJeu(temp,nbPartie,videau,jBlanc,jNoir);
 				vueCreationPartie.setVisible(false);
 				controleurPrincipal.nouvelleSession(param);
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {}
-			@Override
-			public void mouseExited(MouseEvent e) {}
-			@Override
-			public void mousePressed(MouseEvent e) {}
-			@Override
-			public void mouseReleased(MouseEvent e) {}
+				}
 		});
 			
 	}
@@ -97,10 +99,7 @@ public class ControleurIntermediairePartie implements Controleur{
 		vueCreationPartie.getVueChargerPartie().getBoutonCommencer().addMouseListener(new MouseListener() {
 
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				vueCreationPartie.setVisible(false);
-				controleurPrincipal.chargerSession(vueCreationPartie.getVueChargerPartie().getSession());
-			}
+			public void mouseClicked(MouseEvent e) {}
 			@Override
 			public void mouseEntered(MouseEvent e) {}
 			@Override
@@ -108,7 +107,10 @@ public class ControleurIntermediairePartie implements Controleur{
 			@Override
 			public void mousePressed(MouseEvent e) {}
 			@Override
-			public void mouseReleased(MouseEvent e) {}
+			public void mouseReleased(MouseEvent e) {
+				vueCreationPartie.setVisible(false);
+				controleurPrincipal.chargerSession(vueCreationPartie.getVueChargerPartie().getSession());
+			}
 		});
 			
 	}
@@ -120,9 +122,6 @@ public class ControleurIntermediairePartie implements Controleur{
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				vueCreationPartie.setVisible(false);
-				ControleurListeJoueur controleurListeJoueur = new ControleurListeJoueur(true,controleurIntermediairePartie);
-				joueurEnCourDeModification = CouleurCase.BLANC;
 			}
 
 			@Override
@@ -132,7 +131,10 @@ public class ControleurIntermediairePartie implements Controleur{
 			@Override
 			public void mousePressed(MouseEvent e) {}
 			@Override
-			public void mouseReleased(MouseEvent e) {}
+			public void mouseReleased(MouseEvent e) {
+				vueCreationPartie.setVisible(false);
+				ControleurListeJoueur controleurListeJoueur = new ControleurListeJoueur(true,controleurIntermediairePartie);
+				joueurEnCourDeModification = CouleurCase.BLANC;}
 		
 		});
 	}
@@ -142,9 +144,6 @@ public class ControleurIntermediairePartie implements Controleur{
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				vueCreationPartie.setVisible(false);
-				ControleurListeJoueur controleurListeJoueur = new ControleurListeJoueur(true,controleurIntermediairePartie);
-				joueurEnCourDeModification = CouleurCase.NOIR;
 			}
 
 			@Override
@@ -154,7 +153,11 @@ public class ControleurIntermediairePartie implements Controleur{
 			@Override
 			public void mousePressed(MouseEvent e) {}
 			@Override
-			public void mouseReleased(MouseEvent e) {}
+			public void mouseReleased(MouseEvent e) {
+				vueCreationPartie.setVisible(false);
+				ControleurListeJoueur controleurListeJoueur = new ControleurListeJoueur(true,controleurIntermediairePartie);
+				joueurEnCourDeModification = CouleurCase.NOIR;
+				}
 		
 		});
 	}

@@ -104,6 +104,8 @@ public class VueIntermediairePartie extends MonochromeVue{
 		
 		if(fenetreAAfficher == true){
 			vueNouvelleSession.setVisible(true);
+
+			vueChargerPartie.setVisible(true);
 			vueChargerPartie.setVisible(false);
 		}
 		else{
@@ -122,7 +124,13 @@ public class VueIntermediairePartie extends MonochromeVue{
 		boutonNouvellePartie.addMouseListener(new MouseListener() {
 			
 			@Override
-			public void mouseReleased(MouseEvent e) {}
+			public void mouseReleased(MouseEvent e) {
+				if(fenetreAAfficher == false){
+					vueNouvelleSession.setVisible(true);
+					vueChargerPartie.setVisible(false);
+					fenetreAAfficher=true;
+				}
+			}
 			@Override
 			public void mousePressed(MouseEvent e) {}		
 			@Override
@@ -131,11 +139,6 @@ public class VueIntermediairePartie extends MonochromeVue{
 			public void mouseEntered(MouseEvent e) {}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(fenetreAAfficher == false){
-					vueNouvelleSession.setVisible(true);
-					vueChargerPartie.setVisible(false);
-					fenetreAAfficher=true;
-				}
 			}
 		});
 	}
