@@ -218,7 +218,7 @@ public class ReplayBarr extends JPanel {
 	private int getIndexOf(Deplacement dep){
 		int i = 0;
 		for(Deplacement d : allDeplacements){
-			if(d == dep)
+			if(d.getIdDeplacement() == dep.getIdDeplacement())
 				return i;
 			i++;
 		}
