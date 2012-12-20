@@ -27,6 +27,11 @@ public class Deplacement
 		this.caseArriver = caseArriver;
 		this.siCaseBattue = siCaseBattue;
 	}
+	
+	public Deplacement()
+	{
+	}
+	
 	public void sauvegarder(Element deplacementsXML)
 	{
 		Element deplacementXML = new Element("deplacement");
@@ -49,11 +54,14 @@ public class Deplacement
 			deplacementXML.addContent(siCaseBattueXML);
 	}
 	
-	public void charger(Element deplacements)
+	public void charger(Element deplacement)
 	{
-		caseDepart.setPosition(Integer.valueOf(deplacements.getChild("deplacement").getChildText("caseDepart")));
-		caseArriver.setPosition(Integer.valueOf(deplacements.getChild("deplacement").getChildText("caseArriver")));
-		siCaseBattue = Boolean.valueOf(deplacements.getChild("deplacement").getChildText("siCaseBattue"));
+		caseDepart = new Case();
+		caseArriver = new Case();
+		
+		caseDepart.setPosition(Integer.valueOf(deplacement.getChildText("caseDepart")));
+		caseArriver.setPosition(Integer.valueOf(deplacement.getChildText("caseArriver")));
+		siCaseBattue = Boolean.valueOf(deplacement.getChildText("siCaseBattue"));
 	}
 
 	

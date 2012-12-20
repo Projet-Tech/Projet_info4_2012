@@ -9,6 +9,8 @@
 
 package fr.ujm.tse.info4.pgammon.models;
 
+import org.jdom2.Element;
+
 public class Case {
 	private CouleurCase couleurDame;
 	private int nbDame;
@@ -19,6 +21,34 @@ public class Case {
 		this.nbDame = nbDame;
 		this.position = position;
 	}
+	
+	public Case() {
+		
+	}
+	
+	public void charger(Element Case){
+			
+			switch(Case.getChildText("couleurDame")){
+				case "BLANC":couleurDame=CouleurCase.BLANC;break;
+				case "NOIR":couleurDame=CouleurCase.NOIR;break;
+				case "VIDE":couleurDame=CouleurCase.VIDE;
+			}
+			
+			nbDame = Integer.valueOf(Case.getChildText("nbrDame"));
+			position = Integer.valueOf(Case.getAttributeValue("id"));
+
+	}
+	
+	public void chargerBV(Element Case){
+		
+		switch(Case.getChildText("couleurDame")){
+			case "BLANC":couleurDame=CouleurCase.BLANC;break;
+			case "NOIR":couleurDame=CouleurCase.NOIR;break;
+			case "VIDE":couleurDame=CouleurCase.VIDE;
+		}
+		
+		nbDame = Integer.valueOf(Case.getChildText("nbrDame"));
+}
 
 	public boolean isCaseVictoire() {
 		if (position == 25 && couleurDame == CouleurCase.BLANC

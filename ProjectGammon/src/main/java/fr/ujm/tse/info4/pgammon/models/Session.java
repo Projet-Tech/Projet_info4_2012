@@ -217,7 +217,7 @@ public class Session
 			Joueur JoueurBlanc = profil.getJoueur(tmpID);
 			scores.put(JoueurBlanc,Integer.valueOf(racine.getChild("session").getChild("joueurs").getChild("joueurBlanc").getChildText("score")));
 			
-			parametreSession = new  ParametreJeu();
+			parametreSession = new ParametreJeu();
 			
 			parametreSession.charger(racine.getChild("session").getChild("parametres"));
 			parametreSession.setJoueurBlanc(JoueurBlanc);
@@ -225,8 +225,7 @@ public class Session
 			
 			partieEnCours = new Partie(parametreSession);
 			partieEnCours.charger(racine.getChild("session").getChild("partie"));
-			
-			
+
 		}
 
 

@@ -10,6 +10,7 @@
 package fr.ujm.tse.info4.pgammon.models;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.jdom2.Element;
@@ -30,8 +31,10 @@ public class Tour
 		this.listDeplacement = new ArrayList<Deplacement>();
 	}
 	
+	public Tour()
+	{
+	}
 	
-
 	public void addDeplacement(Deplacement deplacement)
 	{
 		listDeplacement.add(deplacement);
@@ -88,23 +91,36 @@ public class Tour
 			}
 	}
 	
-	public void charger(Element partie)
+	public void charger(Element tour)
 	{
-		partie.getChild("tour");
 		
-		switch(partie.getChild("tour").getChildText("couleurDame")){
+		switch(tour.getChildText("couleurJoueur")){
 			case "BLANC":couleurJoueur = CouleurCase.BLANC;break;
 			case "NOIR":couleurJoueur = CouleurCase.NOIR;break;
 			case "VIDE":couleurJoueur = CouleurCase.VIDE;
 		}
 		
-		for(int i=0;i<deSixFaces.size();i++){
-			deSixFaces.get(i).charger(partie.getChild("tour").getChild("deSixFaces"));
+		List<Element> listdeSixFaces = tour.getChild("deSixFaces").getChildren("deSixFace");
+		Iterator<Element> i = listdeSixFaces.iterator();
+		 
+		deSixFaces = new ArrayList<DeSixFaces>();
+		
+		while(i.hasNext()){
+			DeSixFaces tmpDe = new DeSixFaces();
+			tmpDe.charger(i.next());
+			deSixFaces.add(tmpDe);
 		}
 		
-		for(int i=0;i<listDeplacement.size();i++){
-			listDeplacement.get(i).charger(partie.getChild("tour").getChild("deplacements"));
+		List<Element> listlistDeplacement = tour.getChild("deplacements").getChildren("deplacement");
+		Iterator<Element> it = listlistDeplacement.iterator();
+		
+		listDeplacement = new ArrayList<Deplacement>();
+		
+		while(it.hasNext()){
+			Deplacement tmpDeplacement = new Deplacement();
+			tmpDeplacement.charger(it.next());
+			listDeplacement.add(tmpDeplacement);
 		}
-
+		
 	}
 }

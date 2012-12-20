@@ -10,6 +10,7 @@
 package fr.ujm.tse.info4.pgammon.models;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.jdom2.Element;
@@ -412,14 +413,57 @@ public class Partie {
 			return null;
 	}
 	
-	public void lectureProchainCoup() {
-		// TODO
-		throw new UnsupportedOperationException();
+	public Deplacement ProchainDeplacement(int i) {
+
+		int j =0;
+		for (Tour tour : historiqueToursJoueur) {
+			for (Deplacement deplacement : tour.getListDeplacement()) {
+				j++;
+				
+			}
+		}
+		return null;
+		
+		/*Tour dernierTour = getDernierTour();
+		if (dernierTour != null)
+			dernierDeplacement = getDernierTour().getDernierDeplacement();
+		else
+			dernierDeplacement =null;
+		
+		if (dernierDeplacement!=null){
+			for (DeSixFaces de : dernierTour.getDeSixFaces()) {
+				if (de.isUtilise() && de.getValeur() == Math.abs(tablier.distanceDeuxCase(dernierDeplacement.getCaseArriver(), dernierDeplacement.getCaseDepart())))
+				{
+					//recuperation de la couleur de la dame manger
+					CouleurCase CaseArriverSaveCouleur;
+					if (dernierDeplacement.getCaseArriver().getCouleurDame() == CouleurCase.BLANC)
+						CaseArriverSaveCouleur = CouleurCase.NOIR;
+					else
+						CaseArriverSaveCouleur = CouleurCase.BLANC;
+					
+					tablier.deplacerDame(dernierDeplacement.getCaseArriver(),dernierDeplacement.getCaseDepart());
+					de.notUtiliser();
+					if(getDernierTour().getDernierDeplacement().isSiCaseBattue())
+					{
+						tablier.deplacerDame(tablier.getCaseBarre(CaseArriverSaveCouleur),dernierDeplacement.getCaseArriver());
+					}
+					if (tourFini)
+					{
+						tourFini = false;
+						deSixFaces = dernierTour.getDeSixFaces();
+						joueurEnCour = dernierTour.getCouleurJoueur();
+					}
+					dernierTour.supprimerDernierDeplacement();
+					return;
+				}
+			}
+		}*/
+
 	}
 
-	public void lecturePrecedentCoup() {
-		// TODO
-		throw new UnsupportedOperationException();
+	public Deplacement PrecedentDeplacement(int i) {
+		
+		
 	}
 
 	/* SERIALISATION */
@@ -486,20 +530,28 @@ public class Partie {
 			case "VIDE":premierJoueur = CouleurCase.VIDE;
 		}
 		
-		for(int i=0;i<deSixFaces.size();i++){
-			deSixFaces.get(i).charger(partie.getChild("deSixFace"));
-		}
+		 List<Element> listDeSixFaces = partie.getChild("deSixFaces").getChildren("deSixFace");
+		 Iterator<Element> it = listDeSixFaces.iterator();
+		 
+		 while(it.hasNext()){
+			 DeSixFaces tmpDe = new DeSixFaces();
+			 tmpDe.charger(it.next());
+			 deSixFaces.add(tmpDe);
+		 }
+		 
 			
 		tablier = new Tablier(this);
 		
 		tablier.charger(partie);
-	
 		
-		for(int i=0;i<historiqueToursJoueur.size();i++){
-			historiqueToursJoueur.get(i).charger(partie);
+		List<Element> listhistoriqueToursJoueur = partie.getChild("historiqueToursJoueur").getChildren("tour");
+		Iterator<Element> i = listhistoriqueToursJoueur.iterator();
+		 
+		while(i.hasNext()){
+			Tour tmpTour = new Tour();
+			tmpTour.charger(i.next());
+			historiqueToursJoueur.add(tmpTour);
 		}
-
-	
 	}
 
 	/* GETTERS ET SETTERS */
