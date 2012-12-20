@@ -462,7 +462,7 @@ public class Partie {
 	}
 
 	public Deplacement PrecedentDeplacement(int i) {
-		
+		return null;
 		
 	}
 
