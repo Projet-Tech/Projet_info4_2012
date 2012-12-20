@@ -142,6 +142,7 @@ public class ControleurListeJoueur implements Controleur{
 			public void mouseClicked(MouseEvent e) {
 				vueListeJoueur.afficheEditerProfil();
 				vueAjouterJoueur = vueListeJoueur.getVueAjouterJoueur();
+				vueAjouterJoueur.setPath(vueListeJoueur.getPanelDescription().getJoueur().getImageSource());
 				flag = false;
 				buildEditerProfil();
 			}

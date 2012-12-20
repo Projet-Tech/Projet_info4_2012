@@ -12,7 +12,7 @@ import javax.swing.JScrollPane;
 public class AvatarList extends JPanel{
 	private static final long serialVersionUID = 4047846163448859090L;
 	private OpaqueBG bg;
-	private String path = null;
+	private String path = "";
 	private MonochromeButton ajouter;
 	
 	public AvatarList() {
