@@ -52,6 +52,8 @@ public class Tour
 			return null;
 	}
 	
+
+	
 	
 	public CouleurCase getCouleurJoueur() {
 		return couleurJoueur;

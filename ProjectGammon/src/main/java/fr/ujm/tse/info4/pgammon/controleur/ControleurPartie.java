@@ -96,6 +96,20 @@ public class ControleurPartie implements Controleur
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				
+				isSensAvancer = true;
+				
+				for(int i = positionRevuePartie;i<session.getPartieEnCours().nbDeplacementHistorise();i++)
+				{
+					positionRevuePartie++;
+					Deplacement dep = session.getPartieEnCours().ProchainDeplacement(positionRevuePartie);
+					if ( dep != null)
+						vuePartie.getPanelTermineVueBas().getReplayBarr().goTo(dep,isSensAvancer);
+				}
+				
+				vuePartie.getPanelTermineVueBas().getReplayBarr().goEnd();
+				vuePartie.updateUI();
+				vuePartie.getVueTablier().updateUI();
+				vuePartie.getVueTablier().updateDes();
 				
 			}
 			
@@ -113,7 +127,14 @@ public class ControleurPartie implements Controleur
 			public void mousePressed(MouseEvent e) {}
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+				positionRevuePartie =0;
+				isSensAvancer = true;
+
+				vuePartie.getPanelTermineVueBas().getReplayBarr().goBegin();
+				session.getPartieEnCours().getTablier().reinitialisationCase();
+				vuePartie.updateUI();
+				vuePartie.getVueTablier().updateUI();
+				vuePartie.getVueTablier().updateDes();
 				
 			}
 			
@@ -131,19 +152,21 @@ public class ControleurPartie implements Controleur
 			public void mousePressed(MouseEvent e) {}
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				if (positionRevuePartie < session.getPartieEnCours().nbDeplacementHistorise())
+				{
+					if(!isSensAvancer)
+					{
+						isSensAvancer = true;
+					}
+					else
+					{
+						positionRevuePartie++;
+					}
 				
-				if(!isSensAvancer)
-				{
-					//positionRevuePartie--;
-					isSensAvancer = true;
-				}
-				else
-				{
-					positionRevuePartie++;
-				}
 				Deplacement dep = session.getPartieEnCours().ProchainDeplacement(positionRevuePartie);
 				if ( dep != null)
-					vuePartie.getPanelTermineVueBas().getReplayBarr().goTo(dep);
+					vuePartie.getPanelTermineVueBas().getReplayBarr().goTo(dep,isSensAvancer);
+				}	
 				vuePartie.updateUI();
 				vuePartie.getVueTablier().updateUI();
 				vuePartie.getVueTablier().updateDes();
@@ -167,7 +190,6 @@ public class ControleurPartie implements Controleur
 				{
 					if(isSensAvancer)
 					{
-						//positionRevuePartie++;
 						isSensAvancer = false;
 					}
 					else
@@ -177,7 +199,7 @@ public class ControleurPartie implements Controleur
 					Deplacement dep = session.getPartieEnCours().PrecedentDeplacement(positionRevuePartie);
 					
 					if ( dep != null)
-						vuePartie.getPanelTermineVueBas().getReplayBarr().goTo(dep);
+						vuePartie.getPanelTermineVueBas().getReplayBarr().goTo(dep,isSensAvancer);
 				}
 				vuePartie.updateUI();
 				vuePartie.getVueTablier().updateUI();
