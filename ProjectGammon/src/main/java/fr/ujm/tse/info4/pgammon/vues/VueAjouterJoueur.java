@@ -98,6 +98,14 @@ public class VueAjouterJoueur extends MonochromePanel{
 		
 	}
 	
+	public String getChemin() {
+		return chemin;
+	}
+
+	public void setChemin(String chemin) {
+		this.chemin = chemin;
+	}
+
 	private void listenerSupprimerAvatar()
 	{
 		supprimerAvatar.addMouseListener(new MouseListener() {

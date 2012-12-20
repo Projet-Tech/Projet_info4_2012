@@ -211,12 +211,13 @@ public class ControleurListeJoueur implements Controleur{
 			@SuppressWarnings("deprecation")
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				vueAjouterJoueur.setPath(vueListeJoueur.getPanelDescription().getJoueur().getImageSource());
 				if(flag){
 					boolean drapeau = true;
 					
 					Joueur tmpJoueur = new Joueur();		 
 					tmpJoueur.setPseudo(vueAjouterJoueur.getnomPseudo().getText());	
-					tmpJoueur.setImageSource(vueListeJoueur.getPath());
+					tmpJoueur.setImageSource(vueListeJoueur.getVueAjouterJoueur().getChemin());
 					Date date = new Date();
 					id = 10000*date.getMonth()+1000*date.getDay()+100*date.getHours()+10*date.getMinutes()+date.getSeconds();
 					
@@ -236,7 +237,7 @@ public class ControleurListeJoueur implements Controleur{
 					
 				}else{
 					vueListeJoueur.getPanelDescription().getJoueur().setPseudo(vueAjouterJoueur.getnomPseudo().getText());
-					vueListeJoueur.getPanelDescription().getJoueur().setImageSource(vueListeJoueur.getPath());
+					vueListeJoueur.getPanelDescription().getJoueur().setImageSource(vueListeJoueur.getVueAjouterJoueur().getChemin());
 				}
 				vueListeJoueur.masqueEditerProfil();
 			}
