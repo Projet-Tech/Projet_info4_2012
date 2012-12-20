@@ -71,6 +71,7 @@ public class PanelParametresVueCharger extends MonochromePanel{
 	}
 	
 	public void updateData(){
+		
 		scorej1.setScore(session.getScores().get(session.getPartieEnCours().getParametreJeu().getJoueurBlanc()));
 		scorej2.setScore(session.getScores().get(session.getPartieEnCours().getParametreJeu().getJoueurNoir()));
 		imgjoueurBlanc.setPath(session.getPartieEnCours().getParametreJeu().getJoueurBlanc().getImageSource());
@@ -103,6 +104,7 @@ public class PanelParametresVueCharger extends MonochromePanel{
 		else{
 			text_videau.setText("Le videau n'est pas utilisé");
 		}
+		
 	}
 	
 	public void build(){
@@ -121,7 +123,7 @@ public class PanelParametresVueCharger extends MonochromePanel{
 				}
 				
 				
-				
+				/*
 			lab_parties = new MonochromeLabel(new Integer(session.getParametreSession().getNbrPartieGagnante()/1000).toString());
 			lab_parties.setBounds(15, 290, 120, 40);
 			add(lab_parties);
@@ -178,6 +180,64 @@ public class PanelParametresVueCharger extends MonochromePanel{
 			text_videau.setForeground(new Color(0xCCCCCC));
 			text_videau.setBounds(20, 330, 300, 50);
 			add(text_videau);
+			*/
+				
+				lab_parties = new MonochromeLabel("");
+				lab_parties.setBounds(15, 290, 120, 40);
+				add(lab_parties);
+					
+				lab_temps = new MonochromeLabel("");
+				lab_temps.setBounds(165, 290, 120, 40);
+				add(lab_temps);
+				
+				
+				scorej1 = new AfficheurScore(0, CouleurCase.BLANC);
+				scorej1.setBounds(95, 70, 40, 40);
+				add(scorej1);
+				
+				scorej2 = new AfficheurScore(0, CouleurCase.NOIR);
+				scorej2.setBounds(160, 70, 40, 40);
+				add(scorej2);
+				
+				imgjoueurBlanc = new ImageAvatar("");
+				imgjoueurBlanc.setBounds(15, 70, 70, 70);
+				add(imgjoueurBlanc);
+				
+				imgjoueurNoir = new ImageAvatar("");
+				imgjoueurNoir.setBounds(210, 70, 70, 70);
+				add(imgjoueurNoir);
+				
+				
+				text_parties = new JLabel();
+				text_parties.setText("<html>Nombre de partie<br> pour la session");
+				text_parties.setForeground(new Color(0xCCCCCC));
+				text_parties.setBounds(15, 180, 300, 50);
+				add(text_parties);
+				
+				text_temps = new JLabel();
+				text_temps.setText("<html>Limitation du temps <br>par tour en seconde");
+				text_temps.setForeground(new Color(0xCCCCCC));
+				text_temps.setBounds(165, 180, 300, 50);
+				add(text_temps);
+				
+				nomJoueurBlanc = new JLabel();
+				nomJoueurBlanc.setText("");
+				nomJoueurBlanc.setForeground(new Color(0xCCCCCC));
+				nomJoueurBlanc.setFont(new Font("Arial", Font.BOLD, 22));
+				nomJoueurBlanc.setBounds(15, 28, 120, 50);
+				add(nomJoueurBlanc);
+				
+				nomJoueurNoir = new JLabel();
+				nomJoueurNoir.setText("");
+				nomJoueurNoir.setForeground(new Color(0xCCCCCC));
+				nomJoueurNoir.setFont(new Font("Arial", Font.BOLD, 22));
+				nomJoueurNoir.setBounds(160, 28, 120, 50);
+				add(nomJoueurNoir);
+				
+				text_videau = new JLabel();
+				text_videau.setForeground(new Color(0xCCCCCC));
+				text_videau.setBounds(20, 330, 300, 50);
+				add(text_videau);
 	}
 	
 	
