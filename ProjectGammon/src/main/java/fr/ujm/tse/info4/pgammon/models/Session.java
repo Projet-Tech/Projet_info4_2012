@@ -56,6 +56,13 @@ public class Session
 		//TODO
 		throw new UnsupportedOperationException();
 	}
+	
+	public void finSession(Joueur joueurGagnantSession)
+	{
+		this.joueurGagnantSession = joueurGagnantSession;
+		finSession();
+	}
+	
 	private void finSession()
 	{
 		joueurGagnantSession.getStat().ajouterVictoire();
@@ -80,6 +87,7 @@ public class Session
 		else
 			partieEnCours.lancerNouvellePartie(couleurJoueurAnciennePartie);
 	}
+
 	
 	public void finPartie()
 	{
@@ -107,6 +115,16 @@ public class Session
 			return true;
 		}
 		return false;
+	}
+	
+	public Joueur meilleurJoueur()
+	{
+		if (scores.get(parametreSession.joueurBlanc) > scores.get(parametreSession.joueurNoir))
+				return parametreSession.joueurBlanc;
+		else if (scores.get(parametreSession.joueurBlanc) < scores.get(parametreSession.joueurNoir))
+			return parametreSession.joueurNoir;
+		else
+			return null;
 	}
 	
 	public void sauvegarder(Element racine)
