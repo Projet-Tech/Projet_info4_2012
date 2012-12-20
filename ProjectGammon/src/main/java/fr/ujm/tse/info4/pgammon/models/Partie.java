@@ -415,56 +415,105 @@ public class Partie {
 	
 	public Deplacement ProchainDeplacement(int i) {
 
+		Deplacement deplacementProchain = null;
+		Tour touractuelle = null;
 		int j =0;
 		for (Tour tour : historiqueToursJoueur) {
+			touractuelle = tour;
 			for (Deplacement deplacement : tour.getListDeplacement()) {
 				j++;
-				
+				if(j == i)
+				{
+					deplacementProchain = deplacement;
+					break;
+				}
 			}
 		}
-		return null;
+	
 		
-		/*Tour dernierTour = getDernierTour();
-		if (dernierTour != null)
-			dernierDeplacement = getDernierTour().getDernierDeplacement();
-		else
-			dernierDeplacement =null;
+		if (deplacementProchain!=null && touractuelle !=null ){
+			for (DeSixFaces de : touractuelle.getDeSixFaces()) {
+				if (de.isUtilise() && de.getValeur() == Math.abs(tablier.distanceDeuxCase(deplacementProchain.getCaseDepart(),deplacementProchain.getCaseArriver())))
+				{
+					//recuperation de la couleur de la dame manger
+					/*CouleurCase CaseArriverSaveCouleur;
+					if (deplacementProchain.getCaseArriver().getCouleurDame() == CouleurCase.BLANC)
+						CaseArriverSaveCouleur = CouleurCase.NOIR;
+					else
+						CaseArriverSaveCouleur = CouleurCase.BLANC;*/
+					
+					//TODO si probléme mettre un if
+					tablier.deplacerDame(deplacementProchain.getCaseDepart(),deplacementProchain.getCaseArriver());
+					de.utiliser();
+					/*if(getDernierTour().getDernierDeplacement().isSiCaseBattue())
+					{
+						tablier.deplacerDame(tablier.getCaseBarre(CaseArriverSaveCouleur),deplacementProchain.getCaseArriver());
+					}*/
+					/*if (tourFini)
+					{
+						tourFini = false;
+						deSixFaces = touractuelle.getDeSixFaces();
+						joueurEnCour = touractuelle.getCouleurJoueur();
+					}*/	
+				}
+			}
+		}
+		return deplacementProchain;
+	}
+	
+	
+	
+
+	public Deplacement PrecedentDeplacement(int i) {
 		
-		if (dernierDeplacement!=null){
-			for (DeSixFaces de : dernierTour.getDeSixFaces()) {
-				if (de.isUtilise() && de.getValeur() == Math.abs(tablier.distanceDeuxCase(dernierDeplacement.getCaseArriver(), dernierDeplacement.getCaseDepart())))
+		Deplacement deplacementPrecedent = null;
+		Tour touractuelle = null;
+		int j =0;
+		for (Tour tour : historiqueToursJoueur) {
+			touractuelle = tour;
+			for (Deplacement deplacement : tour.getListDeplacement()) {
+				j++;
+				if(j == i)
+				{
+					deplacementPrecedent = deplacement;
+					break;
+				}
+			}
+		}
+	
+		if (deplacementPrecedent!=null && touractuelle !=null ){
+			for (DeSixFaces de : touractuelle.getDeSixFaces()) {
+				if (de.isUtilise() && de.getValeur() == Math.abs(tablier.distanceDeuxCase(deplacementPrecedent.getCaseArriver(), deplacementPrecedent.getCaseDepart())))
 				{
 					//recuperation de la couleur de la dame manger
 					CouleurCase CaseArriverSaveCouleur;
-					if (dernierDeplacement.getCaseArriver().getCouleurDame() == CouleurCase.BLANC)
+					if (deplacementPrecedent.getCaseArriver().getCouleurDame() == CouleurCase.BLANC)
 						CaseArriverSaveCouleur = CouleurCase.NOIR;
 					else
 						CaseArriverSaveCouleur = CouleurCase.BLANC;
 					
-					tablier.deplacerDame(dernierDeplacement.getCaseArriver(),dernierDeplacement.getCaseDepart());
+					//TODO si probléme mettre un if
+					tablier.deplacerDame(deplacementPrecedent.getCaseArriver(),deplacementPrecedent.getCaseDepart());
 					de.notUtiliser();
 					if(getDernierTour().getDernierDeplacement().isSiCaseBattue())
 					{
-						tablier.deplacerDame(tablier.getCaseBarre(CaseArriverSaveCouleur),dernierDeplacement.getCaseArriver());
+						tablier.deplacerDame(tablier.getCaseBarre(CaseArriverSaveCouleur),deplacementPrecedent.getCaseArriver());
 					}
 					if (tourFini)
 					{
 						tourFini = false;
-						deSixFaces = dernierTour.getDeSixFaces();
-						joueurEnCour = dernierTour.getCouleurJoueur();
+						deSixFaces = touractuelle.getDeSixFaces();
+						joueurEnCour = touractuelle.getCouleurJoueur();
 					}
-					dernierTour.supprimerDernierDeplacement();
-					return;
+					
+					
 				}
 			}
-		}*/
+		}
 
+			return deplacementPrecedent;
 	}
 
-	public Deplacement PrecedentDeplacement(int i) {
-		return null;
-		
-	}
 
 	/* SERIALISATION */
 
