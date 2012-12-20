@@ -490,8 +490,11 @@ public class Partie {
 			deSixFaces.get(i).charger(partie.getChild("deSixFace"));
 		}
 			
+		tablier = new Tablier(this);
+		
 		tablier.charger(partie);
 	
+		
 		for(int i=0;i<historiqueToursJoueur.size();i++){
 			historiqueToursJoueur.get(i).charger(partie);
 		}

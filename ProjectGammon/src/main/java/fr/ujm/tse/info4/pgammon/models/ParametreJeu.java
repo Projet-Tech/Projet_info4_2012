@@ -32,7 +32,11 @@ public class ParametreJeu
 		this.joueurBlanc = joueurBlanc;
 		this.joueurNoir = joueurNoir;
 	}
-
+	
+	public ParametreJeu()
+	{
+	}
+	
 
 	public void sauvegarder(Element session)
 	{
@@ -102,9 +106,12 @@ public class ParametreJeu
 			return joueurBlanc;
 	}
 
+	public void setJoueurNoir(Joueur _joueurNoir){
+		joueurNoir = _joueurNoir;
+	}
 
-
-
-
+	public void setJoueurBlanc(Joueur _joueurBlanc){
+		joueurBlanc = _joueurBlanc;
+	}
 
 }

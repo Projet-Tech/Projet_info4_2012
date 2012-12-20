@@ -153,7 +153,10 @@ public class Profils
 	
 	public Joueur getJoueur(int id){
 		
-		
+		for(int i=0;i<joueurs.size();i++){
+			if(joueurs.get(i).getId()==id)
+				return joueurs.get(i);
+		}
 		return null;
 	}
 }
