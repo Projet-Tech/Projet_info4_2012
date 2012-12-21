@@ -70,10 +70,11 @@ public class ControleurIntermediairePartie implements Controleur{
 					gestion.sauvegarder();
 					vueCreationPartie.getVueChargerPartie().updateData();
 					vueCreationPartie.getVueChargerPartie().updateUI();
-					
+
 				} catch (IOException | JDOMException e1) {
-					
 					e1.printStackTrace();
+					vueCreationPartie.afficherFenetreDemande("P'tit soucis", "Les sessions n'ont pas été chargées");
+
 				}
 
 			}

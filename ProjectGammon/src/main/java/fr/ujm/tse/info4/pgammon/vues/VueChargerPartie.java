@@ -59,7 +59,8 @@ public class VueChargerPartie extends JPanel{
 		} catch (IOException | JDOMException e1) {
 			
 			e1.printStackTrace();
-		}
+			
+		}finally{
 		
 		//listSession = s;
 		build();
@@ -75,7 +76,7 @@ public class VueChargerPartie extends JPanel{
 				}
 			}
 		});
-	
+		}
 	}
 	
 	/**
