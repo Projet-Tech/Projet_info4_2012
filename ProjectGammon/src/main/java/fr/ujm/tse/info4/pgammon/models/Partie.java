@@ -358,15 +358,7 @@ public class Partie {
 		 else
 			 throw new TourNonJouableException("Pas de possibilité de faire un déplacement");
 	}
-/**
- * 
- * @param de
- * @return
- */
-	public List<Coup> getCoupsPossibles(DeSixFaces de) {
-		// TODO
-		throw new UnsupportedOperationException();
-	}
+
 
 	/**
 	 * 
@@ -558,7 +550,7 @@ public class Partie {
 					else
 						CaseArriverSaveCouleur = CouleurCase.BLANC;
 					
-					//TODO si probléme mettre un if
+					
 					tablier.deplacerDame(deplacementPrecedent.getCaseArriver(),deplacementPrecedent.getCaseDepart());
 					
 					if(deplacementPrecedent.isSiCaseBattue())

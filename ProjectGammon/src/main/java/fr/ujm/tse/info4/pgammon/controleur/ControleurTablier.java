@@ -109,7 +109,7 @@ public class ControleurTablier implements Controleur{
 									partie.lancerDes();
 									if(!partie.hasCoupPossible())
 									{
-										//TODO affichage plus de coup possible
+										vuePartie.afficherFenetreDemande("Plus de coup possible","");
 										changerTour();
 									}
 								}
@@ -186,9 +186,7 @@ public class ControleurTablier implements Controleur{
 						}
 						else if(!partie.hasCoupPossible())
 						{
-							//TODO affichage plus de coup possible
-							//if (horloge!= null)
-							//	horloge.stop();
+							vuePartie.afficherFenetreDemande("Plus de coup possible","");
 							changerTour();
 						}	
 					  
@@ -229,7 +227,7 @@ public class ControleurTablier implements Controleur{
 
 	@Override
 	public void retour() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 	

@@ -24,9 +24,8 @@ public class ControleurListeJoueur implements Controleur{
 	public ControleurListeJoueur (boolean isCharger,Controleur controleur) 
 	{
 		this.controleur = controleur;
-		//TODO a changer
+		
 		profil = Profils.getProfils();
-		//
 		
 		this.isCharger = isCharger;
 		

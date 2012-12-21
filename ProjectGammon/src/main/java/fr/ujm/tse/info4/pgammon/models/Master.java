@@ -16,8 +16,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import fr.ujm.tse.info4.pgammon.controleur.ControleurPrincipal;
 
-//TODO: Interdire le redimensionnement
-
 public class Master
 {
 	@SuppressWarnings("unused")
@@ -49,7 +47,7 @@ public class Master
 			GestionDeSession gestion = GestionDeSession.getGestionDeSession();
 			gestion.setListSession(listSession);
 		} catch (Exception e) {
-			// TODO: handle exception
+			
 		}
 
 	}
@@ -82,7 +80,7 @@ public class Master
 
 	public boolean peutLancerSession()
 	{
-		//TODO gere le multi THREAD
+		
 		if (listSession.size() != 1 )
 			return true;
 		return false;

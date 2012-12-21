@@ -72,7 +72,7 @@ public class ControleurIntermediairePartie implements Controleur{
 					vueCreationPartie.getVueChargerPartie().updateUI();
 					
 				} catch (IOException | JDOMException e1) {
-					// TODO Auto-generated catch block
+					
 					e1.printStackTrace();
 				}
 
@@ -125,7 +125,7 @@ public class ControleurIntermediairePartie implements Controleur{
 				int nbPartie = vueCreationPartie.getVueNouvelleSession().getPanelParamètre().getNbParties();
 				boolean videau = vueCreationPartie.getVueNouvelleSession().getPanelParamètre().getVideau().isSelected();
 				
-				//TODO gerer dynamiquement les joueurs
+				
 				Joueur jBlanc =  vueCreationPartie.getVueNouvelleSession().getPanelJoueur1().getJoueur();
 				Joueur jNoir = vueCreationPartie.getVueNouvelleSession().getPanelJoueur2().getJoueur();
 				
@@ -222,7 +222,7 @@ public class ControleurIntermediairePartie implements Controleur{
 	
 	@Override
 	public JFrame getFrame() {
-		// TODO Auto-generated method stub
+		
 		return frame;
 	}
 

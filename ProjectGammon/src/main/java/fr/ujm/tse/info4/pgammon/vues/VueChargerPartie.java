@@ -57,7 +57,7 @@ public class VueChargerPartie extends JPanel{
 			listSession = gestion.getListSession();
 			System.out.println(listSession);
 		} catch (IOException | JDOMException e1) {
-			// TODO Auto-generated catch block
+			
 			e1.printStackTrace();
 		}
 		
