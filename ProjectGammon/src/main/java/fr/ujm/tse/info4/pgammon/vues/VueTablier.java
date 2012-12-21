@@ -222,7 +222,6 @@ public class VueTablier extends JPanel{
 		if(size>0)
 			for(DeSixFaces de : des){
 				DeButton btn = new DeButton(de);
-				//TODO: Corriger la position des dés.
 				int y = (int) (252 + 40*((float)i-size/2));
 				btn.setBounds(427-173, y,
 						btn.getPreferredSize().width , btn.getPreferredSize().height);

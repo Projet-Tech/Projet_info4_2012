@@ -48,7 +48,7 @@ public class ControleurPartie implements Controleur
 	private boolean isSensAvancer;
 	private Timer timerRevuePartie;
 	private CouleurCase couleurVideau;
-	//TODO Ce constructeur seras detruit
+	
 	
 	@Deprecated
 	public  ControleurPartie(Partie partie)
@@ -143,7 +143,7 @@ private void listenerBoutonAide(){
 				try {
 					Desktop.getDesktop().browse(uri);
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
+				
 					e1.printStackTrace();
 				}
 				
@@ -369,7 +369,7 @@ private void listenerBoutonAide(){
 						controleurTablier.getHorloge().restart();
 					if(!session.getPartieEnCours().hasCoupPossible())
 					{
-						//TODO affichage plus de coup possible
+						vuePartie.afficherFenetreDemande("Plus de coup possible","");
 						controleurTablier.changerTour();
 					}
 				}
@@ -541,10 +541,10 @@ private void listenerBoutonAide(){
 								gestion.sauvegarder();
 								
 							} catch (IOException e1) {
-								// TODO Auto-generated catch block
+								
 								e1.printStackTrace();
 							} catch (JDOMException e1) {
-								// TODO Auto-generated catch block
+								
 								e1.printStackTrace();
 							}
 							
@@ -607,10 +607,10 @@ private void listenerBoutonAide(){
 								gestion.sauvegarder();
 								
 							} catch (IOException e1) {
-								// TODO Auto-generated catch block
+								
 								e1.printStackTrace();
 							} catch (JDOMException e1) {
-								// TODO Auto-generated catch block
+								
 								e1.printStackTrace();
 							}
 							
@@ -760,7 +760,7 @@ private void listenerBoutonAide(){
 
 	@Override
 	public void retour() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 	
