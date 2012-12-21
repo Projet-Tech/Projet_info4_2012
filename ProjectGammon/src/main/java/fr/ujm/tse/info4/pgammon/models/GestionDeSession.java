@@ -40,6 +40,11 @@ public class GestionDeSession {
 				Document document = new Document(racine);
 				listSession.get(i).sauvegarder(racine);
 				XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
+				
+				File path = new File("sauvegardeSessions");
+				if(!path.exists()) 
+					path.mkdirs();
+				
 				String tmpPath = "sauvegardeSessions/"+tmpNom+".xml"; 
 				sortie.output(document, new FileOutputStream(tmpPath));
 				
@@ -57,6 +62,7 @@ public class GestionDeSession {
 		File files[]; 
 		File path = new File("sauvegardeSessions");
 		files = path.listFiles();
+		
 		if(files == null)
 			return;
 		Arrays.sort(files);
