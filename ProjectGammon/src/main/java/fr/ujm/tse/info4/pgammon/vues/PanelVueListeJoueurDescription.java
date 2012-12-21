@@ -199,11 +199,11 @@ public class PanelVueListeJoueurDescription extends MonochromePanel{
 
 		//affichage des stats du joueur
 		textStat.setForeground(new Color(0xCCCCCC));
-		textStat.setText("<html>Partie jouées" +
-				"<br>Victoires" +
-				"<br>Défaites" +
-				"<br>Pourcentage de victoire" +
-				"<br>Ennemi favori" );
+		textStat.setText("<html>Parties jouées :" +
+				"<br>Victoires :" +
+				"<br>Défaites :" +
+				"<br>Pourcentage de victoire :" +
+				"<br>Ennemi favori :" );
 				
 		textStat.setBounds(15, 130, 140, 200);
 		textStat.setFont(new Font("Arial",Font.HANGING_BASELINE,12));

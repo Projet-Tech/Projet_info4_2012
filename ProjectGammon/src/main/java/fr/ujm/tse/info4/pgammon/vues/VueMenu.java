@@ -76,10 +76,10 @@ public class VueMenu extends MonochromeVue {
 
 		
 		
-		boutonNouvellePartie = new MonochromeButton("Nouvelle partie");
+		boutonNouvellePartie = new MonochromeButton("Nouvelle session");
 		conteneurbouton.add(boutonNouvellePartie);
 		
-		boutonReprendrePartie = new MonochromeButton("Reprendre partie");
+		boutonReprendrePartie = new MonochromeButton("Reprendre une session");
 		conteneurbouton.add(boutonReprendrePartie);
 		
 		boutonAjouter = new MonochromeButton("Liste des joueurs");

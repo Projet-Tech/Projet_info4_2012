@@ -62,13 +62,13 @@ public class PanelParametre extends MonochromePanel{
 		nbTemps = 30;
 		
 		text_parties = new JLabel();
-		text_parties.setText("Nombre de partie pour la session");
+		text_parties.setText("Score à atteindre");
 		text_parties.setForeground(new Color(0xCCCCCC));
 		text_parties.setBounds(20, 30, 300, 50);
 		add(text_parties);
 		
 		text_temps = new JLabel();
-		text_temps.setText("Limitation du temps par tour");
+		text_temps.setText("Limite de temps par tour");
 		text_temps.setForeground(new Color(0xCCCCCC));
 		text_temps.setBounds(20, 150, 300, 50);
 		add(text_temps);

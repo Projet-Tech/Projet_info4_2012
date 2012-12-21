@@ -140,7 +140,7 @@ public class PanelParametresVueCharger extends MonochromePanel{
 
 
 		text_parties = new JLabel();
-		text_parties.setText("<html>Nombre de partie<br> pour la session");
+		text_parties.setText("Score à atteindre");
 		text_parties.setForeground(new Color(0xCCCCCC));
 		text_parties.setBounds(15, 180, 300, 50);
 		add(text_parties);

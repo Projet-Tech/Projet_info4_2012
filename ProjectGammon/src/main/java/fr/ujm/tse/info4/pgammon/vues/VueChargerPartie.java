@@ -95,7 +95,7 @@ public class VueChargerPartie extends JPanel{
 		
 		//il faut que j'ajoute les sessions
 		
-		mListeSessions = new MonochromeListe<>("Parties enregistrées",listSession,new SessionCellRenderer());
+		mListeSessions = new MonochromeListe<>("Sessions enregistrées",listSession,new SessionCellRenderer());
 		mListeSessions.setBounds(40, 20, 330, 400);
 		add(mListeSessions);
 		
