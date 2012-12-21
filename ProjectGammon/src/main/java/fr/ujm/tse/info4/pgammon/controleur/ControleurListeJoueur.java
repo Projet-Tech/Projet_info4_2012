@@ -34,8 +34,9 @@ public class ControleurListeJoueur implements Controleur{
 		build();
 	}
 	
-	
-	
+    /*
+     * Tous les listeners de buttons
+     */
 	public void build()
 	{
 		listenerBouttonRetour();
@@ -44,6 +45,9 @@ public class ControleurListeJoueur implements Controleur{
 		listenerBouttonSupprimer();
 		listenerBouttonSelection();
 	}
+	/*
+	 * Button ecouteur "Selectionner"
+	 */
 	public void listenerBouttonSelection()
 	{
 		if (isCharger)
@@ -85,6 +89,9 @@ public class ControleurListeJoueur implements Controleur{
 		else
 			vueListeJoueur.getSelectionner().setVisible(false);
 	}
+	/*
+	 * Button ecouteur "Retour"
+	 */
 	public void listenerBouttonRetour()
 	{
 		vueListeJoueur.getRetour().addMouseListener(new MouseListener() {
@@ -105,7 +112,9 @@ public class ControleurListeJoueur implements Controleur{
 				controleur.retour();}
 		});
 	}
-
+	/*
+	 * Button ecouteur "ajouter"
+	 */
 	public void listenerBouttonAjouter()
 	{
 		vueListeJoueur.getAjouter().addMouseListener(new MouseListener() {
@@ -129,7 +138,9 @@ public class ControleurListeJoueur implements Controleur{
 				buildEditerProfil();}
 		});
 	}
-	
+	/*
+	 * Button ecouteur "Modifier"
+	 */
 	public void listenerBouttonModifier(){
 		vueListeJoueur.getPanelDescription().getModifier().addMouseListener(new MouseListener() {
 
@@ -151,6 +162,9 @@ public class ControleurListeJoueur implements Controleur{
 				buildEditerProfil();}
 		});
 	}
+	/*
+	 * Button ecouteur "Supprimer"
+	 */
 	public void listenerBouttonSupprimer(){
 		vueListeJoueur.getPanelDescription().getSupprimer().addMouseListener(new MouseListener() {
 
@@ -171,7 +185,9 @@ public class ControleurListeJoueur implements Controleur{
 			}
 		});
 	}
-		
+	/*
+	 * Ecouteur	de EditerProfil.Ici,flag est pour verifier Modifier ou Ajouter avec EditerProfil
+	 */
 	public void buildEditerProfil(){
 		
 		if(flag){
@@ -183,7 +199,9 @@ public class ControleurListeJoueur implements Controleur{
 		listenerBouttonFermerEditerProfil();
 		listenerBouttonEnregistrerEditerProfil();
 	}
-	
+	/*
+	 * Ecouteur "Retour" de EditerProfil
+	 */
 	public void listenerBouttonFermerEditerProfil(){
 		vueAjouterJoueur.getRetour().addMouseListener(new MouseListener() {
 
@@ -201,7 +219,9 @@ public class ControleurListeJoueur implements Controleur{
 				}
 		});
 	}
-
+	/*
+	 * Ecouteur "Enregistrer" de EditerProfil
+	 */
 	public void listenerBouttonEnregistrerEditerProfil(){
 		vueAjouterJoueur.getenregistrer().addMouseListener(new MouseListener() {
 
@@ -251,8 +271,6 @@ public class ControleurListeJoueur implements Controleur{
 		});
 	}
 
-
-
 	@Override
 	public Controleur getControleur() {
 		return this;
@@ -263,11 +281,6 @@ public class ControleurListeJoueur implements Controleur{
 		return frame;
 	}
 
-
-
 	@Override
 	public void retour(){}
-
-				
-	
 }
