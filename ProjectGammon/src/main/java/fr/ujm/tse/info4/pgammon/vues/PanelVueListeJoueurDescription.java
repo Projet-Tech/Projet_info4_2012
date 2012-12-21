@@ -22,7 +22,7 @@ import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 public class PanelVueListeJoueurDescription extends MonochromePanel{
 
 	/**
-	 * 
+	 * Cette classe permet l'affichage de la description d'un joueur 
 	 */
 	private static final long serialVersionUID = -7183137442304137995L;
 
@@ -47,6 +47,10 @@ public class PanelVueListeJoueurDescription extends MonochromePanel{
 
 	private ImageAvatar imagejoueur;
 
+	/**
+	 * Constructeur du panel de la desciption du joueur
+	 * @param j joueur passé en paramètre
+	 */
 	public PanelVueListeJoueurDescription(Joueur j){
 		super("Description");
 		joueur=j;
@@ -55,6 +59,11 @@ public class PanelVueListeJoueurDescription extends MonochromePanel{
 		updateData();
 	}
 
+	
+	/**
+	 * Setter de joueur
+	 * @param j change la valeur du joueur
+	 */
 	public void setJoueur(Joueur j){
 		joueur=j;
 		updateData();
