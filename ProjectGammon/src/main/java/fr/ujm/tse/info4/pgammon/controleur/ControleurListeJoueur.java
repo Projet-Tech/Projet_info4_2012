@@ -31,6 +31,8 @@ public class ControleurListeJoueur implements Controleur{
 		
 		vueListeJoueur = new VueListeJoueur();
 		controleur.getControleur().getFrame().setContentPane(vueListeJoueur);
+
+		vueAjouterJoueur = vueListeJoueur.getVueAjouterJoueur();
 		build();
 	}
 	
@@ -44,6 +46,9 @@ public class ControleurListeJoueur implements Controleur{
 		listenerBouttonModifier();
 		listenerBouttonSupprimer();
 		listenerBouttonSelection();
+
+		listenerBouttonFermerEditerProfil();
+		listenerBouttonEnregistrerEditerProfil();
 	}
 	/**
 	 * Button ecouteur "Selectionner"
@@ -156,7 +161,6 @@ public class ControleurListeJoueur implements Controleur{
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				vueListeJoueur.afficheEditerProfil();
-				vueAjouterJoueur = vueListeJoueur.getVueAjouterJoueur();
 				vueAjouterJoueur.setPath(vueListeJoueur.getPanelDescription().getJoueur().getImageSource());
 				flag = false;
 				buildEditerProfil();}
@@ -196,8 +200,6 @@ public class ControleurListeJoueur implements Controleur{
 			vueAjouterJoueur.getnomPseudo().setText(vueListeJoueur.getPanelDescription().getJoueur().getPseudo());
 		}
 		
-		listenerBouttonFermerEditerProfil();
-		listenerBouttonEnregistrerEditerProfil();
 	}
 	/**
 	 * Ecouteur "Retour" de EditerProfil

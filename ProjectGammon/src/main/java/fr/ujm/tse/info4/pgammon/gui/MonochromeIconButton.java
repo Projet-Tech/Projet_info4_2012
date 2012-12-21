@@ -30,6 +30,7 @@ public class MonochromeIconButton extends JButton{
 
 	private String couleur;
 	private ImageIcon icon;
+	@SuppressWarnings("unused")
 	private JLabel label; 
 	private Size size;
 	

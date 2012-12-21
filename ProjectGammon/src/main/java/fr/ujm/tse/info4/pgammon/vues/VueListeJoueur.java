@@ -66,7 +66,7 @@ public class VueListeJoueur extends MonochromeVue{
 			public void valueChanged(ListSelectionEvent e) {
 				if (listeJoueur.getList().getSelectedValue() !=null){
 					j=listeJoueur.getList().getSelectedValue();
-					System.out.println(j);
+					//System.out.println(j);
 					updateData();
 						
 				}

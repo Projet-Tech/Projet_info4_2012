@@ -15,7 +15,11 @@ import javax.swing.ImageIcon;
 
 import fr.ujm.tse.info4.pgammon.models.Case;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
-
+/**
+ * Fournie le composant d'affichage des Cases triangles
+ * @author Jean-Mi
+ *
+ */
 public class TriangleCaseButton extends CaseButton{
 	private static final long serialVersionUID = -7438830652988320775L;
 	private CouleurCase couleur;
@@ -27,7 +31,12 @@ public class TriangleCaseButton extends CaseButton{
 	
 	private boolean isDirectionUp;
 	
-	
+	/**
+	 * Triangle synchronisé avec une case
+	 * @param _case Case associée
+	 * @param _couleur Couleur physique de la case
+	 * @param _isDirectionUp Sens de la case
+	 */
 	public TriangleCaseButton(Case _case, CouleurCase _couleur,  boolean _isDirectionUp) {
 		super(_case);
 		couleur = _couleur;

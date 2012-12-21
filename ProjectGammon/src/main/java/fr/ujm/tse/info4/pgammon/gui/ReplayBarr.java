@@ -16,6 +16,13 @@ import fr.ujm.tse.info4.pgammon.models.DeSixFaces;
 import fr.ujm.tse.info4.pgammon.models.Deplacement;
 import fr.ujm.tse.info4.pgammon.models.Tour;
 
+
+/**
+ * Barre de replay automatique. La barre fournie 4 boutons et un affichage
+ * des tours.
+ * @author Jean-Mi
+ *
+ */
 public class ReplayBarr extends JPanel {
 	private static final long serialVersionUID = 1318001554445843500L;
 	private List<Tour> tours;
@@ -51,6 +58,10 @@ public class ReplayBarr extends JPanel {
 	private int final_position;
 	private boolean avance;
 	
+	/**
+	 * Créé la barre complete
+	 * @param tours tour
+	 */
 	public ReplayBarr(List<Tour> tours) {
 		this.tours = tours;
 		current = 0;
@@ -61,7 +72,10 @@ public class ReplayBarr extends JPanel {
 		init_position();
 	}
 
-	
+	/**
+	 * Change la liste des tours
+	 * @param tours liste des tours
+	 */
 	public void setTours(List<Tour> tours){
 		this.tours = tours;
 		current = 0;
@@ -79,18 +93,30 @@ public class ReplayBarr extends JPanel {
 		else
 			timer.stop();
 	}
-	public void updatePosition(){
-		
-	}
+	
+	/**
+	 * Va au déplacement transmit. 
+	 * @param dep Déplacement ou aller
+	 * @param isAvance permet de savoir si on va a gauche ou a droite
+	 */
 	public void goTo(Deplacement dep, boolean isAvance){
 		avance = isAvance;
 		setCurrent(getIndexOf(dep));
 	}
 
+	/**
+	 * @deprecated Ne gere pas le sens
+	 * @param dep
+	 */
 	@Deprecated
 	public void goTo(Deplacement dep){
 		setCurrent(getIndexOf(dep));
 	}
+
+	/**
+	 * Va au deplacement non nul suivant
+	 * @deprecated Pour la synchronisation, utiliser goTo();
+	 */
 	@Deprecated
 	public void goNext(){
 		int index = current+1;
@@ -98,7 +124,11 @@ public class ReplayBarr extends JPanel {
 			index++;
 		setCurrent(index);
 	}
-
+	
+	/**
+	 * Va au deplacement non nul précedent.
+	 * @deprecated Pour la synchronisation, utiliser goTo();
+	 */
 	@Deprecated
 	public void goPrevious(){
 		int index = current-1;
@@ -107,19 +137,23 @@ public class ReplayBarr extends JPanel {
 		
 		setCurrent(index);
 	}
-	
+	/**
+	 * Retourne au premier déplacement.
+	 */
 	public void goBegin(){
 		avance = false;
 		setCurrent(0);
 	}
-	
+	/**
+	 * Retourne au dernier déplacement.
+	 */
 	public void goEnd(){
 		setCurrent(total-1);
 		avance = false;
 	}
 	
-
-	public void setCurrent(int value){
+	
+	private void setCurrent(int value){
 		if(value<0)
 			value = 0;
 		if(value>= total)
@@ -276,22 +310,30 @@ public class ReplayBarr extends JPanel {
 		return i;
 	}
 	
-	
+	/**
+	 * @return : le bouton suivant
+	 */
 	public JButton getNextBtn() {
 		return nextBtn;
 	}
 
-
+	/**
+	 * @return : le bouton precedent
+	 */
 	public JButton getPrevBtn() {
 		return prevBtn;
 	}
 
-
+	/**
+	 * @return : le bouton fin
+	 */
 	public JButton getEndBtn() {
 		return endBtn;
 	}
 
-
+	/**
+	 * @return : le bouton debut
+	 */
 	public JButton getBeginBtn() {
 		return beginBtn;
 	}

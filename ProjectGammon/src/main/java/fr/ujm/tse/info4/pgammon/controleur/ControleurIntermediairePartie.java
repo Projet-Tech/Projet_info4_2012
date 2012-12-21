@@ -162,8 +162,13 @@ public class ControleurIntermediairePartie implements Controleur{
 			public void mousePressed(MouseEvent e) {}
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				vueCreationPartie.setVisible(false);
-				controleurPrincipal.chargerSession(vueCreationPartie.getVueChargerPartie().getSession());
+				if(vueCreationPartie.getVueChargerPartie().getSession() == null){
+					vueCreationPartie.afficherFenetreDemande("Oups!", "Pas de session séléctionnée");
+				}
+				else{
+					vueCreationPartie.setVisible(false);
+					controleurPrincipal.chargerSession(vueCreationPartie.getVueChargerPartie().getSession());
+				}
 			}
 		});
 			

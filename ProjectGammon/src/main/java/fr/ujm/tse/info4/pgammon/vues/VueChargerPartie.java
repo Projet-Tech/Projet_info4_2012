@@ -55,7 +55,7 @@ public class VueChargerPartie extends JPanel{
 		try {
 			GestionDeSession gestion = GestionDeSession.getGestionDeSession();
 			listSession = gestion.getListSession();
-			System.out.println(listSession);
+			//System.out.println(listSession);
 		} catch (IOException | JDOMException e1) {
 			
 			e1.printStackTrace();

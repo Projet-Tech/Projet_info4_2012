@@ -42,7 +42,7 @@ public class AvatarList extends JPanel{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					path = ((ImageAvatar) e.getSource()).getPath();
-					System.out.println(path);
+					//System.out.println(path);
 				}
 			});
 		}

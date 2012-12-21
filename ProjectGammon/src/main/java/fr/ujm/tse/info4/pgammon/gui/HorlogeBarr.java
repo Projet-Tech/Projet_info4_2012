@@ -12,14 +12,21 @@ import javax.swing.JPanel;
 import fr.ujm.tse.info4.pgammon.models.Horloge;
 import fr.ujm.tse.info4.pgammon.models.HorlogeEvent;
 import fr.ujm.tse.info4.pgammon.models.HorlogeEventListener;
-
+/**
+ * Fournit un composant pour afficher l'horloge sous forme de barre
+ * @author Jean-Mi
+ *
+ */
 public class HorlogeBarr extends JPanel implements HorlogeEventListener {
 	private static final long serialVersionUID = 1946775586045691887L;
 	private final int LABEL_WIDTH = 50;
 	JLabel timeLbl;
 	Horloge horloge;
 	
-	
+	/**
+	 * affiche l'horloge dans une barre
+	 * @param horloge Horloge associée
+	 */
 	public HorlogeBarr(Horloge horloge) {
 		setHorloge(horloge);
 		build();
@@ -28,7 +35,10 @@ public class HorlogeBarr extends JPanel implements HorlogeEventListener {
 	
 	
 	
-
+	/**
+	 * Set l'horloge
+	 * @param h horloge
+	 */
 	public void setHorloge(Horloge h) {
 
 		if(horloge != null)
