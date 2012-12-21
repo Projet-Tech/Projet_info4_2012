@@ -66,10 +66,11 @@ public class ControleurPartie implements Controleur
 		this.session = session;
 		//testInitialisation();
 		vuePartie = new VuePartie(session.getPartieEnCours());
+		timerRevuePartie= null;
 		build();
 		
 		controleurTablier = new ControleurTablier(session.getPartieEnCours(),vuePartie,this);
-		timerRevuePartie= null;
+		
 		
 	}
 
@@ -423,8 +424,8 @@ public class ControleurPartie implements Controleur
 						else if (action == "Non")
 						{
 							finPartie();
-							if (!session.isSessionFini())
-								controleurPartie.nouvellePartie();
+							//if (!session.isSessionFini())
+								//controleurPartie.nouvellePartie();
 							
 						}
 						vuePartie.getPaneldroitencours().updateVideau();
@@ -494,7 +495,6 @@ public class ControleurPartie implements Controleur
 							controleur.retour();
 							
 						}
-						
 					}
 				});
 			}
@@ -565,7 +565,7 @@ public class ControleurPartie implements Controleur
 		}
 		else
 		{
-			vuePartie.afficherFenetreDemande(session.getPartieEnCours().getParametreJeu().getJoueur(session.getPartieEnCours().getJoueurEnCour()).getPseudo() , " remporte la session!");	
+			vuePartie.afficherFenetreDemande(session.getPartieEnCours().getParametreJeu().getJoueur(session.getPartieEnCours().getJoueurEnCour()).getPseudo() , " remporte la partie!");	
 		}
 		vuePartie.setEtat(EtatSession.TERMINEE);
 		
