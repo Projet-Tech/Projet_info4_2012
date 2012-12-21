@@ -48,6 +48,7 @@ public class ControleurPartie implements Controleur
 	private boolean isSensAvancer;
 	private Timer timerRevuePartie;
 	//TODO Ce constructeur seras detruit
+	
 	@Deprecated
 	public  ControleurPartie(Partie partie)
 	{
@@ -70,6 +71,7 @@ public class ControleurPartie implements Controleur
 		build();
 		
 		controleurTablier = new ControleurTablier(session.getPartieEnCours(),vuePartie,this);
+		vuePartie.getPanelEnCoursVueBas().updateScore(session.getScores().get(session.getParametreSession().getJoueurBlanc()), session.getScores().get(session.getParametreSession().getJoueurNoir()));
 		
 		
 	}
