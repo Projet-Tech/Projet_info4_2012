@@ -51,9 +51,9 @@ public class PanelEnCoursVueBas extends JPanel{
 		help.setBounds(600, 5, help.getPreferredSize().width, help.getPreferredSize().height);
 		add(help);
 		
-		JLabel labhelp = new JLabel("Aide");
+		JLabel labhelp = new JLabel("Règles");
 		labhelp.setForeground(new Color(0xCCCCCC));
-		labhelp.setBounds(617, 50, 80, 60);
+		labhelp.setBounds(610, 50, 80, 60);
 		add(labhelp);
 		
 		//composant et label d'annuler nouvelle session
