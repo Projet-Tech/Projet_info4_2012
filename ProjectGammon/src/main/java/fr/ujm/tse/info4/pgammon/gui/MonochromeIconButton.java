@@ -51,6 +51,7 @@ public class MonochromeIconButton extends JButton{
 	}
 
 	private void build(String iconRef, String text) {
+		setOpaque(false);
 		icon = new ImageIcon(iconRef);
 		label = new JLabel(text);
 	}

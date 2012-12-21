@@ -25,7 +25,6 @@ public class MonochromeButton extends JButton {
 	float alpha = 1f;
 	public MonochromeButton(){
 		super();
-		
 	}
 
 	public MonochromeButton(String str) {
@@ -44,6 +43,7 @@ public class MonochromeButton extends JButton {
 	}
 
 	private void build() {
+		setOpaque(false);
 		label = new JLabel(text);
 		label.setFont(new Font("Arial",Font.PLAIN,20));
 		label.setPreferredSize(getPreferredSize());
