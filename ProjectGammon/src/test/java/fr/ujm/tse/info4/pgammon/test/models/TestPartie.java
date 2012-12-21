@@ -3,7 +3,6 @@ package fr.ujm.tse.info4.pgammon.test.models;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import fr.ujm.tse.info4.pgammon.exeption.TourNonJouableException;
 import fr.ujm.tse.info4.pgammon.models.DeSixFaces;
 import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
@@ -19,6 +18,7 @@ public class TestPartie {
 	 * 
 	 * @param args
 	 */
+	@SuppressWarnings({ "resource", "unused" })
 	public static void main(String[] args) {
 
 		// comment récuperer ce que l'utilisateur saisie.

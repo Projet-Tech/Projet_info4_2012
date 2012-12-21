@@ -6,6 +6,7 @@ import fr.ujm.tse.info4.pgammon.models.Profils;
 
 public class TestProfils {
 
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 
 		System.out.println("Lancement du test de la Partie");

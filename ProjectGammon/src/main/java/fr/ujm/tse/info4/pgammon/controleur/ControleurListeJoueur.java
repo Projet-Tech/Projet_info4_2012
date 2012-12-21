@@ -1,14 +1,8 @@
 package fr.ujm.tse.info4.pgammon.controleur;
 
-import java.awt.Frame;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.SortedSet;
-import java.util.concurrent.ConcurrentSkipListSet;
-
 import javax.swing.JFrame;
 
 import fr.ujm.tse.info4.pgammon.models.Joueur;
@@ -235,7 +229,7 @@ public class ControleurListeJoueur implements Controleur{
 					tmpJoueur.setId(id);
 					
 					for(int i=0;i<profil.getList().size();i++){
-						if((int)tmpJoueur.getId()== (int)profil.getList().get(i).getId()){
+						if(tmpJoueur.getId()== profil.getList().get(i).getId()){
 							drapeau = false;
 						}
 					}

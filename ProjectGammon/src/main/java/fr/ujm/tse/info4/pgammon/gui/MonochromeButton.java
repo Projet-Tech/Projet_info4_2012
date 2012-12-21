@@ -9,9 +9,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.RenderingHints;
-import java.awt.Shape;
-import java.awt.geom.Rectangle2D;
-
 import javax.swing.ButtonModel;
 import javax.swing.Icon;
 import javax.swing.JButton;
@@ -111,6 +108,7 @@ public class MonochromeButton extends JButton {
 		
 	}
 	
+	@Override
 	public void setText(String text){
 		this.text = text;
 		label.setText(text);

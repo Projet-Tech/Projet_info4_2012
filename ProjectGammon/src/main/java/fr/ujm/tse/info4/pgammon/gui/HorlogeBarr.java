@@ -5,10 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Paint;
-import java.awt.RadialGradientPaint;
 import java.awt.RenderingHints;
-import java.awt.geom.Point2D;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -17,6 +14,7 @@ import fr.ujm.tse.info4.pgammon.models.HorlogeEvent;
 import fr.ujm.tse.info4.pgammon.models.HorlogeEventListener;
 
 public class HorlogeBarr extends JPanel implements HorlogeEventListener {
+	private static final long serialVersionUID = 1946775586045691887L;
 	private final int LABEL_WIDTH = 50;
 	JLabel timeLbl;
 	Horloge horloge;

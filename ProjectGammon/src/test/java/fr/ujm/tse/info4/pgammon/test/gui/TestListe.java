@@ -2,7 +2,6 @@ package fr.ujm.tse.info4.pgammon.test.gui;
 
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -11,17 +10,10 @@ import java.util.Vector;
 import javax.swing.JFrame;
 
 import fr.ujm.tse.info4.pgammon.gui.Avatar;
-import fr.ujm.tse.info4.pgammon.gui.BarreCaseButton;
-import fr.ujm.tse.info4.pgammon.gui.CaseButton;
-import fr.ujm.tse.info4.pgammon.gui.DeButton;
 import fr.ujm.tse.info4.pgammon.gui.JoueurCellRenderer;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeListe;
 import fr.ujm.tse.info4.pgammon.gui.SessionCellRenderer;
-import fr.ujm.tse.info4.pgammon.gui.TriangleCaseButton;
-import fr.ujm.tse.info4.pgammon.models.Case;
-import fr.ujm.tse.info4.pgammon.models.CouleurCase;
-import fr.ujm.tse.info4.pgammon.models.DeSixFaces;
 import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 import fr.ujm.tse.info4.pgammon.models.ParametreJeu;

@@ -1,8 +1,5 @@
 package fr.ujm.tse.info4.pgammon.test.gui;
 
-import java.awt.Container;
-import java.awt.FlowLayout;
-
 import javax.swing.JFrame;
 
 import fr.ujm.tse.info4.pgammon.gui.MonochromeVue;

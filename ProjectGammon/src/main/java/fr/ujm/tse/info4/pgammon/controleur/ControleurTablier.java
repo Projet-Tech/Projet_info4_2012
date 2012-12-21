@@ -4,7 +4,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import javax.swing.JFrame;
 
@@ -92,7 +91,7 @@ public class ControleurTablier implements Controleur{
 							if (partie.jouerCoup(vueTablier.getCandidat().getCase(), caseButton.getCase()))
 							{
 								vueTablier.uncandidateAll();
-								vueTablier.setPossibles((List)(new ArrayList<Case>()));
+								vueTablier.setPossibles((new ArrayList<Case>()));
 								
 								if(partie.isPartieFini())
 								{
@@ -119,7 +118,7 @@ public class ControleurTablier implements Controleur{
 							else
 							{
 								vueTablier.uncandidateAll();
-								vueTablier.setPossibles((List)(new ArrayList<Case>()));
+								vueTablier.setPossibles((new ArrayList<Case>()));
 							}
 							
 						}
@@ -179,7 +178,7 @@ public class ControleurTablier implements Controleur{
 						changerTour();
 					}
 					  vueTablier.uncandidateAll();
-					  vueTablier.setPossibles((List)(new ArrayList<Case>()));
+					  vueTablier.setPossibles((new ArrayList<Case>()));
 					  
 					  if (partie.siDesUtilises())
 						{	

@@ -1,7 +1,5 @@
 package fr.ujm.tse.info4.pgammon;
 
-import fr.ujm.tse.info4.pgammon.models.*;
-
 /**
  * Hello world!
  *

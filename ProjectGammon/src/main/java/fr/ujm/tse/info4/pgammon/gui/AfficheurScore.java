@@ -1,21 +1,15 @@
 package fr.ujm.tse.info4.pgammon.gui;
 
-import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Paint;
 import java.awt.RenderingHints;
-import java.util.Locale.Category;
-
 import javax.swing.BorderFactory;
-import javax.swing.ButtonModel;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 

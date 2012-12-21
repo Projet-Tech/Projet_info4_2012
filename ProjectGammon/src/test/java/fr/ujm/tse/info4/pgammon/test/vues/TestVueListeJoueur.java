@@ -5,12 +5,8 @@ import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 
-import fr.ujm.tse.info4.pgammon.controleur.ControleurPartie;
 import fr.ujm.tse.info4.pgammon.gui.Avatar;
-import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
-import fr.ujm.tse.info4.pgammon.models.ParametreJeu;
-import fr.ujm.tse.info4.pgammon.models.Partie;
 import fr.ujm.tse.info4.pgammon.models.Profils;
 import fr.ujm.tse.info4.pgammon.vues.VueListeJoueur;
 

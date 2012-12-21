@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
 
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
-import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.Session;
 
 public class SessionCellRenderer extends JPanel implements ListCellRenderer<Session> {

@@ -254,8 +254,6 @@ public class Tablier
 	public boolean isCaseAvant(Case caseDame)
 	{
 		int nbDame = 0;
-		int a;
-		int b;
 		
 		if(caseDame.getCouleurDame() == CouleurCase.BLANC)
 		{
@@ -284,8 +282,6 @@ public class Tablier
 	public boolean peutMarquerDame(CouleurCase Couleur)
 	{
 		int nbDame = 0;
-		int a;
-		int b;
 		
 		if(Couleur == CouleurCase.BLANC)
 		{

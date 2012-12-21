@@ -1,16 +1,12 @@
 package fr.ujm.tse.info4.pgammon.gui;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
-import fr.ujm.tse.info4.pgammon.controleur.ControleurIntermediairePartie;
-import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 
 public class PanelParametre extends MonochromePanel{
 	

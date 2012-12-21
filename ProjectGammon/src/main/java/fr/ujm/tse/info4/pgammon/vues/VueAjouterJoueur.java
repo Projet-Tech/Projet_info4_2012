@@ -1,22 +1,14 @@
 package fr.ujm.tse.info4.pgammon.vues;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Paint;
-import java.awt.RadialGradientPaint;
 import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.geom.Point2D;
-
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import fr.ujm.tse.info4.pgammon.gui.Avatar;
-import fr.ujm.tse.info4.pgammon.gui.AvatarList;
 import fr.ujm.tse.info4.pgammon.gui.ImageAvatar;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
 import fr.ujm.tse.info4.pgammon.gui.MonochromePanel;
@@ -153,9 +145,9 @@ public class VueAjouterJoueur extends MonochromePanel{
 		Graphics2D g2 = (Graphics2D) g.create(); 
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); 
 		
-		Paint p;
-		int h = getHeight(); 
-		int w = getWidth(); 
+		//Paint p;
+		//int h = getHeight(); 
+		//int w = getWidth(); 
 		
 		
 		

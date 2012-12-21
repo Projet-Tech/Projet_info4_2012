@@ -2,30 +2,22 @@ package fr.ujm.tse.info4.pgammon.test.gui;
 
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 
-import fr.ujm.tse.info4.pgammon.gui.JoueurCellRenderer;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
 import fr.ujm.tse.info4.pgammon.gui.ReplayBarr;
-import fr.ujm.tse.info4.pgammon.gui.ReplayBarrElement;
 import fr.ujm.tse.info4.pgammon.models.Case;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 import fr.ujm.tse.info4.pgammon.models.DeSixFaces;
 import fr.ujm.tse.info4.pgammon.models.Deplacement;
-import fr.ujm.tse.info4.pgammon.models.Joueur;
-import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
-import fr.ujm.tse.info4.pgammon.models.ParametreJeu;
-import fr.ujm.tse.info4.pgammon.models.Partie;
 import fr.ujm.tse.info4.pgammon.models.Tour;
-import fr.ujm.tse.info4.pgammon.vues.VuePartie;
 
+@SuppressWarnings("unused")
 public class TestReplayBarre {
 	
 	private final static DeSixFaces B1 = new DeSixFaces(CouleurCase.BLANC, 1);
@@ -245,14 +237,14 @@ public class TestReplayBarre {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				tb.goNext();
+				//tb.goNext();
 			}
 		});
 		tb.getPrevBtn().addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				tb.goPrevious();
+				//tb.goPrevious();
 			}
 		});
 

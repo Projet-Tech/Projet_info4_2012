@@ -48,7 +48,7 @@ public class MonochromeCheckbox extends JCheckBox {
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); 
 		
 		int h = getHeight(); 
-		int w = getWidth(); 
+		//int w = getWidth(); 
 
 		if (!model.isEnabled()) { 
 			label.setForeground(new Color(0x555555));

@@ -7,8 +7,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.Timer;
 
-import javax.swing.JPanel;
-
 public class TranstionAnimeeBase extends JButton implements ActionListener {
 	
 	private static final long serialVersionUID = 8608824468305555276L;
@@ -20,7 +18,6 @@ public class TranstionAnimeeBase extends JButton implements ActionListener {
 	protected int value;
 	
 	public TranstionAnimeeBase(int interval, int duree) {
-		TranstionAnimeeBase aa = new TranstionAnimeeBase(interval);
 		this.duree = duree;
 		this.interval = interval;
 		timer = new Timer(interval, this);

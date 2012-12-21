@@ -1,10 +1,7 @@
 package fr.ujm.tse.info4.pgammon.gui;
 
 import java.awt.AlphaComposite;
-import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -15,17 +12,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.SortedSet;
-
-import javax.swing.JButton;
-
-import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 
 public class FenetreDemandeAnimationBase extends TranstionAnimeeBase {
 	
@@ -130,6 +119,7 @@ public class FenetreDemandeAnimationBase extends TranstionAnimeeBase {
 	public void setTitle(String title){
 		c_titre = title.toCharArray();
 	}
+	@Override
 	public void setText(String text){
 		String _texte = text;
 		c_text = _texte.toCharArray();
@@ -137,12 +127,12 @@ public class FenetreDemandeAnimationBase extends TranstionAnimeeBase {
 	}
 
 	private Point getTitlePosition(){
-		return new Point((int) (100),(int) (245 + 400 * quad) );
+		return new Point((100),(int) (245 + 400 * quad) );
 	}
 	
 	
 	private Point getTextPosition(){
-		return new Point((int) (600)-c_text.length*10,(int) (315 + 500 * quad) );
+		return new Point((600)-c_text.length*10,(int) (315 + 500 * quad) );
 	}
 	
 	private void updateQuadraticTransition(){
@@ -210,7 +200,7 @@ public class FenetreDemandeAnimationBase extends TranstionAnimeeBase {
 
 	private void drawBandeau(Graphics2D g2) {
 
-		int h = getHeight(); 
+		//int h = getHeight(); 
 		int w = getWidth(); 
 		
 		Paint p;

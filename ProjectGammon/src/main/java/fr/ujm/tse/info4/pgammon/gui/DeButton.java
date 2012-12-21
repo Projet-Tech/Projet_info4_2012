@@ -1,22 +1,18 @@
 package fr.ujm.tse.info4.pgammon.gui;
 
 import java.awt.AlphaComposite;
-import java.awt.BasicStroke;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Paint;
 import java.awt.RenderingHints;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
-
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 import fr.ujm.tse.info4.pgammon.models.DeSixFaces;
 
 public class DeButton extends JButton {
+	private static final long serialVersionUID = 2520612785614004478L;
 	private static final String DE_BLANC_1 = "images/des/de_blanc_1.png";
 	private static final String DE_BLANC_2 = "images/des/de_blanc_2.png";
 	private static final String DE_BLANC_3 = "images/des/de_blanc_3.png";

@@ -2,7 +2,6 @@ package fr.ujm.tse.info4.pgammon.models;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.EventHandler;
 import java.util.ArrayList;
 
 import javax.swing.Timer;

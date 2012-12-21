@@ -1,10 +1,7 @@
 package fr.ujm.tse.info4.pgammon.test.vues;
 
-import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
-
 import javax.swing.JFrame;
 
 import fr.ujm.tse.info4.pgammon.vues.VueMenu;

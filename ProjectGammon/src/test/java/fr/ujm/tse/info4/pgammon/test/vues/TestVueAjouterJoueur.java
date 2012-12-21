@@ -6,7 +6,6 @@ import java.awt.FlowLayout;
 import javax.swing.JFrame;
 
 import fr.ujm.tse.info4.pgammon.vues.VueAjouterJoueur;
-import fr.ujm.tse.info4.pgammon.vues.VueMenu;
 
 public class TestVueAjouterJoueur {
 

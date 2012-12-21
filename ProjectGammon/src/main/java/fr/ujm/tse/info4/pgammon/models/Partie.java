@@ -240,6 +240,7 @@ public class Partie {
 	public boolean peutMarquerCetteDame(Case caseDame)
 	{
 		boolean siDeExiste = false;
+		@SuppressWarnings("unused")
 		int deUtiliser =0;
 		Case caseVictoire;
 		
@@ -395,14 +396,13 @@ public class Partie {
  * @return
  */
 	public List<Coup> getCoupsPossibles() {
-		int somme = 0;
 
 		List<Coup> listeUnDe = new ArrayList<Coup>();
 		
 		for (Case caseDame : tablier.getAllCase()) {
 			if(caseDame.getCouleurDame() == joueurEnCour)
 			{
-				for (DeSixFaces tmpDe : deSixFaces){
+				for (@SuppressWarnings("unused") DeSixFaces tmpDe : deSixFaces){
 					for (Case caseDametmp : getCoupsPossibles(caseDame)) {
 						listeUnDe.add(new Coup(caseDame, caseDametmp));
 					}
@@ -576,7 +576,7 @@ public class Partie {
 	{	
 		int i = 0;
 		for (Tour tour : historiqueToursJoueur) {
-			for (Deplacement deplacement : tour.getListDeplacement()) {
+			for (@SuppressWarnings("unused") Deplacement deplacement : tour.getListDeplacement()) {
 				i++;
 			}
 		}

@@ -7,10 +7,8 @@ import javax.swing.JPanel;
 
 import fr.ujm.tse.info4.pgammon.gui.AfficheurScore;
 import fr.ujm.tse.info4.pgammon.gui.IconMonochromeType;
-import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeIconButton;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
-import fr.ujm.tse.info4.pgammon.models.EtatSession;
 import fr.ujm.tse.info4.pgammon.models.Partie;
 
 public class PanelEnCoursVueDroite extends JPanel{

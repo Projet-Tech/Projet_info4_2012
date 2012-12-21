@@ -1,7 +1,6 @@
 package fr.ujm.tse.info4.pgammon.gui;
 
 import java.awt.AlphaComposite;
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -10,10 +9,8 @@ import java.awt.Paint;
 import java.awt.Point;
 import java.awt.RenderingHints;
 
-import fr.ujm.tse.info4.pgammon.models.CouleurCase;
-
 public class ChangementTourAnimation extends TranstionAnimeeBase {
-	
+	private static final long serialVersionUID = 2507637341332121993L;
 	private char[] c_titre;
 	private char[] c_text;
 	
@@ -24,6 +21,7 @@ public class ChangementTourAnimation extends TranstionAnimeeBase {
 		setOpaque(false);
 	}
 	
+	@Override
 	public void setText(String text){
 		String _texte = text + " - " + text + " - " + text + " - " + text + " - " + text + " - " + text + " - " + text + " - " + text + " - " + text + " - " + text + " - " + text + " - " + text + " - " + text;
 		c_text = _texte.toCharArray();
@@ -110,7 +108,7 @@ public class ChangementTourAnimation extends TranstionAnimeeBase {
 
 	private void drawBandeau(Graphics2D g2) {
 
-		int h = getHeight(); 
+		//int h = getHeight(); 
 		int w = getWidth(); 
 		
 		Paint p;

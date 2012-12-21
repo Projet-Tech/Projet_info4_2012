@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Label;
 import java.awt.Paint;
 import java.awt.Point;
 import java.awt.Polygon;
@@ -88,12 +87,12 @@ public class TriangleCaseButton extends CaseButton{
 		int off = 0;
 		if(model.isRollover()) off ++;
 		if(model.isPressed()) off ++;
-		
+		/*
 		float ratio = 1;
 		if(nb_dames>=MAX_DAMES_DRAWED){
 			ratio = (float)(MAX_DAMES_DRAWED)/(float)(nb_dames); 
 		}
-		
+		*/
 		ImageIcon icon;
 		if(getCase().getCouleurDame() == CouleurCase.VIDE){
 			icon = new ImageIcon();
@@ -108,9 +107,9 @@ public class TriangleCaseButton extends CaseButton{
 		{
 			int y;
 			if(isDirectionUp)
-				y = (int) (getHeight()-((i+1)*(DAME_SEPARATION)+(i+1)*(off)));
+				y = getHeight()-((i+1)*(DAME_SEPARATION)+(i+1)*(off));
 			else
-				y = (int) (i*(DAME_SEPARATION)+(i+1)*off);
+				y = i*(DAME_SEPARATION)+(i+1)*off;
 			
 
 			

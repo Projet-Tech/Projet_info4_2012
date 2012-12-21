@@ -16,7 +16,6 @@ import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.SortedSet;
 import java.util.concurrent.ConcurrentSkipListSet;
 
@@ -432,7 +431,7 @@ private void listenerBoutonAide(){
 				else
 				{
 					session.getPartieEnCours().getParametreJeu().getJoueurNoir().setNiveauAssistant(NiveauAssistant.NON_UTILISE);
-					vuePartie.getVueTablier().setPossibles((List)(new ArrayList<Case>()));
+					vuePartie.getVueTablier().setPossibles((new ArrayList<Case>()));
 					vuePartie.getVueTablier().updateUI();
 				}
 				vuePartie.getPaneljoueur2().updateData();
@@ -707,6 +706,7 @@ private void listenerBoutonAide(){
 		return controleurTablier;
 	}
 	
+	@SuppressWarnings("unused")
 	private void testInitialisation(){
 		ArrayList<Case> lCase = new ArrayList<Case>();
 		

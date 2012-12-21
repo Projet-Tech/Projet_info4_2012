@@ -48,18 +48,7 @@ public class Session
 		
 	}
 	
-	private void modifierScore(Joueur j, Videau multiplicateur)
-	{
-		//TODO
-		throw new UnsupportedOperationException();
-	}
-	
-	
-	private EtatSession setEtat(EtatSession etat)
-	{
-		//TODO
-		throw new UnsupportedOperationException();
-	}
+
 	
 	public void finSession()
 	{

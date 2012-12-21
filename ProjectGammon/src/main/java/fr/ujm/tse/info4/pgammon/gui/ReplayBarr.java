@@ -251,7 +251,7 @@ public class ReplayBarr extends JPanel {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					int diff = (int) (0.7*(final_position-current_position));
-					current_position = (int) (final_position - diff);
+					current_position = final_position - diff;
 					if(Math.abs(diff) < 1)
 						current_position = final_position;
 					elmentContainer.setBounds(current_position,0,elmentContainer.getPreferredSize().width,elmentContainer.getPreferredSize().height);

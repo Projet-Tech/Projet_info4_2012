@@ -1,17 +1,12 @@
 package fr.ujm.tse.info4.pgammon.test.gui;
 
 import java.awt.Container;
-import java.awt.FlowLayout;
-import java.awt.List;
-import java.io.ObjectInputStream.GetField;
-import java.util.HashSet;
 import java.util.SortedSet;
 import java.util.concurrent.ConcurrentSkipListSet;
 
 import javax.swing.JFrame;
 
 import fr.ujm.tse.info4.pgammon.controleur.ControleurPartie;
-import fr.ujm.tse.info4.pgammon.gui.ChangementTourAnimation;
 import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 import fr.ujm.tse.info4.pgammon.models.ParametreJeu;
@@ -20,6 +15,7 @@ import fr.ujm.tse.info4.pgammon.vues.VuePartie;
 
 public class TestTransition {
 	
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("TestTransition");
 

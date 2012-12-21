@@ -15,7 +15,6 @@ import fr.ujm.tse.info4.pgammon.gui.ImageAvatar;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeCheckbox;
 import fr.ujm.tse.info4.pgammon.gui.MonochromePanel;
-import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 
@@ -32,7 +31,6 @@ public class PanelVueListeJoueurDescription extends MonochromePanel{
 	public static final String pionblanc = "images/big_pion_blanc.png";
 	public static final String pionnoir = "images/big_pion_noir.png";
 	private ImageIcon imgjoueur;
-	private ImageIcon imgpion;
 
 
 
@@ -279,7 +277,7 @@ public class PanelVueListeJoueurDescription extends MonochromePanel{
 		return conseilCoup;
 	}
 
-	public void setConseilcoup(MonochromeCheckbox conseilcoup) {
+	public void setConseilcoup(MonochromeCheckbox conseilCoup) {
 		this.conseilCoup = conseilCoup;
 	}
 

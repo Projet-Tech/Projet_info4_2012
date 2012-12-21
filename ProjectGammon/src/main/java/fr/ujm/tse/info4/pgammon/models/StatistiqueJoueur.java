@@ -48,7 +48,7 @@ public class StatistiqueJoueur
 		int maxValue = 0; 
 		Joueur maxKey = null;
 		while (it.hasNext()) {
-			Map.Entry<Joueur, Integer> entry = (Map.Entry<Joueur, Integer>) it.next();
+			Map.Entry<Joueur, Integer> entry = it.next();
 			int value = entry.getValue();
 			Joueur key = entry.getKey();
 			if(value > maxValue){

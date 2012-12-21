@@ -1,19 +1,9 @@
 package fr.ujm.tse.info4.pgammon.gui;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Label;
-import java.awt.List;
-import java.awt.Paint;
-import java.awt.RadialGradientPaint;
-import java.awt.RenderingHints;
-import java.awt.geom.Point2D;
-
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -23,6 +13,7 @@ import javax.swing.ListCellRenderer;
 import fr.ujm.tse.info4.pgammon.models.Joueur;
 
 public class JoueurCellRenderer extends JPanel implements ListCellRenderer<Joueur> {
+	private static final long serialVersionUID = 2419031075848394031L;
 	JLabel label;
 	ImageAvatar imgjoueur;
 	Joueur joueur;

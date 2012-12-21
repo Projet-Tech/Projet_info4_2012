@@ -7,11 +7,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.net.URI;
-import java.util.Properties;
-
 import javax.swing.JFrame;
 
-import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.vues.VueMenu;
 
 public class TestVueAide {

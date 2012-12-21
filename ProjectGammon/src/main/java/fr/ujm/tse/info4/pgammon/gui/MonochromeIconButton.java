@@ -7,17 +7,10 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Paint;
-import java.awt.RadialGradientPaint;
 import java.awt.RenderingHints;
-import java.awt.Shape;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-
-import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 
 public class MonochromeIconButton extends JButton{
 	private static final long serialVersionUID = -8152217751563954978L;
@@ -106,10 +99,12 @@ public class MonochromeIconButton extends JButton{
 		//super.paintBorder(g);
 	}
 
+	@Override
 	public ImageIcon getIcon() {
 		return icon;
 	}
 
+	@Override
 	public String getLabel() {
 		return label.toString();
 	}

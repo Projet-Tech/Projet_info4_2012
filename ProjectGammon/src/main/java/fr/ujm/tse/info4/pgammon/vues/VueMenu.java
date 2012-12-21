@@ -1,22 +1,11 @@
 package fr.ujm.tse.info4.pgammon.vues;
 
-import java.awt.BasicStroke;
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.GridLayout;
-import java.awt.Paint;
-import java.awt.RadialGradientPaint;
-import java.awt.RenderingHints;
-import java.awt.geom.Point2D;
-
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import fr.ujm.tse.info4.pgammon.gui.ChangementTourAnimation;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeVue;
 
@@ -59,7 +48,6 @@ public class VueMenu extends MonochromeVue {
 		JPanel conteneurgrid = new JPanel();
 		JPanel conteneurbouton = new JPanel();
 		
-		BorderLayout bl = new BorderLayout();//permet de pourvoir centrer les composants
 		GridLayout gl = new GridLayout(6, 1);//permet de contenir les boutons en colonne
 		
 		//paramètre du conteneur de grid

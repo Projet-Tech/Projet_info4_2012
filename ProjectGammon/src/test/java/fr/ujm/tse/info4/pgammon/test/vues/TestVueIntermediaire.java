@@ -4,10 +4,7 @@ import java.awt.Container;
 import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 import fr.ujm.tse.info4.pgammon.vues.VueIntermediairePartie;
-import fr.ujm.tse.info4.pgammon.vues.VueMenu;
 
 public class TestVueIntermediaire {
 

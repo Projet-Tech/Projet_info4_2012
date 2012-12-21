@@ -33,6 +33,8 @@ public class ControleurPrincipal implements Controleur{
 	private JFrame frame;
 	private VueIntermediairePartie creationPartie;
 	private ControleurPrincipal controleurPrincipal;
+	protected ControleurIntermediairePartie controleurIntermediairePartie;
+	protected ControleurListeJoueur controleurListeJoueur;
 	
 	public ControleurPrincipal(Master master) {
 		this.master = master;
@@ -83,7 +85,7 @@ public class ControleurPrincipal implements Controleur{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				vueMenu.setVisible(false);
-				ControleurIntermediairePartie controleurIntermediairePartie = new ControleurIntermediairePartie(true,controleurPrincipal);	
+				controleurIntermediairePartie = new ControleurIntermediairePartie(true,controleurPrincipal);	
 			}
 		});
 	}
@@ -103,7 +105,7 @@ public class ControleurPrincipal implements Controleur{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				vueMenu.setVisible(false);
-				ControleurIntermediairePartie	controleurIntermediairePartie = new ControleurIntermediairePartie(false,controleurPrincipal);
+				controleurIntermediairePartie = new ControleurIntermediairePartie(false,controleurPrincipal);
 			}
 		});
 	}
@@ -124,7 +126,7 @@ public class ControleurPrincipal implements Controleur{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				vueMenu.setVisible(false);
-				ControleurListeJoueur controleurListeJoueur = new ControleurListeJoueur(false,controleurPrincipal);	
+				controleurListeJoueur = new ControleurListeJoueur(false,controleurPrincipal);	
 			}
 		});
 	}
@@ -180,6 +182,7 @@ public class ControleurPrincipal implements Controleur{
 		});
 	}
 
+	@Override
 	public JFrame getFrame() {
 		return frame;
 	}
@@ -227,5 +230,13 @@ public class ControleurPrincipal implements Controleur{
 	@Override
 	public Controleur getControleur() {
 		return this;
+	}
+
+	public VueIntermediairePartie getCreationPartie() {
+		return creationPartie;
+	}
+
+	public void setCreationPartie(VueIntermediairePartie creationPartie) {
+		this.creationPartie = creationPartie;
 	}
 }

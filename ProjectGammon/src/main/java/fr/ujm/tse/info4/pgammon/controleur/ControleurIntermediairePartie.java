@@ -11,7 +11,6 @@ import org.jdom2.JDOMException;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 import fr.ujm.tse.info4.pgammon.models.GestionDeSession;
 import fr.ujm.tse.info4.pgammon.models.Joueur;
-import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 import fr.ujm.tse.info4.pgammon.models.ParametreJeu;
 import fr.ujm.tse.info4.pgammon.vues.VueIntermediairePartie;
 
@@ -23,6 +22,7 @@ public class ControleurIntermediairePartie implements Controleur{
 	private VueIntermediairePartie vueCreationPartie;
 	private JFrame frame;
 	private CouleurCase joueurEnCourDeModification;
+	protected ControleurListeJoueur controleurListeJoueur;
 	
 	public ControleurIntermediairePartie(boolean isNouvellePartie,ControleurPrincipal controleurPrincipal)
 	{
@@ -186,7 +186,7 @@ public class ControleurIntermediairePartie implements Controleur{
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				vueCreationPartie.setVisible(false);
-				ControleurListeJoueur controleurListeJoueur = new ControleurListeJoueur(true,controleurIntermediairePartie);
+				controleurListeJoueur = new ControleurListeJoueur(true,controleurIntermediairePartie);
 				joueurEnCourDeModification = CouleurCase.BLANC;}
 		
 		});
@@ -208,7 +208,7 @@ public class ControleurIntermediairePartie implements Controleur{
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				vueCreationPartie.setVisible(false);
-				ControleurListeJoueur controleurListeJoueur = new ControleurListeJoueur(true,controleurIntermediairePartie);
+				controleurListeJoueur = new ControleurListeJoueur(true,controleurIntermediairePartie);
 				joueurEnCourDeModification = CouleurCase.NOIR;
 				}
 		

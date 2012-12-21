@@ -14,14 +14,14 @@ package fr.ujm.tse.info4.pgammon.models;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-
 import fr.ujm.tse.info4.pgammon.controleur.ControleurPrincipal;
 
 //TODO: Interdire le redimensionnement
 
 public class Master
 {
+	@SuppressWarnings("unused")
+	private static Master master;
 	private int idMax;
 	private int idDate;
 	private ArrayList<Session> listSession;
@@ -29,11 +29,11 @@ public class Master
 	
 	public Master()
 	{
-		idMax= 1;
+		setIdMax(1);
 		Calendar date = Calendar.getInstance();
 		idDate = 10000*date.get(Calendar.MONTH)+1000*date.get(Calendar.DATE)
 				+100*date.get(Calendar.HOUR)+10*date.get(Calendar.MINUTE)+date.get(Calendar.SECOND);
-		controleurPrincipal = new ControleurPrincipal(this);
+		setControleurPrincipal(new ControleurPrincipal(this));
 		listSession = new ArrayList<Session>();
 	}
 	
@@ -90,7 +90,7 @@ public class Master
 	
 	public static void main(String[] args) 
 	{
-		Master master = new Master();
+		master = new Master();
 
 	}
 	
@@ -98,6 +98,22 @@ public class Master
 	{
 		// a modifier pour le multi THREAD
 		return listSession.get(listSession.size()-1);
+	}
+
+	public ControleurPrincipal getControleurPrincipal() {
+		return controleurPrincipal;
+	}
+
+	public void setControleurPrincipal(ControleurPrincipal controleurPrincipal) {
+		this.controleurPrincipal = controleurPrincipal;
+	}
+
+	public int getIdMax() {
+		return idMax;
+	}
+
+	public void setIdMax(int idMax) {
+		this.idMax = idMax;
 	}
 	
 	

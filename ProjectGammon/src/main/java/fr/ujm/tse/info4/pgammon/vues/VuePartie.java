@@ -1,28 +1,10 @@
 package fr.ujm.tse.info4.pgammon.vues;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Paint;
-import java.awt.RadialGradientPaint;
-import java.awt.geom.Point2D;
-import java.util.Set;
-import java.util.SortedSet;
-
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
-import fr.ujm.tse.info4.pgammon.gui.ChangementTourAnimation;
-import fr.ujm.tse.info4.pgammon.gui.FenetreDemandeAnimationBase;
 import fr.ujm.tse.info4.pgammon.gui.HorlogeBarr;
-import fr.ujm.tse.info4.pgammon.gui.IconMonochromeType;
-import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
-import fr.ujm.tse.info4.pgammon.gui.MonochromeIconButton;
-import fr.ujm.tse.info4.pgammon.gui.MonochromeLabel;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeVue;
-import fr.ujm.tse.info4.pgammon.gui.PanelJoueur;
-import fr.ujm.tse.info4.pgammon.gui.TranstionAnimeeBase;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 import fr.ujm.tse.info4.pgammon.models.EtatSession;
 import fr.ujm.tse.info4.pgammon.models.Partie;

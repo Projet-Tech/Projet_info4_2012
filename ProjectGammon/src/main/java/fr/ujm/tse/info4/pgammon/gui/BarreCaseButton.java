@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Paint;
 import java.awt.RenderingHints;
 
 import javax.swing.ImageIcon;
@@ -18,11 +17,10 @@ public class BarreCaseButton extends CaseButton {
 	private static final long serialVersionUID = 1696544283522096083L;
 	private final int MAX_DAMES_DRAWED = 5;
 	private final int DAME_SEPARATION = 27;
-	private boolean isDirectionUp;
+	//private boolean isDirectionUp;
 	
 	public BarreCaseButton(Case _case, boolean _isDirectionUp) {
 		super(_case);
-		isDirectionUp = _isDirectionUp;
 		build();
 	}
 	
@@ -71,12 +69,12 @@ public class BarreCaseButton extends CaseButton {
 		int off = 0;
 		if(model.isRollover()) off ++;
 		if(model.isPressed()) off ++;
-		
+		/*
 		float ratio = 1;
 		if(nb_dames>=MAX_DAMES_DRAWED){
 			ratio = (float)(MAX_DAMES_DRAWED)/(float)(nb_dames); 
 		}
-		
+		*/
 		ImageIcon icon;
 		if(getCase().getCouleurDame() == CouleurCase.VIDE){
 			icon = new ImageIcon();

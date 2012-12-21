@@ -5,10 +5,7 @@ import java.awt.Graphics;
 import java.util.Collection;
 import java.util.Vector;
 
-import javax.swing.BorderFactory;
-import javax.swing.DefaultCellEditor;
 import javax.swing.JList;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;

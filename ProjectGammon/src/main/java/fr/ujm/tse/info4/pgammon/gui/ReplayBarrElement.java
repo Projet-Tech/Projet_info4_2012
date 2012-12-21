@@ -1,15 +1,11 @@
 package fr.ujm.tse.info4.pgammon.gui;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Paint;
-import java.awt.RadialGradientPaint;
 import java.awt.RenderingHints;
-import java.awt.geom.Point2D;
-
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
