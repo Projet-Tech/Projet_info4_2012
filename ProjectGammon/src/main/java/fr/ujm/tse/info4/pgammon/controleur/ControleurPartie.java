@@ -18,6 +18,7 @@ import java.util.SortedSet;
 import java.util.concurrent.ConcurrentSkipListSet;
 
 import javax.swing.JFrame;
+import javax.swing.Timer;
 
 import org.jdom2.JDOMException;
 
@@ -26,6 +27,8 @@ import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 import fr.ujm.tse.info4.pgammon.models.Deplacement;
 import fr.ujm.tse.info4.pgammon.models.EtatSession;
 import fr.ujm.tse.info4.pgammon.models.GestionDeSession;
+import fr.ujm.tse.info4.pgammon.models.HorlogeEvent;
+import fr.ujm.tse.info4.pgammon.models.HorlogeEventListener;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 import fr.ujm.tse.info4.pgammon.models.Partie;
 import fr.ujm.tse.info4.pgammon.models.Profils;
@@ -43,6 +46,7 @@ public class ControleurPartie implements Controleur
 	private Controleur controleur;
 	private int positionRevuePartie;
 	private boolean isSensAvancer;
+	private Timer timerRevuePartie;
 	//TODO Ce constructeur seras detruit
 	@Deprecated
 	public  ControleurPartie(Partie partie)
@@ -65,7 +69,7 @@ public class ControleurPartie implements Controleur
 		build();
 		
 		controleurTablier = new ControleurTablier(session.getPartieEnCours(),vuePartie,this);
-		
+		timerRevuePartie= null;
 		
 	}
 
@@ -95,7 +99,8 @@ public class ControleurPartie implements Controleur
 			public void mousePressed(MouseEvent e) {}
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				
+				if(timerRevuePartie  !=null)
+					timerRevuePartie.stop();
 				isSensAvancer = true;
 				
 				for(int i = positionRevuePartie;i<session.getPartieEnCours().nbDeplacementHistorise();i++)
@@ -127,6 +132,8 @@ public class ControleurPartie implements Controleur
 			public void mousePressed(MouseEvent e) {}
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				if(timerRevuePartie  !=null)
+					timerRevuePartie.stop();
 				positionRevuePartie =0;
 				isSensAvancer = true;
 
@@ -152,6 +159,8 @@ public class ControleurPartie implements Controleur
 			public void mousePressed(MouseEvent e) {}
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				if(timerRevuePartie  !=null)
+					timerRevuePartie.stop();
 				if (positionRevuePartie < session.getPartieEnCours().nbDeplacementHistorise())
 				{
 					if(!isSensAvancer)
@@ -186,6 +195,8 @@ public class ControleurPartie implements Controleur
 			public void mousePressed(MouseEvent e) {}
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				if(timerRevuePartie  !=null)
+					timerRevuePartie.stop();
 				if (positionRevuePartie > 0)
 				{
 					if(isSensAvancer)
@@ -213,29 +224,67 @@ public class ControleurPartie implements Controleur
 	}
 	public void listenerRevoirPartie()
 	{
-		vuePartie.getPaneldroitrevoir().getUndo().addMouseListener(new MouseListener(){
+		if (timerRevuePartie == null)
+			vuePartie.getPaneldroitrevoir().getUndo().addMouseListener(new MouseListener(){
 
-			@Override
-			public void mouseClicked(MouseEvent arg0) {}
-			@Override
-			public void mouseEntered(MouseEvent arg0) {}
-			@Override
-			public void mouseExited(MouseEvent arg0) {	}
-			@Override
-			public void mousePressed(MouseEvent arg0) {}
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				positionRevuePartie =0;
-				isSensAvancer = true;
-				vuePartie.setEtat(EtatSession.REPLAY);
-				vuePartie.getPanelTermineVueBas().getReplayBarr().setTours(session.getPartieEnCours().getHistoriqueToursJoueur());
-				session.getPartieEnCours().getTablier().reinitialisationCase();
-				vuePartie.updateUI();
-				vuePartie.getVueTablier().updateUI();
-				vuePartie.getVueTablier().updateDes();
-				
+				@Override
+				public void mouseClicked(MouseEvent arg0) {}
+				@Override
+				public void mouseEntered(MouseEvent arg0) {}
+				@Override
+				public void mouseExited(MouseEvent arg0) {	}
+				@Override
+				public void mousePressed(MouseEvent arg0) {}
+				@Override
+				public void mouseReleased(MouseEvent arg0) {
+					if (vuePartie.getEtat() != EtatSession.REPLAY)
+					{
+					positionRevuePartie =0;
+					isSensAvancer = true;
+					vuePartie.setEtat(EtatSession.REPLAY);
+					vuePartie.getPanelTermineVueBas().getReplayBarr().setTours(session.getPartieEnCours().getHistoriqueToursJoueur());
+					session.getPartieEnCours().getTablier().reinitialisationCase();
+					vuePartie.updateUI();
+					vuePartie.getVueTablier().updateUI();
+					vuePartie.getVueTablier().updateDes();
+					}
+					else
+					{
+						timerRevuePartie = new Timer(1000, null);
+						timerRevuePartie.addActionListener(new ActionListener() {
+	
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								if (positionRevuePartie < session.getPartieEnCours().nbDeplacementHistorise())
+								{
+									if(!isSensAvancer)
+									{
+										isSensAvancer = true;
+									}
+									else
+									{
+										positionRevuePartie++;
+									}
+								
+								Deplacement dep = session.getPartieEnCours().ProchainDeplacement(positionRevuePartie);
+								if ( dep != null)
+									vuePartie.getPanelTermineVueBas().getReplayBarr().goTo(dep,isSensAvancer);
+								}
+								else
+								{
+									timerRevuePartie.stop();
+								}
+								vuePartie.updateUI();
+								vuePartie.getVueTablier().updateUI();
+								vuePartie.getVueTablier().updateDes();
+							}
+							
+						});
+						
+						timerRevuePartie.start();
+						
+					}
 			}
-			
 		});
 		
 	}

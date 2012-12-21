@@ -31,8 +31,7 @@ public class Tablier
 
 	public Tablier(Partie p)
 	{
-		partie=p;
-		
+		partie=p;		
 		listeCase= new ArrayList<Case>();
 		caseVictoire = new ArrayList<Case>();
 		caseBarre= new ArrayList<Case>();
@@ -110,32 +109,32 @@ public class Tablier
 	
 	public void reinitialisationCase()
 	{
-		caseVictoire.get(0).setCase(CouleurCase.BLANC, 0, 25);
-		caseVictoire.get(1).setCase(CouleurCase.NOIR, 0, 0);
+		caseVictoire.get(0).setCase(CouleurCase.BLANC, 0);
+		caseVictoire.get(1).setCase(CouleurCase.NOIR, 0);
 		
-		caseBarre.get(0).setCase(CouleurCase.BLANC, 0, 0);
-		caseBarre.get(1).setCase(CouleurCase.NOIR, 0, 25);
+		caseBarre.get(0).setCase(CouleurCase.BLANC, 0);
+		caseBarre.get(1).setCase(CouleurCase.NOIR, 0);
 		
 		for (int i=0;i<24;i++)
 		{
 			if(i==0)
-				listeCase.get(i).setCase(CouleurCase.BLANC, 2, i);
+				listeCase.get(i).setCase(CouleurCase.BLANC, 2);
 			else if(i==5)
-				listeCase.get(i).setCase(CouleurCase.NOIR, 5, i);
+				listeCase.get(i).setCase(CouleurCase.NOIR, 5);
 			else if(i==7)
-				listeCase.get(i).setCase(CouleurCase.NOIR, 3, i);
+				listeCase.get(i).setCase(CouleurCase.NOIR, 3);
 			else if(i==11)
-				listeCase.get(i).setCase(CouleurCase.BLANC, 5, i);
+				listeCase.get(i).setCase(CouleurCase.BLANC, 5);
 			else if(i==12)
-				listeCase.get(i).setCase(CouleurCase.NOIR, 5, i);
+				listeCase.get(i).setCase(CouleurCase.NOIR, 5);
 			else if(i==16)
-				listeCase.get(i).setCase(CouleurCase.BLANC, 3, i);
+				listeCase.get(i).setCase(CouleurCase.BLANC, 3);
 			else if(i==18)
-				listeCase.get(i).setCase(CouleurCase.BLANC, 5, i);
+				listeCase.get(i).setCase(CouleurCase.BLANC, 5);
 			else if(i==23)
-				listeCase.get(i).setCase(CouleurCase.NOIR, 2, i);
+				listeCase.get(i).setCase(CouleurCase.NOIR, 2);
 			else
-				listeCase.get(i).setCase(CouleurCase.VIDE, 0, i);	
+				listeCase.get(i).setCase(CouleurCase.VIDE, 0);	
 		}		
 	}
 	
