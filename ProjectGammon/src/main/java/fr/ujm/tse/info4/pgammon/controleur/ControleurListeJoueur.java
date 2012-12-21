@@ -58,15 +58,7 @@ public class ControleurListeJoueur implements Controleur{
 			vueListeJoueur.getSelectionner().addMouseListener(new MouseListener() {
 				
 				@Override
-				public void mouseReleased(MouseEvent e) {}			
-				@Override
-				public void mousePressed(MouseEvent e) {}			
-				@Override
-				public void mouseExited(MouseEvent e) {}			
-				@Override
-				public void mouseEntered(MouseEvent e) {}			
-				@Override
-				public void mouseClicked(MouseEvent e) {
+				public void mouseReleased(MouseEvent e) {
 					if (isCharger)
 					{
 						if (vueListeJoueur.getPanelDescription().getJoueur() !=null){
@@ -86,7 +78,15 @@ public class ControleurListeJoueur implements Controleur{
 						profil.sauvegarder();
 						controleur.retour();
 					}
-				}
+				}			
+				@Override
+				public void mousePressed(MouseEvent e) {}			
+				@Override
+				public void mouseExited(MouseEvent e) {}			
+				@Override
+				public void mouseEntered(MouseEvent e) {}			
+				@Override
+				public void mouseClicked(MouseEvent e) {}
 			});
 		}
 		else
@@ -98,9 +98,6 @@ public class ControleurListeJoueur implements Controleur{
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				vueListeJoueur.setVisible(false);
-				profil.sauvegarder();
-				controleur.retour();
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {}
@@ -109,7 +106,10 @@ public class ControleurListeJoueur implements Controleur{
 			@Override
 			public void mousePressed(MouseEvent e) {}
 			@Override
-			public void mouseReleased(MouseEvent e) {}
+			public void mouseReleased(MouseEvent e) {
+				vueListeJoueur.setVisible(false);
+				profil.sauvegarder();
+				controleur.retour();}
 		});
 	}
 
@@ -119,12 +119,6 @@ public class ControleurListeJoueur implements Controleur{
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				vueListeJoueur.getVueAjouterJoueur().setPath("");
-				vueListeJoueur.afficheEditerProfil();
-				vueAjouterJoueur = vueListeJoueur.getVueAjouterJoueur();
-				
-				flag = true;
-				buildEditerProfil();
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {}
@@ -133,7 +127,13 @@ public class ControleurListeJoueur implements Controleur{
 			@Override
 			public void mousePressed(MouseEvent e) {}
 			@Override
-			public void mouseReleased(MouseEvent e) {}
+			public void mouseReleased(MouseEvent e) {
+				vueListeJoueur.getVueAjouterJoueur().setPath("");
+				vueListeJoueur.afficheEditerProfil();
+				vueAjouterJoueur = vueListeJoueur.getVueAjouterJoueur();
+				
+				flag = true;
+				buildEditerProfil();}
 		});
 	}
 	
@@ -142,11 +142,6 @@ public class ControleurListeJoueur implements Controleur{
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				vueListeJoueur.afficheEditerProfil();
-				vueAjouterJoueur = vueListeJoueur.getVueAjouterJoueur();
-				vueAjouterJoueur.setPath(vueListeJoueur.getPanelDescription().getJoueur().getImageSource());
-				flag = false;
-				buildEditerProfil();
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {}
@@ -155,19 +150,19 @@ public class ControleurListeJoueur implements Controleur{
 			@Override
 			public void mousePressed(MouseEvent e) {}
 			@Override
-			public void mouseReleased(MouseEvent e) {}
+			public void mouseReleased(MouseEvent e) {
+				vueListeJoueur.afficheEditerProfil();
+				vueAjouterJoueur = vueListeJoueur.getVueAjouterJoueur();
+				vueAjouterJoueur.setPath(vueListeJoueur.getPanelDescription().getJoueur().getImageSource());
+				flag = false;
+				buildEditerProfil();}
 		});
 	}
 	public void listenerBouttonSupprimer(){
 		vueListeJoueur.getPanelDescription().getSupprimer().addMouseListener(new MouseListener() {
 
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				profil.supprimer(vueListeJoueur.getPanelDescription().getJoueur());
-				vueListeJoueur.updateListe();
-				vueListeJoueur.updateData();
-				vueListeJoueur.getPanelDescription().setVisible(false);
-			}
+			public void mouseClicked(MouseEvent e) {}
 			@Override
 			public void mouseEntered(MouseEvent e) {}
 			@Override
@@ -175,7 +170,12 @@ public class ControleurListeJoueur implements Controleur{
 			@Override
 			public void mousePressed(MouseEvent e) {}
 			@Override
-			public void mouseReleased(MouseEvent e) {}
+			public void mouseReleased(MouseEvent e) {
+				profil.supprimer(vueListeJoueur.getPanelDescription().getJoueur());
+				vueListeJoueur.updateListe();
+				vueListeJoueur.updateData();
+				vueListeJoueur.getPanelDescription().setVisible(false);
+			}
 		});
 	}
 		
@@ -195,9 +195,7 @@ public class ControleurListeJoueur implements Controleur{
 		vueAjouterJoueur.getRetour().addMouseListener(new MouseListener() {
 
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				vueListeJoueur.masqueEditerProfil();
-			}
+			public void mouseClicked(MouseEvent e) {}
 			@Override
 			public void mouseEntered(MouseEvent e) {}
 			@Override
@@ -205,7 +203,9 @@ public class ControleurListeJoueur implements Controleur{
 			@Override
 			public void mousePressed(MouseEvent e) {}
 			@Override
-			public void mouseReleased(MouseEvent e) {}
+			public void mouseReleased(MouseEvent e) {
+				vueListeJoueur.masqueEditerProfil();
+				}
 		});
 	}
 
@@ -213,7 +213,15 @@ public class ControleurListeJoueur implements Controleur{
 		vueAjouterJoueur.getenregistrer().addMouseListener(new MouseListener() {
 
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) {}
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			@Override
+			public void mouseExited(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseReleased(MouseEvent e) {
 				if(flag){
 					boolean drapeau = true;
 					
@@ -234,7 +242,6 @@ public class ControleurListeJoueur implements Controleur{
 					
 					if(drapeau){
 						profil.getList().add(tmpJoueur);
-						//System.out.println("what !!!!!!!!");
 						profil.afficher();
 					}
 					vueListeJoueur.setJ(tmpJoueur);
@@ -248,14 +255,6 @@ public class ControleurListeJoueur implements Controleur{
 				vueListeJoueur.updateListe();
 				vueListeJoueur.updateData();
 			}
-			@Override
-			public void mouseEntered(MouseEvent e) {}
-			@Override
-			public void mouseExited(MouseEvent e) {}
-			@Override
-			public void mousePressed(MouseEvent e) {}
-			@Override
-			public void mouseReleased(MouseEvent e) {}
 		});
 	}
 

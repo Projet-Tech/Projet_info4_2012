@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Paint;
 import java.awt.RenderingHints;
 
 import javax.swing.ImageIcon;
@@ -33,9 +34,19 @@ public class BarreCaseButton extends CaseButton {
 	
 	@Override
 	protected void paintComponent(Graphics g) {
+		drawBG(g);
 		drawDames(g);
 	}
 	
+	private void drawBG(Graphics g) {
+		if(isPossible() && getCase().getNbDame() == 0){
+			g.setColor(new Color(0x000033));
+			g.fillRect(0, 0, getWidth(), getHeight());
+		}
+		else{
+		}
+	}
+
 	private void drawDames(Graphics g) {
 		Case c = getCase();
 		if(c == null)

@@ -302,11 +302,7 @@ public class ControleurPartie implements Controleur
 		vuePartie.getPaneldroitencours().getBack().addMouseListener(new MouseListener(){
 
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				session.getPartieEnCours().annulerDernierCoup();
-				vuePartie.updateUI();
-				vuePartie.getVueTablier().updateDes();
-			}
+			public void mouseClicked(MouseEvent arg0) {}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {}
 			@Override
@@ -314,7 +310,11 @@ public class ControleurPartie implements Controleur
 			@Override
 			public void mousePressed(MouseEvent arg0) {}
 			@Override
-			public void mouseReleased(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {
+				session.getPartieEnCours().annulerDernierCoup();
+				vuePartie.updateUI();
+				vuePartie.getVueTablier().updateDes();
+			}
 			
 		});
 	}
@@ -324,7 +324,15 @@ public class ControleurPartie implements Controleur
 		
 		vuePartie.getPaneldroitencours().getDices().addMouseListener(new MouseListener(){
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent arg0) {}
+			@Override
+			public void mouseEntered(MouseEvent arg0) {}
+			@Override
+			public void mouseExited(MouseEvent arg0) {}
+			@Override
+			public void mousePressed(MouseEvent arg0) {}
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
 				if(session.getPartieEnCours().isTourFini() && !session.getPartieEnCours().isPartieFini())
 				{
 					session.getPartieEnCours().lancerDes();
@@ -340,15 +348,7 @@ public class ControleurPartie implements Controleur
 				vuePartie.getVueTablier().updateUI();
 				vuePartie.getVueTablier().updateDes();
 				
-			}
-			@Override
-			public void mouseEntered(MouseEvent arg0) {}
-			@Override
-			public void mouseExited(MouseEvent arg0) {}
-			@Override
-			public void mousePressed(MouseEvent arg0) {}
-			@Override
-			public void mouseReleased(MouseEvent arg0) {}			
+			}			
 		});
 	}
 	
@@ -357,13 +357,7 @@ public class ControleurPartie implements Controleur
 		vuePartie.getPaneljoueur1().getCouppossible().addMouseListener(new MouseListener() {
 
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				if(session.getPartieEnCours().getParametreJeu().getJoueurBlanc().getNiveauAssistant() == NiveauAssistant.NON_UTILISE )
-					session.getPartieEnCours().getParametreJeu().getJoueurBlanc().setNiveauAssistant(NiveauAssistant.SIMPLE);
-				else
-					session.getPartieEnCours().getParametreJeu().getJoueurBlanc().setNiveauAssistant(NiveauAssistant.NON_UTILISE);
-				vuePartie.getPaneljoueur1().updateData();
-			}
+			public void mouseClicked(MouseEvent arg0) {}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {}
 			@Override
@@ -371,7 +365,13 @@ public class ControleurPartie implements Controleur
 			@Override
 			public void mousePressed(MouseEvent arg0) {}
 			@Override
-			public void mouseReleased(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {
+				if(session.getPartieEnCours().getParametreJeu().getJoueurBlanc().getNiveauAssistant() == NiveauAssistant.NON_UTILISE )
+					session.getPartieEnCours().getParametreJeu().getJoueurBlanc().setNiveauAssistant(NiveauAssistant.SIMPLE);
+				else
+					session.getPartieEnCours().getParametreJeu().getJoueurBlanc().setNiveauAssistant(NiveauAssistant.NON_UTILISE);
+				vuePartie.getPaneljoueur1().updateData();
+			}
 		});
 	}
 	public void listenerGetCoupPossibleJoueur2()
@@ -379,13 +379,7 @@ public class ControleurPartie implements Controleur
 		vuePartie.getPaneljoueur2().getCouppossible().addMouseListener(new MouseListener() {
 
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				if(session.getPartieEnCours().getParametreJeu().getJoueurNoir().getNiveauAssistant() == NiveauAssistant.NON_UTILISE )
-					session.getPartieEnCours().getParametreJeu().getJoueurNoir().setNiveauAssistant(NiveauAssistant.SIMPLE);
-				else
-					session.getPartieEnCours().getParametreJeu().getJoueurNoir().setNiveauAssistant(NiveauAssistant.NON_UTILISE);
-				vuePartie.getPaneljoueur2().updateData();
-			}
+			public void mouseClicked(MouseEvent arg0) {}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {}
 			@Override
@@ -393,7 +387,13 @@ public class ControleurPartie implements Controleur
 			@Override
 			public void mousePressed(MouseEvent arg0) {}
 			@Override
-			public void mouseReleased(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {
+				if(session.getPartieEnCours().getParametreJeu().getJoueurNoir().getNiveauAssistant() == NiveauAssistant.NON_UTILISE )
+					session.getPartieEnCours().getParametreJeu().getJoueurNoir().setNiveauAssistant(NiveauAssistant.SIMPLE);
+				else
+					session.getPartieEnCours().getParametreJeu().getJoueurNoir().setNiveauAssistant(NiveauAssistant.NON_UTILISE);
+				vuePartie.getPaneljoueur2().updateData();
+			}
 		});
 	}
 	public void listenerButtonVideau()
@@ -406,49 +406,49 @@ public class ControleurPartie implements Controleur
 			else
 			{
 			vuePartie.getPaneldroitencours().getVideau().addMouseListener(new MouseListener(){
-	
+
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
+				}
+				@Override
+				public void mouseEntered(MouseEvent arg0) {}
+				@Override
+				public void mouseExited(MouseEvent arg0) {}
+				@Override
+				public void mousePressed(MouseEvent arg0) {}
+				@Override
+				public void mouseReleased(MouseEvent arg0) {
 					if (couleurVideau == CouleurCase.VIDE || session.getPartieEnCours().getJoueurEnCour() != couleurVideau)
 					{
 						SortedSet<String> hs = new ConcurrentSkipListSet<>();
 						hs.add("Non");
 						hs.add("Oui");
 						vuePartie.afficherFenetreDemande("Accepter vous le videau ?", hs).addActionListener(new ActionListener() {
-							
+
 							@Override
 							public void actionPerformed(ActionEvent e) {
-								
+
 								String action = e.getActionCommand();
 								if (action == "Oui")
 								{
 									couleurVideau = session.getPartieEnCours().getJoueurEnCour() ;
 									session.getPartieEnCours().doublerVideau();
-									
+
 								}
 								else if (action == "Non")
 								{
 									finPartie();
 									//if (!session.isSessionFini())
-										//controleurPartie.nouvellePartie();
-									
+									//controleurPartie.nouvellePartie();
+
 								}
 								vuePartie.getPaneldroitencours().updateVideau();
 							}
-						
-					});
-				}
-			}
-			@Override
-			public void mouseEntered(MouseEvent arg0) {}
-			@Override
-			public void mouseExited(MouseEvent arg0) {}
-			@Override
-			public void mousePressed(MouseEvent arg0) {}
-			@Override
-			public void mouseReleased(MouseEvent arg0) {}
-		});
-		
+
+						});
+					}}
+			});
+
 		}
 	}
 	
@@ -457,7 +457,15 @@ public class ControleurPartie implements Controleur
 		vuePartie.getPaneldroitrevoir().getX_white().addMouseListener(new MouseListener(){
 
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent arg0) {}
+			@Override
+			public void mouseEntered(MouseEvent arg0) {}
+			@Override
+			public void mouseExited(MouseEvent arg0) {}
+			@Override
+			public void mousePressed(MouseEvent arg0) {}
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
 				SortedSet<String> hs = new ConcurrentSkipListSet<>();
 				hs.add("Finir");
 				hs.add("Annuler");
@@ -506,14 +514,6 @@ public class ControleurPartie implements Controleur
 					}
 				});
 			}
-			@Override
-			public void mouseEntered(MouseEvent arg0) {}
-			@Override
-			public void mouseExited(MouseEvent arg0) {}
-			@Override
-			public void mousePressed(MouseEvent arg0) {}
-			@Override
-			public void mouseReleased(MouseEvent arg0) {}
 		});
 		
 	}
@@ -523,7 +523,15 @@ public class ControleurPartie implements Controleur
 		vuePartie.getPanelEnCoursVueBas().getX_black().addMouseListener(new MouseListener(){
 
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent arg0) {}
+			@Override
+			public void mouseEntered(MouseEvent arg0) {}
+			@Override
+			public void mouseExited(MouseEvent arg0) {}
+			@Override
+			public void mousePressed(MouseEvent arg0) {}
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
 				SortedSet<String> hs = new ConcurrentSkipListSet<>();
 				hs.add("Finir");
 				hs.add("Annuler");
@@ -572,14 +580,6 @@ public class ControleurPartie implements Controleur
 					}
 				});
 			}
-			@Override
-			public void mouseEntered(MouseEvent arg0) {}
-			@Override
-			public void mouseExited(MouseEvent arg0) {}
-			@Override
-			public void mousePressed(MouseEvent arg0) {}
-			@Override
-			public void mouseReleased(MouseEvent arg0) {}
 		});
 		
 	}
@@ -588,15 +588,7 @@ public class ControleurPartie implements Controleur
 		vuePartie.getPaneldroitrevoir().getNext().addMouseListener(new MouseListener() {
 			
 			@Override
-			public void mouseReleased(MouseEvent arg0) {}		
-			@Override
-			public void mousePressed(MouseEvent arg0) {}		
-			@Override
-			public void mouseExited(MouseEvent arg0) {}		
-			@Override
-			public void mouseEntered(MouseEvent arg0) {}		
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseReleased(MouseEvent arg0) {
 				if(session.isSessionFini())
 				{
 					controleur.retour();
@@ -607,7 +599,15 @@ public class ControleurPartie implements Controleur
 				else
 					controleurPartie.nouvellePartie();
 					
-			}
+			}		
+			@Override
+			public void mousePressed(MouseEvent arg0) {}		
+			@Override
+			public void mouseExited(MouseEvent arg0) {}		
+			@Override
+			public void mouseEntered(MouseEvent arg0) {}		
+			@Override
+			public void mouseClicked(MouseEvent arg0) {}
 		});
 	}
 	

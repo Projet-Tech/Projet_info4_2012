@@ -85,7 +85,7 @@ public class VueMenu extends MonochromeVue {
 		boutonAjouter = new MonochromeButton("Liste des joueurs");
 		conteneurbouton.add(boutonAjouter);
 		
-		boutonAide = new MonochromeButton("A propos");
+		boutonAide = new MonochromeButton("Aide");
 		conteneurbouton.add(boutonAide);
 		
 		JPanel vide = new JPanel();

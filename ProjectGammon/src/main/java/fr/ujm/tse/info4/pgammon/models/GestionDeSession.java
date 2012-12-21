@@ -1,3 +1,14 @@
+// 
+//
+//  @ Projet : Project Gammon
+//  @ Fichier : Session.java
+//  @ Date : 19/12/2012
+//  @ Auteurs : DONG Chuan, BONNETTO Benjamin, FRANCON Adrien, POTHELUNE Jean-Michel
+//
+//
+
+
+
 package fr.ujm.tse.info4.pgammon.models;
 
 import java.io.File;
@@ -17,11 +28,17 @@ import org.jdom2.output.XMLOutputter;
 public class GestionDeSession {
 	public List<Session> listSession = new ArrayList<Session>();
 	private static GestionDeSession gestionDeSession;
-	
+
 	private GestionDeSession(){
-		
+	
 	}
 	
+	/**
+	 * Constructeur : Singleton
+	 * @return gestionDeSession la liste de Sessions
+	 * @throws IOException
+	 * @throws JDOMException
+	 */
 	public static GestionDeSession getGestionDeSession() throws IOException, JDOMException{
 		
 		if(gestionDeSession == null){
@@ -30,7 +47,9 @@ public class GestionDeSession {
 		} 
 		return gestionDeSession; 
 	}
-	
+	/**
+	 * sauvegarder tous les sessions dans le dossier "sauvegardeSessions" par XML
+	 */
 	public void sauvegarder(){
 		try{
 			for(int i=0;i<listSession.size();i++){
@@ -55,8 +74,11 @@ public class GestionDeSession {
 				System.out.println("Erreur d'enregistrement");
 			}
 	}
-
-	
+	/**
+	 * Charger les fichiers XML dans le dossier "sauvegardeSessions"
+	 * @throws JDOMException
+	 * @throws IOException
+	 */
 	public void charger() throws JDOMException, IOException{
 		
 		File files[]; 
@@ -78,29 +100,25 @@ public class GestionDeSession {
 			listSession.get(i).charger(racine);
 
 		}
-		
-
-		
-	//	listJoueurs = racine.getChildren("joueurs");
-		//Iterator<Element> it = listJoueurs.iterator();
-		 
-		// while(it.hasNext()){
-		//	 Joueur j = new Joueur();
-		//	 j.charger(it.next());
-		//	 joueurs.add(j);
-		 }	 
-		
-	//}
-
-		
+	}	 
+	/**
+	 * Getter
+	 * @return la liste de Sessions
+	 */
 	public List<Session> getListSession() {
 		return listSession;
 	}
-
+	/**
+	 * Mettre la valeur de listSession
+	 * @param listSession une liste contenant tous les sessions 
+	 */
 	public void setListSession(List<Session> listSession) {
 		this.listSession = listSession;
 	}
-
+	/**
+	 * supprimer une session dans la liste par ID de cette session
+	 * @param idSession ID pour chaque session
+	 */
 	public void supprimerSession(int idSession){
 		for(int i=0;i<listSession.size();i++){
 			if(listSession.get(i).getIdSession()==idSession){
