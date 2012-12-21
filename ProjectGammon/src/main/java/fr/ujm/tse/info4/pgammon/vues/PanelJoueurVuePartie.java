@@ -100,6 +100,10 @@ public class PanelJoueurVuePartie extends JPanel {
 		labNomJoueur = new JLabel();
 		couppossible = new MonochromeCheckbox("<html> Afficher les <br> coups possibles");
 		conseilcoup = new MonochromeCheckbox("<html> conseiller le <br> prochain coup");
+		
+		//cette ligne permet d'afficher le conseil coup
+		//mais il n'est pas encore implémenté donc on le cache dés le début
+		conseilcoup.setVisible(false);
 
 
 		JPanel centragePseudo = new JPanel();

@@ -31,8 +31,7 @@ public class Tablier
 
 	public Tablier(Partie p)
 	{
-		partie=p;
-		
+		partie=p;		
 		listeCase= new ArrayList<Case>();
 		caseVictoire = new ArrayList<Case>();
 		caseBarre= new ArrayList<Case>();
@@ -110,32 +109,32 @@ public class Tablier
 	
 	public void reinitialisationCase()
 	{
-		caseVictoire.get(0).setCase(CouleurCase.BLANC, 0, 25);
-		caseVictoire.get(1).setCase(CouleurCase.NOIR, 0, 0);
+		caseVictoire.get(0).setCase(CouleurCase.BLANC, 0);
+		caseVictoire.get(1).setCase(CouleurCase.NOIR, 0);
 		
-		caseBarre.get(0).setCase(CouleurCase.BLANC, 0, 0);
-		caseBarre.get(1).setCase(CouleurCase.NOIR, 0, 25);
+		caseBarre.get(0).setCase(CouleurCase.BLANC, 0);
+		caseBarre.get(1).setCase(CouleurCase.NOIR, 0);
 		
 		for (int i=0;i<24;i++)
 		{
 			if(i==0)
-				listeCase.get(i).setCase(CouleurCase.BLANC, 2, i);
+				listeCase.get(i).setCase(CouleurCase.BLANC, 2);
 			else if(i==5)
-				listeCase.get(i).setCase(CouleurCase.NOIR, 5, i);
+				listeCase.get(i).setCase(CouleurCase.NOIR, 5);
 			else if(i==7)
-				listeCase.get(i).setCase(CouleurCase.NOIR, 3, i);
+				listeCase.get(i).setCase(CouleurCase.NOIR, 3);
 			else if(i==11)
-				listeCase.get(i).setCase(CouleurCase.BLANC, 5, i);
+				listeCase.get(i).setCase(CouleurCase.BLANC, 5);
 			else if(i==12)
-				listeCase.get(i).setCase(CouleurCase.NOIR, 5, i);
+				listeCase.get(i).setCase(CouleurCase.NOIR, 5);
 			else if(i==16)
-				listeCase.get(i).setCase(CouleurCase.BLANC, 3, i);
+				listeCase.get(i).setCase(CouleurCase.BLANC, 3);
 			else if(i==18)
-				listeCase.get(i).setCase(CouleurCase.BLANC, 5, i);
+				listeCase.get(i).setCase(CouleurCase.BLANC, 5);
 			else if(i==23)
-				listeCase.get(i).setCase(CouleurCase.NOIR, 2, i);
+				listeCase.get(i).setCase(CouleurCase.NOIR, 2);
 			else
-				listeCase.get(i).setCase(CouleurCase.VIDE, 0, i);	
+				listeCase.get(i).setCase(CouleurCase.VIDE, 0);	
 		}		
 	}
 	
@@ -456,7 +455,7 @@ public class Tablier
 	    	CaseVictoiresXML.addContent(CaseVictoireXML);
 	    	
 	    	Attribute idCaseVictoire = new Attribute("id",String.valueOf(caseVictoire.get(i).getPosition()));
-	    	CaseVictoiresXML.setAttribute(idCaseVictoire);
+	    	CaseVictoireXML.setAttribute(idCaseVictoire);
 		    
 			    Element couleurDameVXML = new Element("couleurDame");
 			    couleurDameVXML.setText(String.valueOf(caseVictoire.get(i).getCouleurDame()));
@@ -476,10 +475,13 @@ public class Tablier
 	    	CaseBarsXML.addContent(CaseBarXML);
 	    	
 	    	Attribute idCaseBar = new Attribute("id",String.valueOf(caseBarre.get(i).getPosition()));
-	    	CaseBarsXML.setAttribute(idCaseBar);
+	    	CaseBarXML.setAttribute(idCaseBar);
 		    
 			    Element couleurDameBXML = new Element("couleurDame");
-			    couleurDameBXML.setText(String.valueOf(caseBarre.get(i).getCouleurDame()));
+			    if(caseBarre.get(i).getPosition() == 0)
+			    	couleurDameBXML.setText(String.valueOf(CouleurCase.BLANC));
+			    else
+			    	couleurDameBXML.setText(String.valueOf(CouleurCase.NOIR));
 			    CaseBarXML.addContent(couleurDameBXML);
 			    
 			    Element nbrDameBXML = new Element("nbrDame");
@@ -508,7 +510,7 @@ public class Tablier
 		 
 		while(ib.hasNext()){
 			Case tmpCase = new Case();
-			tmpCase.chargerBV(ib.next());
+			tmpCase.charger(ib.next());
 			caseVictoire.add(tmpCase);
 		}
 		
@@ -519,7 +521,7 @@ public class Tablier
 		 
 		while(ic.hasNext()){
 			Case tmpCase = new Case();
-			tmpCase.chargerBV(ic.next());
+			tmpCase.charger(ic.next());
 			caseBarre.add(tmpCase);
 		}
 	}
@@ -548,6 +550,22 @@ public class Tablier
 
 	public ArrayList<Case> getCaseBarre() {
 		return caseBarre;
+	}
+	
+	public Case getCase(int position,CouleurCase couleur) {
+		
+		if (position >=1 && position <= 24)
+			return listeCase.get(position-1);
+		else if (position == 25 && couleur.equals(CouleurCase.BLANC))
+			return caseVictoire.get(0);
+		else if (position == 0 && couleur.equals(CouleurCase.NOIR))
+			return caseVictoire.get(1);
+		else if (position == 0 && couleur.equals(CouleurCase.BLANC))
+			return caseBarre.get(0);
+		else if( position == 25 && couleur.equals(CouleurCase.NOIR))
+			return caseBarre.get(1);
+		else
+			return null;
 	}
 	
 	public Case getCaseBarre(CouleurCase couleur) {

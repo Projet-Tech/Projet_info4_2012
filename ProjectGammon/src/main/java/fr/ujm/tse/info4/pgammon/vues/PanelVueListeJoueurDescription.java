@@ -148,6 +148,10 @@ public class PanelVueListeJoueurDescription extends MonochromePanel{
 		JLabel textStat = new JLabel();
 		coupPossible = new MonochromeCheckbox("<html> Afficher les <br> coups possibles");
 		conseilCoup = new MonochromeCheckbox("<html> conseiller le <br> prochain coup");
+		
+		//cette ligne permet d'afficher le conseil coup
+		//mais il n'est pas encore implémenté donc on le cache dés le début
+		conseilCoup.setVisible(false);
 
 		JLabel labStat = new JLabel("Statistiques");
 		labStat.setForeground(new Color(0xCCCCCC));

@@ -26,16 +26,18 @@ import fr.ujm.tse.info4.pgammon.models.Joueur;
 
 public class VueNouvelleSession extends JPanel{
 	
-	//déclaration des variables
+	/**
+	 * Cette classe reprèsente la vue pour créer une nouvelle session de jeu
+	 */
 	private static final long serialVersionUID = -5590865478480555417L;
 	
 
-	private MonochromeButton boutoncommencer; 
-	private MonochromeIconButton boutonchangercouleur; 
+	private MonochromeButton boutonCommencer; 
+	private MonochromeIconButton boutonChangerCouleur; 
 	private MonochromeButton boutonRetour;
-	private PanelJoueur paneljoueur1;
-	private PanelJoueur paneljoueur2;
-	private PanelParametre panelparamètre;
+	private PanelJoueur panelJoueur1;
+	private PanelJoueur panelJoueur2;
+	private PanelParametre panelParamètre;
 	
 	private MonochromeButton boutonChangerJoueurBlanc;
 	private MonochromeButton boutonChangerJoueurNoir;
@@ -44,12 +46,19 @@ public class VueNouvelleSession extends JPanel{
 	private Joueur j2;
 
 	
-	
+	/**
+	 * Constructeur de notre classe/vue
+	 */
 	public VueNouvelleSession(){
 			
 			build();
 		}
 	
+	
+	/**
+	 * Méthode permettant de faire l'affichage de notre vue 
+	 * et d'insérer tous les éléments nécessaires
+	 */
 	private void build() {		
 		//ceci est fait pour pouvoir déplacer nos panels dans le panel
 		setLayout(null);
@@ -57,18 +66,18 @@ public class VueNouvelleSession extends JPanel{
 		j1 = null;
 		j2 = null;
 		
-		paneljoueur1 = new PanelJoueur(j1,CouleurCase.BLANC);
-		paneljoueur2 = new PanelJoueur(j2,CouleurCase.NOIR);
-		panelparamètre = new PanelParametre();
+		panelJoueur1 = new PanelJoueur(j1,CouleurCase.BLANC);
+		panelJoueur2 = new PanelJoueur(j2,CouleurCase.NOIR);
+		panelParamètre = new PanelParametre();
 		
 		
 		boutonRetour = new MonochromeButton("Retour");
-		 boutoncommencer = new MonochromeButton("Commencer");
+		 boutonCommencer = new MonochromeButton("Commencer");
 		 
-		 boutonchangercouleur = new MonochromeIconButton(IconMonochromeType.SWITCH,"MonochromeIconButton","NOIR");
-		 boutonchangercouleur.setSizeBig();
-		 boutonchangercouleur.setBounds(10, 34, boutonchangercouleur.getPreferredSize().width, boutonchangercouleur.getPreferredSize().height);
-		 add(boutonchangercouleur);
+		 boutonChangerCouleur = new MonochromeIconButton(IconMonochromeType.SWITCH,"MonochromeIconButton","NOIR");
+		 boutonChangerCouleur.setSizeBig();
+		 boutonChangerCouleur.setBounds(10, 34, boutonChangerCouleur.getPreferredSize().width, boutonChangerCouleur.getPreferredSize().height);
+		 add(boutonChangerCouleur);
 		 
 		 boutonChangerJoueurBlanc = new MonochromeButton("Change");
 		boutonChangerJoueurBlanc.setBounds(250, 75, 105, 50);
@@ -80,42 +89,54 @@ public class VueNouvelleSession extends JPanel{
 		add(boutonChangerJoueurNoir);
 		 
 		 
-		 paneljoueur1.setBounds(37, 35, 332, 141);
+		 panelJoueur1.setBounds(37, 35, 332, 141);
 		 
-		 paneljoueur2.setBounds(37, 245, 332, 141);
+		 panelJoueur2.setBounds(37, 245, 332, 141);
 		 
-		 panelparamètre.setBounds(420, 35, 344, 352);
+		 panelParamètre.setBounds(420, 35, 344, 352);
 		 
 		 
-		 boutoncommencer.setBounds(200,420,380,58);
+		 boutonCommencer.setBounds(200,420,380,58);
 		 
-		 boutonchangercouleur.setBounds(175,190,55,55);
+		 boutonChangerCouleur.setBounds(175,190,55,55);
 		 
 		 boutonRetour.setBounds(210, 520, 344, 58);
 		 
-		 add(paneljoueur1);
-		 add(paneljoueur2);
-		 add(panelparamètre);
-		 add(boutoncommencer);
-		 add(boutonchangercouleur);
+		 add(panelJoueur1);
+		 add(panelJoueur2);
+		 add(panelParamètre);
+		 add(boutonCommencer);
+		 add(boutonChangerCouleur);
 		 add(boutonRetour);
 		 
-		 listenerboutonchangercouleur();
+		 listenerBoutonChangerCouleur();
 		
 		
 	}
 	
+	
+	/**
+	 * Getter du bouton pour changer le joueur blanc 
+	 * @return retourne la valeur du bouton de changement de joueur blanc
+	 */
 	public MonochromeButton getBoutonChangerJoueurBlanc() {
 		return boutonChangerJoueurBlanc;
 	}
 
+	/**
+	 * Getter du bouton pour changer le joueur noir
+	 * @return retourne la valeur du bouton de changement de joueur noir
+	 */
 	public MonochromeButton getBoutonChangerJoueurNoir() {
 		return boutonChangerJoueurNoir;
 	}
 
-	private void listenerboutonchangercouleur()
+	/**
+	 * Méthode permettant de changer la couleur des 2 joueurs quand on clique sur le bouton de changement
+	 */
+	private void listenerBoutonChangerCouleur()
 	{
-		boutonchangercouleur.addMouseListener(new MouseListener() {
+		boutonChangerCouleur.addMouseListener(new MouseListener() {
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {}
@@ -136,41 +157,72 @@ public class VueNouvelleSession extends JPanel{
 	}
 	
 	
+	/**
+	 * Setter du joueur blanc
+	 * @param jBlanc Joueur blanc passé en paramètre
+	 */
 	public void setJoueur1(Joueur jBlanc){
-		paneljoueur1.setJoueur(jBlanc);
+		panelJoueur1.setJoueur(jBlanc);
 		j1=jBlanc;
 		
 	}
 
+	/**
+	 * Setter du joueur noir
+	 * @param jNoir Joueur noit passé en paramètre
+	 */
 	public void setJoueur2(Joueur jNoir) {
-		paneljoueur2.setJoueur(jNoir);
+		panelJoueur2.setJoueur(jNoir);
 		j2=jNoir;
 		
 	}
 	
-
-	public MonochromeButton getBoutoncommencer() {
-		return boutoncommencer;
+	/**
+	 * Getter du bouton commencer partie
+	 * @return retourne le bouton commencer
+	 */
+	public MonochromeButton getBoutonCommencer() {
+		return boutonCommencer;
 	}
 
-	public MonochromeIconButton getBoutonchangercouleur() {
-		return boutonchangercouleur;
+	/**
+	 * Getter du bouton changer couleur des joueurs
+	 * @return retourne le bouton changer de couleur des joueurs
+	 */
+	public MonochromeIconButton getBoutonChangerCouleur() {
+		return boutonChangerCouleur;
 	}
 
+	/**
+	 * Getter du bouton retour menu principal
+	 * @return retourne le bouton retour
+	 */
 	public MonochromeButton getBoutonRetour() {
 		return boutonRetour;
 	}
 
-	public PanelJoueur getPaneljoueur1() {
-		return paneljoueur1;
+	/**
+	 * Getter du panel joueur noir permettant l'affichage du panel joueur blanc
+	 * @return retourne l'instance du panel paramètre du joueur blanc
+	 */
+	public PanelJoueur getPanelJoueur1() {
+		return panelJoueur1;
 	}
 
-	public PanelJoueur getPaneljoueur2() {
-		return paneljoueur2;
+	/**
+	 * Getter du panel joueur noir permettant l'affichage du panel joueur noir
+	 * @return retourne l'instance du panel paramètre du joueur noir
+	 */
+	public PanelJoueur getPanelJoueur2() {
+		return panelJoueur2;
 	}
 
-	public PanelParametre getPanelparamètre() {
-		return panelparamètre;
+	/**
+	 * Getter du panel paramètre permettant l'affichage du panel de paramétrage de partie
+	 * @return retourne l'instance du panel paramètre de partie
+	 */
+	public PanelParametre getPanelParamètre() {
+		return panelParamètre;
 	}
 
 

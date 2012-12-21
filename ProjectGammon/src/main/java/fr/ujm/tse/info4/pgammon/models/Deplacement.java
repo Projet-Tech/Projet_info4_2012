@@ -32,6 +32,7 @@ public class Deplacement
 	
 	public Deplacement()
 	{
+		this.idDeplacement = Math.random()*Double.MAX_VALUE;
 	}
 	
 	public void sauvegarder(Element deplacementsXML)
@@ -56,13 +57,36 @@ public class Deplacement
 			deplacementXML.addContent(siCaseBattueXML);
 	}
 	
-	public void charger(Element deplacement)
+	public void charger(Element deplacement,Partie partie)
 	{
-		caseDepart = new Case();
-		caseArriver = new Case();
 		
-		caseDepart.setPosition(Integer.valueOf(deplacement.getChildText("caseDepart")));
-		caseArriver.setPosition(Integer.valueOf(deplacement.getChildText("caseArriver")));
+		//ATTENTION A NE PAS TOUCHER
+		
+				
+		int positionDepart = Integer.valueOf(deplacement.getChildText("caseDepart"));
+		int positionArriver = Integer.valueOf(deplacement.getChildText("caseArriver"));
+		CouleurCase couleur;
+		
+		if (positionDepart==0)
+			couleur = CouleurCase.BLANC;
+		else if (positionDepart==25)
+			couleur = CouleurCase.NOIR;
+		else if (positionArriver==0)
+			couleur = CouleurCase.NOIR;
+		else if (positionArriver==25)
+			couleur = CouleurCase.BLANC;
+		else if(positionDepart < positionArriver)
+			couleur = CouleurCase.BLANC;
+		else if(positionDepart > positionArriver)
+			couleur = CouleurCase.NOIR;
+		else 
+			couleur = CouleurCase.VIDE;	
+		
+		
+		
+		caseDepart = partie.getTablier().getCase(positionDepart,couleur);
+		caseArriver = partie.getTablier().getCase(positionArriver,couleur);
+		
 		siCaseBattue = Boolean.valueOf(deplacement.getChildText("siCaseBattue"));
 	}
 

@@ -132,10 +132,9 @@ public class Case {
 		position = _Position;
 	}
 	
-	public void setCase(CouleurCase couleur, int nbDame, int position) {
+	public void setCase(CouleurCase couleur, int nbDame) {
 		this.couleurDame = couleur;
 		this.nbDame = nbDame;
-		this.position = position;
 	
 	}
 	

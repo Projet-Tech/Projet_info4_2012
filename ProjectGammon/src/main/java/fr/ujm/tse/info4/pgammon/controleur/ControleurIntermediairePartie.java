@@ -63,7 +63,7 @@ public class ControleurIntermediairePartie implements Controleur{
 	
 	public void listenerCommencer()
 	{
-		vueCreationPartie.getVueNouvelleSession().getBoutoncommencer().addMouseListener(new MouseListener() {
+		vueCreationPartie.getVueNouvelleSession().getBoutonCommencer().addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -79,13 +79,13 @@ public class ControleurIntermediairePartie implements Controleur{
 			public void mouseReleased(MouseEvent e) {	
 				
 				
-				int temp = vueCreationPartie.getVueNouvelleSession().getPanelparamètre().getNbTemps()*1000;
-				int nbPartie = vueCreationPartie.getVueNouvelleSession().getPanelparamètre().getNbParties();
-				boolean videau = vueCreationPartie.getVueNouvelleSession().getPanelparamètre().getVideau().isSelected();
+				int temp = vueCreationPartie.getVueNouvelleSession().getPanelParamètre().getNbTemps()*1000;
+				int nbPartie = vueCreationPartie.getVueNouvelleSession().getPanelParamètre().getNbParties();
+				boolean videau = vueCreationPartie.getVueNouvelleSession().getPanelParamètre().getVideau().isSelected();
 				
 				//TODO gerer dynamiquement les joueurs
-				Joueur jBlanc =  vueCreationPartie.getVueNouvelleSession().getPaneljoueur1().getJoueur();
-				Joueur jNoir = vueCreationPartie.getVueNouvelleSession().getPaneljoueur2().getJoueur();
+				Joueur jBlanc =  vueCreationPartie.getVueNouvelleSession().getPanelJoueur1().getJoueur();
+				Joueur jNoir = vueCreationPartie.getVueNouvelleSession().getPanelJoueur2().getJoueur();
 				
 				if(jBlanc == null || jNoir == null){
 					vueCreationPartie.afficherFenetreDemande("Oups!","Choisissez des joueurs!");
