@@ -40,17 +40,27 @@ public class VueAjouterJoueur extends MonochromePanel{
 	
 	private String chemin = "";
 	
+	/**
+	 * Constructeur de la vue ajouter joueur
+	 */
 	public VueAjouterJoueur(){
 		super("Edition de profil");
 		build();
 		
 	}
 	
+	/**
+	 * Setter du path
+	 * @param p change l'adresse du chemin de l'avatar et le met a jour
+	 */
 	public void setPath(String p){
 		chemin = p;
 		updateData();
 	}
 
+	/**
+	 * Mise à jour du chemin de l'avatar
+	 */
 	private void updateData() {
 		imgjoueur.setPath(chemin);
 		
@@ -100,14 +110,25 @@ public class VueAjouterJoueur extends MonochromePanel{
 		
 	}
 	
+	/**
+	 * Getter du chemin ou path
+	 * @return retourne l'adresse du chemin du joueur
+	 */
 	public String getChemin() {
 		return chemin;
 	}
 
+	/**
+	 * Setter du chemin
+	 * @param chemin change l'adresse de l'avatar pour afficher la nouvelle image
+	 */
 	public void setChemin(String chemin) {
 		this.chemin = chemin;
 	}
 
+	/**
+	 * met a nul l'adresse de l'avatar si on veut supprimer l'avatar
+	 */
 	private void listenerSupprimerAvatar()
 	{
 		boutonSupprimerAvatar.addMouseListener(new MouseListener() {
@@ -144,22 +165,42 @@ public class VueAjouterJoueur extends MonochromePanel{
 		
 	}
 	
+	/**
+	 * Getter du bouton retour
+	 * @return retourne la classe du bouton retour
+	 */
 	public MonochromeButton getRetour() {
 		return boutonAnnuler;
 	}
 	
+	/**
+	 * Getter du bouton changer avatar
+	 * @return retourne la classe du bouton changer avatar
+	 */
 	public MonochromeButton getchangerAvatar() {
 		return boutonChangerAvatar;
 	}
 	
+	/**
+	 * Getter du bouton supprimer avatar
+	 * @return retourne la classe du bouton supprimer avatar
+	 */
 	public MonochromeButton getsupprimerAvatar() {
 		return boutonSupprimerAvatar;
 	}
 	
+	/**
+	 * Getter du bouton enregistrer
+	 * @return retourne la classe du bouton enregistrer
+	 */
 	public MonochromeButton getenregistrer() {
 		return boutonEnregistrer;
 	}
 	
+	/**
+	 * Getter du champ du joueur
+	 * @return retourne la valeur du nom du joueur
+	 */
 	public JTextField getnomPseudo() {
 		return nomPseudo;
 	}
