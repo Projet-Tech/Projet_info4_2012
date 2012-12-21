@@ -50,8 +50,8 @@ public class VueChargerPartie extends JPanel{
 	 * Constructeur de la classe
 	 * @param s c'est une liste de session
 	 */
-	public VueChargerPartie(ArrayList<Session> s){
-		
+	public VueChargerPartie(ArrayList<Session> s,boolean isNouvellePartie){
+		//if(!isNouvellePartie)
 		try {
 			GestionDeSession gestion = GestionDeSession.getGestionDeSession();
 			listSession = gestion.getListSession();
