@@ -151,7 +151,7 @@ public class VueIntermediairePartie extends MonochromeVue{
 		
 	}
 	
-	public void changerTextSession(){
+	private void changerTextSession(){
 		if (fenetreAAfficher == true){
 			textNouvelleSession.setVisible(true);
 			textReprendreSession.setVisible(false);

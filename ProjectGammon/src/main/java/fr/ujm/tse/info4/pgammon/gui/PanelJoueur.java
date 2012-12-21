@@ -14,6 +14,10 @@ import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 
 public class PanelJoueur extends MonochromePanel{
 	
+	/**
+	 * Cette classe permet de modifier le panel de joueur dans la vue nouvelle session
+	 */
+	
 	private static final long serialVersionUID = 7553310687895062778L;
 	private Joueur joueur;
 	private CouleurCase couleur;
@@ -33,6 +37,11 @@ public class PanelJoueur extends MonochromePanel{
 	private JLabel affichestat;
 	private ImageAvatar imgjoueur;
 	
+	/**
+	 * Constructeur de panel joueur
+	 * @param j joueur passé en paramètre
+	 * @param coul CouleurCase passé en paramètre
+	 */
 		public PanelJoueur(Joueur j,CouleurCase coul){
 			super("");
 			joueur=j;
@@ -43,13 +52,19 @@ public class PanelJoueur extends MonochromePanel{
 			
 		}
 		
+		/**
+		 * Setter du joueur
+		 * @param j change la valeur du joueur
+		 */
 		public void setJoueur(Joueur j){
 			joueur=j;
 			updateData();
 		}
 		
 		
-		
+		/**
+		 * permet de faire la mise a jour du panel
+		 */
 		public void updateData(){
 			if(joueur != null)
 			{
@@ -198,31 +213,58 @@ public class PanelJoueur extends MonochromePanel{
 		}
 		
 		
-		
+		/**
+		 * Getter du checkbox coup possible
+		 * @return retourne la valeur du checkbox coup possible
+		 */
 		public MonochromeCheckbox getCouppossible() {
 			return couppossible;
 		}
 
+		/**
+		 * Setter du checkbox coup possible
+		 * @param couppossible change la checkbox coup possible
+		 */
 		public void setCouppossible(MonochromeCheckbox couppossible) {
 			this.couppossible = couppossible;
 		}
 
+		/**
+		 * Getter du checkbox conseil coup
+		 * @return retourne la valeur du checkbox conseil coup
+		 */
 		public MonochromeCheckbox getConseilcoup() {
 			return conseilcoup;
 		}
 
+		/**
+		 * Setter du checkbox conseil coup
+		 * @param couppossible change la checkbox conseil coup
+		 */
 		public void setConseilcoup(MonochromeCheckbox conseilcoup) {
 			this.conseilcoup = conseilcoup;
 		}
 
+		/**
+		 * Getter de l'affichage des statistiques
+		 * @return retourne les stastiques
+		 */
 		public JLabel getAffichestat() {
 			return affichestat;
 		}
 
+		/**
+		 * Setter des statistiques
+		 * @param affichestat change la valeur des statistiques
+		 */
 		public void setAffichestat(JLabel affichestat) {
 			this.affichestat = affichestat;
 		}
 
+		/**
+		 * Getter de joueur
+		 * @return retourne un joueur
+		 */
 		public Joueur getJoueur() {
 			return joueur;
 		}
