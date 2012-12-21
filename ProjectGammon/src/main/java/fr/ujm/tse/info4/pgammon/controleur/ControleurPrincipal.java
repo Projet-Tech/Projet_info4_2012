@@ -219,7 +219,7 @@ public class ControleurPrincipal implements Controleur{
 	public void chargerSession(Session session)
 	{
 		master.chargerSession(session);
-		session = master.getSession();
+		this.session = session;
 		//session.LancerPartie();
 		ControleurPartie controleurPartie = new ControleurPartie(session,this);
 		
