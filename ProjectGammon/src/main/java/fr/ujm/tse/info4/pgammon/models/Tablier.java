@@ -67,7 +67,7 @@ public class Tablier
 		caseVictoire.add(listCase.get(0));
 		caseVictoire.add(listCase.get(1));
 	}
-	/*
+	/**
 	 * Initialiser tous les cases dans le tablier
 	 */
 	public void initialiserCase()
@@ -303,8 +303,6 @@ public class Tablier
 					nbDame += getListeCase().get(i).getNbDame();
 			}
 		}
-		
-		
 		if (nbDame==0)
 			return true;
 		else
@@ -320,7 +318,12 @@ public class Tablier
 			return false;
 			
 	}
-	
+	/**
+	 * Recuperer le case arivee possible avec un case et un de donnee 
+	 * @param c Case Depart
+	 * @param de Un de 
+	 * @return Case Arivee
+	 */
 	public Case getCaseADistance(Case c, DeSixFaces de)
 	{
 		if(c.getCouleurDame() == CouleurCase.BLANC){
@@ -344,8 +347,11 @@ public class Tablier
 		}	
 	}
 	
-	
-	
+    /**
+     * Verifier dans CaseBarre (Noir ou Blanc) il y a des damns
+     * @param couleur Couleur de CaseBarre
+     * @return turn = il y a des damns.  false = il y a rien
+     */
 	public boolean isDameDansCaseBarre(CouleurCase couleur)
 	{
 		if(getCaseBarre(couleur).getNbDame() == 0)
@@ -354,9 +360,12 @@ public class Tablier
 			return true;
 				
 	}
-	
-
-	
+	/**
+	 * Recuperer tous les cases possibles
+	 * @param de Un de 
+	 * @param couleur Couleur de joueur en cours
+	 * @return une liste de tous les cases possibles
+	 */
 	public List<Coup> getCoupsPossibles(DeSixFaces de,CouleurCase couleur)
 	{
 		List<Coup> liste = new ArrayList<Coup>();
@@ -375,7 +384,12 @@ public class Tablier
 		}
 		return liste;
 	}
-	
+	/**
+	 * Recuperer tous les coups possibles selon les valeurs de des
+	 * @param des Une liste de des
+	 * @param couleur Couleur de joueur en cours
+	 * @return une listes de coups possibles
+	 */
 	public List<Coup> getCoupsPossibles(List<DeSixFaces> des,CouleurCase couleur)
 	{	
 		int somme = 0;
@@ -412,13 +426,10 @@ public class Tablier
 			return listeQuatre;
 		}
 	}
-	
 	/**
-	 * Serialisation
-	 *
+	 * Sauvegarder tous les infos sur tablier sous Racine partie
+	 * @param partie Racine de Tablier dans fichiers XML
 	 */
-	
-	
 	public void sauvegarder(Element partie)
 	{
 		Element tablierXML = new Element("tablier");
@@ -487,7 +498,10 @@ public class Tablier
 			    CaseBarXML.addContent(nbrDameBXML);
 	    }
 	}
-	
+	/**
+	 * charger tous les infos sur tablier sous Racine partie
+	 * @param partie Racine de Tablier dans fichiers XML
+	 */
 	public void charger(Element Partie)
 	{
 		listeCase = new ArrayList<Case>();
@@ -523,14 +537,11 @@ public class Tablier
 			caseBarre.add(tmpCase);
 		}
 	}
-	
-	
 	/**
 	 * 
 	 * GETTERS
 	 * 
 	 */
-	
 	public ArrayList<Case> getListeCase() {
 		return listeCase;
 	}
