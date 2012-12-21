@@ -18,7 +18,7 @@ public class ChangementTourAnimation extends TranstionAnimeeBase {
 	private char[] c_text;
 	
 	public ChangementTourAnimation(String titre, String text) {
-		super(10,2000);
+		super(20,2000);
 		setTitle(titre);
 		setText(text);
 		setOpaque(false);

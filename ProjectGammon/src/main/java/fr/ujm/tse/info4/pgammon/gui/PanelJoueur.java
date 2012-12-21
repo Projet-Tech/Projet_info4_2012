@@ -86,7 +86,10 @@ public class PanelJoueur extends MonochromePanel{
 
 				imgjoueur.setVisible(true);
 				couppossible.setVisible(true);
-				conseilcoup.setVisible(true);
+				
+				//cette ligne permet d'afficher le conseil coup
+				//mais il n'est pas encore implémenté
+				//conseilcoup.setVisible(true);
 				
 			}else{
 				setTitle("");

@@ -57,7 +57,8 @@ public class GestionDeSession {
 		File files[]; 
 		File path = new File("sauvegardeSessions");
 		files = path.listFiles();
-	
+		if(files == null)
+			return;
 		Arrays.sort(files);
 		
 		SAXBuilder builder = new SAXBuilder();

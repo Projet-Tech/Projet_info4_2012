@@ -37,7 +37,9 @@ public class ControleurPrincipal implements Controleur{
 		frame = new JFrame("jeu de backgammon");
 		session =null;
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(816, 638);
+		frame.setResizable(false);
+		frame.setSize(800, 600);
+		frame.setLocationRelativeTo(null);
 		Container panel = frame.getContentPane();
 		panel.setLayout(new FlowLayout());
 

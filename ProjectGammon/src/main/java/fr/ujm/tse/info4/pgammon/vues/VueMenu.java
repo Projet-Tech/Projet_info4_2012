@@ -108,22 +108,39 @@ public class VueMenu extends MonochromeVue {
 		return boutonNouvellePartie;
 	}
 
+	/**
+	 * Getter du bouton de reprendre partie
+	 * @return retourne la classe du bouton reprendre partie
+	 */
 	public MonochromeButton getBoutonReprendrePartie() {
 		return boutonReprendrePartie;
 	}
 
+	/**
+	 * Getter du bouton d'ajouter joueur
+	 * @return retourne la classe du bouton d'ajouter joueur
+	 */
 	public MonochromeButton getBoutonAjouter() {
 		return boutonAjouter;
 	}
 
+	/**
+	 * Getter du bouton du bouton d'aide
+	 * @return retourne la classe du bouton d'aide
+	 */
 	public MonochromeButton getBoutonAide() {
 		return boutonAide;
 	}
 	
+	/**
+	 * Getter du bouton Quitte
+	 * @return retourne la classe du bouton Quitter
+	 */
 	public MonochromeButton getBoutonQuitter() {
 		return boutonQuitter;
 	}
 
+	
 	@Override
 	protected void paintComponent(Graphics g) {
 		
