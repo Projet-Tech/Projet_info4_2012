@@ -455,7 +455,7 @@ public class Tablier
 	    	CaseVictoiresXML.addContent(CaseVictoireXML);
 	    	
 	    	Attribute idCaseVictoire = new Attribute("id",String.valueOf(caseVictoire.get(i).getPosition()));
-	    	CaseVictoiresXML.setAttribute(idCaseVictoire);
+	    	CaseVictoireXML.setAttribute(idCaseVictoire);
 		    
 			    Element couleurDameVXML = new Element("couleurDame");
 			    couleurDameVXML.setText(String.valueOf(caseVictoire.get(i).getCouleurDame()));
@@ -475,10 +475,13 @@ public class Tablier
 	    	CaseBarsXML.addContent(CaseBarXML);
 	    	
 	    	Attribute idCaseBar = new Attribute("id",String.valueOf(caseBarre.get(i).getPosition()));
-	    	CaseBarsXML.setAttribute(idCaseBar);
+	    	CaseBarXML.setAttribute(idCaseBar);
 		    
 			    Element couleurDameBXML = new Element("couleurDame");
-			    couleurDameBXML.setText(String.valueOf(caseBarre.get(i).getCouleurDame()));
+			    if(caseBarre.get(i).getPosition() == 0)
+			    	couleurDameBXML.setText(String.valueOf(CouleurCase.BLANC));
+			    else
+			    	couleurDameBXML.setText(String.valueOf(CouleurCase.NOIR));
 			    CaseBarXML.addContent(couleurDameBXML);
 			    
 			    Element nbrDameBXML = new Element("nbrDame");
