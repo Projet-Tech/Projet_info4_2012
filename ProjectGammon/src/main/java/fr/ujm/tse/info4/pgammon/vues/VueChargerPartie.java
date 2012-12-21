@@ -87,7 +87,7 @@ public class VueChargerPartie extends JPanel{
 
 		//if (listSession == 0)
 		panelParametresVueCharger = new PanelParametresVueCharger(null);
-		panelParametresVueCharger.setBounds(450, 35, 300, 400);
+		panelParametresVueCharger.setBounds(450, 20, 300, 400);
 		add(panelParametresVueCharger);
 		panelParametresVueCharger.setVisible(false);
 		
@@ -95,12 +95,12 @@ public class VueChargerPartie extends JPanel{
 		//il faut que j'ajoute les sessions
 		
 		mListeSessions = new MonochromeListe<>("Parties enregistrées",listSession,new SessionCellRenderer());
-		mListeSessions.setBounds(40, 35, 330, 400);
+		mListeSessions.setBounds(40, 20, 330, 400);
 		add(mListeSessions);
 		
 		
 		boutonCommencer = new MonochromeButton("Commencer");
-		boutonCommencer.setBounds(300, 450, 200, 50);
+		boutonCommencer.setBounds(300, 430, 200, 50);
 		add(boutonCommencer);
 		
 	}

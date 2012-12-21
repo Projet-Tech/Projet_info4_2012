@@ -82,11 +82,11 @@ public class VueIntermediairePartie extends MonochromeVue{
 		listSession.add(new Session(2,param2));
 		
 		vueNouvelleSession = new VueNouvelleSession();
-		vueNouvelleSession.setBounds(0, 80, 800, 520);
+		vueNouvelleSession.setBounds(0, 80, 794, 495);
 		add(vueNouvelleSession);
 		
 		vueChargerPartie = new VueChargerPartie(listSession);
-		vueChargerPartie.setBounds(0, 80, 800, 520);
+		vueChargerPartie.setBounds(0, 80, 794, 495);
 		add(vueChargerPartie);
 		
 		boutonRetour = new MonochromeButton("Retour");
