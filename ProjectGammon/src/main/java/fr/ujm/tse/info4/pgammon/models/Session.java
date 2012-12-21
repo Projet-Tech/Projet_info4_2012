@@ -186,7 +186,7 @@ public class Session
 	 * Charger tous les infos sous cette racine 
 	 * @param racine c'est la racine "Sessions" dans le fichier XML
 	 */
-	public void charger(Element racine)
+	public boolean charger(Element racine)
 	{
 		idSession = Integer.valueOf(racine.getChild("session").getAttributeValue("id"));
 		switch(racine.getChild("session").getChildText("etatSession")){
@@ -207,10 +207,15 @@ public class Session
 			
 		Profils profil = Profils.getProfils();
 		Joueur JoueurNoir = profil.getJoueur(tmpID);
+		if (JoueurNoir == null)
+			return false;
+		
 		scores.put(JoueurNoir,Integer.valueOf(racine.getChild("session").getChild("joueurs").getChild("joueurNoir").getChildText("score")));
 			
 		tmpID = Integer.valueOf(racine.getChild("session").getChild("joueurs").getChild("joueurBlanc").getAttributeValue("id"));
 		Joueur JoueurBlanc = profil.getJoueur(tmpID);
+		if (JoueurBlanc == null)
+			return false;
 		scores.put(JoueurBlanc,Integer.valueOf(racine.getChild("session").getChild("joueurs").getChild("joueurBlanc").getChildText("score")));
 			
 		parametreSession = new ParametreJeu();
@@ -221,7 +226,7 @@ public class Session
 			
 		partieEnCours = new Partie(parametreSession);
 		partieEnCours.charger(racine.getChild("session").getChild("partie"));
-
+		return true;
 	}
 
 

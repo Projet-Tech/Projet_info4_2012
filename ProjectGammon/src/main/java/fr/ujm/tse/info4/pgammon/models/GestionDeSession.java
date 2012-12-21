@@ -97,7 +97,9 @@ public class GestionDeSession {
 			Document document = builder.build(tmpPath);
 			Element racine = document.getRootElement();
 			listSession.add(new Session());
-			listSession.get(i).charger(racine);
+			// si le chargement c'est mal passer on supprime la session
+			if (!listSession.get(i).charger(racine))
+				supprimerSession(listSession.get(i).getIdSession());
 
 		}
 	}	 
