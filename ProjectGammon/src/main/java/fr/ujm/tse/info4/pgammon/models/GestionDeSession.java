@@ -128,5 +128,25 @@ public class GestionDeSession {
 				return;
 		}
 	}
-	
+	/**
+	 * supprimer le fichier de Session XML par ID de cette session 
+	 * @param idSession ID pour chaque session
+	 */
+	public void supprimerFichierSession(int idSession){
+		File files[]; 
+		File path = new File("sauvegardeSessions");
+		files = path.listFiles();
+		
+		if(files == null)
+			return;
+
+		for (int i = 0; i < files.length; i++) {
+			String tmpPath = files[i].toString();
+			if(tmpPath == "Session"+String.valueOf(idSession)+".xml"){
+				files[i].delete();
+			}
+		
+		}
+	}
+
 }
