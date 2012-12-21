@@ -14,6 +14,7 @@ package fr.ujm.tse.info4.pgammon.models;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -82,6 +83,7 @@ public class GestionDeSession {
 	public void charger() throws JDOMException, IOException{
 		
 		File files[]; 
+		
 		File path = new File("sauvegardeSessions");
 		files = path.listFiles();
 		
