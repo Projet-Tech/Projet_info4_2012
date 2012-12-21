@@ -9,7 +9,6 @@
 
 
 
-
 package fr.ujm.tse.info4.pgammon.models;
 
 import java.util.HashMap;
@@ -46,16 +45,7 @@ public class Session
 	
 	public Session()
 	{
-		/*couleurJoueurAnciennePartie = null;
-		this.idSession = idSession;
-		idMaxPartie=1;
-		etatSession = EtatSession.CONFIGURATION;
-		parametreSession = parametreJeu;
-		scores = new HashMap<Joueur, Integer>();
-		scores.put(parametreSession.getJoueurBlanc(),0);
-		scores.put(parametreSession.getJoueurNoir(),0);
-		joueurGagnantSession =null;
-		nouvellePartie();*/
+		
 	}
 	
 	private void modifierScore(Joueur j, Videau multiplicateur)
@@ -70,6 +60,7 @@ public class Session
 		//TODO
 		throw new UnsupportedOperationException();
 	}
+	
 	public void finSession()
 	{
 		joueurGagnantSession.getStat().ajouterVictoire();
@@ -140,7 +131,10 @@ public class Session
 		}
 		return false;
 	}
-	
+	/**
+	 * Sauvegarder tous les infos sous cette racine 
+	 * @param racine c'est la racine "Sessions" dans le fichier XML
+	 */
 	public void sauvegarder(Element racine)
 	{
 		Element session = new Element("session");
@@ -188,45 +182,47 @@ public class Session
 		    
 		    partieEnCours.sauvegarder(session);
 	}
-	
-
-		public void charger(Element racine)
-		{
-			idSession = Integer.valueOf(racine.getChild("session").getAttributeValue("id"));
-			switch(racine.getChild("session").getChildText("etatSession")){
-				case "CONFIGURATION":etatSession = EtatSession.CONFIGURATION;break;
-				case "EN_COURS":etatSession =  EtatSession.EN_COURS;break;
-				case "TERMINEE":etatSession =  EtatSession.TERMINEE;
-			}
-			idMaxPartie = Integer.valueOf(racine.getChild("session").getChildText("idMaxPartie"));
-			switch(racine.getChild("session").getChildText("couleurJoueurAnciennePartie")){
-				case "BLANC":couleurJoueurAnciennePartie = CouleurCase.BLANC;break;
-				case "NOIR":couleurJoueurAnciennePartie =  CouleurCase.NOIR;break;
-				case "VIDE":couleurJoueurAnciennePartie =  CouleurCase.VIDE;
-			}
-			
-			int tmpID = Integer.valueOf(racine.getChild("session").getChild("joueurs").getChild("joueurNoir").getAttributeValue("id"));
-			
-			scores = new HashMap<Joueur,Integer>();
-			
-			Profils profil = Profils.getProfils();
-			Joueur JoueurNoir = profil.getJoueur(tmpID);
-			scores.put(JoueurNoir,Integer.valueOf(racine.getChild("session").getChild("joueurs").getChild("joueurNoir").getChildText("score")));
-			
-			tmpID = Integer.valueOf(racine.getChild("session").getChild("joueurs").getChild("joueurBlanc").getAttributeValue("id"));
-			Joueur JoueurBlanc = profil.getJoueur(tmpID);
-			scores.put(JoueurBlanc,Integer.valueOf(racine.getChild("session").getChild("joueurs").getChild("joueurBlanc").getChildText("score")));
-			
-			parametreSession = new ParametreJeu();
-			
-			parametreSession.charger(racine.getChild("session").getChild("parametres"));
-			parametreSession.setJoueurBlanc(JoueurBlanc);
-			parametreSession.setJoueurNoir(JoueurNoir);
-			
-			partieEnCours = new Partie(parametreSession);
-			partieEnCours.charger(racine.getChild("session").getChild("partie"));
-
+	/**
+	 * Charger tous les infos sous cette racine 
+	 * @param racine c'est la racine "Sessions" dans le fichier XML
+	 */
+	public void charger(Element racine)
+	{
+		idSession = Integer.valueOf(racine.getChild("session").getAttributeValue("id"));
+		switch(racine.getChild("session").getChildText("etatSession")){
+			case "CONFIGURATION":etatSession = EtatSession.CONFIGURATION;break;
+			case "EN_COURS":etatSession =  EtatSession.EN_COURS;break;
+			case "TERMINEE":etatSession =  EtatSession.TERMINEE;
 		}
+		idMaxPartie = Integer.valueOf(racine.getChild("session").getChildText("idMaxPartie"));
+		switch(racine.getChild("session").getChildText("couleurJoueurAnciennePartie")){
+			case "BLANC":couleurJoueurAnciennePartie = CouleurCase.BLANC;break;
+			case "NOIR":couleurJoueurAnciennePartie =  CouleurCase.NOIR;break;
+			case "VIDE":couleurJoueurAnciennePartie =  CouleurCase.VIDE;
+		}
+			
+		int tmpID = Integer.valueOf(racine.getChild("session").getChild("joueurs").getChild("joueurNoir").getAttributeValue("id"));
+			
+		scores = new HashMap<Joueur,Integer>();
+			
+		Profils profil = Profils.getProfils();
+		Joueur JoueurNoir = profil.getJoueur(tmpID);
+		scores.put(JoueurNoir,Integer.valueOf(racine.getChild("session").getChild("joueurs").getChild("joueurNoir").getChildText("score")));
+			
+		tmpID = Integer.valueOf(racine.getChild("session").getChild("joueurs").getChild("joueurBlanc").getAttributeValue("id"));
+		Joueur JoueurBlanc = profil.getJoueur(tmpID);
+		scores.put(JoueurBlanc,Integer.valueOf(racine.getChild("session").getChild("joueurs").getChild("joueurBlanc").getChildText("score")));
+			
+		parametreSession = new ParametreJeu();
+			
+		parametreSession.charger(racine.getChild("session").getChild("parametres"));
+		parametreSession.setJoueurBlanc(JoueurBlanc);
+		parametreSession.setJoueurNoir(JoueurNoir);
+			
+		partieEnCours = new Partie(parametreSession);
+		partieEnCours.charger(racine.getChild("session").getChild("partie"));
+
+	}
 
 
 	public int getIdSession() {
