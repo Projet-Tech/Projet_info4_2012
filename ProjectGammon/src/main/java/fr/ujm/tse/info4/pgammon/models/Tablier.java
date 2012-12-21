@@ -507,7 +507,7 @@ public class Tablier
 		 
 		while(ib.hasNext()){
 			Case tmpCase = new Case();
-			tmpCase.chargerBV(ib.next());
+			tmpCase.charger(ib.next());
 			caseVictoire.add(tmpCase);
 		}
 		
@@ -518,7 +518,7 @@ public class Tablier
 		 
 		while(ic.hasNext()){
 			Case tmpCase = new Case();
-			tmpCase.chargerBV(ic.next());
+			tmpCase.charger(ic.next());
 			caseBarre.add(tmpCase);
 		}
 	}
@@ -547,6 +547,22 @@ public class Tablier
 
 	public ArrayList<Case> getCaseBarre() {
 		return caseBarre;
+	}
+	
+	public Case getCase(int position,CouleurCase couleur) {
+		
+		if (position >=1 && position <= 24)
+			return listeCase.get(position-1);
+		else if (position == 25 && couleur.equals(CouleurCase.BLANC))
+			return caseVictoire.get(0);
+		else if (position == 0 && couleur.equals(CouleurCase.NOIR))
+			return caseVictoire.get(1);
+		else if (position == 0 && couleur.equals(CouleurCase.BLANC))
+			return caseBarre.get(0);
+		else if( position == 25 && couleur.equals(CouleurCase.NOIR))
+			return caseBarre.get(1);
+		else
+			return null;
 	}
 	
 	public Case getCaseBarre(CouleurCase couleur) {

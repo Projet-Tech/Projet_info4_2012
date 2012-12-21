@@ -93,9 +93,8 @@ public class Tour
 			}
 	}
 	
-	public void charger(Element tour)
+	public void charger(Element tour,Partie partie)
 	{
-		
 		switch(tour.getChildText("couleurJoueur")){
 			case "BLANC":couleurJoueur = CouleurCase.BLANC;break;
 			case "NOIR":couleurJoueur = CouleurCase.NOIR;break;
@@ -120,7 +119,7 @@ public class Tour
 		
 		while(it.hasNext()){
 			Deplacement tmpDeplacement = new Deplacement();
-			tmpDeplacement.charger(it.next());
+			tmpDeplacement.charger(it.next(),partie);
 			listDeplacement.add(tmpDeplacement);
 		}
 		

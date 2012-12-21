@@ -673,7 +673,7 @@ public class Partie {
 		 
 		while(i.hasNext()){
 			Tour tmpTour = new Tour();
-			tmpTour.charger(i.next());
+			tmpTour.charger(i.next(),this);
 			historiqueToursJoueur.add(tmpTour);
 		}
 	}
