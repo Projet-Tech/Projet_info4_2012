@@ -1,7 +1,5 @@
 package fr.ujm.tse.info4.pgammon.controleur;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -9,7 +7,6 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.swing.JFrame;
-import javax.swing.Timer;
 
 import fr.ujm.tse.info4.pgammon.exeption.TourNonJouableException;
 import fr.ujm.tse.info4.pgammon.gui.CaseButton;
@@ -38,7 +35,6 @@ public class ControleurTablier implements Controleur{
 
 	public ControleurTablier(Partie partie,VuePartie vuePartie,ControleurPartie controleurPartie)
 	{
-
 		this.partie = partie;
 		this.tablier = partie.getTablier();
 		this.vuePartie = vuePartie;
@@ -47,8 +43,7 @@ public class ControleurTablier implements Controleur{
 	
 		build();
 		vueTablier.updateDes();
-		vuePartie.afficherTransition(partie.getParametreJeu().getJoueur(partie.getJoueurEnCour()).getPseudo(), "Joueur" + partie.getJoueurEnCour().toString());
-		
+		vuePartie.afficherTransition(partie.getParametreJeu().getJoueur(partie.getJoueurEnCour()).getPseudo(), "Joueur" + partie.getJoueurEnCour().toString());	
 	}
 
 
@@ -211,7 +206,11 @@ public class ControleurTablier implements Controleur{
 		}
 		vuePartie.getHorlogeBarr().setHorloge(horloge);
 	}
-	
+
+	/**
+	 *  permet de récuperer l'horloge
+	 * @return
+	 */
 	public Horloge getHorloge() {
 		return horloge;
 	}

@@ -27,8 +27,6 @@ import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 import fr.ujm.tse.info4.pgammon.models.Deplacement;
 import fr.ujm.tse.info4.pgammon.models.EtatSession;
 import fr.ujm.tse.info4.pgammon.models.GestionDeSession;
-import fr.ujm.tse.info4.pgammon.models.HorlogeEvent;
-import fr.ujm.tse.info4.pgammon.models.HorlogeEventListener;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 import fr.ujm.tse.info4.pgammon.models.Partie;
 import fr.ujm.tse.info4.pgammon.models.Profils;
@@ -628,6 +626,12 @@ public class ControleurPartie implements Controleur
 	
 	public void finPartie() 
 	{
+		
+		if (controleurTablier.getHorloge()!= null)
+		{
+			controleurTablier.getHorloge().stop();
+			controleurTablier.getHorloge().setValue(0);
+		}
 		
 		session.finPartie();
 	
