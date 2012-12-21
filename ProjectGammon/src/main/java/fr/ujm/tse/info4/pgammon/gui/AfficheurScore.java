@@ -24,7 +24,7 @@ import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 public class AfficheurScore extends JPanel {
 
 	private static final long serialVersionUID = -1068393331289654980L;
-	private int score;
+	private int score = 0;
 	private CouleurCase couleur;
 	private JLabel label;
 	
@@ -49,8 +49,9 @@ public class AfficheurScore extends JPanel {
 	
 	private void updateFont(){
 		int h = Math.max(getPreferredSize().height,getSize().height);
+		int size_dec = (String.valueOf(score).length()-1)*5;
 		int fontSize = (int) (h/1.5);
-		label.setFont(new Font("Arial",Font.BOLD,fontSize));
+		label.setFont(new Font("Arial",Font.BOLD,fontSize-size_dec));
 		label.setPreferredSize(getSize());
 	}
 	
