@@ -101,6 +101,14 @@ public class GestionDeSession {
 		this.listSession = listSession;
 	}
 
-	
+	public void supprimerSession(int idSession){
+		for(int i=0;i<listSession.size();i++){
+			if(listSession.get(i).getIdSession()==idSession){
+				listSession.remove(i);
+			}
+			else
+				return;
+		}
+	}
 	
 }
