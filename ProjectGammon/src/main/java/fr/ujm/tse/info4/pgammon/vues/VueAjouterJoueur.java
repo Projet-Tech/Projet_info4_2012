@@ -23,14 +23,16 @@ import fr.ujm.tse.info4.pgammon.gui.MonochromePanel;
 
 public class VueAjouterJoueur extends MonochromePanel{
 
-
+	/**
+	 * Cette classe permet de gérer l'ajout ou la modification de joueur
+	 */
 
 	private static final long serialVersionUID = 3196089768815616270L;
 	
-	private MonochromeButton changerAvatar;
-	private MonochromeButton supprimerAvatar;
-	private MonochromeButton annuler;
-	private MonochromeButton enregistrer;
+	private MonochromeButton boutonChangerAvatar;
+	private MonochromeButton boutonSupprimerAvatar;
+	private MonochromeButton boutonAnnuler;
+	private MonochromeButton boutonEnregistrer;
 	
 	private JTextField nomPseudo;
 	
@@ -61,21 +63,21 @@ public class VueAjouterJoueur extends MonochromePanel{
 		imgjoueur.setBounds(25, 130, 105, 105);
 		add(imgjoueur);
 		
-		changerAvatar = new MonochromeButton("Changer l'avatar");
-		changerAvatar.setBounds(150, 130, 230, 40);
-		add(changerAvatar);
+		boutonChangerAvatar = new MonochromeButton("Changer l'avatar");
+		boutonChangerAvatar.setBounds(150, 130, 230, 40);
+		add(boutonChangerAvatar);
 		
-		supprimerAvatar = new MonochromeButton("Supprimer l'avatar");
-		supprimerAvatar.setBounds(150, 180, 230, 40);
-		add(supprimerAvatar);
+		boutonSupprimerAvatar = new MonochromeButton("Supprimer l'avatar");
+		boutonSupprimerAvatar.setBounds(150, 180, 230, 40);
+		add(boutonSupprimerAvatar);
 		
-		annuler = new MonochromeButton("Annuler");
-		annuler.setBounds(40, 245, 150, 40);
-		add(annuler);
+		boutonAnnuler = new MonochromeButton("Annuler");
+		boutonAnnuler.setBounds(40, 245, 150, 40);
+		add(boutonAnnuler);
 		
-		enregistrer = new MonochromeButton("Enregistrer");
-		enregistrer.setBounds(200, 245, 150, 40);
-		add(enregistrer);
+		boutonEnregistrer = new MonochromeButton("Enregistrer");
+		boutonEnregistrer.setBounds(200, 245, 150, 40);
+		add(boutonEnregistrer);
 		
 		nomPseudo = new JTextField();
 		nomPseudo.setBounds(10, 60, 380, 40);
@@ -108,7 +110,7 @@ public class VueAjouterJoueur extends MonochromePanel{
 
 	private void listenerSupprimerAvatar()
 	{
-		supprimerAvatar.addMouseListener(new MouseListener() {
+		boutonSupprimerAvatar.addMouseListener(new MouseListener() {
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {}
@@ -143,19 +145,19 @@ public class VueAjouterJoueur extends MonochromePanel{
 	}
 	
 	public MonochromeButton getRetour() {
-		return annuler;
+		return boutonAnnuler;
 	}
 	
 	public MonochromeButton getchangerAvatar() {
-		return changerAvatar;
+		return boutonChangerAvatar;
 	}
 	
 	public MonochromeButton getsupprimerAvatar() {
-		return supprimerAvatar;
+		return boutonSupprimerAvatar;
 	}
 	
 	public MonochromeButton getenregistrer() {
-		return enregistrer;
+		return boutonEnregistrer;
 	}
 	
 	public JTextField getnomPseudo() {
