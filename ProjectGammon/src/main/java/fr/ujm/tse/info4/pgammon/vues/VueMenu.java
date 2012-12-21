@@ -22,15 +22,18 @@ import fr.ujm.tse.info4.pgammon.gui.MonochromeVue;
 
 public class VueMenu extends MonochromeVue {
 
+	/**
+	 * Cette classe nous permet de visualiser le menu de notre jeu
+	 */
 	private static final long serialVersionUID = 3060121008717453091L;
 	public static final String img_menu = "images/menu_bg.png";
 	
 	//déclaration des variables de boutons
-	private MonochromeButton boutonnouvellepartie;
-	private MonochromeButton boutonreprendrepartie;
-	private MonochromeButton boutonajouter;
-	private MonochromeButton boutonaide;
-	private MonochromeButton boutonquitter;
+	private MonochromeButton boutonNouvellePartie;
+	private MonochromeButton boutonReprendrePartie;
+	private MonochromeButton boutonAjouter;
+	private MonochromeButton boutonAide;
+	private MonochromeButton boutonQuitter;
 	
 	private ImageIcon icon;
 	
@@ -73,48 +76,52 @@ public class VueMenu extends MonochromeVue {
 
 		
 		
-		boutonnouvellepartie = new MonochromeButton("Nouvelle partie");
-		conteneurbouton.add(boutonnouvellepartie);
+		boutonNouvellePartie = new MonochromeButton("Nouvelle partie");
+		conteneurbouton.add(boutonNouvellePartie);
 		
-		boutonreprendrepartie = new MonochromeButton("Reprendre partie");
-		conteneurbouton.add(boutonreprendrepartie);
+		boutonReprendrePartie = new MonochromeButton("Reprendre partie");
+		conteneurbouton.add(boutonReprendrePartie);
 		
-		boutonajouter = new MonochromeButton("Liste des joueurs");
-		conteneurbouton.add(boutonajouter);
+		boutonAjouter = new MonochromeButton("Liste des joueurs");
+		conteneurbouton.add(boutonAjouter);
 		
-		boutonaide = new MonochromeButton("A propos");
-		conteneurbouton.add(boutonaide);
+		boutonAide = new MonochromeButton("A propos");
+		conteneurbouton.add(boutonAide);
 		
 		JPanel vide = new JPanel();
 		vide.setOpaque(false);
 		conteneurbouton.add(vide);
 		
-		boutonquitter = new MonochromeButton("Quitter");
-		conteneurbouton.add(boutonquitter);
+		boutonQuitter = new MonochromeButton("Quitter");
+		conteneurbouton.add(boutonQuitter);
 		
 		add(conteneurgrid);
 		conteneurgrid.add(conteneurbouton);
 		
 	}
 	
+	/**
+	 * Getter du bouton de nouvelle partie
+	 * @return retourne la classe du bouton nouvelle partie
+	 */
 	public MonochromeButton getBoutonNouvellePartie() {
-		return boutonnouvellepartie;
+		return boutonNouvellePartie;
 	}
 
 	public MonochromeButton getBoutonReprendrePartie() {
-		return boutonreprendrepartie;
+		return boutonReprendrePartie;
 	}
 
 	public MonochromeButton getBoutonAjouter() {
-		return boutonajouter;
+		return boutonAjouter;
 	}
 
 	public MonochromeButton getBoutonAide() {
-		return boutonaide;
+		return boutonAide;
 	}
 	
 	public MonochromeButton getBoutonQuitter() {
-		return boutonquitter;
+		return boutonQuitter;
 	}
 
 	@Override
