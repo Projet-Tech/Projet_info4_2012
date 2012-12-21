@@ -83,6 +83,41 @@ public class ControleurPartie implements Controleur
 		listenerInterrompreSession();
 		listenerRevoirPartie();
 		listenerBoutonRevuePartie();
+		listenerTimer();
+	}
+	
+	public void listenerTimer()
+	{
+		timerRevuePartie = new Timer(1000, null);
+		timerRevuePartie.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (positionRevuePartie < session.getPartieEnCours().nbDeplacementHistorise())
+				{
+					if(!isSensAvancer)
+					{
+						isSensAvancer = true;
+					}
+					else
+					{
+						positionRevuePartie++;
+					}
+				
+				Deplacement dep = session.getPartieEnCours().ProchainDeplacement(positionRevuePartie);
+				if ( dep != null)
+					vuePartie.getPanelTermineVueBas().getReplayBarr().goTo(dep,isSensAvancer);
+				}
+				else
+				{
+					timerRevuePartie.stop();
+				}
+				vuePartie.updateUI();
+				vuePartie.getVueTablier().updateUI();
+				vuePartie.getVueTablier().updateDes();
+			}
+			
+		});
 	}
 	
 	public void listenerBoutonRevuePartie()
@@ -224,7 +259,7 @@ public class ControleurPartie implements Controleur
 	}
 	public void listenerRevoirPartie()
 	{
-		if (timerRevuePartie == null)
+		
 			vuePartie.getPaneldroitrevoir().getUndo().addMouseListener(new MouseListener(){
 
 				@Override
@@ -250,38 +285,9 @@ public class ControleurPartie implements Controleur
 					}
 					else
 					{
-						timerRevuePartie = new Timer(1000, null);
-						timerRevuePartie.addActionListener(new ActionListener() {
-	
-							@Override
-							public void actionPerformed(ActionEvent e) {
-								if (positionRevuePartie < session.getPartieEnCours().nbDeplacementHistorise())
-								{
-									if(!isSensAvancer)
-									{
-										isSensAvancer = true;
-									}
-									else
-									{
-										positionRevuePartie++;
-									}
-								
-								Deplacement dep = session.getPartieEnCours().ProchainDeplacement(positionRevuePartie);
-								if ( dep != null)
-									vuePartie.getPanelTermineVueBas().getReplayBarr().goTo(dep,isSensAvancer);
-								}
-								else
-								{
-									timerRevuePartie.stop();
-								}
-								vuePartie.updateUI();
-								vuePartie.getVueTablier().updateUI();
-								vuePartie.getVueTablier().updateDes();
-							}
-							
-						});
 						
-						timerRevuePartie.start();
+						if (timerRevuePartie != null)
+							timerRevuePartie.start();
 						
 					}
 			}
