@@ -82,6 +82,7 @@ public class GestionDeSession {
 	public void charger() throws JDOMException, IOException{
 		
 		File files[]; 
+		
 		File path = new File("sauvegardeSessions");
 		files = path.listFiles();
 		

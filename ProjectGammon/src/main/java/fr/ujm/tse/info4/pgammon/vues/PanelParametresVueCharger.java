@@ -16,7 +16,9 @@ import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 import fr.ujm.tse.info4.pgammon.models.Session;
 
 public class PanelParametresVueCharger extends MonochromePanel{
-
+	/**
+	 * Cette classe affiche le panel paramètre de session de la vue charger 
+	 */
 	
 	private static final long serialVersionUID = 7111414911070584708L;
 	
@@ -51,7 +53,10 @@ public class PanelParametresVueCharger extends MonochromePanel{
 	private ImageIcon imgpionBlanc;
 	private ImageIcon imgpionNoir;
 	
-	
+	/**
+	 * constructeur de la classe 
+	 * @param s on passe une session en paramètre
+	 */
 	public PanelParametresVueCharger(Session s){
 		super("Paramètres");
 		session = s;
@@ -59,11 +64,18 @@ public class PanelParametresVueCharger extends MonochromePanel{
 		build();
 	}
 	
+	/**
+	 * Setter de session
+	 * @param s permet de changer la session en cours
+	 */
 	public void setSession(Session s){
 		session=s;
 		updateData();
 	}
 	
+	/**
+	 * Permet de mettre à jour tous les paramètres de la session
+	 */
 	public void updateData(){
 		
 		scorej1.setScore(session.getScores().get(session.getPartieEnCours().getParametreJeu().getJoueurBlanc()));
@@ -176,7 +188,10 @@ public class PanelParametresVueCharger extends MonochromePanel{
 		add(boutonSupprimer);
 	}
 	
-	
+	/**
+	 * Getter du bouton supprimer
+	 * @return retourne la classe du bouton supprimer
+	 */
 	public MonochromeButton getBoutonSupprimer() {
 		return boutonSupprimer;
 	}
