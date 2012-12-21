@@ -11,6 +11,9 @@ import fr.ujm.tse.info4.pgammon.gui.MonochromeIconButton;
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 
 public class PanelEnCoursVueBas extends JPanel{
+	/**
+	 * Cette classe affiche le panel bas durant une partie
+	 */
 	
 	private static final long serialVersionUID = 1587735370301921370L;
 	
@@ -25,7 +28,9 @@ public class PanelEnCoursVueBas extends JPanel{
 		private int scorej2;
 		
 
-
+	/**
+	 * Constructeur de la classe
+	 */
 	public PanelEnCoursVueBas(){
 		build();
 	}
@@ -92,6 +97,11 @@ public class PanelEnCoursVueBas extends JPanel{
 		
 	}
 	
+	/**
+	 * Permet de faire la mise a jour du scrore
+	 * @param scoreJBlanc paramètre d'entier du score du joueur blanc
+	 * @param scoreJNoir paramètre d'entier du score du joueur blanc
+	 */
 	public void updateScore(int scoreJBlanc, int scoreJNoir){
 		scorej1 = scoreJBlanc;
 		scorej2 = scoreJNoir;
@@ -101,26 +111,42 @@ public class PanelEnCoursVueBas extends JPanel{
 	}
 
 
+	/**
+	 * Getter du bouton aide
+	 * @return retourne la classe du bouton aide
+	 */
 	public MonochromeIconButton getHelp() {
 		return help;
 	}
 
-
+	/**
+	 * Getter du bouton nouvelle session
+	 * @return retourne la classe du bouton nouvelle session
+	 */
 	public MonochromeIconButton getPlus() {
 		return plus;
 	}
 
-
+	/**
+	 * Getter du bouton interompre session
+	 * @return retourne la classe du bouton interrompre session
+	 */
 	public MonochromeIconButton getX_black() {
 		return x_black;
 	}
 
-
+	/**
+	 * Getter du score du joueur blanc
+	 * @return retourne le score du joueur blanc
+	 */
 	public int getScorej1() {
 		return scorej1;
 	}
 
-
+	/**
+	 * Getter du score du joueur noir
+	 * @return retourne le score du joueur noir
+	 */
 	public int getScorej2() {
 		return scorej2;
 	}
