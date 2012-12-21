@@ -34,7 +34,6 @@ public class VueNouvelleSession extends JPanel{
 
 	private MonochromeButton boutonCommencer; 
 	private MonochromeIconButton boutonChangerCouleur; 
-	private MonochromeButton boutonRetour;
 	private PanelJoueur panelJoueur1;
 	private PanelJoueur panelJoueur2;
 	private PanelParametre panelParamètre;
@@ -71,7 +70,6 @@ public class VueNouvelleSession extends JPanel{
 		panelParamètre = new PanelParametre();
 		
 		
-		boutonRetour = new MonochromeButton("Retour");
 		 boutonCommencer = new MonochromeButton("Commencer");
 		 
 		 boutonChangerCouleur = new MonochromeIconButton(IconMonochromeType.SWITCH,"MonochromeIconButton","NOIR");
@@ -100,14 +98,12 @@ public class VueNouvelleSession extends JPanel{
 		 
 		 boutonChangerCouleur.setBounds(175,190,55,55);
 		 
-		 boutonRetour.setBounds(210, 520, 344, 58);
 		 
 		 add(panelJoueur1);
 		 add(panelJoueur2);
 		 add(panelParamètre);
 		 add(boutonCommencer);
 		 add(boutonChangerCouleur);
-		 add(boutonRetour);
 		 
 		 listenerBoutonChangerCouleur();
 		
@@ -197,9 +193,6 @@ public class VueNouvelleSession extends JPanel{
 	 * Getter du bouton retour menu principal
 	 * @return retourne le bouton retour
 	 */
-	public MonochromeButton getBoutonRetour() {
-		return boutonRetour;
-	}
 
 	/**
 	 * Getter du panel joueur noir permettant l'affichage du panel joueur blanc

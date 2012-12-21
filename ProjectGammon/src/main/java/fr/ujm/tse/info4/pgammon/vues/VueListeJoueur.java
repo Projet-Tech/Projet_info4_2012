@@ -3,6 +3,7 @@ package fr.ujm.tse.info4.pgammon.vues;
 import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Event;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -128,24 +129,24 @@ public class VueListeJoueur extends MonochromeVue{
 		masqueEditerProfil();
 		
 		panelDescription = new PanelVueListeJoueurDescription(j);
-		panelDescription.setBounds(420, 50, 330, 450);
+		panelDescription.setBounds(420, 30, 330, 450);
 		add(panelDescription);
 		panelDescription.setVisible(false);
 		
 		listeJoueur = new MonochromeListe<>("Joueurs enregistrés",profil.getList(),new JoueurCellRenderer());
-		listeJoueur.setBounds(40, 50, 330, 450);
+		listeJoueur.setBounds(40, 30, 330, 450);
 		add(listeJoueur);
 		
 		boutonAjouter = new MonochromeButton("Ajouter un nouveau joueur");
-		boutonAjouter.setBounds(50, 530, 300, 50);
+		boutonAjouter.setBounds(50, 505, 300, 50);
 		add(boutonAjouter);
 		
 		boutonSelectionner = new MonochromeButton("Selectionner");
-		boutonSelectionner.setBounds(420, 530, 150, 50);
+		boutonSelectionner.setBounds(420, 505, 150, 50);
 		add(boutonSelectionner);
 		
 		boutonRetour = new MonochromeButton("Retour");
-		boutonRetour.setBounds(600, 530, 150, 50);
+		boutonRetour.setBounds(600, 505, 150, 50);
 		add(boutonRetour);
 		
 		listenerchangerAvatar();
