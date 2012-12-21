@@ -68,8 +68,8 @@ public class PanelVueListeJoueurDescription extends MonochromePanel{
 				"<br>"+new Integer(joueur.getStat().getNbVictoires()).toString() +
 				"<br>"+new Integer(joueur.getStat().getNbDefaites()).toString() +
 				"<br>"+new Integer((int) (joueur.getStat().getPourcentageVictoire()*100)).toString() + 
-				" %<br>"+joueur.getStat().getEnnemiFavoris() +
-				"<br>"+new Float(joueur.getStat().getTempsJeu()).toString());
+				" %<br>"+joueur.getStat().getEnnemiFavoris()
+				);
 
 		if(joueur.getNiveauAssistant() == NiveauAssistant.COMPLET){
 			coupPossible.setSelected(true);
@@ -203,8 +203,8 @@ public class PanelVueListeJoueurDescription extends MonochromePanel{
 				"<br>Victoires" +
 				"<br>Défaites" +
 				"<br>Pourcentage de victoire" +
-				"<br>Ennemi favori" +
-				"<br>Temps de jeu");
+				"<br>Ennemi favori" );
+				
 		textStat.setBounds(15, 130, 140, 200);
 		textStat.setFont(new Font("Arial",Font.HANGING_BASELINE,12));
 
