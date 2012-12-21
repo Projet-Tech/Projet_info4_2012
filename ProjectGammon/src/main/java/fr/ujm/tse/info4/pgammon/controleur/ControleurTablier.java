@@ -61,7 +61,16 @@ public class ControleurTablier implements Controleur{
 			caseButton.addMouseListener(new MouseListener() {
 
 				@Override
-				public void mouseClicked(MouseEvent e) {
+				public void mouseClicked(MouseEvent e) {}
+
+				@Override
+				public void mouseEntered(MouseEvent e) {}
+				@Override
+				public void mouseExited(MouseEvent e) {}
+				@Override
+				public void mousePressed(MouseEvent e) {}
+				@Override
+				public void mouseReleased(MouseEvent e) {
 					CaseButton caseButton = (CaseButton) e.getSource();
 					if (!partie.isTourFini() && !partie.isPartieFini())
 						if(vueTablier.getCandidat() == null 
@@ -118,15 +127,6 @@ public class ControleurTablier implements Controleur{
 					vueTablier.updateUI();
 					vueTablier.updateDes();
 				}
-
-				@Override
-				public void mouseEntered(MouseEvent e) {}
-				@Override
-				public void mouseExited(MouseEvent e) {}
-				@Override
-				public void mousePressed(MouseEvent e) {}
-				@Override
-				public void mouseReleased(MouseEvent e) {}
 			});
 			
 		}
