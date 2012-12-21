@@ -110,7 +110,6 @@ public class VueListeJoueur extends MonochromeVue{
 	private void build() {
 		setLayout(null);
 		setOpaque(false);
-		setPreferredSize(new Dimension(800,800));
 		
 		j = null;
 		
