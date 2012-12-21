@@ -23,10 +23,6 @@ public class Partie {
 	private ArrayList<DeSixFaces> deSixFaces;
 	private Tablier tablier;
 	private CouleurCase premierJoueur;
-
-
-
-	
 	private CouleurCase joueurEnCour;
 	private ArrayList<Tour> historiqueToursJoueur;
 	private int idPartie;
@@ -70,9 +66,9 @@ public class Partie {
 		tourFini=true;
 		partieFini = false;
 	}
-/**
- * 
- */
+	/**
+	 * 
+	 */
 	public void lancerPremierePartie() {
 		partieFini = false;
 		choixPremierJoueurLancementPartie();
@@ -102,9 +98,9 @@ public class Partie {
 	{
 		historiqueToursJoueur.add(new Tour(joueurEnCour, deSixFaces));
 	}
-/**
- * 
- */
+	/**
+	 * 
+	 */
 	public void changerTour(){
 
 		if (tablier.isTouteDameMarquee(joueurEnCour))
