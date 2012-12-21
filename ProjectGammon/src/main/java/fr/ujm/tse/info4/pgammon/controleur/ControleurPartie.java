@@ -47,6 +47,7 @@ public class ControleurPartie implements Controleur
 	private int positionRevuePartie;
 	private boolean isSensAvancer;
 	private Timer timerRevuePartie;
+	private CouleurCase couleurVideau;
 	//TODO Ce constructeur seras detruit
 	
 	@Deprecated
@@ -62,6 +63,7 @@ public class ControleurPartie implements Controleur
 	
 	public  ControleurPartie(Session session,Controleur controleur)
 	{
+		couleurVideau = CouleurCase.VIDE;
 		this.controleur = controleur;
 		controleurPartie = this;
 		this.session = session;
@@ -72,8 +74,6 @@ public class ControleurPartie implements Controleur
 		
 		controleurTablier = new ControleurTablier(session.getPartieEnCours(),vuePartie,this);
 		vuePartie.getPanelEnCoursVueBas().updateScore(session.getScores().get(session.getParametreSession().getJoueurBlanc()), session.getScores().get(session.getParametreSession().getJoueurNoir()));
-		
-		
 	}
 
 	private void build() {
@@ -87,6 +87,7 @@ public class ControleurPartie implements Controleur
 		listenerRevoirPartie();
 		listenerBoutonRevuePartie();
 		listenerTimer();
+		listenerInterromprePartie();
 	}
 	
 	public void listenerTimer()
@@ -399,38 +400,111 @@ public class ControleurPartie implements Controleur
 	}
 	public void listenerButtonVideau()
 	{
-		if (!session.getParametreSession().isUtiliseVideau())
-		{
-			vuePartie.getPaneldroitencours().getVideau().setEnabled(false);
+		
+			if (!session.getParametreSession().isUtiliseVideau())
+			{
+				vuePartie.getPaneldroitencours().getVideau().setEnabled(false);
+			}
+			else
+			{
+			vuePartie.getPaneldroitencours().getVideau().addMouseListener(new MouseListener(){
+	
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					if (couleurVideau == CouleurCase.VIDE || session.getPartieEnCours().getJoueurEnCour() != couleurVideau)
+					{
+						SortedSet<String> hs = new ConcurrentSkipListSet<>();
+						hs.add("Non");
+						hs.add("Oui");
+						vuePartie.afficherFenetreDemande("Accepter vous le videau ?", hs).addActionListener(new ActionListener() {
+							
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								
+								String action = e.getActionCommand();
+								if (action == "Oui")
+								{
+									couleurVideau = session.getPartieEnCours().getJoueurEnCour() ;
+									session.getPartieEnCours().doublerVideau();
+									
+								}
+								else if (action == "Non")
+								{
+									finPartie();
+									//if (!session.isSessionFini())
+										//controleurPartie.nouvellePartie();
+									
+								}
+								vuePartie.getPaneldroitencours().updateVideau();
+							}
+						
+					});
+				}
+			}
+			@Override
+			public void mouseEntered(MouseEvent arg0) {}
+			@Override
+			public void mouseExited(MouseEvent arg0) {}
+			@Override
+			public void mousePressed(MouseEvent arg0) {}
+			@Override
+			public void mouseReleased(MouseEvent arg0) {}
+		});
+		
 		}
-		else
-		{
-		vuePartie.getPaneldroitencours().getVideau().addMouseListener(new MouseListener(){
+	}
+	
+	public void listenerInterromprePartie()
+	{
+		vuePartie.getPaneldroitrevoir().getX_white().addMouseListener(new MouseListener(){
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				SortedSet<String> hs = new ConcurrentSkipListSet<>();
-				hs.add("Non");
-				hs.add("Oui");
-				vuePartie.afficherFenetreDemande("Accepter vous le videau ?", hs).addActionListener(new ActionListener() {
+				hs.add("Finir");
+				hs.add("Annuler");
+				hs.add("Sauvegarder");
+				vuePartie.afficherFenetreDemande("Que voulez-vous faire ?", hs).addActionListener(new ActionListener() {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						
 						String action = e.getActionCommand();
-						if (action == "Oui")
+						if (action == "Finir")
 						{
-							session.getPartieEnCours().doublerVideau();
+							if (session.meilleurJoueur() != null)
+							{
+								session.finSession(session.meilleurJoueur());
+								
+							}
+							((ControleurPrincipal)controleur).finSession();
+							controleur.retour();
+						}
+						else if (action == "Annuler")
+						{
+							
 							
 						}
-						else if (action == "Non")
+						else if (action == "Sauvegarder")
 						{
-							finPartie();
-							//if (!session.isSessionFini())
-								//controleurPartie.nouvellePartie();
+							try {
+								GestionDeSession gestion = GestionDeSession.getGestionDeSession();
+								gestion.sauvegarder();
+								
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							} catch (JDOMException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							
+								Profils profil = Profils.getProfils();
+								profil.sauvegarder();
+
+							controleur.retour();
 							
 						}
-						vuePartie.getPaneldroitencours().updateVideau();
 					}
 				});
 			}
@@ -443,7 +517,7 @@ public class ControleurPartie implements Controleur
 			@Override
 			public void mouseReleased(MouseEvent arg0) {}
 		});
-		}
+		
 	}
 	
 	public void listenerInterrompreSession()
