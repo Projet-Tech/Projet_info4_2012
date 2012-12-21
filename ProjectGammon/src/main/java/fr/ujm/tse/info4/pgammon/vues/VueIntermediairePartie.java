@@ -2,6 +2,7 @@ package fr.ujm.tse.info4.pgammon.vues;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Paint;
@@ -12,6 +13,7 @@ import java.awt.event.MouseListener;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import fr.ujm.tse.info4.pgammon.gui.Avatar;
@@ -39,6 +41,9 @@ public class VueIntermediairePartie extends MonochromeVue{
 	
 	private MonochromeButton boutonNouvellePartie;
 	
+	private JLabel textNouvelleSession;
+	private JLabel textReprendreSession;
+	
 	//TODO a gere dynamiquement
 	Joueur jBlanc = new Joueur(1, "ben", Avatar.CHAT_JAUNE.getPath(),NiveauAssistant.NON_UTILISE);
 	Joueur jNoir = new Joueur(2, "JM", Avatar.CHEVAL.getPath(), NiveauAssistant.COMPLET);
@@ -61,6 +66,7 @@ public class VueIntermediairePartie extends MonochromeVue{
 		
 		fenetreAAfficher=fenetre;
 		build();
+		changerTextSession();
 		
 	}
 
@@ -79,6 +85,7 @@ public class VueIntermediairePartie extends MonochromeVue{
 	 */
 	public void setFenetreAAfficher(Boolean fenetreAAfficher) {
 		this.fenetreAAfficher = fenetreAAfficher;
+		changerTextSession();
 	}
 
 	/**
@@ -143,11 +150,34 @@ public class VueIntermediairePartie extends MonochromeVue{
 			vueChargerPartie.setVisible(true);
 		}
 		
+		textNouvelleSession = new JLabel("Nouvelle session");
+		textNouvelleSession.setBounds(50, 15, 400, 50);
+		textNouvelleSession.setFont(new Font("Arial",Font.BOLD,36));
+		textNouvelleSession.setForeground(new Color(0xCCCCCC));
+		add(textNouvelleSession);
+		
+		textReprendreSession = new JLabel("Reprendre session");
+		textReprendreSession.setBounds(50, 15, 400, 50);
+		textReprendreSession.setFont(new Font("Arial",Font.BOLD,36));
+		textReprendreSession.setForeground(new Color(0xCCCCCC));
+		add(textReprendreSession);
+
+		
 		listenerboutonReprendre();
 		listenerboutonNouvellePartie();
 		
 	}
 	
+	public void changerTextSession(){
+		if (fenetreAAfficher == true){
+			textNouvelleSession.setVisible(true);
+			textReprendreSession.setVisible(false);
+		}
+		else{
+			textNouvelleSession.setVisible(false);
+			textReprendreSession.setVisible(true);
+		}
+	}
 
 	private void listenerboutonNouvellePartie()
 	{
