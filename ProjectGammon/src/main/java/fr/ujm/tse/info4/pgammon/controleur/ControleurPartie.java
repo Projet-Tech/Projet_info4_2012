@@ -16,6 +16,7 @@ import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.SortedSet;
 import java.util.concurrent.ConcurrentSkipListSet;
 
@@ -396,10 +397,17 @@ private void listenerBoutonAide(){
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
 				if(session.getPartieEnCours().getParametreJeu().getJoueurBlanc().getNiveauAssistant() == NiveauAssistant.NON_UTILISE )
+				{
 					session.getPartieEnCours().getParametreJeu().getJoueurBlanc().setNiveauAssistant(NiveauAssistant.SIMPLE);
+				}
 				else
+				{
 					session.getPartieEnCours().getParametreJeu().getJoueurBlanc().setNiveauAssistant(NiveauAssistant.NON_UTILISE);
-				vuePartie.getPaneljoueur1().updateData();
+					vuePartie.getVueTablier().setPossibles(null);
+					vuePartie.getVueTablier().updateUI();
+				}
+					vuePartie.getPaneljoueur1().updateData();
+					
 			}
 		});
 	}
@@ -418,10 +426,17 @@ private void listenerBoutonAide(){
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
 				if(session.getPartieEnCours().getParametreJeu().getJoueurNoir().getNiveauAssistant() == NiveauAssistant.NON_UTILISE )
+				{
 					session.getPartieEnCours().getParametreJeu().getJoueurNoir().setNiveauAssistant(NiveauAssistant.SIMPLE);
+				}
 				else
+				{
 					session.getPartieEnCours().getParametreJeu().getJoueurNoir().setNiveauAssistant(NiveauAssistant.NON_UTILISE);
+					vuePartie.getVueTablier().setPossibles((List)(new ArrayList<Case>()));
+					vuePartie.getVueTablier().updateUI();
+				}
 				vuePartie.getPaneljoueur2().updateData();
+				
 			}
 		});
 	}
