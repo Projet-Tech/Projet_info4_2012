@@ -23,14 +23,16 @@ import fr.ujm.tse.info4.pgammon.gui.MonochromePanel;
 
 public class VueAjouterJoueur extends MonochromePanel{
 
-
+	/**
+	 * Cette classe permet de gérer l'ajout ou la modification de joueur
+	 */
 
 	private static final long serialVersionUID = 3196089768815616270L;
 	
-	private MonochromeButton changerAvatar;
-	private MonochromeButton supprimerAvatar;
-	private MonochromeButton annuler;
-	private MonochromeButton enregistrer;
+	private MonochromeButton boutonChangerAvatar;
+	private MonochromeButton boutonSupprimerAvatar;
+	private MonochromeButton boutonAnnuler;
+	private MonochromeButton boutonEnregistrer;
 	
 	private JTextField nomPseudo;
 	
@@ -38,17 +40,27 @@ public class VueAjouterJoueur extends MonochromePanel{
 	
 	private String chemin = "";
 	
+	/**
+	 * Constructeur de la vue ajouter joueur
+	 */
 	public VueAjouterJoueur(){
 		super("Edition de profil");
 		build();
 		
 	}
 	
+	/**
+	 * Setter du path
+	 * @param p change l'adresse du chemin de l'avatar et le met a jour
+	 */
 	public void setPath(String p){
 		chemin = p;
 		updateData();
 	}
 
+	/**
+	 * Mise à jour du chemin de l'avatar
+	 */
 	private void updateData() {
 		imgjoueur.setPath(chemin);
 		
@@ -61,21 +73,21 @@ public class VueAjouterJoueur extends MonochromePanel{
 		imgjoueur.setBounds(25, 130, 105, 105);
 		add(imgjoueur);
 		
-		changerAvatar = new MonochromeButton("Changer l'avatar");
-		changerAvatar.setBounds(150, 130, 230, 40);
-		add(changerAvatar);
+		boutonChangerAvatar = new MonochromeButton("Changer l'avatar");
+		boutonChangerAvatar.setBounds(150, 130, 230, 40);
+		add(boutonChangerAvatar);
 		
-		supprimerAvatar = new MonochromeButton("Supprimer l'avatar");
-		supprimerAvatar.setBounds(150, 180, 230, 40);
-		add(supprimerAvatar);
+		boutonSupprimerAvatar = new MonochromeButton("Supprimer l'avatar");
+		boutonSupprimerAvatar.setBounds(150, 180, 230, 40);
+		add(boutonSupprimerAvatar);
 		
-		annuler = new MonochromeButton("Annuler");
-		annuler.setBounds(40, 245, 150, 40);
-		add(annuler);
+		boutonAnnuler = new MonochromeButton("Annuler");
+		boutonAnnuler.setBounds(40, 245, 150, 40);
+		add(boutonAnnuler);
 		
-		enregistrer = new MonochromeButton("Enregistrer");
-		enregistrer.setBounds(200, 245, 150, 40);
-		add(enregistrer);
+		boutonEnregistrer = new MonochromeButton("Enregistrer");
+		boutonEnregistrer.setBounds(200, 245, 150, 40);
+		add(boutonEnregistrer);
 		
 		nomPseudo = new JTextField();
 		nomPseudo.setBounds(10, 60, 380, 40);
@@ -98,17 +110,28 @@ public class VueAjouterJoueur extends MonochromePanel{
 		
 	}
 	
+	/**
+	 * Getter du chemin ou path
+	 * @return retourne l'adresse du chemin du joueur
+	 */
 	public String getChemin() {
 		return chemin;
 	}
 
+	/**
+	 * Setter du chemin
+	 * @param chemin change l'adresse de l'avatar pour afficher la nouvelle image
+	 */
 	public void setChemin(String chemin) {
 		this.chemin = chemin;
 	}
 
+	/**
+	 * met a nul l'adresse de l'avatar si on veut supprimer l'avatar
+	 */
 	private void listenerSupprimerAvatar()
 	{
-		supprimerAvatar.addMouseListener(new MouseListener() {
+		boutonSupprimerAvatar.addMouseListener(new MouseListener() {
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {}
@@ -142,22 +165,42 @@ public class VueAjouterJoueur extends MonochromePanel{
 		
 	}
 	
+	/**
+	 * Getter du bouton retour
+	 * @return retourne la classe du bouton retour
+	 */
 	public MonochromeButton getRetour() {
-		return annuler;
+		return boutonAnnuler;
 	}
 	
+	/**
+	 * Getter du bouton changer avatar
+	 * @return retourne la classe du bouton changer avatar
+	 */
 	public MonochromeButton getchangerAvatar() {
-		return changerAvatar;
+		return boutonChangerAvatar;
 	}
 	
+	/**
+	 * Getter du bouton supprimer avatar
+	 * @return retourne la classe du bouton supprimer avatar
+	 */
 	public MonochromeButton getsupprimerAvatar() {
-		return supprimerAvatar;
+		return boutonSupprimerAvatar;
 	}
 	
+	/**
+	 * Getter du bouton enregistrer
+	 * @return retourne la classe du bouton enregistrer
+	 */
 	public MonochromeButton getenregistrer() {
-		return enregistrer;
+		return boutonEnregistrer;
 	}
 	
+	/**
+	 * Getter du champ du joueur
+	 * @return retourne la valeur du nom du joueur
+	 */
 	public JTextField getnomPseudo() {
 		return nomPseudo;
 	}

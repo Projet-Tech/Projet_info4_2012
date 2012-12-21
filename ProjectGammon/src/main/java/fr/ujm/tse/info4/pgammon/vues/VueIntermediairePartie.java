@@ -23,6 +23,10 @@ import fr.ujm.tse.info4.pgammon.models.ParametreJeu;
 import fr.ujm.tse.info4.pgammon.models.Session;
 
 public class VueIntermediairePartie extends MonochromeVue{
+	
+	/**
+	 * Cette classe permet de gérer les vues nouvelles session et reprendre session
+	 */
 	private static final long serialVersionUID = -8524922151654361657L;
 	
 	private VueNouvelleSession vueNouvelleSession;
@@ -49,6 +53,10 @@ public class VueIntermediairePartie extends MonochromeVue{
 	
 	
 	//pasage de parametre de booleen pour savoir quelle fenetre afficher
+	/**
+	 * Méthode permettant de changer les vues en fonction d'un booléen
+	 * @param fenetre booleen definissant qu'elle fenêtre choisir
+	 */
 	public VueIntermediairePartie(Boolean fenetre){
 		
 		fenetreAAfficher=fenetre;
@@ -56,18 +64,35 @@ public class VueIntermediairePartie extends MonochromeVue{
 		
 	}
 
+	
+	/**
+	 * Getter de la fenêtre a afficher
+	 * @return retourne un booléen
+	 */
 	public Boolean getFenetreAAfficher() {
 		return fenetreAAfficher;
 	}
 
+	/**
+	 * Setter de fenêtre a afficher
+	 * @param fenetreAAfficher change le booleen en fonction de la fenetre a afficher
+	 */
 	public void setFenetreAAfficher(Boolean fenetreAAfficher) {
 		this.fenetreAAfficher = fenetreAAfficher;
 	}
 
+	/**
+	 * Getter du bouton reprendre session
+	 * @return retourne la classe du bouton reprendre session
+	 */
 	public MonochromeButton getBoutonReprendre() {
 		return boutonReprendre;
 	}
 
+	/**
+	 * Getter du bouton nouvelle session
+	 * @return retourne la classe du bouton nouvelle session
+	 */
 	public MonochromeButton getBoutonNouvellePartie() {
 		return boutonNouvellePartie;
 	}
@@ -171,14 +196,26 @@ public class VueIntermediairePartie extends MonochromeVue{
 		});
 	}
 
+	/**
+	 * Getter de la vue nouvelle session
+	 * @return retourne la classe de la vue reprendre session
+	 */
 	public VueNouvelleSession getVueNouvelleSession() {
 		return vueNouvelleSession;
 	}
 
+	/**
+	 * Getter de la vuecharger partie ou reprendre session
+	 * @return retourne la classe de la vue partie ou reprendre session
+	 */
 	public VueChargerPartie getVueChargerPartie() {
 		return vueChargerPartie;
 	}
 
+	/**
+	 * Getter du bouton retour
+	 * @return retourne la classe du bouton retourn
+	 */
 	public MonochromeButton getBoutonRetour() {
 		return boutonRetour;
 	}

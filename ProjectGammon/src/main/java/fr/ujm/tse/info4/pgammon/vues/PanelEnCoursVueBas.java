@@ -57,11 +57,13 @@ public class PanelEnCoursVueBas extends JPanel{
 		plus.setSizeBig();
 		plus.setBounds(700, 5, plus.getPreferredSize().width, plus.getPreferredSize().height);
 		add(plus);
+		plus.setVisible(false);
 		
 		JLabel labplus = new JLabel("Nouvelle session");
 		labplus.setForeground(new Color(0xCCCCCC));
 		labplus.setBounds(680, 50, 130, 60);
 		add(labplus);
+		labplus.setVisible(false);
 		
 		//composant et label d'annuler interrompre session
 		x_black = new MonochromeIconButton(IconMonochromeType.X_NOIR,"MonochromeIconButton","NOIR");
