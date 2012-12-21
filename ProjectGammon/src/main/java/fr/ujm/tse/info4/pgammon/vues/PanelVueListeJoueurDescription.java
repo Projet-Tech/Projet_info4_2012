@@ -66,6 +66,10 @@ public class PanelVueListeJoueurDescription extends MonochromePanel{
 		joueur=j;
 		updateData();
 	}
+	
+	/**
+	 * Permet de mettre à jour le panel
+	 */
 
 	public void updateData(){
 		if(joueur == null)
@@ -99,6 +103,7 @@ public class PanelVueListeJoueurDescription extends MonochromePanel{
 		imagejoueur.setPath(joueur.getImageSource());
 	}
 
+	
 	private void listenerboutonchangerCoupPossible()
 	{
 		coupPossible.addMouseListener(new MouseListener() {
@@ -248,40 +253,76 @@ public class PanelVueListeJoueurDescription extends MonochromePanel{
 
 
 
-
+	/**
+	 * Getter du bouton modifier
+	 * @return retourne la classe du bouton modifier
+	 */
 	public MonochromeButton getModifier() {
 		return modifier;
 	}
 
+	/**
+	 * Getter du bouton supprimer
+	 * @return retourne la classe du bouton supprimer
+	 */
 	public MonochromeButton getSupprimer() {
 		return supprimer;
 	}
 
+	/**
+	 * Getter de l'image du joueur
+	 * @return retourne la classe de l'imageavatar
+	 */
 	public ImageIcon getImgjoueur() {
 		return imgjoueur;
 	}
 
+	
+	/**
+	 * Setter de l'image du joueur
+	 * @param imgjoueur change l'image avatar du joueur
+	 */
 	public void setImgjoueur(ImageIcon imgjoueur) {
 		this.imgjoueur = imgjoueur;
 	}
 
+	/**
+	 * Getter du checkbox de coup possible
+	 * @return retourne la classe de la checkbox
+	 */
 	public MonochromeCheckbox getCoupPossible() {
 		return coupPossible;
 	}
 
+	/**
+	 * Setter du checkbox Coup Possible
+	 * @param conseilCoup change la checkbox
+	 */
 	public void setCoupPossible(MonochromeCheckbox couppossible) {
 		this.coupPossible = couppossible;
 	}
 
+	/**
+	 * Getter du checkbox de conseil coup
+	 * @return retourne la classe de la checkbox
+	 */
 	public MonochromeCheckbox getConseilCoup() {
 		return conseilCoup;
 	}
 
+	/**
+	 * Setter du checkbox conseil coup
+	 * @param conseilCoup change la checkbox
+	 */
 	public void setConseilcoup(MonochromeCheckbox conseilCoup) {
 		this.conseilCoup = conseilCoup;
 	}
 
 
+	/**
+	 * Getter du joueur j
+	 * @return retourne le joueur en cours
+	 */
 	public Joueur getJoueur() {
 		return joueur;
 	}
