@@ -31,6 +31,11 @@ import fr.ujm.tse.info4.pgammon.models.Profils;
 import fr.ujm.tse.info4.pgammon.models.Session;
 
 public class VueChargerPartie extends JPanel{
+	
+	/**
+	 * Cette classe permet de gérer la visualisation de la vue de charger une partie
+	 * elle contient une liste de session et un panel de parametre des sessions
+	 */
 
 	private static final long serialVersionUID = 2698819973936287585L;
 	
@@ -48,6 +53,10 @@ public class VueChargerPartie extends JPanel{
 	private PanelParametresVueCharger panelParametresVueCharger;
 
 
+	/**
+	 * Constructeur de la classe
+	 * @param s c'est une liste de session
+	 */
 	public VueChargerPartie(ArrayList<Session> s){
 		
 		try {
@@ -76,6 +85,10 @@ public class VueChargerPartie extends JPanel{
 	
 	}
 	
+	/**
+	 * Méthode permettant de faire la mise à jour de la classe
+	 * comme la mise à jour de la liste session ou celle de paramètre
+	 */
 	public void updateData(){
 		panelParametresVueCharger.setVisible(true);
 		panelParametresVueCharger.setSession(session);
@@ -139,14 +152,27 @@ public class VueChargerPartie extends JPanel{
 		
 	}
 	
+	
+	/**
+	 * Getter du bouton commencer
+	 * @return retourne la classe du bouton commencer
+	 */
 	public MonochromeButton getBoutonCommencer() {
 		return boutonCommencer;
 	}
 	
+	/**
+	 * Getter de session
+	 * @return retourne une classe Session
+	 */
 	public Session getSession() {
 		return session;
 	}
 	
+	/**
+	 * Getter de la vue de paramétrage de la session selectionner
+	 * @return retourne la classe du panel de paramétre de session
+	 */
 	public PanelParametresVueCharger getPanelParametresVueCharger() {
 		return panelParametresVueCharger;
 	}
