@@ -93,14 +93,19 @@ public class VueIntermediairePartie extends MonochromeVue{
 		boutonRetour.setBounds(550, 15, 200, 50);
 		add(boutonRetour);
 		
+		//problème sur action de bouton donc effacement de ceux-ci
+		
 		boutonReprendre = new MonochromeButton("Charger");
 		boutonReprendre.setBounds(300, 15, 200, 50);
 		add(boutonReprendre);
+		boutonReprendre.setVisible(false);
+		
+		
 		
 		boutonNouvellePartie = new MonochromeButton("Nouvelle partie");
 		boutonNouvellePartie.setBounds(50, 15, 200, 50);
 		add(boutonNouvellePartie);
-		
+		boutonNouvellePartie.setVisible(false);
 		
 		if(fenetreAAfficher == true){
 			vueNouvelleSession.setVisible(true);
