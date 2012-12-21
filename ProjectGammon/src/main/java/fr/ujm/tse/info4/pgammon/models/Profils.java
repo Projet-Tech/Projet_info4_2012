@@ -35,7 +35,10 @@ public class Profils
 	{
 		
 	}
-	
+	/**
+	 * Constructeur singleton
+	 * @return profil
+	 */
 	public static Profils getProfils()
 	{
 		if(profil == null){
@@ -48,13 +51,13 @@ public class Profils
 				}catch (IOException e){
 					//todo message probleme
 				}
-		}
-	    
+		}   
 		return profil; 
-		
 	}
 	
-	
+	/**
+	 * Sauvegarder les infos sur joueurs dans le dossier "sauvegarde" par XML
+	 */
 	public void sauvegarder()
 	{
 		Element racine = new Element("profils");
@@ -77,7 +80,11 @@ public class Profils
 			System.out.println("Erreur d'enregistrement");
 		}
 	}
-	
+	/**
+	 * Charger les infos sur joueurs par le fichier XML dans le dossier "sauvegarde"
+	 * @throws JDOMException
+	 * @throws IOException
+	 */
 	public void charger() throws JDOMException, IOException
 	{
 		 SAXBuilder builder = new SAXBuilder();
@@ -112,7 +119,9 @@ public class Profils
 			 }
 		 }
 	}
-		 
+	/**
+	 * Autres fonctions	 
+	 */
 	public void ajouter(String _pseudo,String _imageSource,NiveauAssistant _niveau){
 		
 		joueurs.add(new Joueur(joueurs.size()+1,_pseudo,_imageSource,_niveau));
