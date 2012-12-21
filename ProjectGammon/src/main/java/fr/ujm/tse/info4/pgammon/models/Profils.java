@@ -88,6 +88,7 @@ public class Profils
 	public void charger() throws JDOMException, IOException
 	{
 		 SAXBuilder builder = new SAXBuilder();
+		 System.out.println((new File(".")).getAbsolutePath());
 		 Document document = builder.build("sauvegarde/profils.xml");
 		 Element racine = document.getRootElement();
 		

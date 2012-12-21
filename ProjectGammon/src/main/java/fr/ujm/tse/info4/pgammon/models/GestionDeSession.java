@@ -84,7 +84,7 @@ public class GestionDeSession {
 		File files[]; 
 		File path = new File("sauvegardeSessions");
 		files = path.listFiles();
-		
+		System.out.println(path);
 		if(files == null)
 			return;
 		Arrays.sort(files);
