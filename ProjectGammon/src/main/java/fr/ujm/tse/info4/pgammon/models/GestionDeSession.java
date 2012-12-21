@@ -120,6 +120,8 @@ public class GestionDeSession {
 	 * @param idSession ID pour chaque session
 	 */
 	public void supprimerSession(int idSession){
+		
+		supprimerFichierSession(idSession);
 		for(int i=0;i<listSession.size();i++){
 			if(listSession.get(i).getIdSession()==idSession){
 				listSession.remove(i);
@@ -142,7 +144,7 @@ public class GestionDeSession {
 
 		for (int i = 0; i < files.length; i++) {
 			String tmpPath = files[i].toString();
-			if(tmpPath == "Session"+String.valueOf(idSession)+".xml"){
+			if(tmpPath.equals("sauvegardeSessions\\Session"+String.valueOf(idSession)+".xml")){
 				files[i].delete();
 			}
 		

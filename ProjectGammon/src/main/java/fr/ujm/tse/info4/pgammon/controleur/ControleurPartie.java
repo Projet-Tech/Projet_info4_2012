@@ -128,7 +128,6 @@ public class ControleurPartie implements Controleur
 private void listenerBoutonAide(){
 		
 		vuePartie.getPanelEnCoursVueBas().getHelp().addMouseListener(new MouseListener() {
-			
 			@Override
 			public void mouseReleased(MouseEvent e) {}
 			@Override
@@ -448,7 +447,7 @@ private void listenerBoutonAide(){
 				public void mousePressed(MouseEvent arg0) {}
 				@Override
 				public void mouseReleased(MouseEvent arg0) {
-					if (couleurVideau == CouleurCase.VIDE || session.getPartieEnCours().getJoueurEnCour() != couleurVideau)
+					if ((couleurVideau == CouleurCase.VIDE || session.getPartieEnCours().getJoueurEnCour() != couleurVideau)&& (session.getPartieEnCours().isTourFini() && !session.getPartieEnCours().isPartieFini()))
 					{
 						SortedSet<String> hs = new ConcurrentSkipListSet<>();
 						hs.add("Non");

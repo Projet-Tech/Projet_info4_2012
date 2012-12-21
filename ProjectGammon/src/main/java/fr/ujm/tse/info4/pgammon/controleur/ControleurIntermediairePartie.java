@@ -2,10 +2,14 @@ package fr.ujm.tse.info4.pgammon.controleur;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 
+import org.jdom2.JDOMException;
+
 import fr.ujm.tse.info4.pgammon.models.CouleurCase;
+import fr.ujm.tse.info4.pgammon.models.GestionDeSession;
 import fr.ujm.tse.info4.pgammon.models.Joueur;
 import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 import fr.ujm.tse.info4.pgammon.models.ParametreJeu;
@@ -36,8 +40,47 @@ public class ControleurIntermediairePartie implements Controleur{
 		listenerRetour();
 		listenerCommencer();
 		listenerCommencerCharger();
+		listenerSuppresionSession();
 		listenerChargerJoueur1();
 		listenerChargerJoueur2();
+	}
+	
+	public void listenerSuppresionSession()
+	{
+		vueCreationPartie.getVueChargerPartie().getPanelParametresVueCharger().getBoutonSupprimer().addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+
+			@Override
+			public void mouseExited(MouseEvent e) {}
+
+			@Override
+			public void mousePressed(MouseEvent e) {}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+
+				try {
+					GestionDeSession gestion = GestionDeSession.getGestionDeSession();
+					gestion.supprimerSession(vueCreationPartie.getVueChargerPartie().getSession().getIdSession());
+					gestion.sauvegarder();
+					vueCreationPartie.getVueChargerPartie().updateData();
+					vueCreationPartie.getVueChargerPartie().updateUI();
+					
+				} catch (IOException | JDOMException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+			}
+
+		});
+		
+		
 	}
 	
 	public void listenerRetour()
@@ -77,7 +120,6 @@ public class ControleurIntermediairePartie implements Controleur{
 			public void mousePressed(MouseEvent e) {}
 			@Override
 			public void mouseReleased(MouseEvent e) {	
-				
 				
 				int temp = vueCreationPartie.getVueNouvelleSession().getPanelParamètre().getNbTemps()*1000;
 				int nbPartie = vueCreationPartie.getVueNouvelleSession().getPanelParamètre().getNbParties();
