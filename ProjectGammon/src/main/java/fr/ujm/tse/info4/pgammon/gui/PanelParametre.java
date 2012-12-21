@@ -9,6 +9,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class PanelParametre extends MonochromePanel{
+	/**
+	 * Cette classe affiche les paramètres de partie que l'on pourra choisir
+	 */
 	
 	private static final long serialVersionUID = -4599011779523529733L;
 	
@@ -37,6 +40,9 @@ public class PanelParametre extends MonochromePanel{
 	private int nbParties;
 	private int nbTemps;
 
+	/**
+	 * Constructeur de la classe
+	 */
 	public PanelParametre(){
 		super("Paramètres");
 		
@@ -125,6 +131,10 @@ public class PanelParametre extends MonochromePanel{
 			
 	}
 	
+	/**
+	 * Méthode permettant d'afficher la valeur du temps en fonction du choix de l'utilisateur
+	 * @param i un entier en paramètre qui sera le temps à afficher
+	 */
 	public void changerValeurNbTemps(int i){
 		int j=i/60;		
 		if(i == 0){
@@ -200,7 +210,10 @@ public class PanelParametre extends MonochromePanel{
 		});
 	}
 	
-	
+	/**
+	 * permet de changer la valeur du nombre de partie en fonction des choix de l'uilisateur
+	 * @param i un entier en paramètre du nombre de partie
+	 */
 	public void changerValeurNbPartie(int i){
 		if(i == 0){
 			lab_parties.setText("\u221E");
@@ -274,99 +287,54 @@ public class PanelParametre extends MonochromePanel{
 	}
 	
 	
-	
+	/**
+	 * Getter du nombre de partie
+	 * @return retourne le nombre de partie selectionné
+	 */
 	public int getNbParties() {
 		return nbParties;
 	}
 
+	/**
+	 * Getter du nombre de temps
+	 * @return retourne le nombre de temps selectionné
+	 */
 	public int getNbTemps() {
 		return nbTemps;
 	}
 
-	public MonochromeIconButton getPlus_partie() {
-		return plus_partie;
-	}
+	
 
-	public void setPlus_partie(MonochromeIconButton plus_partie) {
-		this.plus_partie = plus_partie;
-	}
-
-	public MonochromeIconButton getMoins_partie() {
-		return moins_partie;
-	}
-
-	public void setMoins_partie(MonochromeIconButton moins_partie) {
-		this.moins_partie = moins_partie;
-	}
-
-	public MonochromeIconButton getInfinite_partie() {
-		return infinite_partie;
-	}
-
-	public void setInfinite_partie(MonochromeIconButton infinite_partie) {
-		this.infinite_partie = infinite_partie;
-	}
-
-	public MonochromeIconButton getPlus_temps() {
-		return plus_temps;
-	}
-
-	public void setPlus_temps(MonochromeIconButton plus_temps) {
-		this.plus_temps = plus_temps;
-	}
-
-	public MonochromeIconButton getMoins_temps() {
-		return moins_temps;
-	}
-
-	public void setMoins_temps(MonochromeIconButton moins_temps) {
-		this.moins_temps = moins_temps;
-	}
-
-	public MonochromeIconButton getInfinite_temps() {
-		return infinite_temps;
-	}
-
-	public void setInfinite_temps(MonochromeIconButton infinite_temps) {
-		this.infinite_temps = infinite_temps;
-	}
-
+	/**
+	 * Getter du label de partie
+	 * @return retourne le label de partie
+	 */
 	public MonochromeLabel getLab_parties() {
 		return lab_parties;
 	}
 
-	public void setLab_parties(MonochromeLabel lab_parties) {
-		this.lab_parties = lab_parties;
-	}
-
+	
+	/**
+	 * Getter du label de temps
+	 * @return retourne le label de temps
+	 */
 	public MonochromeLabel getLab_temps() {
 		return lab_temps;
 	}
 
-	public void setLab_temps(MonochromeLabel lab_temps) {
-		this.lab_temps = lab_temps;
-	}
-
-	public JLabel getText_parties() {
-		return text_parties;
-	}
-
-	public void setText_parties(JLabel text_parties) {
-		this.text_parties = text_parties;
-	}
-
-	public JLabel getText_temps() {
-		return text_temps;
-	}
-
-	public void setText_temps(JLabel text_temps) {
-		this.text_temps = text_temps;
-	}
-
+	
+	/**
+	 * Getter du checkbox du videau
+	 * @return retourne la valeur de la checkbox
+	 */
 	public MonochromeCheckbox getVideau() {
 		return videau;
 	}
 
+	/**
+	 * Setter du checkbox du videau
+	 * @param videau change la valeur du checkbox
+	 */
 	public void setVideau(MonochromeCheckbox videau) {
 		this.videau = videau;
 	}

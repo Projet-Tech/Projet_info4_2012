@@ -87,7 +87,7 @@ public class ControleurTablier implements Controleur{
 								}
 							else if (tablier.isDameDansCaseBarre(partie.getJoueurEnCour()))
 							{
-								vuePartie.afficherFenetreDemande("ATTENTION !!!!!","Dame mangée");
+								vuePartie.afficherFenetreDemande("Attention!","Sortez les dames battues avant de jouer.");
 							}
 						}
 						else if (vueTablier.getCandidat() != null)

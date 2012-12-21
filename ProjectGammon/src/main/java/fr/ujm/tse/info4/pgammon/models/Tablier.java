@@ -27,8 +27,6 @@ public class Tablier
 	private ArrayList<Case> caseBarre;
 	private Partie partie;
 	
-	
-
 	public Tablier(Partie p)
 	{
 		partie=p;		
@@ -56,9 +54,8 @@ public class Tablier
 		}
 		caseVictoire = new ArrayList<Case>();
 		caseBarre = new ArrayList<Case>();
-		
-		
 	}
+	
 	public void initialiserCaseBarre(ArrayList<Case> listCase)
 	{
 		caseBarre.add(listCase.get(0));
@@ -70,7 +67,9 @@ public class Tablier
 		caseVictoire.add(listCase.get(0));
 		caseVictoire.add(listCase.get(1));
 	}
-	
+	/**
+	 * Initialiser tous les cases dans le tablier
+	 */
 	public void initialiserCase()
 	{
 		
@@ -151,7 +150,12 @@ public class Tablier
 		else
 			return true;
 	}
-	
+	/**
+	 * Verifier si c'est possible de deplacer entre les deux cases
+	 * @param cDepart case depart
+	 * @param cArrivee case arrivee
+	 * @return boolean
+	 */
 	public boolean isCoupPossible(Case cDepart, Case cArrivee)
 	{
 		if (cDepart.getNbDame() == 0)
@@ -170,8 +174,6 @@ public class Tablier
 				return false;
 		}
 
-		/*if (sensDeplacementCorrect)
-			return false;*/
 		if(cDepart.getCouleurDame() == cArrivee.getCouleurDame())
 			return true;
 		else
@@ -301,8 +303,6 @@ public class Tablier
 					nbDame += getListeCase().get(i).getNbDame();
 			}
 		}
-		
-		
 		if (nbDame==0)
 			return true;
 		else
@@ -318,7 +318,12 @@ public class Tablier
 			return false;
 			
 	}
-	
+	/**
+	 * Recuperer le case arivee possible avec un case et un de donnee 
+	 * @param c Case Depart
+	 * @param de Un de 
+	 * @return Case Arivee
+	 */
 	public Case getCaseADistance(Case c, DeSixFaces de)
 	{
 		if(c.getCouleurDame() == CouleurCase.BLANC){
@@ -342,8 +347,11 @@ public class Tablier
 		}	
 	}
 	
-	
-	
+    /**
+     * Verifier dans CaseBarre (Noir ou Blanc) il y a des damns
+     * @param couleur Couleur de CaseBarre
+     * @return turn = il y a des damns.  false = il y a rien
+     */
 	public boolean isDameDansCaseBarre(CouleurCase couleur)
 	{
 		if(getCaseBarre(couleur).getNbDame() == 0)
@@ -352,9 +360,12 @@ public class Tablier
 			return true;
 				
 	}
-	
-
-	
+	/**
+	 * Recuperer tous les cases possibles
+	 * @param de Un de 
+	 * @param couleur Couleur de joueur en cours
+	 * @return une liste de tous les cases possibles
+	 */
 	public List<Coup> getCoupsPossibles(DeSixFaces de,CouleurCase couleur)
 	{
 		List<Coup> liste = new ArrayList<Coup>();
@@ -373,7 +384,12 @@ public class Tablier
 		}
 		return liste;
 	}
-	
+	/**
+	 * Recuperer tous les coups possibles selon les valeurs de des
+	 * @param des Une liste de des
+	 * @param couleur Couleur de joueur en cours
+	 * @return une listes de coups possibles
+	 */
 	public List<Coup> getCoupsPossibles(List<DeSixFaces> des,CouleurCase couleur)
 	{	
 		int somme = 0;
@@ -410,13 +426,10 @@ public class Tablier
 			return listeQuatre;
 		}
 	}
-	
 	/**
-	 * Serialisation
-	 *
+	 * Sauvegarder tous les infos sur tablier sous Racine partie
+	 * @param partie Racine de Tablier dans fichiers XML
 	 */
-	
-	
 	public void sauvegarder(Element partie)
 	{
 		Element tablierXML = new Element("tablier");
@@ -485,7 +498,10 @@ public class Tablier
 			    CaseBarXML.addContent(nbrDameBXML);
 	    }
 	}
-	
+	/**
+	 * charger tous les infos sur tablier sous Racine partie
+	 * @param partie Racine de Tablier dans fichiers XML
+	 */
 	public void charger(Element Partie)
 	{
 		listeCase = new ArrayList<Case>();
@@ -521,14 +537,11 @@ public class Tablier
 			caseBarre.add(tmpCase);
 		}
 	}
-	
-	
 	/**
 	 * 
 	 * GETTERS
 	 * 
 	 */
-	
 	public ArrayList<Case> getListeCase() {
 		return listeCase;
 	}
@@ -570,7 +583,10 @@ public class Tablier
 		else
 			return caseBarre.get(1);
 	}
-		
+	/**
+	 * Mettre les cases normals,casesVictoire,casesBars ensemble	
+	 * @return une list contenant tous les cases,casesVictoire,casesBars
+	 */
 	public ArrayList<Case> getAllCase() {
 		ArrayList<Case> listAllCase = new ArrayList<Case>();
 		for (Case case1 : listeCase) {

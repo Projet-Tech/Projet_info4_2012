@@ -132,7 +132,7 @@ public class FenetreDemandeAnimationBase extends TranstionAnimeeBase {
 	
 	
 	private Point getTextPosition(){
-		return new Point((600)-c_text.length*10,(int) (315 + 500 * quad) );
+		return new Point((600)-c_text.length*11,(int) (315 + 500 * quad) );
 	}
 	
 	private void updateQuadraticTransition(){

@@ -39,7 +39,7 @@ public class ControleurPrincipal implements Controleur{
 	public ControleurPrincipal(Master master) {
 		this.master = master;
 		controleurPrincipal= this;
-		frame = new JFrame("jeu de backgammon");
+		frame = new JFrame("Jeu de Backgammon");
 		session =null;
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
@@ -219,7 +219,7 @@ public class ControleurPrincipal implements Controleur{
 	public void chargerSession(Session session)
 	{
 		master.chargerSession(session);
-		session = master.getSession();
+		this.session = session;
 		//session.LancerPartie();
 		ControleurPartie controleurPartie = new ControleurPartie(session,this);
 		
