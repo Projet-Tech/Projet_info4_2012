@@ -37,7 +37,8 @@ import fr.ujm.tse.info4.pgammon.models.Profils;
 public class VueListeJoueur extends MonochromeVue{
 
 	/**
-	 * 
+	 * Cette classe permet de faire la visualisation de la vue liste joueur
+	 * Elle comporte d'autres classe comme panel vue liste joueur description et la monochrome liste
 	 */
 	private static final long serialVersionUID = 9216988183357324981L;
 	
@@ -51,15 +52,18 @@ public class VueListeJoueur extends MonochromeVue{
 
 
 	private VueAjouterJoueur vueAjouterJoueur;
-	private MonochromeButton ajouter;
-	private MonochromeButton selectionner;
-	private MonochromeButton retour;
+	private MonochromeButton boutonAjouter;
+	private MonochromeButton boutonSelectionner;
+	private MonochromeButton boutonRetour;
 	private OpaqueBG bg;
 	
 	private AvatarList listeAvatar;
 	
 	private ImageAvatar imgjoueur;
 	
+	/**
+	 * Constructeur de la classe
+	 */
 	public VueListeJoueur(){
 		
 		profil = Profils.getProfils();
@@ -82,6 +86,9 @@ public class VueListeJoueur extends MonochromeVue{
 		
 	}
 	
+	/**
+	 * 
+	 */
 	public void afficheEditerProfil(){
 		vueAjouterJoueur.setVisible(true);
 		bg.setVisible(true);
@@ -129,17 +136,17 @@ public class VueListeJoueur extends MonochromeVue{
 		listeJoueur.setBounds(40, 50, 330, 450);
 		add(listeJoueur);
 		
-		ajouter = new MonochromeButton("Ajouter un nouveau joueur");
-		ajouter.setBounds(50, 530, 300, 50);
-		add(ajouter);
+		boutonAjouter = new MonochromeButton("Ajouter un nouveau joueur");
+		boutonAjouter.setBounds(50, 530, 300, 50);
+		add(boutonAjouter);
 		
-		selectionner = new MonochromeButton("Selectionner");
-		selectionner.setBounds(420, 530, 150, 50);
-		add(selectionner);
+		boutonSelectionner = new MonochromeButton("Selectionner");
+		boutonSelectionner.setBounds(420, 530, 150, 50);
+		add(boutonSelectionner);
 		
-		retour = new MonochromeButton("Retour");
-		retour.setBounds(600, 530, 150, 50);
-		add(retour);
+		boutonRetour = new MonochromeButton("Retour");
+		boutonRetour.setBounds(600, 530, 150, 50);
+		add(boutonRetour);
 		
 		listenerchangerAvatar();
 		listenerAjouterAvatar();
@@ -203,17 +210,17 @@ public class VueListeJoueur extends MonochromeVue{
 
 
 	public MonochromeButton getAjouter() {
-		return ajouter;
+		return boutonAjouter;
 	}
 
 
 	public MonochromeButton getSelectionner() {
-		return selectionner;
+		return boutonSelectionner;
 	}
 
 
 	public MonochromeButton getRetour() {
-		return retour;
+		return boutonRetour;
 	}
 	
 	public VueAjouterJoueur getVueAjouterJoueur() {
