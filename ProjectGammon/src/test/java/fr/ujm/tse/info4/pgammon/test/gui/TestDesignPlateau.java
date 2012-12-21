@@ -3,6 +3,7 @@ package fr.ujm.tse.info4.pgammon.test.gui;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.FlowLayout;
+import java.util.Set;
 
 import javax.swing.JFrame;
 
@@ -141,6 +142,11 @@ public class TestDesignPlateau {
 			panel.add(t);
 		}
 		{
+			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,0,13),true);
+			t.setPossible(true);
+			panel.add(t);
+		}
+		{
 			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,1,13),true);
 			panel.add(t);
 		}
@@ -154,6 +160,7 @@ public class TestDesignPlateau {
 		}
 		{
 			CaseButton t = new BarreCaseButton(new Case(CouleurCase.NOIR,4,13),true);
+			t.setPossible(true);
 			panel.add(t);
 		}
 		{
