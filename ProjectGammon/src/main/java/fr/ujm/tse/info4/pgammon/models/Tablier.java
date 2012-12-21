@@ -583,7 +583,10 @@ public class Tablier
 		else
 			return caseBarre.get(1);
 	}
-		
+	/**
+	 * Mettre les cases normals,casesVictoire,casesBars ensemble	
+	 * @return une list contenant tous les cases,casesVictoire,casesBars
+	 */
 	public ArrayList<Case> getAllCase() {
 		ArrayList<Case> listAllCase = new ArrayList<Case>();
 		for (Case case1 : listeCase) {
