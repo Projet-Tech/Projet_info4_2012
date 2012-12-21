@@ -14,16 +14,28 @@ import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+/**
+ * Bouton avec extension de design
+ * @author Jean-Mi
+ *
+ */
 public class MonochromeButton extends JButton {
 	
 	private static final long serialVersionUID = 1L;
 	String text;
 	JLabel label;
 	float alpha = 1f;
+	
+	/**
+	 * Nouveau bouton vide.
+	 */
 	public MonochromeButton(){
 		super();
 	}
-
+	/**
+	 * Nouveau bouton avec texte.
+	 * @param str : label du bouton.
+	 */
 	public MonochromeButton(String str) {
 
 		super();
@@ -33,6 +45,11 @@ public class MonochromeButton extends JButton {
 	
 	}
 
+	/**
+	 * Nouveau bouton avec texte.
+	 * @param text : label du bouton.
+	 * @param icon : Not Implemented yet.
+	 */
 	public MonochromeButton(String text, Icon icon) {
 		super();
 		this.text = text;
@@ -108,12 +125,20 @@ public class MonochromeButton extends JButton {
 		
 	}
 	
+	
+	/**
+	 * Change le texte du bouton
+	 */
 	@Override
 	public void setText(String text){
 		this.text = text;
 		label.setText(text);
 	}
 	
+	/**
+	 * Change la transparence du bouton
+	 * @param value : valeur de la transparence entre 0.0f et 1.0f
+	 */
 	public void setAlpha(float value){
 		alpha = value;
 	}

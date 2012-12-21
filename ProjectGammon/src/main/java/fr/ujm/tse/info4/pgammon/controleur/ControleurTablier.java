@@ -85,6 +85,10 @@ public class ControleurTablier implements Controleur{
 											|| partie.getParametreJeu().getJoueur(partie.getJoueurEnCour()).getNiveauAssistant() == NiveauAssistant.COMPLET)
 										vueTablier.setPossibles(partie.getCoupsPossibles(caseButton.getCase()));
 								}
+							else if (tablier.isDameDansCaseBarre(partie.getJoueurEnCour()))
+							{
+								vuePartie.afficherFenetreDemande("ATTENTION !!!!!","Dame mangée");
+							}
 						}
 						else if (vueTablier.getCandidat() != null)
 						{

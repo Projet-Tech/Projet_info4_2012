@@ -13,7 +13,11 @@ import javax.swing.JButton;
 
 
 
-
+/**
+ * Fond noir avec dégradé
+ * @author Jean-Mi
+ *
+ */
 public class OpaqueBG extends JButton {
 	private static final long serialVersionUID = 6429362621593431481L;
 	public OpaqueBG() {

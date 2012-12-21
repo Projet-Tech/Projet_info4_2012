@@ -28,13 +28,24 @@ public class MonochromeVue extends JPanel {
 		animationPanel.add(animation);
 	}
 	
-	
+	/**
+	 * Affiche une transition avec les textes en parametres
+	 * @param titre Texte du bandeau principal
+	 * @param text Texte de l'exterieur
+	 */
 	public void afficherTransition(String titre, String text){
 		ChangementTourAnimation tourAnimation = new ChangementTourAnimation(titre, text);
 		tourAnimation.start();
 		setAnimation(tourAnimation);
 	}
 	
+	/**
+	 * Affiche une fenetre avec des boutons permetant d'interagir avec l'utilisateur
+	 * @param titre Texte principal
+	 * @param reponses Liste des labels des boutons
+	 * @return renvoie la FenetreDemandeAnimationBase créé. Ce composant peut etre
+	 * écouté pour les retours
+	 */
 	public FenetreDemandeAnimationBase afficherFenetreDemande(String titre,SortedSet<String> reponses){
 		FenetreDemandeAnimationBase fenetreDemande = new FenetreDemandeAnimationBase(titre,reponses);
 		setAnimation(fenetreDemande);
@@ -42,6 +53,13 @@ public class MonochromeVue extends JPanel {
 		return fenetreDemande;
 	}
 	
+	/**
+	 * Affiche une fenetre simple permetant d'informer l'utilisateur
+	 * @param titre Texte principal
+	 * @param subTitle Sous description
+	 * @return renvoie la FenetreDemandeAnimationBase créé. Ce composant peut etre
+	 * écouté pour la fermeture de la fenetre
+	 */
 	public FenetreDemandeAnimationBase afficherFenetreDemande(String titre,String subTitle){
 		FenetreDemandeAnimationBase fenetreDemande = new FenetreDemandeAnimationBase(titre,subTitle);
 		setAnimation(fenetreDemande);

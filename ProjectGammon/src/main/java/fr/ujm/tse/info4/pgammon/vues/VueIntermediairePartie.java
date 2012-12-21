@@ -14,12 +14,9 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
-import fr.ujm.tse.info4.pgammon.gui.Avatar;
+
 import fr.ujm.tse.info4.pgammon.gui.MonochromeButton;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeVue;
-import fr.ujm.tse.info4.pgammon.models.Joueur;
-import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
-import fr.ujm.tse.info4.pgammon.models.ParametreJeu;
 import fr.ujm.tse.info4.pgammon.models.Session;
 
 public class VueIntermediairePartie extends MonochromeVue{
@@ -103,7 +100,7 @@ public class VueIntermediairePartie extends MonochromeVue{
 		vueNouvelleSession.setBounds(0, 80, 794, 495);
 		add(vueNouvelleSession);
 		
-		vueChargerPartie = new VueChargerPartie(listSession);
+		vueChargerPartie = new VueChargerPartie(listSession,fenetreAAfficher);
 		vueChargerPartie.setBounds(0, 80, 794, 495);
 		add(vueChargerPartie);
 		

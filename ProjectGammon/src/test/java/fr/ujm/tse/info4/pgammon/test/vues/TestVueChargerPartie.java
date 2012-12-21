@@ -41,7 +41,7 @@ public class TestVueChargerPartie {
 		
 		
 		
-		VueChargerPartie charger = new VueChargerPartie(listSession);
+		VueChargerPartie charger = new VueChargerPartie(listSession,false);
 		frame.setContentPane(charger);
 		
 		

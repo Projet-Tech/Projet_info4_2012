@@ -12,7 +12,12 @@ import java.awt.geom.Point2D;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
+/**
+ * Panel de base affichant un titre et des un cadre noir.
+ * Ce panel a un Layout null.
+ * @author Jean-Michel
+ *
+ */
 public class MonochromePanel extends JButton {
 	
 	public static final int TITLE_HEIGHT = 30;
@@ -24,26 +29,41 @@ public class MonochromePanel extends JButton {
 
 	private JLabel title_lbl;
 	private JPanel pane;
-	
+	/**
+	 * Construit un MonochromePanel avec le titre passé en parametre
+	 * @param title Titre de la fenetre
+	 */
 	public MonochromePanel(String title) {
 		super();
-		setOpaque(false);
-		setLayout(null);
 		this.title = title;
 		build();
 		
 	}
 
 
-
+	/**
+	 * Construit un MonochromePanel sans titre.
+	 * Un emplacement est tout de meme réservé pour le titre
+	 */
 	public MonochromePanel() {
 		super();
 		build();
 	}
 	
+	/**
+	 * Change le titre du panel.
+	 * @param title : Nouveau titre
+	 */
+	public void setTitle(String title) {
+		title_lbl.setText(title);
+		this.title = title;
+	}
+	
 	private void build() {
 
-		
+
+		setOpaque(false);
+		setLayout(null);
 		title_lbl = new JLabel(title);
 		title_lbl.setFont(new Font("Arial", Font.BOLD, 22));
 		title_lbl.setForeground(new Color(0xB3B3B3));
@@ -59,6 +79,7 @@ public class MonochromePanel extends JButton {
 		add(title_lbl);
 		add(pane);
 	}
+	
 	@Override
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g.create(); 
@@ -91,35 +112,12 @@ public class MonochromePanel extends JButton {
 	}
 
 
-
-	public JPanel getPane() {
-		return pane;
-	}
-
-
-
-	public void setPane(JPanel pane) {
-		remove(pane);
-		this.pane = pane;
-		pane.setBounds(0, TITLE_HEIGHT, getWidth(), getHeight()-TITLE_HEIGHT);
-		pane.repaint();
-		
-	}
-	
-	public String getTitle() {
-		return title;
-	}
-
 	@Override
 	protected void paintBorder(Graphics g) {
 		//super.paintBorder(g);
 	}
 
 
-	public void setTitle(String title) {
-		title_lbl.setText(title);
-		this.title = title;
-	}
 
 	
 }

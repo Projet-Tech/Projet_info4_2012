@@ -14,6 +14,10 @@ import fr.ujm.tse.info4.pgammon.gui.IconMonochromeType;
 import fr.ujm.tse.info4.pgammon.gui.MonochromeIconButton;
 
 public class PanelTermineVueDroite extends JPanel{
+	/**
+	 * Cette classe permet de gérer la vue droite à la fin d'une partie
+	 * il y a notament la revue de partie et recommencer une partie
+	 */
 	
 
 	private static final long serialVersionUID = 1735758716220950070L;
@@ -25,7 +29,9 @@ public class PanelTermineVueDroite extends JPanel{
 		private JLabel labnext;
 
 
-
+		/**
+		 * Constructeur de la classe
+		 */
 	public PanelTermineVueDroite(){
 		
 		build();
@@ -80,17 +86,36 @@ public class PanelTermineVueDroite extends JPanel{
 	
 	
 	
-
+	/**
+	 * Getter du bouton suivant
+	 * @return retourne la classe du bouton continuer session
+	 */
 	public MonochromeIconButton getNext() {
 		return next;
 	}
 
+	/**
+	 * Getter du bouton précédent
+	 * @return retourne la classe du bouton précédent
+	 */
 	public MonochromeIconButton getUndo() {
 		return undo;
 	}
 
+	/**
+	 * Getter du bouton interrompre partie
+	 * @return retourne la classe du bouton interrompre partie
+	 */
 	public MonochromeIconButton getX_white() {
 		return x_white;
+	}
+	
+	/**
+	 * Getter du label next
+	 * @return retourne la classe du label vnext
+	 */
+	public JLabel getLabnext() {
+		return labnext;
 	}
 
 	@Override
@@ -116,8 +141,6 @@ public class PanelTermineVueDroite extends JPanel{
 		g2.dispose();
 	}
 	
-	public JLabel getLabnext() {
-		return labnext;
-	}
+	
 	
 }

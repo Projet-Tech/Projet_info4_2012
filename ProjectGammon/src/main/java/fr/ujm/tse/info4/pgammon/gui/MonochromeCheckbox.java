@@ -13,6 +13,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 
+/**
+ * Composant Checkbox avec extension de design
+ * @author Jean-Mi
+ *
+ */
 public class MonochromeCheckbox extends JCheckBox {
 	private static final long serialVersionUID = -1079113884826936210L;
 	public static final String BLANC = "BALNC";
@@ -23,6 +28,11 @@ public class MonochromeCheckbox extends JCheckBox {
 	private JLabel label;
 	private String text;
 	
+	
+	/**
+	 * Nouvelle Checkbox non selectionnée
+	 * @param label texte associé a la Checkbox
+	 */
 	public MonochromeCheckbox(String label) {
 		couleur = NOIR;
 		text = label;

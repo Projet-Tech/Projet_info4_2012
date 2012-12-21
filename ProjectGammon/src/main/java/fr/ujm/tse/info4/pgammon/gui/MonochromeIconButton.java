@@ -12,6 +12,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+/**
+ * Bouton carré contenant une image.
+ * @author Jean-Mi
+ *
+ */
 public class MonochromeIconButton extends JButton{
 	private static final long serialVersionUID = -8152217751563954978L;
 	
@@ -28,6 +33,12 @@ public class MonochromeIconButton extends JButton{
 	private JLabel label; 
 	private Size size;
 	
+	/**
+	 * Créé un nouveau bouton.
+	 * @param iconRef chemin de l'icone a utilise (cf. IconMonochromeType);
+	 * @param text Not implemented yet
+	 * @param couleur MonochromeIconButton.BLANC ou MonochromeIconButton.NOIR
+	 */
 	public MonochromeIconButton(String iconRef, String text, String couleur){
 		size = Size.SMALL;
 		this.couleur = couleur;
@@ -36,6 +47,11 @@ public class MonochromeIconButton extends JButton{
 		
 	}
 	
+	/**
+	 * Créé un nouveau bouton de type BLANC
+	 * @param iconRef chemin de l'icone a utilise (cf. IconMonochromeType);
+	 * @param text Not implemented yet
+	 */
 	public MonochromeIconButton(String iconRef, String text){
 		size = Size.SMALL;
 		couleur = BLANC;
@@ -99,21 +115,18 @@ public class MonochromeIconButton extends JButton{
 		//super.paintBorder(g);
 	}
 
-	@Override
-	public ImageIcon getIcon() {
-		return icon;
-	}
-
-	@Override
-	public String getLabel() {
-		return label.toString();
-	}
 	
+	/**
+	 * Met le bouton en petit
+	 */
 	public void setSizeSmall(){
 		setPreferredSize(new Dimension(40, 40));
 		size = Size.SMALL;
 	}
 	
+	/**
+	 * Met le bouton en grand
+	 */
 	public void setSizeBig(){
 
 		setPreferredSize(new Dimension(60, 60));
