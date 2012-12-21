@@ -84,6 +84,7 @@ public class VueTablier extends JPanel{
 		this.candidat = null;
 	}
 	private void build() {
+		setOpaque(false);
 		setLayout(null);
 		this.setPreferredSize(new Dimension(550,450));
 		
