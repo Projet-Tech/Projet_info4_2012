@@ -23,7 +23,7 @@ import fr.ujm.tse.info4.pgammon.models.NiveauAssistant;
 public class PanelJoueurVuePartie extends JPanel {
 
 	/**
-	 * 
+	 * Cette classe permet la visualisation d'un joueur dans la vue partie
 	 */
 	private static final long serialVersionUID = -7344853213808679707L;
 
@@ -41,6 +41,11 @@ public class PanelJoueurVuePartie extends JPanel {
 	private MonochromeCheckbox conseilcoup;
 	private JLabel labNomJoueur;
 
+	/**
+	 * constructeur de la classe
+	 * @param j Joueur passé en paramètre
+	 * @param coul CouleurCase passé en paramètre
+	 */
 	public PanelJoueurVuePartie(Joueur j,CouleurCase coul){
 		joueur=j;
 		couleur=coul;
@@ -49,6 +54,9 @@ public class PanelJoueurVuePartie extends JPanel {
 		updateData();
 	}
 	
+	/**
+	 * permet la mise à jour du panel du joueur
+	 */
 	public void updateData(){
 		
 		if(joueur.getNiveauAssistant() == NiveauAssistant.COMPLET){
@@ -135,23 +143,42 @@ public class PanelJoueurVuePartie extends JPanel {
 
 
 
-
+	/**
+	 * Getter du checkbox coup possible
+	 * @return retoure la checkbox
+	 */
 	public MonochromeCheckbox getCouppossible() {
 		return couppossible;
 	}
 
+	/**
+	 * Setter du checkbox coup possible
+	 * @param couppossible change la valeur de la checkbox
+	 */
 	public void setCouppossible(MonochromeCheckbox couppossible) {
 		this.couppossible = couppossible;
 	}
 
+	/**
+	 * Getter du checkbox conseil coup
+	 * @return retoure la checkbox
+	 */
 	public MonochromeCheckbox getConseilcoup() {
 		return conseilcoup;
 	}
 
+	/**
+	 * Setter du checkbox conseil coup
+	 * @param couppossible change la valeur de la checkbox
+	 */
 	public void setConseilcoup(MonochromeCheckbox conseilcoup) {
 		this.conseilcoup = conseilcoup;
 	}
 
+	/**
+	 * Getter du label du nom du joueur
+	 * @return retoure le label du nom de joueur
+	 */
 	public JLabel getLabNomJoueur() {
 		return labNomJoueur;
 	}
@@ -160,6 +187,10 @@ public class PanelJoueurVuePartie extends JPanel {
 		this.labNomJoueur = affichestat;
 	}
 
+	/**
+	 * Getter de joueur
+	 * @return retoure un joueur
+	 */
 	public Joueur getJoueur() {
 		return joueur;
 	}
