@@ -88,18 +88,25 @@ public class VueListeJoueur extends MonochromeVue{
 	}
 	
 	/**
-	 * 
+	 * Méthode permettant d'afficher la page pour créer ou modifier son profil
 	 */
 	public void afficheEditerProfil(){
 		vueAjouterJoueur.setVisible(true);
 		bg.setVisible(true);
 	}
 	
+	/**
+	 * Méthode permettant de masquer la page pour créer ou modifier son profil
+	 */
 	public void masqueEditerProfil(){
 		vueAjouterJoueur.setVisible(false);
 		bg.setVisible(false);
 	}
 	
+	/**
+	 * Méthode permettant de faire des mises à jour quand le joueur change
+	 * cela permet de mettre à la liste quand il y a des modifications
+	 */
 	public void updateData(){
 		panelDescription.setVisible(true);
 		panelDescription.setJoueur(j);
@@ -153,6 +160,11 @@ public class VueListeJoueur extends MonochromeVue{
 		listenerAjouterAvatar();
 	}
 	
+	
+	/**
+	 * récupération de l'adresse de l'avatar sur l'appuie du bouton ajouter avatar
+	 * et mise à jour dans la vue ajouter joueur
+	 */
 	private void listenerAjouterAvatar(){
 	
 		listeAvatar.getAjouter().addActionListener(new ActionListener() {
@@ -168,6 +180,9 @@ public class VueListeJoueur extends MonochromeVue{
 	
 	}
 	
+	/**
+	 * Affichage de la liste d'avatar
+	 */
 	private void listenerchangerAvatar()
 	{
 		vueAjouterJoueur.getchangerAvatar().addMouseListener(new MouseListener() {
@@ -188,71 +203,123 @@ public class VueListeJoueur extends MonochromeVue{
 		});
 	}
 	
+	/**
+	 * permet de faire la mise a jour de la liste de joueur
+	 */
 	public void updateListe(){
 		listeJoueur.updateList(new JoueurCellRenderer());
 	}
 	
 	
 
-
+	/**
+	 * Getter de profil
+	 * @return Récupère le profil en cours
+	 */
 	public Profils getProfil() {
 		return profil;
 	}
 
 
+	/**
+	 * Getter du panel vue liste joueur description
+	 * @return Récupère la classe du panel de description du joueur
+	 */
 	public PanelVueListeJoueurDescription getPanelDescription() {
 		return panelDescription;
 	}
 
-	
+
+	/**
+	 * Getter de l'affichage de la liste de joueur
+	 * @return Récupère la classe de la liste de joueur
+	 */
 	public MonochromeListe<Joueur> getListeJoueur() {
 		return listeJoueur;
 	}
 
-
+	/**
+	 * Getter du bouton ajouter
+	 * @return Récupère la classe du bouton ajouter
+	 */
 	public MonochromeButton getAjouter() {
 		return boutonAjouter;
 	}
 
 
+	/**
+	 * Getter du bouton selectionner
+	 * @return Récupère la classe du bouton selectionner
+	 */
 	public MonochromeButton getSelectionner() {
 		return boutonSelectionner;
 	}
 
-
+	/**
+	 * Getter du bouton retour
+	 * @return Récupère la calsse du bouton retour
+	 */
 	public MonochromeButton getRetour() {
 		return boutonRetour;
 	}
 	
+	/**
+	 * Getter de la vue ajouter joueur
+	 * @return Récupère la classe de la vue ajouter joueur
+	 */
 	public VueAjouterJoueur getVueAjouterJoueur() {
 		return vueAjouterJoueur;
 	}
 	
 	
-
+	/**
+	 * Getter du path
+	 * @return Récupère l'adresse de l'avatar
+	 */
 	public String getPath() {
 		return path;
 	}
 
+	/**
+	 * Setter du path
+	 * @param path changer le chemin de l'adresse de l'avatar
+	 */
 	public void setPath(String path) {
 		this.path = path;
 	}
 
+	
+	/**
+	 * Getter de joueur
+	 * @return Récupère le joueur en cours
+	 */
 	public Joueur getJ() {
 		return j;
 	}
 	
 	
-
+	/**
+	 * Setter du joueur
+	 * @param j changer le joueur et met à jour la liste
+	 */
 	public void setJ(Joueur j) {
 		this.j = j;
 		updateData();
 	}
 
+	/**
+	 * Getter de la liste d'avatar
+	 * @return Récupère la classe de la liste d'avatar
+	 */
 	public AvatarList getListeAvatar() {
 		return listeAvatar;
 	}
 
+	
+	/**
+	 * Getter de l'image du joueur 
+	 * @return Récupère l'image avatar du joueur 
+	 */
 	public ImageAvatar getImgjoueur() {
 		return imgjoueur;
 	}
