@@ -12,6 +12,9 @@ import fr.ujm.tse.info4.pgammon.models.CouleurCase;
 import fr.ujm.tse.info4.pgammon.models.Partie;
 
 public class PanelEnCoursVueDroite extends JPanel{
+	/**
+	 * Cette classe permet de visualiser le panel vue droite quand on joue une partie
+	 */
 
 	private static final long serialVersionUID = -7846360859879404327L;
 	//composant des images de jouer partie
@@ -22,7 +25,10 @@ public class PanelEnCoursVueDroite extends JPanel{
 	private Partie partie;
 	
 	
-
+/**
+ * constructeur du panel
+ * @param p il lui faut une partie en paramètre
+ */
 public PanelEnCoursVueDroite(Partie p){
 	partie = p;
 	build();
@@ -74,24 +80,42 @@ private void build() {
 		
 	}
 
+/**
+ * Permet la mise à jour du videau
+ */
 public void updateVideau()
 {
 	videau.setScore(partie.getVideau().getvideau());
 }
+
+/**
+ * Getter du bouton retour
+ * @return retourne la classe du bouton de retour
+ */
 public MonochromeIconButton getBack() {
 	return back;
 }
 
-
+/**
+ * Getter du bouton dés
+ * @return retourne la classe du bouton de dés
+ */
 public MonochromeIconButton getDices() {
 	return dices;
 }
 
-
+/**
+ * Getter du bouton videau
+ * @return retourne la classe du bouton de videau
+ */
 public AfficheurScore getVideau() {
 	return videau;
 }
 		
+/**
+ * Setter de partie
+ * @param partie change la partie
+ */
 public void setPartie(Partie partie) {
 	this.partie = partie;
 }

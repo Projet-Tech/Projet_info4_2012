@@ -27,8 +27,6 @@ public class Tablier
 	private ArrayList<Case> caseBarre;
 	private Partie partie;
 	
-	
-
 	public Tablier(Partie p)
 	{
 		partie=p;		
@@ -56,9 +54,8 @@ public class Tablier
 		}
 		caseVictoire = new ArrayList<Case>();
 		caseBarre = new ArrayList<Case>();
-		
-		
 	}
+	
 	public void initialiserCaseBarre(ArrayList<Case> listCase)
 	{
 		caseBarre.add(listCase.get(0));
@@ -70,7 +67,9 @@ public class Tablier
 		caseVictoire.add(listCase.get(0));
 		caseVictoire.add(listCase.get(1));
 	}
-	
+	/*
+	 * Initialiser tous les cases dans le tablier
+	 */
 	public void initialiserCase()
 	{
 		
@@ -151,7 +150,12 @@ public class Tablier
 		else
 			return true;
 	}
-	
+	/**
+	 * Verifier si c'est possible de deplacer entre les deux cases
+	 * @param cDepart case depart
+	 * @param cArrivee case arrivee
+	 * @return boolean
+	 */
 	public boolean isCoupPossible(Case cDepart, Case cArrivee)
 	{
 		if (cDepart.getNbDame() == 0)
@@ -170,8 +174,6 @@ public class Tablier
 				return false;
 		}
 
-		/*if (sensDeplacementCorrect)
-			return false;*/
 		if(cDepart.getCouleurDame() == cArrivee.getCouleurDame())
 			return true;
 		else
