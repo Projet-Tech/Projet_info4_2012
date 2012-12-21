@@ -85,7 +85,7 @@ public class VuePartie extends MonochromeVue{
 		setOpaque(false);
 
 		setLayout(null);
-		vueTablier.setBounds(173, 30, 547, 446);
+		vueTablier.setBounds(173, 5, 547, 446);
 		add(vueTablier);
 		
 		
@@ -96,7 +96,7 @@ public class VuePartie extends MonochromeVue{
 		etat=EtatSession.EN_COURS;
 
 		horlogeBarr = new HorlogeBarr(null);
-		horlogeBarr.setBounds(122,480,598,20);		
+		horlogeBarr.setBounds(122,455,598,20);		
 		add(horlogeBarr);
 		
 		//creation des panels de la partie
@@ -105,23 +105,23 @@ public class VuePartie extends MonochromeVue{
 		add(panelDroitEnCours);
 
 		panelTermineVueBas = new PanelTermineVueBas();
-		panelTermineVueBas.setBounds(0,505,800,95);
+		panelTermineVueBas.setBounds(0,480,800,95);
 		add(panelTermineVueBas);
 		
 		panelEnCoursVueBas = new PanelEnCoursVueBas();
-		panelEnCoursVueBas.setBounds(0,505,800,95);
+		panelEnCoursVueBas.setBounds(0,480,800,95);
 		add(panelEnCoursVueBas);
 		panelDroitRevoir = new PanelTermineVueDroite();
 		panelDroitRevoir.setBounds(720,0,80,476);
 		add(panelDroitRevoir);
 		
 		panelJoueur1 = new PanelJoueurVuePartie(partie.getParametreJeu().getJoueurBlanc(), CouleurCase.BLANC);
-		panelJoueur1.setBounds(10, 30, 150, 210);
+		panelJoueur1.setBounds(10, 5, 150, 210);
 		add(panelJoueur1);
 		
 		
 		panelJoueur2 = new PanelJoueurVuePartie(partie.getParametreJeu().getJoueurNoir(), CouleurCase.NOIR);
-		panelJoueur2.setBounds(10, 260, 150, 215);
+		panelJoueur2.setBounds(10, 235, 150, 215);
 		add(panelJoueur2);
 		
 

@@ -38,6 +38,7 @@ public class ControleurPrincipal implements Controleur{
 		session =null;
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
+		//frame.setSize(816, 638);
 		frame.setSize(800, 600);
 		frame.setLocationRelativeTo(null);
 		Container panel = frame.getContentPane();
