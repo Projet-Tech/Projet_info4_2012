@@ -46,7 +46,8 @@ public class VueChargerPartie extends JPanel{
 	private Session session;
 
 	private PanelParametresVueCharger panelParametresVueCharger;
-	
+
+
 	public VueChargerPartie(ArrayList<Session> s){
 		
 		try {
@@ -145,6 +146,9 @@ public class VueChargerPartie extends JPanel{
 	public Session getSession() {
 		return session;
 	}
-
+	
+	public PanelParametresVueCharger getPanelParametresVueCharger() {
+		return panelParametresVueCharger;
+	}
 
 }

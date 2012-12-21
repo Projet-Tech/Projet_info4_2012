@@ -57,6 +57,7 @@ public class SessionCellRenderer extends JPanel implements ListCellRenderer<Sess
 	public Component getListCellRendererComponent(JList<? extends Session> list,
 			Session j, int index, boolean isSelected, boolean cellHasFocus) {
 		
+					
 		label_j1.setForeground(new Color(0xCCCCCC));
 		label_j2.setForeground(new Color(0xCCCCCC));
 		Color bgColor;
@@ -72,11 +73,22 @@ public class SessionCellRenderer extends JPanel implements ListCellRenderer<Sess
 				bgColor = new Color(0x111111);
 		setBackground(bgColor);
 		setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(0x555555)));
-		label_j1.setText(j.getPartieEnCours().getParametreJeu().getJoueurBlanc().getPseudo());
-		label_j2.setText(j.getPartieEnCours().getParametreJeu().getJoueurNoir().getPseudo());
-				setAlignmentX(0.5f);
-		label_score_j1.setScore(j.getScores().get(j.getPartieEnCours().getParametreJeu().getJoueurBlanc()));
-		label_score_j2.setScore(j.getScores().get(j.getPartieEnCours().getParametreJeu().getJoueurNoir()));
+
+		try{
+			label_j1.setText(j.getPartieEnCours().getParametreJeu().getJoueurBlanc().getPseudo());
+			label_j2.setText(j.getPartieEnCours().getParametreJeu().getJoueurNoir().getPseudo());
+					setAlignmentX(0.5f);
+			label_score_j1.setScore(j.getScores().get(j.getPartieEnCours().getParametreJeu().getJoueurBlanc()));
+			label_score_j2.setScore(j.getScores().get(j.getPartieEnCours().getParametreJeu().getJoueurNoir()));
+		}catch(Exception e){
+
+			label_j1.setText("");
+			label_j2.setText("");
+					setAlignmentX(0.5f);
+			label_score_j1.setScore(0);
+			label_score_j2.setScore(0);
+		}
+			
 		return this;
 	}
 
